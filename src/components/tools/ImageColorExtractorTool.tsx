@@ -26,6 +26,7 @@ export function ImageColorExtractorTool({ messages }: Props) {
   const imageRef = useRef<HTMLImageElement | null>(null);
 
   const [imageSrc, setImageSrc] = useState<string | null>(null);
+  const [selectedFileName, setSelectedFileName] = useState<string>("");
   const [selectedColor, setSelectedColor] = useState<SelectedColor | null>(null);
   const [recentColors, setRecentColors] = useState<SelectedColor[]>([]);
   const [error, setError] = useState<string | null>(null);
@@ -42,8 +43,11 @@ export function ImageColorExtractorTool({ messages }: Props) {
     const file = event.target.files?.[0];
 
     if (!file) {
+      setSelectedFileName("");
       return;
     }
+
+    setSelectedFileName(file.name);
 
     if (!file.type.startsWith("image/")) {
       setImageSrc(null);
@@ -165,13 +169,22 @@ export function ImageColorExtractorTool({ messages }: Props) {
           <label htmlFor="image-upload" className="mb-3 block text-sm font-medium text-slate-700">
             {messages.uploadLabel}
           </label>
-          <input
-            id="image-upload"
-            type="file"
-            accept="image/*"
-            onChange={handleUpload}
-            className="block w-full text-sm text-slate-700 file:mr-4 file:rounded-md file:border-0 file:bg-slate-900 file:px-3 file:py-2 file:text-sm file:font-medium file:text-white hover:file:bg-slate-700"
-          />
+          <div className="flex flex-wrap items-center gap-3">
+            <input
+              id="image-upload"
+              type="file"
+              accept="image/*"
+              onChange={handleUpload}
+              className="sr-only"
+            />
+            <label
+              htmlFor="image-upload"
+              className="inline-flex cursor-pointer items-center rounded-md bg-slate-900 px-3 py-2 text-sm font-medium text-white transition hover:bg-slate-700"
+            >
+              {messages.chooseFile}
+            </label>
+            <span className="text-sm text-slate-600">{selectedFileName || messages.noFileChosen}</span>
+          </div>
 
           <div className="mt-4 overflow-hidden rounded-xl border border-dashed border-slate-300 bg-slate-50 p-3">
             {hasImage ? (
