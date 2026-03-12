@@ -1,8 +1,12 @@
+export const locales = ["en", "ko", "ja", "es", "fr", "de"] as const;
+
+export type LocaleCode = (typeof locales)[number];
+
 export type LocaleOption = {
-  code: string;
+  code: LocaleCode;
   label: string;
   nativeLabel: string;
-  pathPrefix: string;
+  pathPrefix: `/${LocaleCode}`;
   isDefault?: boolean;
 };
 
@@ -31,8 +35,19 @@ export const localeOptions: LocaleOption[] = [
     label: "Spanish",
     nativeLabel: "Español",
     pathPrefix: "/es"
+  },
+  {
+    code: "fr",
+    label: "French",
+    nativeLabel: "Français",
+    pathPrefix: "/fr"
+  },
+  {
+    code: "de",
+    label: "German",
+    nativeLabel: "Deutsch",
+    pathPrefix: "/de"
   }
 ];
 
-export const defaultLocale =
-  localeOptions.find((locale) => locale.isDefault) ?? localeOptions[0];
+export const defaultLocale: LocaleCode = "en";
