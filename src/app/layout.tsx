@@ -1,9 +1,20 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { Footer } from "@/components/Footer";
+import { Header } from "@/components/Header";
 
 export const metadata: Metadata = {
-  title: "JPG Conversion Web",
-  description: "A simple Next.js starter for JPG conversion tools."
+  metadataBase: new URL("https://jpgconversion-web.vercel.app"),
+  title: {
+    default: "Global Tools Hub",
+    template: "%s | Global Tools Hub"
+  },
+  description: "A growing collection of clean, practical web tools for creators, marketers, and developers.",
+  openGraph: {
+    title: "Global Tools Hub",
+    description: "A growing collection of clean, practical web tools for creators, marketers, and developers.",
+    type: "website"
+  }
 };
 
 export default function RootLayout({
@@ -13,8 +24,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
-        <div className="mx-auto min-h-screen max-w-3xl px-6 py-16">{children}</div>
+      <body className="min-h-screen bg-slate-50 text-slate-900 antialiased">
+        <div className="flex min-h-screen flex-col">
+          <Header />
+          <main className="mx-auto w-full max-w-6xl flex-1 px-6 py-10 sm:py-14">{children}</main>
+          <Footer />
+        </div>
       </body>
     </html>
   );
