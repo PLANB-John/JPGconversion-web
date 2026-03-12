@@ -47,9 +47,11 @@ export default async function ToolsPage({ params }: ToolsPageProps) {
           <section key={category} className="space-y-4">
             <h2 className="text-xl font-semibold text-slate-900 sm:text-2xl">{messages.tool.categories[category]}</h2>
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {groupedTools.map((tool) => (
-                <ToolCard key={tool.slug} tool={tool} statusLabel={messages.tool.status[tool.status]} />
-              ))}
+              {groupedTools.map((tool) => {
+                const href = tool.slug === "image-color-extractor" ? `/${locale}/tools/image-color-extractor` : undefined;
+
+                return <ToolCard key={tool.slug} tool={tool} statusLabel={messages.tool.status[tool.status]} href={href} />;
+              })}
             </div>
           </section>
         );
