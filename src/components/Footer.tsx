@@ -1,9 +1,16 @@
-export function Footer() {
+type FooterProps = {
+  brand: string;
+  note: string;
+};
+
+export function Footer({ brand, note }: FooterProps) {
   return (
     <footer className="border-t border-slate-200 bg-white">
       <div className="mx-auto flex w-full max-w-6xl flex-col gap-2 px-6 py-6 text-sm text-slate-600 sm:flex-row sm:items-center sm:justify-between">
-        <p>© {new Date().getFullYear()} Global Tools Hub</p>
-        <p>More practical web tools are coming step by step.</p>
+        <p>
+          © {new Date().getFullYear()} {brand}
+        </p>
+        <p>{note}</p>
       </div>
     </footer>
   );

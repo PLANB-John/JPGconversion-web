@@ -1,17 +1,30 @@
 import Link from "next/link";
+import type { LocaleCode } from "@/data/locales";
 import { LocaleSelector } from "@/components/LocaleSelector";
 
-const navItems = [
-  { href: "/", label: "Home" },
-  { href: "/tools", label: "Tools" }
-];
+type HeaderProps = {
+  locale: LocaleCode;
+  nav: {
+    brand: string;
+    home: string;
+    tools: string;
+    languageLabel: string;
+    languageAriaLabel: string;
+    currentLanguagePrefix: string;
+  };
+};
 
-export function Header() {
+export function Header({ locale, nav }: HeaderProps) {
+  const navItems = [
+    { href: `/${locale}`, label: nav.home },
+    { href: `/${locale}/tools`, label: nav.tools }
+  ];
+
   return (
     <header className="border-b border-slate-200 bg-white/90 backdrop-blur">
       <div className="mx-auto flex w-full max-w-6xl flex-col gap-3 px-6 py-4 sm:flex-row sm:items-center sm:justify-between">
-        <Link href="/" className="text-base font-semibold text-slate-900 sm:text-lg">
-          Global Tools Hub
+        <Link href={`/${locale}`} className="text-base font-semibold text-slate-900 sm:text-lg">
+          {nav.brand}
         </Link>
 
         <div className="flex items-center justify-between gap-4 sm:justify-end">
@@ -30,7 +43,12 @@ export function Header() {
             </ul>
           </nav>
 
-          <LocaleSelector />
+          <LocaleSelector
+            locale={locale}
+            label={nav.languageLabel}
+            ariaLabel={nav.languageAriaLabel}
+            currentLanguagePrefix={nav.currentLanguagePrefix}
+          />
         </div>
       </div>
     </header>
