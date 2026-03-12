@@ -38,7 +38,7 @@ export const tools: ToolItem[] = [
     name: "Palette Generator",
     description: "Generate matching color palettes for websites and apps.",
     category: "color-image",
-    status: "Coming Soon",
+    status: "Available",
     featured: true
   },
   {
