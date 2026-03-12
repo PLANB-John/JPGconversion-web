@@ -90,12 +90,12 @@ const paletteMessages: Partial<Record<LocaleCode, PaletteGeneratorMessages>> = {
     instructionsTitle: "使い方",
     instructions: [
       "HEX 値を入力するか（例: #4F46E5）、カラーピッカーを使います。",
-      "Generate Palette を押して配色を生成します。",
+      "「パレットを生成」を押して配色を生成します。",
       "各カードから HEX 値をコピーできます。"
     ],
     inputLabel: "ベース HEX カラー",
     inputHint: "6 桁の HEX を使用してください（例: #2563EB）。",
-    generateButton: "Generate Palette",
+    generateButton: "パレットを生成",
     baseColorLabel: "ベース",
     complementaryLabel: "補色",
     analogousLeftLabel: "類似色 (-30°)",
@@ -118,12 +118,12 @@ const paletteMessages: Partial<Record<LocaleCode, PaletteGeneratorMessages>> = {
     instructionsTitle: "Cómo usarlo",
     instructions: [
       "Ingresa un valor HEX (ejemplo: #4F46E5) o usa el selector de color.",
-      "Haz clic en Generate Palette para crear colores combinados.",
+      "Haz clic en \"Generar paleta\" para crear colores combinados.",
       "Copia cualquier valor HEX desde las tarjetas."
     ],
     inputLabel: "Color HEX base",
     inputHint: "Usa HEX de 6 dígitos (por ejemplo #2563EB).",
-    generateButton: "Generate Palette",
+    generateButton: "Generar paleta",
     baseColorLabel: "Base",
     complementaryLabel: "Complementario",
     analogousLeftLabel: "Análogo (-30°)",
@@ -146,12 +146,12 @@ const paletteMessages: Partial<Record<LocaleCode, PaletteGeneratorMessages>> = {
     instructionsTitle: "Mode d'emploi",
     instructions: [
       "Saisissez une valeur HEX (exemple : #4F46E5) ou utilisez le sélecteur de couleur.",
-      "Cliquez sur Generate Palette pour créer des couleurs harmonisées.",
+      "Cliquez sur « Générer la palette » pour créer des couleurs harmonisées.",
       "Copiez n'importe quelle valeur HEX depuis les cartes."
     ],
     inputLabel: "Couleur HEX de base",
     inputHint: "Utilisez un HEX à 6 caractères (par exemple #2563EB).",
-    generateButton: "Generate Palette",
+    generateButton: "Générer la palette",
     baseColorLabel: "Base",
     complementaryLabel: "Complémentaire",
     analogousLeftLabel: "Analogue (-30°)",
@@ -174,12 +174,12 @@ const paletteMessages: Partial<Record<LocaleCode, PaletteGeneratorMessages>> = {
     instructionsTitle: "So funktioniert's",
     instructions: [
       "Gib einen HEX-Wert ein (z. B. #4F46E5) oder nutze den Farbwähler.",
-      "Klicke auf Generate Palette, um passende Farben zu erstellen.",
+      "Klicke auf \"Palette generieren\", um passende Farben zu erstellen.",
       "Kopiere jeden HEX-Wert direkt aus den Karten."
     ],
     inputLabel: "Basis-HEX-Farbe",
     inputHint: "Nutze 6-stellige HEX-Werte (z. B. #2563EB).",
-    generateButton: "Generate Palette",
+    generateButton: "Palette generieren",
     baseColorLabel: "Basis",
     complementaryLabel: "Komplementär",
     analogousLeftLabel: "Analog (-30°)",
