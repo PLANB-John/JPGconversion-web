@@ -6,6 +6,7 @@ import { ToolCard } from "@/components/ToolCard";
 import { categoryOrder, featuredTools } from "@/data/tools";
 import { getMessages } from "@/data/messages";
 import { isValidLocale } from "@/lib/i18n";
+import { getLocaleAlternates } from "@/lib/seo";
 
 type HomePageProps = {
   params: Promise<{ locale: string }>;
@@ -23,9 +24,7 @@ export async function generateMetadata({ params }: HomePageProps): Promise<Metad
   return {
     title: messages.metadata.homeTitle,
     description: messages.metadata.homeDescription,
-    alternates: {
-      canonical: `/${locale}`
-    }
+    alternates: getLocaleAlternates()
   };
 }
 
