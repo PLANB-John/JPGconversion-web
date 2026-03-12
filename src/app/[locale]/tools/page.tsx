@@ -11,6 +11,11 @@ type ToolsPageProps = {
   params: Promise<{ locale: string }>;
 };
 
+const liveToolRoutes: Record<string, string> = {
+  "image-color-extractor": "image-color-extractor",
+  "palette-generator": "palette-generator"
+};
+
 export async function generateMetadata({ params }: ToolsPageProps): Promise<Metadata> {
   const { locale } = await params;
 
@@ -48,7 +53,8 @@ export default async function ToolsPage({ params }: ToolsPageProps) {
             <h2 className="text-xl font-semibold text-slate-900 sm:text-2xl">{messages.tool.categories[category]}</h2>
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {groupedTools.map((tool) => {
-                const href = tool.slug === "image-color-extractor" ? `/${locale}/tools/image-color-extractor` : undefined;
+                const route = liveToolRoutes[tool.slug];
+                const href = route ? `/${locale}/tools/${route}` : undefined;
 
                 return <ToolCard key={tool.slug} tool={tool} statusLabel={messages.tool.status[tool.status]} href={href} />;
               })}
