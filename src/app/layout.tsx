@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
+import { siteConfig } from "@/data/site";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://jpgconversion-web.vercel.app"),
+  metadataBase: new URL(siteConfig.baseUrl),
   title: {
-    default: "Global Tools Hub",
-    template: "%s | Global Tools Hub"
+    default: siteConfig.name,
+    template: `%s | ${siteConfig.name}`
   }
 };
 
