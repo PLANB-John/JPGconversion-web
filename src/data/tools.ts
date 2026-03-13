@@ -46,7 +46,7 @@ export const tools: ToolItem[] = [
     name: "Contrast Checker",
     description: "Check text and background contrast for better accessibility.",
     category: "color-image",
-    status: "Coming Soon",
+    status: "Available",
     featured: false
   },
   {
