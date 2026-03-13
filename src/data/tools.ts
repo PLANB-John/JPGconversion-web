@@ -86,7 +86,7 @@ export const tools: ToolItem[] = [
     name: "Image Resizer",
     description: "Resize images to exact dimensions for social and web use.",
     category: "color-image",
-    status: "Coming Soon",
+    status: "Available",
     featured: false
   },
   {
