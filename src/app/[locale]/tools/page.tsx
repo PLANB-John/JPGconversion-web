@@ -13,7 +13,8 @@ type ToolsPageProps = {
 
 const liveToolRoutes: Record<string, string> = {
   "image-color-extractor": "image-color-extractor",
-  "palette-generator": "palette-generator"
+  "palette-generator": "palette-generator",
+  "contrast-checker": "contrast-checker"
 };
 
 export async function generateMetadata({ params }: ToolsPageProps): Promise<Metadata> {
