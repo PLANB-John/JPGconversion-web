@@ -150,7 +150,7 @@ export function PaletteGeneratorTool({ messages }: Props) {
           <button
             type="button"
             onClick={handleGenerate}
-            className="inline-flex items-center justify-center rounded-md bg-slate-900 px-4 py-2 text-sm font-medium text-white transition hover:bg-slate-700"
+            className="inline-flex min-w-[9.5rem] items-center justify-center whitespace-nowrap rounded-md bg-slate-900 px-5 py-2 text-sm font-medium text-white transition hover:bg-slate-700"
           >
             {messages.generateButton}
           </button>
