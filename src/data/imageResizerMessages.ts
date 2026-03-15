@@ -8,6 +8,8 @@ type ImageResizerMessages = {
   instructionsTitle: string;
   instructions: string[];
   uploadLabel: string;
+  uploadButtonText: string;
+  noFileSelectedText: string;
   uploadHint: string;
   originalPreviewTitle: string;
   resizedPreviewTitle: string;
@@ -43,6 +45,8 @@ const imageResizerMessages: Partial<Record<LocaleCode, ImageResizerMessages>> = 
       "Click Resize Image and download your final file."
     ],
     uploadLabel: "Upload image",
+    uploadButtonText: "Choose file",
+    noFileSelectedText: "No file selected",
     uploadHint: "Supports common image formats like PNG, JPG, JPEG, and WEBP.",
     originalPreviewTitle: "Original preview",
     resizedPreviewTitle: "Resized preview",
@@ -64,9 +68,9 @@ const imageResizerMessages: Partial<Record<LocaleCode, ImageResizerMessages>> = 
     pngOption: "PNG"
   },
   ko: {
-    metadataTitle: "Image Resizer",
+    metadataTitle: "이미지 리사이저",
     metadataDescription: "가로/세로 크기를 직접 설정하고 비율 잠금 옵션으로 브라우저에서 이미지를 리사이즈하세요.",
-    title: "Image Resizer",
+    title: "이미지 리사이저",
     description: "이미지를 업로드하고 원하는 크기로 조정한 뒤 PNG 또는 JPG로 다운로드할 수 있습니다.",
     instructionsTitle: "사용 방법",
     instructions: [
@@ -76,6 +80,8 @@ const imageResizerMessages: Partial<Record<LocaleCode, ImageResizerMessages>> = 
       "이미지 리사이즈 버튼을 누르고 결과 파일을 다운로드하세요."
     ],
     uploadLabel: "이미지 업로드",
+    uploadButtonText: "파일 선택",
+    noFileSelectedText: "선택된 파일 없음",
     uploadHint: "PNG, JPG, JPEG, WEBP 같은 일반 이미지 형식을 지원합니다.",
     originalPreviewTitle: "원본 미리보기",
     resizedPreviewTitle: "리사이즈 미리보기",
@@ -97,9 +103,9 @@ const imageResizerMessages: Partial<Record<LocaleCode, ImageResizerMessages>> = 
     pngOption: "PNG"
   },
   ja: {
-    metadataTitle: "Image Resizer",
+    metadataTitle: "画像リサイザー",
     metadataDescription: "幅と高さを指定し、アスペクト比ロック付きでブラウザ上で画像をリサイズできます。",
-    title: "Image Resizer",
+    title: "画像リサイザー",
     description: "画像をアップロードしてサイズを変更し、PNG または JPG でダウンロードできます。",
     instructionsTitle: "使い方",
     instructions: [
@@ -109,6 +115,8 @@ const imageResizerMessages: Partial<Record<LocaleCode, ImageResizerMessages>> = 
       "「画像をリサイズ」を押して結果をダウンロードします。"
     ],
     uploadLabel: "画像をアップロード",
+    uploadButtonText: "ファイルを選択",
+    noFileSelectedText: "ファイルが選択されていません",
     uploadHint: "PNG、JPG、JPEG、WEBP など一般的な形式に対応しています。",
     originalPreviewTitle: "元画像プレビュー",
     resizedPreviewTitle: "リサイズ後プレビュー",
@@ -130,9 +138,9 @@ const imageResizerMessages: Partial<Record<LocaleCode, ImageResizerMessages>> = 
     pngOption: "PNG"
   },
   es: {
-    metadataTitle: "Image Resizer",
+    metadataTitle: "Redimensionador de imágenes",
     metadataDescription: "Redimensiona imágenes en el navegador con ancho/alto personalizados y opción de mantener proporción.",
-    title: "Image Resizer",
+    title: "Redimensionador de imágenes",
     description: "Sube una imagen, ajusta el tamaño objetivo y descarga el resultado en PNG o JPG.",
     instructionsTitle: "Cómo usarlo",
     instructions: [
@@ -142,6 +150,8 @@ const imageResizerMessages: Partial<Record<LocaleCode, ImageResizerMessages>> = 
       "Haz clic en Redimensionar imagen y descarga el resultado."
     ],
     uploadLabel: "Subir imagen",
+    uploadButtonText: "Seleccionar archivo",
+    noFileSelectedText: "Ningún archivo seleccionado",
     uploadHint: "Admite formatos comunes como PNG, JPG, JPEG y WEBP.",
     originalPreviewTitle: "Vista previa original",
     resizedPreviewTitle: "Vista previa redimensionada",
@@ -163,9 +173,9 @@ const imageResizerMessages: Partial<Record<LocaleCode, ImageResizerMessages>> = 
     pngOption: "PNG"
   },
   fr: {
-    metadataTitle: "Image Resizer",
+    metadataTitle: "Redimensionneur d'images",
     metadataDescription: "Redimensionnez des images dans le navigateur avec largeur/hauteur personnalisées et verrouillage du ratio.",
-    title: "Image Resizer",
+    title: "Redimensionneur d'images",
     description: "Importez une image, définissez la taille cible, puis téléchargez-la en PNG ou JPG.",
     instructionsTitle: "Mode d'emploi",
     instructions: [
@@ -175,6 +185,8 @@ const imageResizerMessages: Partial<Record<LocaleCode, ImageResizerMessages>> = 
       "Cliquez sur Redimensionner l'image puis téléchargez le résultat."
     ],
     uploadLabel: "Importer une image",
+    uploadButtonText: "Choisir un fichier",
+    noFileSelectedText: "Aucun fichier sélectionné",
     uploadHint: "Prend en charge les formats courants comme PNG, JPG, JPEG et WEBP.",
     originalPreviewTitle: "Aperçu original",
     resizedPreviewTitle: "Aperçu redimensionné",
@@ -196,9 +208,9 @@ const imageResizerMessages: Partial<Record<LocaleCode, ImageResizerMessages>> = 
     pngOption: "PNG"
   },
   de: {
-    metadataTitle: "Image Resizer",
+    metadataTitle: "Bildgrößenänderer",
     metadataDescription: "Skaliere Bilder direkt im Browser mit eigener Breite/Höhe und optional gesperrtem Seitenverhältnis.",
-    title: "Image Resizer",
+    title: "Bildgrößenänderer",
     description: "Lade ein Bild hoch, stelle die Zielgröße ein und lade das Ergebnis als PNG oder JPG herunter.",
     instructionsTitle: "So funktioniert's",
     instructions: [
@@ -208,6 +220,8 @@ const imageResizerMessages: Partial<Record<LocaleCode, ImageResizerMessages>> = 
       "Klicke auf Bild skalieren und lade die Datei herunter."
     ],
     uploadLabel: "Bild hochladen",
+    uploadButtonText: "Datei auswählen",
+    noFileSelectedText: "Keine Datei ausgewählt",
     uploadHint: "Unterstützt gängige Formate wie PNG, JPG, JPEG und WEBP.",
     originalPreviewTitle: "Originalvorschau",
     resizedPreviewTitle: "Skalierte Vorschau",

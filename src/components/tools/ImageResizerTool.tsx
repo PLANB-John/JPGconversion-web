@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useId, useState } from "react";
 import type { ImageResizerMessages } from "@/data/imageResizerMessages";
 
 type Props = {
@@ -19,6 +19,8 @@ export function ImageResizerTool({ messages }: Props) {
   const [outputFormat, setOutputFormat] = useState<OutputFormat>("image/png");
   const [resizedUrl, setResizedUrl] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [selectedFileName, setSelectedFileName] = useState<string>("");
+  const uploadInputId = useId();
 
   useEffect(() => {
     return () => {
@@ -59,6 +61,7 @@ export function ImageResizerTool({ messages }: Props) {
     }
 
     const nextObjectUrl = URL.createObjectURL(file);
+    setSelectedFileName(file.name);
     setOriginalUrl(nextObjectUrl);
     loadImageDimensions(nextObjectUrl);
   };
@@ -143,18 +146,29 @@ export function ImageResizerTool({ messages }: Props) {
       </section>
 
       <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
-        <label htmlFor="image-resizer-upload" className="block text-sm font-medium text-slate-700">
+        <label htmlFor={uploadInputId} className="block text-sm font-medium text-slate-700">
           {messages.uploadLabel}
         </label>
         <p className="mt-1 text-xs text-slate-500">{messages.uploadHint}</p>
 
-        <input
-          id="image-resizer-upload"
-          type="file"
-          accept="image/*"
-          onChange={handleUpload}
-          className="mt-3 block w-full rounded-md border border-slate-300 px-3 py-2 text-sm text-slate-900 file:mr-3 file:rounded-md file:border-0 file:bg-slate-900 file:px-3 file:py-1.5 file:text-sm file:font-medium file:text-white hover:file:bg-slate-700"
-        />
+        <div className="mt-3 flex flex-col gap-2 sm:flex-row sm:items-center">
+          <input
+            id={uploadInputId}
+            type="file"
+            accept="image/*"
+            onChange={handleUpload}
+            className="sr-only"
+          />
+          <label
+            htmlFor={uploadInputId}
+            className="inline-flex cursor-pointer items-center justify-center rounded-md bg-slate-900 px-4 py-2 text-sm font-medium text-white transition hover:bg-slate-700"
+          >
+            {messages.uploadButtonText}
+          </label>
+          <p className="text-sm text-slate-600" aria-live="polite">
+            {selectedFileName || messages.noFileSelectedText}
+          </p>
+        </div>
 
         {originalWidth && originalHeight && (
           <p className="mt-3 text-sm text-slate-600">
