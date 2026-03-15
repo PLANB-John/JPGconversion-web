@@ -78,7 +78,7 @@ export const tools: ToolItem[] = [
     name: "WebP Converter",
     description: "Convert common image formats into modern WebP files.",
     category: "color-image",
-    status: "Coming Soon",
+    status: "Available",
     featured: true
   },
   {
