@@ -158,7 +158,7 @@ export const tools: ToolItem[] = [
     name: "Character Counter",
     description: "Count characters, words, and lines in your text.",
     category: "developer",
-    status: "Coming Soon",
+    status: "Available",
     featured: false
   },
   {
