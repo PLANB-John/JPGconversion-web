@@ -12,6 +12,7 @@ type ToolsPageProps = {
 };
 
 const liveToolRoutes: Record<string, string> = {
+  "html-color-picker": "html-color-picker",
   "image-color-extractor": "image-color-extractor",
   "palette-generator": "palette-generator",
   "contrast-checker": "contrast-checker",
