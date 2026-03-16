@@ -4,6 +4,12 @@ export type RgbColor = {
   b: number;
 };
 
+export type HslColor = {
+  h: number;
+  s: number;
+  l: number;
+};
+
 export function normalizeHex(input: string): string {
   const trimmed = input.trim();
   if (!trimmed) {
@@ -34,32 +40,7 @@ export function rgbToHex({ r, g, b }: RgbColor): string {
     .toUpperCase()}`;
 }
 
-function shiftChannel(channel: number, amount: number): number {
-  return channel + (255 - channel) * amount;
-}
-
-export function lightenColor(hex: string, amount: number): string {
-  const rgb = hexToRgb(hex);
-  return rgbToHex({
-    r: shiftChannel(rgb.r, amount),
-    g: shiftChannel(rgb.g, amount),
-    b: shiftChannel(rgb.b, amount)
-  });
-}
-
-export function darkenColor(hex: string, amount: number): string {
-  const rgb = hexToRgb(hex);
-  const multiplier = 1 - amount;
-
-  return rgbToHex({
-    r: rgb.r * multiplier,
-    g: rgb.g * multiplier,
-    b: rgb.b * multiplier
-  });
-}
-
-export function rotateHue(hex: string, degrees: number): string {
-  const { r, g, b } = hexToRgb(hex);
+export function rgbToHsl({ r, g, b }: RgbColor): HslColor {
   const rNorm = r / 255;
   const gNorm = g / 255;
   const bNorm = b / 255;
@@ -86,10 +67,47 @@ export function rotateHue(hex: string, degrees: number): string {
     }
   }
 
+  return {
+    h: Math.round((h + 360) % 360),
+    s: Math.round(s * 100),
+    l: Math.round(l * 100)
+  };
+}
+
+function shiftChannel(channel: number, amount: number): number {
+  return channel + (255 - channel) * amount;
+}
+
+export function lightenColor(hex: string, amount: number): string {
+  const rgb = hexToRgb(hex);
+  return rgbToHex({
+    r: shiftChannel(rgb.r, amount),
+    g: shiftChannel(rgb.g, amount),
+    b: shiftChannel(rgb.b, amount)
+  });
+}
+
+export function darkenColor(hex: string, amount: number): string {
+  const rgb = hexToRgb(hex);
+  const multiplier = 1 - amount;
+
+  return rgbToHex({
+    r: rgb.r * multiplier,
+    g: rgb.g * multiplier,
+    b: rgb.b * multiplier
+  });
+}
+
+export function rotateHue(hex: string, degrees: number): string {
+  const { h, s, l } = rgbToHsl(hexToRgb(hex));
+
   const nextHue = (h + degrees + 360) % 360;
-  const c = (1 - Math.abs(2 * l - 1)) * s;
+  const saturation = s / 100;
+  const lightness = l / 100;
+
+  const c = (1 - Math.abs(2 * lightness - 1)) * saturation;
   const x = c * (1 - Math.abs(((nextHue / 60) % 2) - 1));
-  const m = l - c / 2;
+  const m = lightness - c / 2;
 
   let rPrime = 0;
   let gPrime = 0;
