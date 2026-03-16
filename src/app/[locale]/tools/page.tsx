@@ -21,7 +21,8 @@ const liveToolRoutes: Record<string, string> = {
   "gradient-generator": "gradient-generator",
   "css-variable-generator": "css-variable-generator",
   "image-compressor": "image-compressor",
-  "json-formatter": "json-formatter"
+  "json-formatter": "json-formatter",
+  "character-counter": "character-counter"
 };
 
 export async function generateMetadata({ params }: ToolsPageProps): Promise<Metadata> {
