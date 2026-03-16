@@ -17,7 +17,8 @@ const liveToolRoutes: Record<string, string> = {
   "contrast-checker": "contrast-checker",
   "image-resizer": "image-resizer",
   "webp-converter": "webp-converter",
-  "gradient-generator": "gradient-generator"
+  "gradient-generator": "gradient-generator",
+  "css-variable-generator": "css-variable-generator"
 };
 
 export async function generateMetadata({ params }: ToolsPageProps): Promise<Metadata> {

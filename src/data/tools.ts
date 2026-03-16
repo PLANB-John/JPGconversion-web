@@ -62,7 +62,7 @@ export const tools: ToolItem[] = [
     name: "CSS Variable Generator",
     description: "Turn your design tokens into ready-to-use CSS variables.",
     category: "color-image",
-    status: "Coming Soon",
+    status: "Available",
     featured: false
   },
   {
