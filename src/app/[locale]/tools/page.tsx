@@ -20,7 +20,8 @@ const liveToolRoutes: Record<string, string> = {
   "webp-converter": "webp-converter",
   "gradient-generator": "gradient-generator",
   "css-variable-generator": "css-variable-generator",
-  "image-compressor": "image-compressor"
+  "image-compressor": "image-compressor",
+  "json-formatter": "json-formatter"
 };
 
 export async function generateMetadata({ params }: ToolsPageProps): Promise<Metadata> {
