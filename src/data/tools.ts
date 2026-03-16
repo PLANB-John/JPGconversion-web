@@ -54,7 +54,7 @@ export const tools: ToolItem[] = [
     name: "Gradient Generator",
     description: "Create smooth CSS gradients and copy the code instantly.",
     category: "color-image",
-    status: "Coming Soon",
+    status: "Available",
     featured: false
   },
   {
