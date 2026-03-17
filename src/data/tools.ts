@@ -150,7 +150,7 @@ export const tools: ToolItem[] = [
     name: "Base64 Encode/Decode",
     description: "Convert plain text to Base64 and back instantly.",
     category: "developer",
-    status: "Coming Soon",
+    status: "Available",
     featured: false
   },
   {
