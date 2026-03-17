@@ -23,6 +23,7 @@ const liveToolRoutes: Record<string, string> = {
   "image-compressor": "image-compressor",
   "json-formatter": "json-formatter",
   "url-encode-decode": "url-encode-decode",
+  "base64-encode-decode": "base64-encode-decode",
   "character-counter": "character-counter"
 };
 
