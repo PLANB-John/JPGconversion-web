@@ -22,6 +22,7 @@ const liveToolRoutes: Record<string, string> = {
   "css-variable-generator": "css-variable-generator",
   "image-compressor": "image-compressor",
   "json-formatter": "json-formatter",
+  "url-encode-decode": "url-encode-decode",
   "character-counter": "character-counter"
 };
 

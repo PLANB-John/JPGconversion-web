@@ -142,7 +142,7 @@ export const tools: ToolItem[] = [
     name: "URL Encode/Decode",
     description: "Encode and decode URLs safely for requests and links.",
     category: "developer",
-    status: "Coming Soon",
+    status: "Available",
     featured: false
   },
   {
