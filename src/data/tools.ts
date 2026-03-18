@@ -174,7 +174,7 @@ export const tools: ToolItem[] = [
     name: "Timestamp Converter",
     description: "Switch between Unix timestamps and readable dates.",
     category: "developer",
-    status: "Coming Soon",
+    status: "Available",
     featured: false
   },
   {
