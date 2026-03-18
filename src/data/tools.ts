@@ -180,9 +180,9 @@ export const tools: ToolItem[] = [
   {
     slug: "punycode-converter",
     name: "Punycode Converter",
-    description: "Convert internationalized domain names to Punycode.",
+    description: "Convert internationalized domain names between Unicode and ASCII Punycode.",
     category: "developer",
-    status: "Coming Soon",
+    status: "Available",
     featured: false
   }
 ];
