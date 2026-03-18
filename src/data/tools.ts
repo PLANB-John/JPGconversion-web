@@ -166,7 +166,7 @@ export const tools: ToolItem[] = [
     name: "Hash Generator",
     description: "Generate common hashes for quick development checks.",
     category: "developer",
-    status: "Coming Soon",
+    status: "Available",
     featured: false
   },
   {

@@ -24,7 +24,8 @@ const liveToolRoutes: Record<string, string> = {
   "json-formatter": "json-formatter",
   "url-encode-decode": "url-encode-decode",
   "base64-encode-decode": "base64-encode-decode",
-  "character-counter": "character-counter"
+  "character-counter": "character-counter",
+  "hash-generator": "hash-generator"
 };
 
 export async function generateMetadata({ params }: ToolsPageProps): Promise<Metadata> {
