@@ -94,7 +94,7 @@ export const tools: ToolItem[] = [
     name: "Website Screenshot",
     description: "Capture full-page screenshots directly from a URL.",
     category: "web-marketing",
-    status: "Coming Soon",
+    status: "Available",
     featured: false
   },
   {
@@ -201,6 +201,7 @@ export const liveToolRoutes: Record<string, string> = {
   "image-compressor": "image-compressor",
   "youtube-thumbnail-extractor": "youtube-thumbnail-extractor",
   "website-image-extractor": "website-image-extractor",
+  "website-screenshot": "website-screenshot",
   "json-formatter": "json-formatter",
   "url-encode-decode": "url-encode-decode",
   "base64-encode-decode": "base64-encode-decode",
