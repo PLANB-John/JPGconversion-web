@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { SectionTitle } from "@/components/SectionTitle";
 import { ToolCard } from "@/components/ToolCard";
-import { categoryOrder, featuredTools } from "@/data/tools";
+import { categoryOrder, featuredTools, liveToolRoutes } from "@/data/tools";
 import { getMessages } from "@/data/messages";
 import { isValidLocale } from "@/lib/i18n";
 import { getLocaleAlternates } from "@/lib/seo";
@@ -58,9 +58,12 @@ export default async function HomePage({ params }: HomePageProps) {
           description={messages.home.featuredDescription}
         />
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {featuredTools.map((tool) => (
-            <ToolCard key={tool.slug} tool={tool} statusLabel={messages.tool.status[tool.status]} />
-          ))}
+          {featuredTools.map((tool) => {
+            const route = liveToolRoutes[tool.slug];
+            const href = route ? `/${locale}/tools/${route}` : undefined;
+
+            return <ToolCard key={tool.slug} tool={tool} statusLabel={messages.tool.status[tool.status]} href={href} />;
+          })}
         </div>
       </section>
 

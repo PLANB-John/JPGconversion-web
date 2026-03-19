@@ -189,6 +189,26 @@ export const tools: ToolItem[] = [
 
 export const categoryOrder: ToolCategory[] = ["color-image", "web-marketing", "developer"];
 
+export const liveToolRoutes: Record<string, string> = {
+  "html-color-picker": "html-color-picker",
+  "image-color-extractor": "image-color-extractor",
+  "palette-generator": "palette-generator",
+  "contrast-checker": "contrast-checker",
+  "image-resizer": "image-resizer",
+  "webp-converter": "webp-converter",
+  "gradient-generator": "gradient-generator",
+  "css-variable-generator": "css-variable-generator",
+  "image-compressor": "image-compressor",
+  "youtube-thumbnail-extractor": "youtube-thumbnail-extractor",
+  "json-formatter": "json-formatter",
+  "url-encode-decode": "url-encode-decode",
+  "base64-encode-decode": "base64-encode-decode",
+  "character-counter": "character-counter",
+  "hash-generator": "hash-generator",
+  "timestamp-converter": "timestamp-converter",
+  "punycode-converter": "punycode-converter"
+};
+
 export const featuredTools = tools.filter((tool) => tool.featured).slice(0, 6);
 
 export const toolsByCategory = categoryOrder.map((category) => ({
