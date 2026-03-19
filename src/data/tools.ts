@@ -110,7 +110,7 @@ export const tools: ToolItem[] = [
     name: "Website Image Extractor",
     description: "Collect image assets from a webpage for quick review.",
     category: "web-marketing",
-    status: "Coming Soon",
+    status: "Available",
     featured: false
   },
   {
@@ -200,6 +200,7 @@ export const liveToolRoutes: Record<string, string> = {
   "css-variable-generator": "css-variable-generator",
   "image-compressor": "image-compressor",
   "youtube-thumbnail-extractor": "youtube-thumbnail-extractor",
+  "website-image-extractor": "website-image-extractor",
   "json-formatter": "json-formatter",
   "url-encode-decode": "url-encode-decode",
   "base64-encode-decode": "base64-encode-decode",
