@@ -2,32 +2,13 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { SectionTitle } from "@/components/SectionTitle";
 import { ToolCard } from "@/components/ToolCard";
-import { categoryOrder, tools } from "@/data/tools";
+import { categoryOrder, liveToolRoutes, tools } from "@/data/tools";
 import { getMessages } from "@/data/messages";
 import { isValidLocale } from "@/lib/i18n";
 import { getLocaleAlternates } from "@/lib/seo";
 
 type ToolsPageProps = {
   params: Promise<{ locale: string }>;
-};
-
-const liveToolRoutes: Record<string, string> = {
-  "html-color-picker": "html-color-picker",
-  "image-color-extractor": "image-color-extractor",
-  "palette-generator": "palette-generator",
-  "contrast-checker": "contrast-checker",
-  "image-resizer": "image-resizer",
-  "webp-converter": "webp-converter",
-  "gradient-generator": "gradient-generator",
-  "css-variable-generator": "css-variable-generator",
-  "image-compressor": "image-compressor",
-  "json-formatter": "json-formatter",
-  "url-encode-decode": "url-encode-decode",
-  "base64-encode-decode": "base64-encode-decode",
-  "character-counter": "character-counter",
-  "hash-generator": "hash-generator",
-  "timestamp-converter": "timestamp-converter",
-  "punycode-converter": "punycode-converter"
 };
 
 export async function generateMetadata({ params }: ToolsPageProps): Promise<Metadata> {
