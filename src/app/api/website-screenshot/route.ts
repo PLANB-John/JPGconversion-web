@@ -22,7 +22,7 @@ function isBlockedUrl(value: string) {
 }
 
 function buildScreenshotUrl(targetUrl: string) {
-  return `https://image.thum.io/get/width/1440/crop/900/noanimate/${encodeURIComponent(targetUrl)}`;
+  return `https://image.thum.io/get/width/1440/crop/900/noanimate/${targetUrl}`;
 }
 
 export async function GET(request: Request) {
