@@ -3,14 +3,14 @@ import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
-import { locales } from "@/data/locales";
+import { locales, type LocaleCode } from "@/data/locales";
 import { getMessages } from "@/data/messages";
 import { isValidLocale } from "@/lib/i18n";
+import { getLocaleAlternates } from "@/lib/seo";
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
 }
-
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -22,7 +22,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const messages = getMessages(locale);
 
   return {
-    description: messages.metadata.siteDescription
+    description: messages.metadata.siteDescription,
+    alternates: getLocaleAlternates(locale as LocaleCode)
   };
 }
 

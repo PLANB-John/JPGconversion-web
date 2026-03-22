@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { WebpConverterTool } from "@/components/tools/WebpConverterTool";
 import { getWebpConverterMessages } from "@/data/webpConverterMessages";
 import { isValidLocale } from "@/lib/i18n";
-import { getLocaleAlternates } from "@/lib/seo";
+import { buildToolMetadata } from "@/lib/seo";
 
 type WebpConverterPageProps = {
   params: Promise<{ locale: string }>;
@@ -15,14 +15,7 @@ export async function generateMetadata({ params }: WebpConverterPageProps): Prom
   if (!isValidLocale(locale)) {
     return {};
   }
-
-  const messages = getWebpConverterMessages(locale);
-
-  return {
-    title: messages.metadataTitle,
-    description: messages.metadataDescription,
-    alternates: getLocaleAlternates("tools/webp-converter")
-  };
+  return buildToolMetadata(locale, "webp-converter");
 }
 
 export default async function WebpConverterPage({ params }: WebpConverterPageProps) {

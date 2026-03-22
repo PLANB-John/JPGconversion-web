@@ -5,7 +5,7 @@ import { ToolCard } from "@/components/ToolCard";
 import { getToolsByCategory, liveToolRoutes } from "@/data/tools";
 import { getMessages } from "@/data/messages";
 import { isValidLocale } from "@/lib/i18n";
-import { getLocaleAlternates } from "@/lib/seo";
+import { buildLocalizedMetadata } from "@/lib/seo";
 
 type ToolsPageProps = {
   params: Promise<{ locale: string }>;
@@ -20,11 +20,12 @@ export async function generateMetadata({ params }: ToolsPageProps): Promise<Meta
 
   const messages = getMessages(locale);
 
-  return {
+  return buildLocalizedMetadata({
+    locale,
+    pagePath: "tools",
     title: messages.metadata.toolsTitle,
-    description: messages.metadata.toolsDescription,
-    alternates: getLocaleAlternates("tools")
-  };
+    description: messages.metadata.toolsDescription
+  });
 }
 
 export default async function ToolsPage({ params }: ToolsPageProps) {

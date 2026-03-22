@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import { siteConfig } from "@/data/site";
+import { getMetadataBase } from "@/lib/seo";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteConfig.baseUrl),
+  metadataBase: getMetadataBase(),
+  applicationName: siteConfig.name,
   title: {
     default: siteConfig.name,
     template: `%s | ${siteConfig.name}`

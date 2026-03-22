@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { CharacterCounterTool } from "@/components/tools/CharacterCounterTool";
 import { getCharacterCounterMessages } from "@/data/characterCounterMessages";
 import { isValidLocale } from "@/lib/i18n";
-import { getLocaleAlternates } from "@/lib/seo";
+import { buildToolMetadata } from "@/lib/seo";
 
 type CharacterCounterPageProps = {
   params: Promise<{ locale: string }>;
@@ -15,14 +15,7 @@ export async function generateMetadata({ params }: CharacterCounterPageProps): P
   if (!isValidLocale(locale)) {
     return {};
   }
-
-  const messages = getCharacterCounterMessages(locale);
-
-  return {
-    title: messages.metadataTitle,
-    description: messages.metadataDescription,
-    alternates: getLocaleAlternates("tools/character-counter")
-  };
+  return buildToolMetadata(locale, "character-counter");
 }
 
 export default async function CharacterCounterPage({ params }: CharacterCounterPageProps) {
