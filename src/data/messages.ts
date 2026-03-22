@@ -35,6 +35,7 @@ type MessageShape = {
     eyebrow: string;
     title: string;
     description: string;
+    categoryDescriptions: Record<ToolCategory, string>;
   };
   footer: {
     copyright: string;
@@ -43,6 +44,10 @@ type MessageShape = {
   tool: {
     status: Record<ToolStatus, string>;
     categories: Record<ToolCategory, string>;
+    action: {
+      open: string;
+      comingSoon: string;
+    };
   };
 };
 
@@ -70,17 +75,22 @@ const messages: Record<LocaleCode, MessageShape> = {
       cta: "Explore All Tools",
       featuredEyebrow: "Featured",
       featuredTitle: "Featured tools",
-      featuredDescription: "Start with these highlighted tools. We will keep adding more based on real user needs.",
+      featuredDescription: "Start with these polished tools first. Each card now reflects the live route and current tool status.",
       categoriesEyebrow: "Categories",
       categoriesTitle: "Browse by category",
-      categoriesDescription: "Our tool collection is organized to stay clear now and scalable for future multilingual expansion.",
-      categoryCardDescription: "Useful utilities in {category}.",
-      announcement: "New tools are being added step by step. Check back often for updates."
+      categoriesDescription: "Explore clear categories for visual work, marketing tasks, and everyday developer utilities.",
+      categoryCardDescription: "Browse practical {category} tools with consistent descriptions and accurate status labels.",
+      announcement: "Tool cards are kept in sync with real routes so you can see what is ready now and what is still on the roadmap."
     },
     tools: {
       eyebrow: "All Tools",
       title: "Explore tools by category",
-      description: "A clear list of current and upcoming tools. Start with available tools, and track what is coming next."
+      description: "Review every current tool in one place with clearer descriptions, consistent labels, and accurate availability.",
+      categoryDescriptions: {
+        "color-image": "Color pickers, palette helpers, image utilities, and quick visual workflow tools for everyday design tasks.",
+        "web-marketing": "Link, preview, screenshot, and asset tools that help with social sharing, campaigns, and quick website checks.",
+        developer: "Small browser-based utilities for formatting, encoding, timestamps, hashes, and other daily developer tasks."
+      }
     },
     footer: {
       copyright: "Global Tools Hub",
@@ -95,6 +105,10 @@ const messages: Record<LocaleCode, MessageShape> = {
         "color-image": "Color & Image",
         "web-marketing": "Web & Marketing",
         developer: "Developer Tools"
+      },
+      action: {
+        open: "Open tool",
+        comingSoon: "Coming soon"
       }
     }
   },
@@ -121,17 +135,22 @@ const messages: Record<LocaleCode, MessageShape> = {
       cta: "전체 도구 보기",
       featuredEyebrow: "추천",
       featuredTitle: "추천 도구",
-      featuredDescription: "많이 찾는 도구부터 먼저 확인해보세요. 실제 사용자 요구에 맞춰 계속 확장합니다.",
+      featuredDescription: "현재 바로 사용할 수 있는 대표 도구를 먼저 소개합니다. 각 카드는 실제 라우트 상태와 맞춰 관리됩니다.",
       categoriesEyebrow: "카테고리",
       categoriesTitle: "카테고리별 탐색",
-      categoriesDescription: "현재는 단순하게, 앞으로는 다국어 확장에 맞게 구조를 준비했습니다.",
-      categoryCardDescription: "{category} 관련 유틸리티를 확인해보세요.",
-      announcement: "새로운 도구를 순차적으로 추가하고 있습니다. 자주 방문해 주세요."
+      categoriesDescription: "비주얼 작업, 마케팅 업무, 개발 보조 도구를 깔끔한 카테고리로 나누어 보여줍니다.",
+      categoryCardDescription: "일관된 설명과 정확한 상태 라벨로 {category} 도구를 살펴보세요.",
+      announcement: "도구 카드는 실제 라우트와 맞춰 유지되어 지금 사용 가능한 항목과 준비 중인 항목을 쉽게 구분할 수 있습니다."
     },
     tools: {
       eyebrow: "전체 도구",
       title: "카테고리별 도구 둘러보기",
-      description: "현재 제공 중인 도구와 준비 중인 도구를 한눈에 확인할 수 있습니다."
+      description: "모든 현재 도구를 한곳에서 확인하고, 더 읽기 쉬운 설명과 정확한 상태를 함께 살펴보세요.",
+      categoryDescriptions: {
+        "color-image": "색상 선택, 팔레트 구성, 이미지 편집처럼 자주 쓰는 시각 작업용 도구를 모았습니다.",
+        "web-marketing": "공유 미리보기, 링크 생성, 스크린샷, 이미지 수집 등 웹 운영과 마케팅 작업을 돕습니다.",
+        developer: "포맷팅, 인코딩, 타임스탬프, 해시 등 개발 중 자주 쓰는 브라우저 기반 유틸리티입니다."
+      }
     },
     footer: {
       copyright: "글로벌 툴 허브",
@@ -146,6 +165,10 @@ const messages: Record<LocaleCode, MessageShape> = {
         "color-image": "색상 & 이미지",
         "web-marketing": "웹 & 마케팅",
         developer: "개발 도구"
+      },
+      action: {
+        open: "도구 열기",
+        comingSoon: "출시 예정"
       }
     }
   },
@@ -172,17 +195,22 @@ const messages: Record<LocaleCode, MessageShape> = {
       cta: "すべてのツールを見る",
       featuredEyebrow: "注目",
       featuredTitle: "注目ツール",
-      featuredDescription: "まずは人気の高いツールからお試しください。実際のニーズに合わせて拡張します。",
+      featuredDescription: "今すぐ使える代表的なツールを先に紹介します。各カードは実際のルート状態と一致しています。",
       categoriesEyebrow: "カテゴリ",
       categoriesTitle: "カテゴリから探す",
-      categoriesDescription: "今はわかりやすく、今後の多言語展開にも対応しやすい構成です。",
-      categoryCardDescription: "{category} に関する便利なユーティリティです。",
-      announcement: "新しいツールを順次追加中です。ぜひ定期的にご確認ください。"
+      categoriesDescription: "ビジュアル作業、マーケティング業務、開発補助をわかりやすいカテゴリで整理しています。",
+      categoryCardDescription: "統一した説明と正確な状態ラベルで{category}ツールを確認できます。",
+      announcement: "ツールカードは実際のルートと同期しているため、利用可能な項目と準備中の項目を区別しやすくなっています。"
     },
     tools: {
       eyebrow: "すべてのツール",
       title: "カテゴリ別にツールを確認",
-      description: "現在利用できるツールと今後公開予定のツールをわかりやすく一覧化しています。"
+      description: "現在のツールを一か所で確認し、読みやすい説明と正確な提供状況をまとめて把握できます。",
+      categoryDescriptions: {
+        "color-image": "カラーピッカー、配色作成、画像調整など、日常的なビジュアル作業を支えるツールです。",
+        "web-marketing": "共有プレビュー、リンク作成、スクリーンショット、画像収集などWeb運用向けの機能をまとめています。",
+        developer: "整形、エンコード、タイムスタンプ、ハッシュなど日々の開発作業で使いやすいユーティリティです。"
+      }
     },
     footer: {
       copyright: "グローバルツールハブ",
@@ -197,6 +225,10 @@ const messages: Record<LocaleCode, MessageShape> = {
         "color-image": "カラー & 画像",
         "web-marketing": "Web & マーケティング",
         developer: "開発ツール"
+      },
+      action: {
+        open: "ツールを開く",
+        comingSoon: "近日公開"
       }
     }
   },
@@ -223,17 +255,22 @@ const messages: Record<LocaleCode, MessageShape> = {
       cta: "Ver todas las herramientas",
       featuredEyebrow: "Destacadas",
       featuredTitle: "Herramientas destacadas",
-      featuredDescription: "Empieza con estas herramientas destacadas. Seguiremos agregando más según necesidades reales.",
+      featuredDescription: "Empieza con herramientas ya listas para usar. Cada tarjeta refleja la ruta real y su estado actual.",
       categoriesEyebrow: "Categorías",
       categoriesTitle: "Explorar por categoría",
-      categoriesDescription: "Nuestra colección está organizada para ser clara hoy y escalable para un futuro multilingüe.",
-      categoryCardDescription: "Utilidades útiles en {category}.",
-      announcement: "Estamos agregando nuevas herramientas paso a paso. Vuelve pronto para ver novedades."
+      categoriesDescription: "La colección separa con claridad el trabajo visual, las tareas de marketing y las utilidades de desarrollo.",
+      categoryCardDescription: "Explora herramientas de {category} con descripciones consistentes y estados correctos.",
+      announcement: "Las tarjetas se mantienen sincronizadas con las rutas reales para mostrar con claridad qué está listo hoy."
     },
     tools: {
       eyebrow: "Todas las herramientas",
       title: "Explora herramientas por categoría",
-      description: "Lista clara de herramientas actuales y próximas. Empieza por las disponibles y sigue lo que viene."
+      description: "Revisa todas las herramientas actuales en un solo lugar con descripciones más claras y disponibilidad correcta.",
+      categoryDescriptions: {
+        "color-image": "Selectores de color, paletas, utilidades de imagen y ayudas visuales para tareas de diseño cotidianas.",
+        "web-marketing": "Herramientas para enlaces, vistas previas, capturas y recursos web útiles para compartir y medir campañas.",
+        developer: "Utilidades en el navegador para formato, codificación, timestamps, hashes y otras tareas diarias de desarrollo."
+      }
     },
     footer: {
       copyright: "Centro Global de Herramientas",
@@ -248,6 +285,10 @@ const messages: Record<LocaleCode, MessageShape> = {
         "color-image": "Color e Imagen",
         "web-marketing": "Web y Marketing",
         developer: "Herramientas de Desarrollo"
+      },
+      action: {
+        open: "Abrir herramienta",
+        comingSoon: "Próximamente"
       }
     }
   },
@@ -274,17 +315,22 @@ const messages: Record<LocaleCode, MessageShape> = {
       cta: "Voir tous les outils",
       featuredEyebrow: "À la une",
       featuredTitle: "Outils mis en avant",
-      featuredDescription: "Commencez avec ces outils populaires. Nous continuerons à enrichir la collection selon les besoins réels.",
+      featuredDescription: "Commencez par des outils déjà disponibles. Chaque carte reflète la vraie route et le bon statut.",
       categoriesEyebrow: "Catégories",
       categoriesTitle: "Parcourir par catégorie",
-      categoriesDescription: "La collection est structurée pour rester claire aujourd'hui et évolutive demain.",
-      categoryCardDescription: "Des utilitaires utiles dans la catégorie {category}.",
-      announcement: "De nouveaux outils sont ajoutés progressivement. Revenez régulièrement pour les nouveautés."
+      categoriesDescription: "La collection distingue clairement le travail visuel, le marketing web et les utilitaires développeur.",
+      categoryCardDescription: "Parcourez des outils {category} avec des descriptions cohérentes et des statuts exacts.",
+      announcement: "Les cartes restent alignées sur les routes réelles afin de montrer clairement ce qui est prêt maintenant."
     },
     tools: {
       eyebrow: "Tous les outils",
       title: "Explorer les outils par catégorie",
-      description: "Une liste claire des outils actuels et à venir pour suivre facilement les nouveautés."
+      description: "Consultez tous les outils actuels au même endroit avec des descriptions plus homogènes et une disponibilité exacte.",
+      categoryDescriptions: {
+        "color-image": "Sélecteurs de couleur, palettes, utilitaires d'image et aides visuelles pour les tâches de design du quotidien.",
+        "web-marketing": "Outils pour liens, aperçus, captures et ressources web utiles au partage et au suivi des campagnes.",
+        developer: "Petits utilitaires navigateur pour le formatage, l'encodage, les timestamps, les hash et d'autres besoins quotidiens."
+      }
     },
     footer: {
       copyright: "Hub Global d'Outils",
@@ -299,6 +345,10 @@ const messages: Record<LocaleCode, MessageShape> = {
         "color-image": "Couleur & Image",
         "web-marketing": "Web & Marketing",
         developer: "Outils Développeur"
+      },
+      action: {
+        open: "Ouvrir l'outil",
+        comingSoon: "Bientôt disponible"
       }
     }
   },
@@ -325,17 +375,22 @@ const messages: Record<LocaleCode, MessageShape> = {
       cta: "Alle Tools ansehen",
       featuredEyebrow: "Empfohlen",
       featuredTitle: "Empfohlene Tools",
-      featuredDescription: "Starte mit diesen hervorgehobenen Tools. Wir erweitern sie basierend auf echten Anforderungen.",
+      featuredDescription: "Starte mit bereits verfügbaren Tools. Jede Karte zeigt die echte Route und den passenden Status.",
       categoriesEyebrow: "Kategorien",
       categoriesTitle: "Nach Kategorie durchsuchen",
-      categoriesDescription: "Die Sammlung ist heute klar strukturiert und für zukünftige Mehrsprachigkeit vorbereitet.",
-      categoryCardDescription: "Nützliche Hilfen in der Kategorie {category}.",
-      announcement: "Neue Tools werden Schritt für Schritt hinzugefügt. Schau regelmäßig vorbei."
+      categoriesDescription: "Die Sammlung trennt visuelle Aufgaben, Marketing-Arbeit und Entwicklerhilfen klar voneinander.",
+      categoryCardDescription: "Entdecke praktische {category}-Tools mit einheitlichen Beschreibungen und korrekten Statusangaben.",
+      announcement: "Die Tool-Karten bleiben mit den echten Routen synchron, damit du sofort siehst, was schon einsatzbereit ist."
     },
     tools: {
       eyebrow: "Alle Tools",
       title: "Tools nach Kategorie entdecken",
-      description: "Eine klare Übersicht aktueller und geplanter Tools. Starte mit den verfügbaren Angeboten."
+      description: "Sieh dir alle aktuellen Tools an einem Ort mit klareren Beschreibungen und korrekter Verfügbarkeit an.",
+      categoryDescriptions: {
+        "color-image": "Farbwähler, Paletten, Bildwerkzeuge und visuelle Helfer für alltägliche Designaufgaben.",
+        "web-marketing": "Werkzeuge für Links, Vorschauen, Screenshots und Web-Assets rund um Teilen und Kampagnenarbeit.",
+        developer: "Kleine Browser-Helfer für Formatierung, Kodierung, Zeitstempel, Hashes und andere tägliche Entwickleraufgaben."
+      }
     },
     footer: {
       copyright: "Globales Tool Hub",
@@ -350,6 +405,10 @@ const messages: Record<LocaleCode, MessageShape> = {
         "color-image": "Farbe & Bild",
         "web-marketing": "Web & Marketing",
         developer: "Entwickler-Tools"
+      },
+      action: {
+        open: "Tool öffnen",
+        comingSoon: "Demnächst"
       }
     }
   }

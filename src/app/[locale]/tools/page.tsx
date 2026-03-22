@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { SectionTitle } from "@/components/SectionTitle";
 import { ToolCard } from "@/components/ToolCard";
-import { categoryOrder, liveToolRoutes, tools } from "@/data/tools";
+import { getToolsByCategory, liveToolRoutes } from "@/data/tools";
 import { getMessages } from "@/data/messages";
 import { isValidLocale } from "@/lib/i18n";
 import { getLocaleAlternates } from "@/lib/seo";
@@ -35,28 +35,38 @@ export default async function ToolsPage({ params }: ToolsPageProps) {
   }
 
   const messages = getMessages(locale);
+  const toolsByCategory = getToolsByCategory(locale);
 
   return (
     <div className="space-y-12">
       <SectionTitle eyebrow={messages.tools.eyebrow} title={messages.tools.title} description={messages.tools.description} />
 
-      {categoryOrder.map((category) => {
-        const groupedTools = tools.filter((tool) => tool.category === category);
+      {toolsByCategory.map((category) => (
+        <section key={category.key} className="space-y-4">
+          <div className="space-y-2">
+            <h2 className="text-xl font-semibold text-slate-900 sm:text-2xl">{messages.tool.categories[category.key]}</h2>
+            <p className="max-w-3xl text-sm leading-6 text-slate-600">{messages.tools.categoryDescriptions[category.key]}</p>
+          </div>
 
-        return (
-          <section key={category} className="space-y-4">
-            <h2 className="text-xl font-semibold text-slate-900 sm:text-2xl">{messages.tool.categories[category]}</h2>
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {groupedTools.map((tool) => {
-                const route = liveToolRoutes[tool.slug];
-                const href = route ? `/${locale}/tools/${route}` : undefined;
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {category.items.map((tool) => {
+              const route = liveToolRoutes[tool.slug];
+              const href = route ? `/${locale}/tools/${route}` : undefined;
+              const actionLabel = href ? messages.tool.action.open : messages.tool.action.comingSoon;
 
-                return <ToolCard key={tool.slug} tool={tool} statusLabel={messages.tool.status[tool.status]} href={href} />;
-              })}
-            </div>
-          </section>
-        );
-      })}
+              return (
+                <ToolCard
+                  key={tool.slug}
+                  tool={tool}
+                  statusLabel={messages.tool.status[tool.status]}
+                  actionLabel={actionLabel}
+                  href={href}
+                />
+              );
+            })}
+          </div>
+        </section>
+      ))}
     </div>
   );
 }
