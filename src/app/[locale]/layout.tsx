@@ -4,7 +4,7 @@ import type { ReactNode } from "react";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { locales, type LocaleCode } from "@/data/locales";
-import { getMessages } from "@/data/messages";
+import { getMessages, getTrustMessages } from "@/data/messages";
 import { isValidLocale } from "@/lib/i18n";
 import { getLocaleAlternates } from "@/lib/seo";
 
@@ -40,12 +40,13 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
   }
 
   const messages = getMessages(locale);
+  const trust = getTrustMessages(locale);
 
   return (
     <div className="flex min-h-screen flex-col">
       <Header locale={locale} nav={messages.nav} />
       <main className="mx-auto w-full max-w-6xl flex-1 px-6 py-10 sm:py-14">{children}</main>
-      <Footer brand={messages.footer.copyright} note={messages.footer.note} />
+      <Footer locale={locale} brand={messages.footer.copyright} note={messages.footer.note} links={trust.footerLinks} />
     </div>
   );
 }
