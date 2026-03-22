@@ -118,7 +118,7 @@ export const tools: ToolItem[] = [
     name: "OG Preview",
     description: "Preview Open Graph cards before publishing your content.",
     category: "web-marketing",
-    status: "Coming Soon",
+    status: "Available",
     featured: false
   },
   {
@@ -201,6 +201,7 @@ export const liveToolRoutes: Record<string, string> = {
   "image-compressor": "image-compressor",
   "youtube-thumbnail-extractor": "youtube-thumbnail-extractor",
   "website-image-extractor": "website-image-extractor",
+  "og-preview": "og-preview",
   "website-screenshot": "website-screenshot",
   "json-formatter": "json-formatter",
   "url-encode-decode": "url-encode-decode",
