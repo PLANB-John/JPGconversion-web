@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { SectionTitle } from "@/components/SectionTitle";
 import { ToolCard } from "@/components/ToolCard";
-import { categoryOrder, featuredTools, liveToolRoutes } from "@/data/tools";
+import { categoryOrder, getFeaturedTools, liveToolRoutes } from "@/data/tools";
 import { getMessages } from "@/data/messages";
 import { isValidLocale } from "@/lib/i18n";
 import { getLocaleAlternates } from "@/lib/seo";
@@ -36,6 +36,7 @@ export default async function HomePage({ params }: HomePageProps) {
   }
 
   const messages = getMessages(locale);
+  const featuredTools = getFeaturedTools(locale);
 
   return (
     <div className="space-y-16">
@@ -61,8 +62,17 @@ export default async function HomePage({ params }: HomePageProps) {
           {featuredTools.map((tool) => {
             const route = liveToolRoutes[tool.slug];
             const href = route ? `/${locale}/tools/${route}` : undefined;
+            const actionLabel = href ? messages.tool.action.open : messages.tool.action.comingSoon;
 
-            return <ToolCard key={tool.slug} tool={tool} statusLabel={messages.tool.status[tool.status]} href={href} />;
+            return (
+              <ToolCard
+                key={tool.slug}
+                tool={tool}
+                statusLabel={messages.tool.status[tool.status]}
+                actionLabel={actionLabel}
+                href={href}
+              />
+            );
           })}
         </div>
       </section>
@@ -80,7 +90,8 @@ export default async function HomePage({ params }: HomePageProps) {
             return (
               <article key={category} className="rounded-xl border border-slate-200 bg-white p-5">
                 <h3 className="text-lg font-semibold text-slate-900">{categoryLabel}</h3>
-                <p className="mt-2 text-sm text-slate-600">
+                <p className="mt-2 text-sm leading-6 text-slate-600">{messages.tools.categoryDescriptions[category]}</p>
+                <p className="mt-3 text-sm text-slate-500">
                   {messages.home.categoryCardDescription.replace("{category}", categoryLabel.toLowerCase())}
                 </p>
               </article>
