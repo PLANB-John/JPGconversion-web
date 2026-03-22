@@ -202,6 +202,7 @@ export const liveToolRoutes: Record<string, string> = {
   "youtube-thumbnail-extractor": "youtube-thumbnail-extractor",
   "website-image-extractor": "website-image-extractor",
   "og-preview": "og-preview",
+  "utm-builder": "utm-builder",
   "website-screenshot": "website-screenshot",
   "json-formatter": "json-formatter",
   "url-encode-decode": "url-encode-decode",
