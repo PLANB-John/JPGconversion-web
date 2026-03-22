@@ -10,6 +10,7 @@ type FooterProps = {
     terms: string;
     about: string;
     contact: string;
+    guides: string;
   };
 };
 
@@ -18,7 +19,8 @@ export function Footer({ locale, brand, note, links }: FooterProps) {
     { href: `/${locale}/privacy-policy`, label: links.privacy },
     { href: `/${locale}/terms-of-use`, label: links.terms },
     { href: `/${locale}/about`, label: links.about },
-    { href: `/${locale}/contact`, label: links.contact }
+    { href: `/${locale}/contact`, label: links.contact },
+    { href: `/${locale}/guides`, label: links.guides }
   ];
 
   return (
