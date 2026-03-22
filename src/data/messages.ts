@@ -1,4 +1,5 @@
 import { defaultLocale, type LocaleCode } from "@/data/locales";
+import { trustMessages } from "@/data/trustMessages";
 import { type ToolCategory, type ToolStatus } from "@/data/tools";
 
 type MessageShape = {
@@ -416,4 +417,8 @@ const messages: Record<LocaleCode, MessageShape> = {
 
 export function getMessages(locale: LocaleCode) {
   return messages[locale] ?? messages[defaultLocale];
+}
+
+export function getTrustMessages(locale: LocaleCode) {
+  return trustMessages[locale] ?? trustMessages[defaultLocale];
 }
