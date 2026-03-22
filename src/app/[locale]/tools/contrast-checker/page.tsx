@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { ContrastCheckerTool } from "@/components/tools/ContrastCheckerTool";
 import { getContrastCheckerMessages } from "@/data/contrastCheckerMessages";
 import { isValidLocale } from "@/lib/i18n";
-import { getLocaleAlternates } from "@/lib/seo";
+import { buildToolMetadata } from "@/lib/seo";
 
 type ContrastCheckerPageProps = {
   params: Promise<{ locale: string }>;
@@ -15,14 +15,7 @@ export async function generateMetadata({ params }: ContrastCheckerPageProps): Pr
   if (!isValidLocale(locale)) {
     return {};
   }
-
-  const messages = getContrastCheckerMessages(locale);
-
-  return {
-    title: messages.metadataTitle,
-    description: messages.metadataDescription,
-    alternates: getLocaleAlternates("tools/contrast-checker")
-  };
+  return buildToolMetadata(locale, "contrast-checker");
 }
 
 export default async function ContrastCheckerPage({ params }: ContrastCheckerPageProps) {

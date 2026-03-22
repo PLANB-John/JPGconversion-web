@@ -55,10 +55,10 @@ const messages: Record<LocaleCode, MessageShape> = {
   en: {
     metadata: {
       siteDescription: "A growing collection of clean, practical web tools for creators, marketers, and developers.",
-      homeTitle: "Home",
-      homeDescription: "Discover modern online tools for color, image, marketing, and developer workflows.",
-      toolsTitle: "Tools",
-      toolsDescription: "Browse all available and upcoming tools grouped by category."
+      homeTitle: "Online Tools for Image, SEO, and Developer Work",
+      homeDescription: "Browse practical browser-based tools for images, SEO previews, marketing links, and everyday developer tasks.",
+      toolsTitle: "All Online Tools",
+      toolsDescription: "Explore the current library of online tools for images, SEO workflows, marketing tasks, and developer utilities."
     },
     nav: {
       brand: "Global Tools Hub",
@@ -115,10 +115,10 @@ const messages: Record<LocaleCode, MessageShape> = {
   ko: {
     metadata: {
       siteDescription: "크리에이터, 마케터, 개발자를 위한 실용적인 웹 도구 모음입니다.",
-      homeTitle: "홈",
-      homeDescription: "색상, 이미지, 마케팅, 개발 워크플로를 위한 온라인 도구를 만나보세요.",
-      toolsTitle: "도구",
-      toolsDescription: "카테고리별로 제공 예정 도구와 사용 가능한 도구를 확인하세요."
+      homeTitle: "이미지·SEO·개발용 온라인 도구",
+      homeDescription: "이미지 작업, SEO 미리보기, 마케팅 링크, 개발 보조 작업에 유용한 브라우저 기반 도구를 살펴보세요.",
+      toolsTitle: "전체 온라인 도구",
+      toolsDescription: "이미지, SEO 워크플로, 마케팅 작업, 개발 유틸리티를 위한 현재 도구 모음을 확인하세요."
     },
     nav: {
       brand: "글로벌 툴 허브",
@@ -175,10 +175,10 @@ const messages: Record<LocaleCode, MessageShape> = {
   ja: {
     metadata: {
       siteDescription: "クリエイター、マーケター、開発者のための実用的なWebツール集です。",
-      homeTitle: "ホーム",
-      homeDescription: "カラー、画像、マーケティング、開発ワークフロー向けのオンラインツールを見つけましょう。",
-      toolsTitle: "ツール",
-      toolsDescription: "カテゴリごとに利用可能なツールと公開予定ツールを確認できます。"
+      homeTitle: "画像・SEO・開発向けオンラインツール",
+      homeDescription: "画像作業、SEOプレビュー、マーケティングリンク、日々の開発作業に役立つブラウザツールを探せます。",
+      toolsTitle: "すべてのオンラインツール",
+      toolsDescription: "画像、SEO作業、マーケティング、開発ユーティリティ向けの現行オンラインツールを一覧できます。"
     },
     nav: {
       brand: "グローバルツールハブ",
@@ -235,10 +235,10 @@ const messages: Record<LocaleCode, MessageShape> = {
   es: {
     metadata: {
       siteDescription: "Una colección en crecimiento de herramientas web prácticas para creadores, marketing y desarrollo.",
-      homeTitle: "Inicio",
-      homeDescription: "Descubre herramientas online para flujos de color, imagen, marketing y desarrollo.",
-      toolsTitle: "Herramientas",
-      toolsDescription: "Explora herramientas disponibles y próximas por categoría."
+      homeTitle: "Herramientas online para imagen, SEO y desarrollo",
+      homeDescription: "Explora herramientas en el navegador para imágenes, vistas previas SEO, enlaces de marketing y tareas diarias de desarrollo.",
+      toolsTitle: "Todas las herramientas online",
+      toolsDescription: "Consulta la biblioteca actual de herramientas online para imágenes, SEO, marketing y utilidades de desarrollo."
     },
     nav: {
       brand: "Centro Global de Herramientas",
@@ -295,10 +295,10 @@ const messages: Record<LocaleCode, MessageShape> = {
   fr: {
     metadata: {
       siteDescription: "Une collection évolutive d'outils web pratiques pour les créateurs, le marketing et le développement.",
-      homeTitle: "Accueil",
-      homeDescription: "Découvrez des outils en ligne pour la couleur, l'image, le marketing et le développement.",
-      toolsTitle: "Outils",
-      toolsDescription: "Parcourez les outils disponibles et à venir par catégorie."
+      homeTitle: "Outils en ligne pour image, SEO et développement",
+      homeDescription: "Explorez des outils navigateur pour l’image, les aperçus SEO, les liens marketing et les tâches développeur du quotidien.",
+      toolsTitle: "Tous les outils en ligne",
+      toolsDescription: "Consultez la bibliothèque actuelle d’outils en ligne pour l’image, le SEO, le marketing et les utilitaires développeur."
     },
     nav: {
       brand: "Hub Global d'Outils",
@@ -355,10 +355,10 @@ const messages: Record<LocaleCode, MessageShape> = {
   de: {
     metadata: {
       siteDescription: "Eine wachsende Sammlung praktischer Web-Tools für Kreative, Marketing und Entwicklung.",
-      homeTitle: "Startseite",
-      homeDescription: "Entdecke Online-Tools für Farbe, Bild, Marketing und Entwickler-Workflows.",
-      toolsTitle: "Tools",
-      toolsDescription: "Durchsuche verfügbare und kommende Tools nach Kategorie."
+      homeTitle: "Online-Tools für Bild, SEO und Entwicklung",
+      homeDescription: "Entdecke browserbasierte Tools für Bilder, SEO-Vorschauen, Marketing-Links und tägliche Entwickleraufgaben.",
+      toolsTitle: "Alle Online-Tools",
+      toolsDescription: "Sieh dir die aktuelle Sammlung an Online-Tools für Bilder, SEO, Marketing und Entwickler-Helfer an."
     },
     nav: {
       brand: "Globales Tool Hub",

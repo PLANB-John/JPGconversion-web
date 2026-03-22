@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { OgPreviewTool } from "@/components/tools/OgPreviewTool";
 import { getOgPreviewMessages } from "@/data/ogPreviewMessages";
 import { isValidLocale } from "@/lib/i18n";
-import { getLocaleAlternates } from "@/lib/seo";
+import { buildToolMetadata } from "@/lib/seo";
 
 type OgPreviewPageProps = {
   params: Promise<{ locale: string }>;
@@ -15,14 +15,7 @@ export async function generateMetadata({ params }: OgPreviewPageProps): Promise<
   if (!isValidLocale(locale)) {
     return {};
   }
-
-  const messages = getOgPreviewMessages(locale);
-
-  return {
-    title: messages.metadataTitle,
-    description: messages.metadataDescription,
-    alternates: getLocaleAlternates("tools/og-preview")
-  };
+  return buildToolMetadata(locale, "og-preview");
 }
 
 export default async function OgPreviewPage({ params }: OgPreviewPageProps) {

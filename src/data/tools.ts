@@ -624,3 +624,23 @@ export function getToolsByCategory(locale: LocaleCode) {
     items: localizedTools.filter((tool) => tool.category === category)
   }));
 }
+
+
+export function getTool(locale: LocaleCode, slug: string) {
+  const localizedContent = localizedToolContent[locale]?.[slug] ?? localizedToolContent.en[slug];
+  const definition = toolDefinitions.find((tool) => tool.slug === slug);
+
+  if (!localizedContent || !definition) {
+    throw new Error(`Unknown tool slug: ${slug}`);
+  }
+
+  return {
+    ...definition,
+    ...localizedContent,
+    status: liveToolRoutes[slug] ? "Available" : "Coming Soon"
+  } as ToolItem;
+}
+
+export function getAllLiveToolSlugs() {
+  return Object.keys(liveToolRoutes);
+}

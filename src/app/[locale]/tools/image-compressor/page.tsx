@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { ImageCompressorTool } from "@/components/tools/ImageCompressorTool";
 import { getImageCompressorMessages } from "@/data/imageCompressorMessages";
 import { isValidLocale } from "@/lib/i18n";
-import { getLocaleAlternates } from "@/lib/seo";
+import { buildToolMetadata } from "@/lib/seo";
 
 type ImageCompressorPageProps = {
   params: Promise<{ locale: string }>;
@@ -15,14 +15,7 @@ export async function generateMetadata({ params }: ImageCompressorPageProps): Pr
   if (!isValidLocale(locale)) {
     return {};
   }
-
-  const messages = getImageCompressorMessages(locale);
-
-  return {
-    title: messages.metadataTitle,
-    description: messages.metadataDescription,
-    alternates: getLocaleAlternates("tools/image-compressor")
-  };
+  return buildToolMetadata(locale, "image-compressor");
 }
 
 export default async function ImageCompressorPage({ params }: ImageCompressorPageProps) {

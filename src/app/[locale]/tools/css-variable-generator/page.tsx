@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { CssVariableGeneratorTool } from "@/components/tools/CssVariableGeneratorTool";
 import { getCssVariableGeneratorMessages } from "@/data/cssVariableGeneratorMessages";
 import { isValidLocale } from "@/lib/i18n";
-import { getLocaleAlternates } from "@/lib/seo";
+import { buildToolMetadata } from "@/lib/seo";
 
 type CssVariableGeneratorPageProps = {
   params: Promise<{ locale: string }>;
@@ -15,14 +15,7 @@ export async function generateMetadata({ params }: CssVariableGeneratorPageProps
   if (!isValidLocale(locale)) {
     return {};
   }
-
-  const messages = getCssVariableGeneratorMessages(locale);
-
-  return {
-    title: messages.metadataTitle,
-    description: messages.metadataDescription,
-    alternates: getLocaleAlternates("tools/css-variable-generator")
-  };
+  return buildToolMetadata(locale, "css-variable-generator");
 }
 
 export default async function CssVariableGeneratorPage({ params }: CssVariableGeneratorPageProps) {
