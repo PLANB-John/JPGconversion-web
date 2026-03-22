@@ -8,6 +8,7 @@ type HeaderProps = {
     brand: string;
     home: string;
     tools: string;
+    guides: string;
     languageLabel: string;
     languageAriaLabel: string;
     currentLanguagePrefix: string;
@@ -17,7 +18,8 @@ type HeaderProps = {
 export function Header({ locale, nav }: HeaderProps) {
   const navItems = [
     { href: `/${locale}`, label: nav.home },
-    { href: `/${locale}/tools`, label: nav.tools }
+    { href: `/${locale}/tools`, label: nav.tools },
+    { href: `/${locale}/guides`, label: nav.guides }
   ];
 
   return (

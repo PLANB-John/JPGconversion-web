@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { SectionTitle } from "@/components/SectionTitle";
 import { ToolCard } from "@/components/ToolCard";
+import { getGuides, getGuidesIndexMessages } from "@/data/guides";
 import { categoryOrder, getFeaturedTools, liveToolRoutes } from "@/data/tools";
 import { getMessages } from "@/data/messages";
 import { isValidLocale } from "@/lib/i18n";
@@ -36,7 +37,9 @@ export default async function HomePage({ params }: HomePageProps) {
   }
 
   const messages = getMessages(locale);
+  const guidesMessages = getGuidesIndexMessages(locale);
   const featuredTools = getFeaturedTools(locale);
+  const featuredGuides = getGuides(locale).slice(0, 3);
 
   return (
     <div className="space-y-16">
@@ -98,6 +101,35 @@ export default async function HomePage({ params }: HomePageProps) {
             );
           })}
         </div>
+      </section>
+
+      <section className="space-y-6">
+        <SectionTitle
+          eyebrow={guidesMessages.eyebrow}
+          title={guidesMessages.title}
+          description={guidesMessages.description}
+        />
+        <div className="grid gap-4 md:grid-cols-3">
+          {featuredGuides.map((guide) => (
+            <article key={guide.slug} className="rounded-xl border border-slate-200 bg-white p-5">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">{guide.content.categoryLabel}</p>
+              <h3 className="mt-2 text-lg font-semibold text-slate-900">{guide.content.title}</h3>
+              <p className="mt-2 text-sm leading-6 text-slate-600">{guide.content.description}</p>
+              <Link
+                href={`/${locale}/guides/${guide.slug}`}
+                className="mt-4 inline-flex text-sm font-semibold text-slate-900 underline underline-offset-4 hover:text-slate-700"
+              >
+                {guidesMessages.cardAction}
+              </Link>
+            </article>
+          ))}
+        </div>
+        <Link
+          href={`/${locale}/guides`}
+          className="inline-flex rounded-lg border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-900 transition hover:border-slate-400 hover:bg-slate-100"
+        >
+          {guidesMessages.navLabel}
+        </Link>
       </section>
 
       <p className="rounded-lg border border-dashed border-slate-300 bg-white p-4 text-sm text-slate-600">{messages.home.announcement}</p>
