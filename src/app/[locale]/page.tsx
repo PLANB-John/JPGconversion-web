@@ -6,6 +6,7 @@ import { ToolCard } from "@/components/ToolCard";
 import { getGuides, getGuidesIndexMessages } from "@/data/guides";
 import { categoryOrder, getFeaturedTools, liveToolRoutes } from "@/data/tools";
 import { getMessages } from "@/data/messages";
+import { getSiteExperience, toolCategoryToCategorySlug } from "@/data/siteExperience";
 import { isValidLocale } from "@/lib/i18n";
 import { buildLocalizedMetadata } from "@/lib/seo";
 
@@ -38,6 +39,7 @@ export default async function HomePage({ params }: HomePageProps) {
 
   const messages = getMessages(locale);
   const guidesMessages = getGuidesIndexMessages(locale);
+  const experience = getSiteExperience(locale);
   const featuredTools = getFeaturedTools(locale);
   const featuredGuides = getGuides(locale).slice(0, 3);
 
@@ -47,12 +49,37 @@ export default async function HomePage({ params }: HomePageProps) {
         <p className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">{messages.home.eyebrow}</p>
         <h1 className="max-w-3xl text-3xl font-bold text-slate-900 sm:text-5xl">{messages.home.title}</h1>
         <p className="max-w-2xl text-base text-slate-600 sm:text-lg">{messages.home.description}</p>
-        <Link
-          href={`/${locale}/tools`}
-          className="inline-flex rounded-lg bg-slate-900 px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-700"
-        >
-          {messages.home.cta}
-        </Link>
+        <div className="flex flex-wrap gap-3">
+          <Link
+            href={`/${locale}/tools`}
+            className="inline-flex rounded-lg bg-slate-900 px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-700"
+          >
+            {messages.home.cta}
+          </Link>
+          <Link
+            href={`/${locale}/guides`}
+            className="inline-flex rounded-lg border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-900 transition hover:border-slate-400 hover:bg-slate-50"
+          >
+            {experience.home.secondaryCta}
+          </Link>
+        </div>
+        <p className="text-sm text-slate-500">{experience.home.trustNote}</p>
+      </section>
+
+      <section className="space-y-6">
+        <SectionTitle
+          eyebrow={experience.home.whyEyebrow}
+          title={experience.home.whyTitle}
+          description={experience.home.whyDescription}
+        />
+        <div className="grid gap-4 md:grid-cols-3">
+          {experience.home.whyItems.map((item) => (
+            <article key={item.title} className="rounded-xl border border-slate-200 bg-white p-5">
+              <h3 className="text-lg font-semibold text-slate-900">{item.title}</h3>
+              <p className="mt-2 text-sm leading-6 text-slate-600">{item.description}</p>
+            </article>
+          ))}
+        </div>
       </section>
 
       <section className="space-y-6">
@@ -97,17 +124,40 @@ export default async function HomePage({ params }: HomePageProps) {
                 <p className="mt-3 text-sm text-slate-500">
                   {messages.home.categoryCardDescription.replace("{category}", categoryLabel.toLowerCase())}
                 </p>
+                <Link
+                  href={`/${locale}/categories/${toolCategoryToCategorySlug[category]}`}
+                  className="mt-4 inline-flex text-sm font-semibold text-slate-900 underline underline-offset-4"
+                >
+                  {experience.category.categoryCta}
+                </Link>
               </article>
             );
           })}
         </div>
       </section>
 
+      <section className="space-y-6 rounded-2xl border border-slate-200 bg-white p-7 sm:p-10">
+        <SectionTitle
+          eyebrow={experience.home.howEyebrow}
+          title={experience.home.howTitle}
+          description={experience.home.howDescription}
+        />
+        <div className="grid gap-4 md:grid-cols-3">
+          {experience.home.howItems.map((item, index) => (
+            <article key={item.title} className="rounded-xl border border-slate-200 bg-slate-50 p-5">
+              <p className="text-sm font-semibold text-slate-500">0{index + 1}</p>
+              <h3 className="mt-2 text-lg font-semibold text-slate-900">{item.title}</h3>
+              <p className="mt-2 text-sm leading-6 text-slate-600">{item.description}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
       <section className="space-y-6">
         <SectionTitle
-          eyebrow={guidesMessages.eyebrow}
-          title={guidesMessages.title}
-          description={guidesMessages.description}
+          eyebrow={experience.home.guidesEyebrow}
+          title={experience.home.guidesTitle}
+          description={experience.home.guidesDescription}
         />
         <div className="grid gap-4 md:grid-cols-3">
           {featuredGuides.map((guide) => (
@@ -130,6 +180,22 @@ export default async function HomePage({ params }: HomePageProps) {
         >
           {guidesMessages.navLabel}
         </Link>
+      </section>
+
+      <section className="space-y-6 rounded-2xl border border-slate-200 bg-white p-7 sm:p-10">
+        <SectionTitle
+          eyebrow={experience.home.faqEyebrow}
+          title={experience.home.faqTitle}
+          description={experience.home.faqDescription}
+        />
+        <div className="space-y-3">
+          {experience.home.faqs.map((item) => (
+            <details key={item.question} className="rounded-xl border border-slate-200 p-5">
+              <summary className="cursor-pointer list-none text-base font-semibold text-slate-900">{item.question}</summary>
+              <p className="mt-3 text-sm leading-6 text-slate-600">{item.answer}</p>
+            </details>
+          ))}
+        </div>
       </section>
 
       <p className="rounded-lg border border-dashed border-slate-300 bg-white p-4 text-sm text-slate-600">{messages.home.announcement}</p>

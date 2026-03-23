@@ -383,3 +383,7 @@ export function getGuideRelatedTool(locale: LocaleCode, slug: string) {
 
   return getTool(locale, guide.relatedToolSlug);
 }
+
+export function getGuidesByCategory(locale: LocaleCode, category: ToolCategory) {
+  return getGuides(locale).filter((guide) => guide.category === category);
+}
