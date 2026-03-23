@@ -7,7 +7,7 @@ import { getGuidesIndexMessages } from "@/data/guides";
 import { locales, type LocaleCode } from "@/data/locales";
 import { getMessages, getTrustMessages } from "@/data/messages";
 import { isValidLocale } from "@/lib/i18n";
-import { getLocaleAlternates } from "@/lib/seo";
+import { buildLocalizedMetadata } from "@/lib/seo";
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -22,10 +22,11 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
   const messages = getMessages(locale);
 
-  return {
-    description: messages.metadata.siteDescription,
-    alternates: getLocaleAlternates(locale as LocaleCode)
-  };
+  return buildLocalizedMetadata({
+    locale: locale as LocaleCode,
+    title: messages.metadata.homeTitle,
+    description: messages.metadata.siteDescription
+  });
 }
 
 type LocaleLayoutProps = {
