@@ -35,14 +35,22 @@ export function buildLocalePath(locale: LocaleCode, pagePath = "") {
   return `/${locale}/${pagePath}`;
 }
 
+export function buildAbsoluteUrl(path: string) {
+  return new URL(path, getSiteUrl()).toString();
+}
+
+export function getCanonicalUrl(locale: LocaleCode, pagePath = "") {
+  return buildAbsoluteUrl(buildLocalePath(locale, pagePath));
+}
+
 export function getLocaleAlternates(locale: LocaleCode, pagePath = ""): Metadata["alternates"] {
-  const languages = Object.fromEntries(locales.map((entry) => [entry, buildLocalePath(entry, pagePath)]));
+  const languages = Object.fromEntries(locales.map((entry) => [entry, getCanonicalUrl(entry, pagePath)]));
 
   return {
-    canonical: buildLocalePath(locale, pagePath),
+    canonical: getCanonicalUrl(locale, pagePath),
     languages: {
       ...languages,
-      "x-default": buildLocalePath(defaultLocale, pagePath)
+      "x-default": getCanonicalUrl(defaultLocale, pagePath)
     }
   };
 }
@@ -55,10 +63,25 @@ type LocalizedMetadataInput = {
 };
 
 export function buildLocalizedMetadata({ locale, pagePath = "", title, description }: LocalizedMetadataInput): Metadata {
+  const canonicalUrl = getCanonicalUrl(locale, pagePath);
+
   return {
     title,
     description,
-    alternates: getLocaleAlternates(locale, pagePath)
+    alternates: getLocaleAlternates(locale, pagePath),
+    openGraph: {
+      type: "website",
+      url: canonicalUrl,
+      siteName: siteConfig.name,
+      title,
+      description,
+      locale
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description
+    }
   };
 }
 

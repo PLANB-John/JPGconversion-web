@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: ContactPageProps): Promise<Me
     locale,
     pagePath: "contact",
     title: page.title,
-    description: page.description
+    description: `${page.description} ${page.emailHelp}`
   });
 }
 
