@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { SectionTitle } from "@/components/SectionTitle";
 import { ToolCard } from "@/components/ToolCard";
 import { getToolsByCategory, liveToolRoutes } from "@/data/tools";
 import { getMessages } from "@/data/messages";
+import { getSiteExperience, toolCategoryToCategorySlug } from "@/data/siteExperience";
 import { isValidLocale } from "@/lib/i18n";
 import { buildLocalizedMetadata } from "@/lib/seo";
 
@@ -36,6 +38,7 @@ export default async function ToolsPage({ params }: ToolsPageProps) {
   }
 
   const messages = getMessages(locale);
+  const experience = getSiteExperience(locale);
   const toolsByCategory = getToolsByCategory(locale);
 
   return (
@@ -47,6 +50,12 @@ export default async function ToolsPage({ params }: ToolsPageProps) {
           <div className="space-y-2">
             <h2 className="text-xl font-semibold text-slate-900 sm:text-2xl">{messages.tool.categories[category.key]}</h2>
             <p className="max-w-3xl text-sm leading-6 text-slate-600">{messages.tools.categoryDescriptions[category.key]}</p>
+            <Link
+              href={`/${locale}/categories/${toolCategoryToCategorySlug[category.key]}`}
+              className="inline-flex text-sm font-semibold text-slate-900 underline underline-offset-4"
+            >
+              {experience.category.categoryCta}
+            </Link>
           </div>
 
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
