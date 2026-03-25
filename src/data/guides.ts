@@ -8,7 +8,8 @@ export type GuideSlug =
   | "how-to-build-utm-links"
   | "json-formatting-basics"
   | "how-to-count-characters-for-seo"
-  | "when-to-use-base64-encoding";
+  | "when-to-use-base64-encoding"
+  | "how-to-check-open-graph-metadata";
 
 type GuideSection = {
   heading: string;
@@ -223,6 +224,79 @@ const whenToUseBase64EncodingEn: GuideLocalizedContent = {
         "Another mistake is encoding large content without thinking about size growth. This can slow down requests, clutter logs, and make debugging harder.",
         "It is also easy to forget that some encoded data needs exact formatting. Accidental spaces, missing padding, or copy-paste errors can break the result.",
         "Finally, developers sometimes use Base64 because it feels convenient in the short term, even when the underlying system already supports a better binary workflow."
+      ]
+    }
+  ]
+};
+
+const howToCheckOpenGraphMetadataEn: GuideLocalizedContent = {
+  title: "How to Check Open Graph Metadata",
+  description: "Learn how to check Open Graph metadata so links display better when shared on social platforms, messaging apps, and community sites.",
+  intro: "Open Graph metadata helps control how a page appears when someone shares it on social platforms, messaging apps, and other preview-based services. A page may still work without these tags, but the shared result can look incomplete, confusing, or unappealing.",
+  categoryLabel: "SOCIAL PREVIEW",
+  useCasesTitle: "When this is most useful",
+  useCases: [
+    "Publishing a new guide or blog article.",
+    "Launching a landing page.",
+    "Sharing a page on social media.",
+    "Sending links through chat or community channels.",
+    "Updating a page title or preview image.",
+    "Reviewing multilingual pages for consistency."
+  ],
+  closingTitle: "Keep the check lightweight",
+  closingText:
+    "You do not need to turn this into a complicated audit. A fast Open Graph check before publishing or sharing is usually enough to catch the most important issues. The goal is simple: make sure your page looks clear, trustworthy, and worth clicking when it appears outside your site.",
+  relatedToolLabel: "Open the OG Preview",
+  sections: [
+    {
+      heading: "What Open Graph metadata does",
+      paragraphs: [
+        "For many websites, shared previews are one of the first things users see. A weak title, missing image, or poor description can reduce clicks even when the page itself is useful. That is why checking Open Graph metadata is a practical part of publishing and SEO workflows.",
+        "Open Graph metadata gives platforms extra information about a page. Instead of guessing how to build a preview, they can use the values you provide for the title, description, image, and page type.",
+        "Some pages also include Twitter card metadata, but Open Graph is often the foundation for preview behavior across many platforms."
+      ],
+      bullets: ["og:title", "og:description", "og:image", "og:url", "og:type"]
+    },
+    {
+      heading: "Why preview checks matter",
+      paragraphs: [
+        "A page can have strong content and still look weak when shared if the metadata is incomplete or inconsistent. This matters for blog posts, landing pages, documentation pages, product pages, and guides.",
+        "A quick Open Graph check helps you verify that the correct title appears, confirm that the description is clear and useful, make sure the preview image loads correctly, catch stale metadata after page updates, and compare how a page may look before sharing it widely.",
+        "This is especially useful when you are preparing a new article, campaign page, or multilingual page that may be shared across several channels."
+      ]
+    },
+    {
+      heading: "How to check Open Graph metadata",
+      paragraphs: [
+        "You do not need a complicated crawler to do this. A focused preview tool is often enough.",
+        "1. Start with the exact page URL. Copy the full URL of the page you want to inspect. Make sure you test the canonical public version, not a temporary draft URL unless that is intentional.",
+        "2. Load the page in an Open Graph preview tool. Paste the URL into the tool and let it fetch the metadata. This usually gives you both the raw tag values and a visual preview of how the shared card may appear.",
+        "3. Review the title and description. Check whether the title is specific, readable, and aligned with the page content. Then review the description. It should help users understand what the page offers, not just repeat generic keywords.",
+        "4. Confirm the image. A missing or broken image is one of the most common preview problems. Make sure the correct image is selected and that it is accessible publicly.",
+        "5. Check for mismatched URLs or old values. Sometimes a page has been updated, but old metadata remains in the source or cache. If the displayed tags do not match the current page, the issue may be in the page template, metadata config, or cache refresh timing."
+      ]
+    },
+    {
+      heading: "Common problems to watch for",
+      paragraphs: [
+        "One common issue is using a generic homepage title on every page. This makes previews look repetitive and less useful.",
+        "Another issue is missing images. Some platforms still create a preview without one, but the result is often weaker and less engaging.",
+        "It is also common to find descriptions that are technically present but not helpful. A description should summarize the value of the page in natural language.",
+        "On multilingual websites, pages may accidentally reuse metadata from another locale. This can make shared previews look inconsistent or confusing for users in different regions.",
+        "Finally, developers sometimes forget that metadata must reflect the public URL structure. If the page uses the wrong canonical or Open Graph URL, shared links may look messy or duplicate."
+      ]
+    },
+    {
+      heading: "A practical publishing workflow",
+      paragraphs: [
+        "A simple workflow can prevent most problems."
+      ],
+      bullets: [
+        "Write the page title and summary first.",
+        "Prepare a clean preview image when needed.",
+        "Publish the page.",
+        "Run the public URL through an Open Graph preview tool.",
+        "Correct mismatched metadata before actively sharing the page."
       ]
     }
   ]
@@ -569,6 +643,21 @@ const guideDefinitions: Array<Omit<GuideItem, "content"> & { content: Record<Loc
       es: whenToUseBase64EncodingEn,
       fr: whenToUseBase64EncodingEn,
       de: whenToUseBase64EncodingEn
+    }
+  },
+  {
+    slug: "how-to-check-open-graph-metadata",
+    category: "web-marketing",
+    relatedToolSlug: "og-preview",
+    publishedAt: "2026-03-24",
+    updatedAt: "2026-03-24",
+    content: {
+      en: howToCheckOpenGraphMetadataEn,
+      ko: howToCheckOpenGraphMetadataEn,
+      ja: howToCheckOpenGraphMetadataEn,
+      es: howToCheckOpenGraphMetadataEn,
+      fr: howToCheckOpenGraphMetadataEn,
+      de: howToCheckOpenGraphMetadataEn
     }
   }
 
