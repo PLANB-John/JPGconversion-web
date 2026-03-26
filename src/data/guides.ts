@@ -12,7 +12,8 @@ export type GuideSlug =
   | "how-to-check-open-graph-metadata"
   | "how-to-extract-youtube-thumbnails"
   | "how-to-convert-timestamps-quickly"
-  | "how-to-use-a-json-formatter-for-debugging";
+  | "how-to-use-a-json-formatter-for-debugging"
+  | "how-to-convert-images-to-webp";
 
 type GuideSection = {
   heading: string;
@@ -526,6 +527,85 @@ const howToUseAJsonFormatterForDebuggingEn: GuideLocalizedContent = {
   ]
 };
 
+
+const howToConvertImagesToWebpEn: GuideLocalizedContent = {
+  title: "How to Convert Images to WebP",
+  description: "Learn how to convert images to WebP so you can reduce file size, improve page speed, and keep image workflows lightweight.",
+  intro: "WebP is a modern image format designed to keep image files smaller while preserving useful visual quality. For many websites, this makes it a practical option when you want faster page loads without rebuilding your entire image workflow.",
+  categoryLabel: "IMAGE FORMAT",
+  useCasesTitle: "When this is most useful",
+  useCases: [
+    "Optimizing a blog post before publishing.",
+    "Preparing article thumbnails.",
+    "Improving page speed on image-heavy pages.",
+    "Cleaning up website assets.",
+    "Exporting screenshots for the web.",
+    "Reducing file sizes for repeat content workflows."
+  ],
+  closingTitle: "Keep the workflow simple",
+  closingText:
+    "You do not need a full design suite every time you want a lighter web image. For many everyday publishing tasks, a browser-based WebP converter is enough to reduce file size and keep your workflow moving. The goal is simple: smaller images, cleaner delivery, and better practical performance.",
+  relatedToolLabel: "Open the WebP Converter",
+  sections: [
+    {
+      heading: "Why people convert images to WebP",
+      paragraphs: [
+        "Large image files can slow down a page, especially on mobile connections. Even when the design looks good, oversized images can make the site feel slower than it needs to be.",
+        "For many practical web tasks, WebP is a simple optimization step with clear benefits."
+      ],
+      bullets: [
+        "Reduce file size for common web images.",
+        "Improve page speed.",
+        "Make image-heavy pages lighter.",
+        "Prepare assets for blogs, guides, and landing pages.",
+        "Keep uploads easier to manage.",
+        "Balance quality and performance more efficiently."
+      ]
+    },
+    {
+      heading: "What WebP is good for",
+      paragraphs: [
+        "It is most useful when your goal is web delivery, not archival storage or advanced editing."
+      ],
+      bullets: [
+        "Blog images.",
+        "Website illustrations.",
+        "Interface screenshots.",
+        "Article cover images.",
+        "Marketing assets for the web.",
+        "General-purpose images that need smaller delivery size."
+      ]
+    },
+    {
+      heading: "How to convert images to WebP",
+      paragraphs: [
+        "You do not need a complicated graphics workflow just to create lighter web images. A focused browser-based converter is often enough.",
+        "1. Start with the source image. Choose the JPG or PNG image you want to optimize. For many everyday tasks, these are the most common starting formats.",
+        "2. Upload the file into the converter. Once the image is loaded, the converter can prepare a WebP output without requiring a design tool or command-line step.",
+        "3. Review the output for practical quality. The goal is not simply to make the file smaller. You should also check whether the converted image still looks acceptable for its purpose. A blog illustration and a product image may need different quality expectations.",
+        "4. Download the converted file. After the conversion, save the WebP version and compare it with the original if needed.",
+        "5. Use the WebP image in the right context. WebP is best used for web publishing workflows. If you still need an editable master file, keep the original as well."
+      ]
+    },
+    {
+      heading: "Common mistakes to avoid",
+      paragraphs: [
+        "A common mistake is converting everything automatically without checking the result. Smaller files are useful, but not if important text, edges, or image clarity become noticeably worse.",
+        "Another mistake is assuming WebP should replace every image in every workflow. It is excellent for web delivery, but it is not always the best master format for editing or long-term storage.",
+        "It is also easy to forget that some images do not benefit equally. A simple illustration may compress very well, while another image may need a closer quality review.",
+        "Finally, do not overcomplicate the process. If your goal is to prepare a lighter image for a webpage, a simple conversion workflow is usually enough."
+      ]
+    },
+    {
+      heading: "Why this matters for performance",
+      paragraphs: [
+        "Image optimization is one of the easiest ways to improve page weight. When images become lighter, pages often load faster, feel more responsive, and work better on slower networks.",
+        "That is useful not only for users, but also for site quality in general. Performance improvements often come from small repeated actions, and image conversion is one of the most practical ones."
+      ]
+    }
+  ]
+};
+
 const guideDefinitions: Array<Omit<GuideItem, "content"> & { content: Record<LocaleCode, GuideLocalizedContent> }> = [
   {
     slug: "how-to-use-html-color-picker",
@@ -852,6 +932,22 @@ const guideDefinitions: Array<Omit<GuideItem, "content"> & { content: Record<Loc
           { heading: "Common mistakes to avoid", paragraphs: ["One common mistake is treating character count as the only SEO rule. It is important, but it is not everything. Search engines care about relevance, clarity, page quality, and user intent too.", "Another mistake is stuffing titles with too many keywords. Even if the length looks acceptable, the result can feel spammy and reduce trust.", "It is also a mistake to write descriptions that are technically the right length but say nothing helpful. Users need a reason to click. A strong description should explain the value of the page in clear language.", "Finally, avoid copying the same title pattern across too many pages without adjusting it for each topic. Unique and specific copy usually performs better."] }
         ]
       }
+    }
+  },
+
+  {
+    slug: "how-to-convert-images-to-webp",
+    category: "color-image",
+    relatedToolSlug: "webp-converter",
+    publishedAt: "2026-03-24",
+    updatedAt: "2026-03-24",
+    content: {
+      en: howToConvertImagesToWebpEn,
+      ko: howToConvertImagesToWebpEn,
+      ja: howToConvertImagesToWebpEn,
+      es: howToConvertImagesToWebpEn,
+      fr: howToConvertImagesToWebpEn,
+      de: howToConvertImagesToWebpEn
     }
   },
   {
