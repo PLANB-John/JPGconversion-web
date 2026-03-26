@@ -11,7 +11,8 @@ export type GuideSlug =
   | "when-to-use-base64-encoding"
   | "how-to-check-open-graph-metadata"
   | "how-to-extract-youtube-thumbnails"
-  | "how-to-convert-timestamps-quickly";
+  | "how-to-convert-timestamps-quickly"
+  | "how-to-use-a-json-formatter-for-debugging";
 
 type GuideSection = {
   heading: string;
@@ -452,6 +453,79 @@ const howToExtractYoutubeThumbnailsEn: GuideLocalizedContent = {
   ]
 };
 
+const howToUseAJsonFormatterForDebuggingEn: GuideLocalizedContent = {
+  title: "How to Use a JSON Formatter for Debugging",
+  description:
+    "Learn how to use a JSON formatter for debugging so you can inspect payloads, spot mistakes faster, and keep structured data easier to read.",
+  intro:
+    "JSON appears everywhere in modern web work. You see it in API responses, configuration files, logs, payloads, and test data. It is useful because it is structured and portable, but raw JSON is not always easy to read when it is compressed, malformed, or deeply nested.",
+  categoryLabel: "DEVELOPER WORKFLOW",
+  useCasesTitle: "When a formatter is most useful",
+  useCases: [
+    "Inspecting API responses in development.",
+    "Debugging request payloads.",
+    "Validating copied JSON from a log or dashboard.",
+    "Reviewing structured configuration data.",
+    "Cleaning up test fixtures.",
+    "Sharing readable examples with teammates."
+  ],
+  closingTitle: "Keep the workflow simple",
+  closingText:
+    "You do not need a large toolchain just to inspect JSON. In many cases, a fast browser-based formatter is enough to turn messy structured text into something readable and easier to debug. When the data is easier to read, the real problem is often easier to find.",
+  relatedToolLabel: "Open the JSON Formatter",
+  sections: [
+    {
+      heading: "Why JSON formatting matters",
+      paragraphs: [
+        "When JSON is minified or poorly pasted, it becomes harder to review. Even if the data itself is valid, debugging takes longer when keys, arrays, and nested objects are difficult to scan.",
+        "A small formatting step often saves time when working with logs, requests, or exported data."
+      ],
+      bullets: [
+        "read API responses more easily",
+        "spot missing commas or brackets",
+        "understand nested fields faster",
+        "compare payloads during testing",
+        "clean up copied data before sharing it",
+        "reduce mistakes during debugging"
+      ]
+    },
+    {
+      heading: "How to use a JSON formatter for debugging",
+      paragraphs: [
+        "You do not need a heavy IDE workflow for every JSON check. A browser-based formatter is often enough for fast debugging.",
+        "1. Paste the JSON exactly as it appears. Start with the raw text from the API response, request body, log entry, or configuration file. If the content is compressed into a single line, that is fine. The formatter should help make it readable.",
+        "2. Run the formatter. Once formatted, objects, arrays, and nested values become easier to scan. This makes it much easier to see where fields begin, where structures end, and whether something looks unexpected.",
+        "3. Look for structure problems. After formatting, check for common issues like missing commas, extra trailing characters, broken brackets or braces, incorrect nesting, and duplicated or misplaced keys. Many JSON bugs become obvious once the structure is readable.",
+        "4. Compare expected and actual values. A formatter is also helpful when you need to compare two payloads. Once both are readable, differences in field names, null values, booleans, or array items become much easier to notice.",
+        "5. Use minify only when needed. Readable JSON is best for debugging. Minified JSON is useful when you need compact output for transport or embedding, but not for inspection."
+      ]
+    },
+    {
+      heading: "Common mistakes to avoid",
+      paragraphs: [
+        "One common mistake is assuming that formatted JSON is automatically valid JSON. A formatter can help you read the structure, but validation still matters if the source text is broken.",
+        "Another mistake is pasting partial payloads without realizing they are incomplete. If the formatter fails, the issue may be missing opening or closing characters in the copied text.",
+        "It is also easy to confuse JSON with JavaScript object syntax. Not every JavaScript object snippet is valid JSON. For example, JSON requires double quotes around keys and string values.",
+        "Finally, avoid using minified output while actively debugging unless you truly need it. Readability is usually more helpful than compactness during troubleshooting."
+      ]
+    },
+    {
+      heading: "A practical debugging workflow",
+      paragraphs: [
+        "A simple workflow works well in most cases. Copy the raw JSON from the source, paste it into the formatter, review the structure, validate the content, compare important fields, and copy the cleaned output if needed for reporting or testing.",
+        "This process is quick, repeatable, and useful across many developer tasks."
+      ]
+    },
+    {
+      heading: "Why this matters beyond development",
+      paragraphs: [
+        "JSON formatting is not only for engineers. Analysts, QA testers, technical support staff, and product teams also work with structured data. A readable JSON block makes it easier to explain issues, review values, and communicate clearly with others.",
+        "That makes a JSON formatter useful in both technical debugging and cross-functional collaboration."
+      ]
+    }
+  ]
+};
+
 const guideDefinitions: Array<Omit<GuideItem, "content"> & { content: Record<LocaleCode, GuideLocalizedContent> }> = [
   {
     slug: "how-to-use-html-color-picker",
@@ -825,6 +899,22 @@ const guideDefinitions: Array<Omit<GuideItem, "content"> & { content: Record<Loc
       de: howToExtractYoutubeThumbnailsEn
     }
   },
+  {
+    slug: "how-to-use-a-json-formatter-for-debugging",
+    category: "developer",
+    relatedToolSlug: "json-formatter",
+    publishedAt: "2026-03-24",
+    updatedAt: "2026-03-24",
+    content: {
+      en: howToUseAJsonFormatterForDebuggingEn,
+      ko: howToUseAJsonFormatterForDebuggingEn,
+      ja: howToUseAJsonFormatterForDebuggingEn,
+      es: howToUseAJsonFormatterForDebuggingEn,
+      fr: howToUseAJsonFormatterForDebuggingEn,
+      de: howToUseAJsonFormatterForDebuggingEn
+    }
+  },
+
   {
     slug: "how-to-convert-timestamps-quickly",
     category: "developer",
