@@ -454,6 +454,31 @@ const howToExtractYoutubeThumbnailsEn: GuideLocalizedContent = {
   ]
 };
 
+
+
+const whenToUseBase64EncodingKo: GuideLocalizedContent = { ...whenToUseBase64EncodingEn, title: "Base64 인코딩을 언제 써야 할까", description: "웹/개발 작업에서 Base64가 유용한 경우와 불필요한 경우를 구분하는 방법을 안내합니다.", categoryLabel: "개발 워크플로", useCasesTitle: "Base64가 특히 유용한 경우", closingTitle: "실무적으로 사용하세요", relatedToolLabel: "Base64 인코더 열기" };
+const whenToUseBase64EncodingJa: GuideLocalizedContent = { ...whenToUseBase64EncodingEn, title: "Base64エンコードを使うべき場面", description: "Base64が役立つケースと不要なケースを、Web開発の実務目線で整理します。", categoryLabel: "開発ワークフロー", useCasesTitle: "Base64が有効な場面", closingTitle: "実用的に使う", relatedToolLabel: "Base64エンコーダーを開く" };
+const whenToUseBase64EncodingEs: GuideLocalizedContent = { ...whenToUseBase64EncodingEn, title: "Cuándo usar codificación Base64", description: "Aprende cuándo Base64 aporta valor y cuándo no es necesario en flujos web y de desarrollo.", categoryLabel: "Flujo de desarrollo", useCasesTitle: "Cuándo resulta útil", closingTitle: "Úsalo de forma práctica", relatedToolLabel: "Abrir codificador Base64" };
+const whenToUseBase64EncodingFr: GuideLocalizedContent = { ...whenToUseBase64EncodingEn, title: "Quand utiliser l'encodage Base64", description: "Identifiez quand Base64 est utile et quand il est inutile dans les workflows web et dev.", categoryLabel: "Workflow développeur", useCasesTitle: "Quand Base64 est utile", closingTitle: "Restez pragmatique", relatedToolLabel: "Ouvrir l’encodeur Base64" };
+const whenToUseBase64EncodingDe: GuideLocalizedContent = { ...whenToUseBase64EncodingEn, title: "Wann Base64-Encoding sinnvoll ist", description: "Erfahre, wann Base64 in Web- und Entwickler-Workflows hilft und wann nicht.", categoryLabel: "Entwickler-Workflow", useCasesTitle: "Wann Base64 hilfreich ist", closingTitle: "Praktisch bleiben", relatedToolLabel: "Base64-Encoder öffnen" };
+
+const howToCheckOpenGraphMetadataKo: GuideLocalizedContent = { ...howToCheckOpenGraphMetadataEn, title: "Open Graph 메타데이터 확인 방법", description: "소셜/메신저 공유 시 링크 미리보기가 정확히 보이도록 Open Graph를 점검하는 방법입니다.", categoryLabel: "소셜 미리보기", useCasesTitle: "이럴 때 특히 유용합니다", closingTitle: "가볍게 점검하세요", relatedToolLabel: "OG 미리보기 열기" };
+const howToCheckOpenGraphMetadataJa: GuideLocalizedContent = { ...howToCheckOpenGraphMetadataEn, title: "Open Graphメタデータの確認方法", description: "SNSやメッセージアプリでリンクの見え方を整えるためのOG確認手順です。", categoryLabel: "ソーシャルプレビュー", useCasesTitle: "有効な場面", closingTitle: "軽く確認する習慣を", relatedToolLabel: "OGプレビューを開く" };
+const howToCheckOpenGraphMetadataEs: GuideLocalizedContent = { ...howToCheckOpenGraphMetadataEn, title: "Cómo revisar metadatos Open Graph", description: "Comprueba Open Graph para que los enlaces se muestren mejor en redes y apps de mensajería.", categoryLabel: "Vista previa social", useCasesTitle: "Cuándo conviene", closingTitle: "Revisión rápida y útil", relatedToolLabel: "Abrir vista previa OG" };
+const howToCheckOpenGraphMetadataFr: GuideLocalizedContent = { ...howToCheckOpenGraphMetadataEn, title: "Comment vérifier les métadonnées Open Graph", description: "Vérifiez Open Graph pour améliorer l’aperçu des liens sur les réseaux et messageries.", categoryLabel: "Aperçu social", useCasesTitle: "Quand c’est utile", closingTitle: "Un contrôle léger suffit", relatedToolLabel: "Ouvrir l’aperçu OG" };
+const howToCheckOpenGraphMetadataDe: GuideLocalizedContent = { ...howToCheckOpenGraphMetadataEn, title: "So prüfst du Open-Graph-Metadaten", description: "Prüfe Open Graph, damit Link-Vorschauen in Social- und Messaging-Apps sauber dargestellt werden.", categoryLabel: "Social Preview", useCasesTitle: "Wann es besonders nützlich ist", closingTitle: "Prüfung schlank halten", relatedToolLabel: "OG-Vorschau öffnen" };
+
+const howToExtractYoutubeThumbnailsKo: GuideLocalizedContent = { ...howToExtractYoutubeThumbnailsEn, title: "YouTube 썸네일 추출 방법", description: "유튜브 썸네일 이미지를 빠르게 확인하고 참고용으로 활용하는 방법을 안내합니다.", categoryLabel: "콘텐츠 워크플로", useCasesTitle: "썸네일을 추출하는 이유", closingTitle: "간단한 흐름으로 충분합니다", relatedToolLabel: "유튜브 썸네일 추출기 열기" };
+const howToExtractYoutubeThumbnailsJa: GuideLocalizedContent = { ...howToExtractYoutubeThumbnailsEn, title: "YouTubeサムネイルの抽出方法", description: "YouTubeのサムネイル画像を素早く確認・参照するための実用ガイドです。", categoryLabel: "コンテンツワークフロー", useCasesTitle: "抽出が役立つ場面", closingTitle: "シンプルに進める", relatedToolLabel: "YouTubeサムネ抽出を開く" };
+const howToExtractYoutubeThumbnailsEs: GuideLocalizedContent = { ...howToExtractYoutubeThumbnailsEn, title: "Cómo extraer miniaturas de YouTube", description: "Extrae miniaturas de YouTube rápidamente para revisión, referencia y trabajo de contenido.", categoryLabel: "Flujo de contenido", useCasesTitle: "Por qué extraer miniaturas", closingTitle: "Mantén el proceso simple", relatedToolLabel: "Abrir extractor de miniaturas" };
+const howToExtractYoutubeThumbnailsFr: GuideLocalizedContent = { ...howToExtractYoutubeThumbnailsEn, title: "Comment extraire des miniatures YouTube", description: "Récupérez rapidement des miniatures YouTube pour la veille, la référence et la préparation de contenu.", categoryLabel: "Workflow contenu", useCasesTitle: "Pourquoi extraire des miniatures", closingTitle: "Gardez un workflow simple", relatedToolLabel: "Ouvrir l’extracteur YouTube" };
+const howToExtractYoutubeThumbnailsDe: GuideLocalizedContent = { ...howToExtractYoutubeThumbnailsEn, title: "So extrahierst du YouTube-Thumbnails", description: "Extrahiere YouTube-Thumbnails schnell für Analyse, Referenz und Content-Planung.", categoryLabel: "Content-Workflow", useCasesTitle: "Warum Thumbnails extrahieren", closingTitle: "Einfacher Ablauf reicht", relatedToolLabel: "Thumbnail-Extractor öffnen" };
+
+const howToConvertTimestampsQuicklyKo: GuideLocalizedContent = { ...howToConvertTimestampsQuicklyEn, title: "타임스탬프를 빠르게 변환하는 방법", description: "로그와 API의 시간 값을 빠르게 읽을 수 있도록 타임스탬프 변환 흐름을 정리했습니다.", categoryLabel: "개발 워크플로", useCasesTitle: "이럴 때 특히 유용합니다", closingTitle: "가볍고 빠르게 확인하세요", relatedToolLabel: "타임스탬프 변환기 열기" };
+const howToConvertTimestampsQuicklyJa: GuideLocalizedContent = { ...howToConvertTimestampsQuicklyEn, title: "タイムスタンプを素早く変換する方法", description: "ログやAPIの時刻値を素早く読み解くための実用的な変換フローを紹介します。", categoryLabel: "開発ワークフロー", useCasesTitle: "有効な場面", closingTitle: "軽く素早く確認", relatedToolLabel: "タイムスタンプ変換を開く" };
+const howToConvertTimestampsQuicklyEs: GuideLocalizedContent = { ...howToConvertTimestampsQuicklyEn, title: "Cómo convertir timestamps rápidamente", description: "Convierte timestamps con rapidez para interpretar logs y datos temporales con más confianza.", categoryLabel: "Flujo de desarrollo", useCasesTitle: "Cuándo es más útil", closingTitle: "Proceso simple y rápido", relatedToolLabel: "Abrir convertidor de timestamp" };
+const howToConvertTimestampsQuicklyFr: GuideLocalizedContent = { ...howToConvertTimestampsQuicklyEn, title: "Comment convertir des timestamps rapidement", description: "Convertissez rapidement les timestamps pour lire les logs et fiabiliser l’analyse temporelle.", categoryLabel: "Workflow développeur", useCasesTitle: "Quand c’est le plus utile", closingTitle: "Restez simple et rapide", relatedToolLabel: "Ouvrir le convertisseur" };
+const howToConvertTimestampsQuicklyDe: GuideLocalizedContent = { ...howToConvertTimestampsQuicklyEn, title: "So wandelst du Timestamps schnell um", description: "Wandle Zeitstempel schnell um, um Logs und zeitbasierte Daten sicherer zu lesen.", categoryLabel: "Entwickler-Workflow", useCasesTitle: "Wann es am meisten hilft", closingTitle: "Schnell und schlank prüfen", relatedToolLabel: "Timestamp-Konverter öffnen" };
 const howToUseAJsonFormatterForDebuggingEn: GuideLocalizedContent = {
   title: "How to Use a JSON Formatter for Debugging",
   description:
@@ -848,7 +873,7 @@ const guideDefinitions: Array<Omit<GuideItem, "content"> & { content: Record<Loc
         ]
       },
       ko: {
-        title: "How to Count Characters for SEO Titles and Descriptions",
+        title: "SEO 제목/설명 글자 수 세는 방법",
         description: "Learn how to count characters for SEO titles and meta descriptions so your pages stay clear, readable, and more likely to display well in search results.",
         intro: "A simple character check can prevent common SEO mistakes before a page goes live. If your title is too long, search engines may shorten it. If your description is too vague or too crowded, users may skip it even when your page ranks well.",
         categoryLabel: "SEO Writing",
@@ -856,7 +881,7 @@ const guideDefinitions: Array<Omit<GuideItem, "content"> & { content: Record<Loc
         useCases: ["Publishing new blog articles.", "Writing category page titles.", "Updating meta descriptions for older content.", "Preparing landing pages for campaigns.", "Checking consistency across many pages.", "Improving snippets for multilingual sites."],
         closingTitle: "Keep the workflow lightweight",
         closingText: "You do not need to overcomplicate this task. A simple browser-based character counter is often enough for day-to-day SEO writing. The goal is not perfection. The goal is to avoid preventable mistakes and publish cleaner page copy. When paired with a good page title, a useful meta description, and relevant on-page content, character review becomes one small but valuable part of a stronger SEO process.",
-        relatedToolLabel: "Open the Character Counter",
+        relatedToolLabel: "문자 수 카운터 열기",
         sections: [
           { heading: "Why character count matters for SEO", paragraphs: ["Search results do not always show your title and description exactly as written, but length still matters. Very long text is more likely to be truncated. Very short text may miss important context or fail to explain what the page offers.", "A practical character counter helps you review text quickly, compare options, and keep your search snippets cleaner. You do not need a complicated SEO suite for this step. For many pages, a lightweight browser-based tool is enough."], bullets: ["Write titles that are easier to scan.", "Avoid cutting off important keywords.", "Compare multiple headline options quickly.", "Keep descriptions readable on both desktop and mobile.", "Maintain a more consistent style across your site."] },
           { heading: "A practical way to review titles and descriptions", paragraphs: ["A good workflow is to start with meaning first and count second. Do not force a title to hit an exact number if it becomes awkward. Instead, write a clear draft, then use a character counter to tighten it.", "For example, a weak title may be too generic: “SEO Tips for Better Search Results”. It is short, but it does not say much. A stronger version may be: “How to Count Characters for SEO Titles and Descriptions”. This is more specific, more useful, and still easy to review with a counter. The same idea applies to descriptions. A description should explain what the page helps with, not just repeat keywords."] },
@@ -865,7 +890,7 @@ const guideDefinitions: Array<Omit<GuideItem, "content"> & { content: Record<Loc
         ]
       },
       ja: {
-        title: "How to Count Characters for SEO Titles and Descriptions",
+        title: "SEOタイトルと説明文の文字数を数える方法",
         description: "Learn how to count characters for SEO titles and meta descriptions so your pages stay clear, readable, and more likely to display well in search results.",
         intro: "A simple character check can prevent common SEO mistakes before a page goes live. If your title is too long, search engines may shorten it. If your description is too vague or too crowded, users may skip it even when your page ranks well.",
         categoryLabel: "SEO Writing",
@@ -873,7 +898,7 @@ const guideDefinitions: Array<Omit<GuideItem, "content"> & { content: Record<Loc
         useCases: ["Publishing new blog articles.", "Writing category page titles.", "Updating meta descriptions for older content.", "Preparing landing pages for campaigns.", "Checking consistency across many pages.", "Improving snippets for multilingual sites."],
         closingTitle: "Keep the workflow lightweight",
         closingText: "You do not need to overcomplicate this task. A simple browser-based character counter is often enough for day-to-day SEO writing. The goal is not perfection. The goal is to avoid preventable mistakes and publish cleaner page copy. When paired with a good page title, a useful meta description, and relevant on-page content, character review becomes one small but valuable part of a stronger SEO process.",
-        relatedToolLabel: "Open the Character Counter",
+        relatedToolLabel: "文字数カウンターを開く",
         sections: [
           { heading: "Why character count matters for SEO", paragraphs: ["Search results do not always show your title and description exactly as written, but length still matters. Very long text is more likely to be truncated. Very short text may miss important context or fail to explain what the page offers.", "A practical character counter helps you review text quickly, compare options, and keep your search snippets cleaner. You do not need a complicated SEO suite for this step. For many pages, a lightweight browser-based tool is enough."], bullets: ["Write titles that are easier to scan.", "Avoid cutting off important keywords.", "Compare multiple headline options quickly.", "Keep descriptions readable on both desktop and mobile.", "Maintain a more consistent style across your site."] },
           { heading: "A practical way to review titles and descriptions", paragraphs: ["A good workflow is to start with meaning first and count second. Do not force a title to hit an exact number if it becomes awkward. Instead, write a clear draft, then use a character counter to tighten it.", "For example, a weak title may be too generic: “SEO Tips for Better Search Results”. It is short, but it does not say much. A stronger version may be: “How to Count Characters for SEO Titles and Descriptions”. This is more specific, more useful, and still easy to review with a counter. The same idea applies to descriptions. A description should explain what the page helps with, not just repeat keywords."] },
@@ -882,7 +907,7 @@ const guideDefinitions: Array<Omit<GuideItem, "content"> & { content: Record<Loc
         ]
       },
       es: {
-        title: "How to Count Characters for SEO Titles and Descriptions",
+        title: "Cómo contar caracteres para títulos y descripciones SEO",
         description: "Learn how to count characters for SEO titles and meta descriptions so your pages stay clear, readable, and more likely to display well in search results.",
         intro: "A simple character check can prevent common SEO mistakes before a page goes live. If your title is too long, search engines may shorten it. If your description is too vague or too crowded, users may skip it even when your page ranks well.",
         categoryLabel: "SEO Writing",
@@ -890,7 +915,7 @@ const guideDefinitions: Array<Omit<GuideItem, "content"> & { content: Record<Loc
         useCases: ["Publishing new blog articles.", "Writing category page titles.", "Updating meta descriptions for older content.", "Preparing landing pages for campaigns.", "Checking consistency across many pages.", "Improving snippets for multilingual sites."],
         closingTitle: "Keep the workflow lightweight",
         closingText: "You do not need to overcomplicate this task. A simple browser-based character counter is often enough for day-to-day SEO writing. The goal is not perfection. The goal is to avoid preventable mistakes and publish cleaner page copy. When paired with a good page title, a useful meta description, and relevant on-page content, character review becomes one small but valuable part of a stronger SEO process.",
-        relatedToolLabel: "Open the Character Counter",
+        relatedToolLabel: "Abrir contador de caracteres",
         sections: [
           { heading: "Why character count matters for SEO", paragraphs: ["Search results do not always show your title and description exactly as written, but length still matters. Very long text is more likely to be truncated. Very short text may miss important context or fail to explain what the page offers.", "A practical character counter helps you review text quickly, compare options, and keep your search snippets cleaner. You do not need a complicated SEO suite for this step. For many pages, a lightweight browser-based tool is enough."], bullets: ["Write titles that are easier to scan.", "Avoid cutting off important keywords.", "Compare multiple headline options quickly.", "Keep descriptions readable on both desktop and mobile.", "Maintain a more consistent style across your site."] },
           { heading: "A practical way to review titles and descriptions", paragraphs: ["A good workflow is to start with meaning first and count second. Do not force a title to hit an exact number if it becomes awkward. Instead, write a clear draft, then use a character counter to tighten it.", "For example, a weak title may be too generic: “SEO Tips for Better Search Results”. It is short, but it does not say much. A stronger version may be: “How to Count Characters for SEO Titles and Descriptions”. This is more specific, more useful, and still easy to review with a counter. The same idea applies to descriptions. A description should explain what the page helps with, not just repeat keywords."] },
@@ -899,7 +924,7 @@ const guideDefinitions: Array<Omit<GuideItem, "content"> & { content: Record<Loc
         ]
       },
       fr: {
-        title: "How to Count Characters for SEO Titles and Descriptions",
+        title: "Comment compter les caractères pour les titres et descriptions SEO",
         description: "Learn how to count characters for SEO titles and meta descriptions so your pages stay clear, readable, and more likely to display well in search results.",
         intro: "A simple character check can prevent common SEO mistakes before a page goes live. If your title is too long, search engines may shorten it. If your description is too vague or too crowded, users may skip it even when your page ranks well.",
         categoryLabel: "SEO Writing",
@@ -907,7 +932,7 @@ const guideDefinitions: Array<Omit<GuideItem, "content"> & { content: Record<Loc
         useCases: ["Publishing new blog articles.", "Writing category page titles.", "Updating meta descriptions for older content.", "Preparing landing pages for campaigns.", "Checking consistency across many pages.", "Improving snippets for multilingual sites."],
         closingTitle: "Keep the workflow lightweight",
         closingText: "You do not need to overcomplicate this task. A simple browser-based character counter is often enough for day-to-day SEO writing. The goal is not perfection. The goal is to avoid preventable mistakes and publish cleaner page copy. When paired with a good page title, a useful meta description, and relevant on-page content, character review becomes one small but valuable part of a stronger SEO process.",
-        relatedToolLabel: "Open the Character Counter",
+        relatedToolLabel: "Ouvrir le compteur de caractères",
         sections: [
           { heading: "Why character count matters for SEO", paragraphs: ["Search results do not always show your title and description exactly as written, but length still matters. Very long text is more likely to be truncated. Very short text may miss important context or fail to explain what the page offers.", "A practical character counter helps you review text quickly, compare options, and keep your search snippets cleaner. You do not need a complicated SEO suite for this step. For many pages, a lightweight browser-based tool is enough."], bullets: ["Write titles that are easier to scan.", "Avoid cutting off important keywords.", "Compare multiple headline options quickly.", "Keep descriptions readable on both desktop and mobile.", "Maintain a more consistent style across your site."] },
           { heading: "A practical way to review titles and descriptions", paragraphs: ["A good workflow is to start with meaning first and count second. Do not force a title to hit an exact number if it becomes awkward. Instead, write a clear draft, then use a character counter to tighten it.", "For example, a weak title may be too generic: “SEO Tips for Better Search Results”. It is short, but it does not say much. A stronger version may be: “How to Count Characters for SEO Titles and Descriptions”. This is more specific, more useful, and still easy to review with a counter. The same idea applies to descriptions. A description should explain what the page helps with, not just repeat keywords."] },
@@ -916,7 +941,7 @@ const guideDefinitions: Array<Omit<GuideItem, "content"> & { content: Record<Loc
         ]
       },
       de: {
-        title: "How to Count Characters for SEO Titles and Descriptions",
+        title: "So zählst du Zeichen für SEO-Titel und Beschreibungen",
         description: "Learn how to count characters for SEO titles and meta descriptions so your pages stay clear, readable, and more likely to display well in search results.",
         intro: "A simple character check can prevent common SEO mistakes before a page goes live. If your title is too long, search engines may shorten it. If your description is too vague or too crowded, users may skip it even when your page ranks well.",
         categoryLabel: "SEO Writing",
@@ -924,7 +949,7 @@ const guideDefinitions: Array<Omit<GuideItem, "content"> & { content: Record<Loc
         useCases: ["Publishing new blog articles.", "Writing category page titles.", "Updating meta descriptions for older content.", "Preparing landing pages for campaigns.", "Checking consistency across many pages.", "Improving snippets for multilingual sites."],
         closingTitle: "Keep the workflow lightweight",
         closingText: "You do not need to overcomplicate this task. A simple browser-based character counter is often enough for day-to-day SEO writing. The goal is not perfection. The goal is to avoid preventable mistakes and publish cleaner page copy. When paired with a good page title, a useful meta description, and relevant on-page content, character review becomes one small but valuable part of a stronger SEO process.",
-        relatedToolLabel: "Open the Character Counter",
+        relatedToolLabel: "Zeichenzähler öffnen",
         sections: [
           { heading: "Why character count matters for SEO", paragraphs: ["Search results do not always show your title and description exactly as written, but length still matters. Very long text is more likely to be truncated. Very short text may miss important context or fail to explain what the page offers.", "A practical character counter helps you review text quickly, compare options, and keep your search snippets cleaner. You do not need a complicated SEO suite for this step. For many pages, a lightweight browser-based tool is enough."], bullets: ["Write titles that are easier to scan.", "Avoid cutting off important keywords.", "Compare multiple headline options quickly.", "Keep descriptions readable on both desktop and mobile.", "Maintain a more consistent style across your site."] },
           { heading: "A practical way to review titles and descriptions", paragraphs: ["A good workflow is to start with meaning first and count second. Do not force a title to hit an exact number if it becomes awkward. Instead, write a clear draft, then use a character counter to tighten it.", "For example, a weak title may be too generic: “SEO Tips for Better Search Results”. It is short, but it does not say much. A stronger version may be: “How to Count Characters for SEO Titles and Descriptions”. This is more specific, more useful, and still easy to review with a counter. The same idea applies to descriptions. A description should explain what the page helps with, not just repeat keywords."] },
@@ -958,11 +983,11 @@ const guideDefinitions: Array<Omit<GuideItem, "content"> & { content: Record<Loc
     updatedAt: "2026-03-24",
     content: {
       en: whenToUseBase64EncodingEn,
-      ko: whenToUseBase64EncodingEn,
-      ja: whenToUseBase64EncodingEn,
-      es: whenToUseBase64EncodingEn,
-      fr: whenToUseBase64EncodingEn,
-      de: whenToUseBase64EncodingEn
+      ko: whenToUseBase64EncodingKo,
+      ja: whenToUseBase64EncodingJa,
+      es: whenToUseBase64EncodingEs,
+      fr: whenToUseBase64EncodingFr,
+      de: whenToUseBase64EncodingDe
     }
   },
   {
@@ -973,11 +998,11 @@ const guideDefinitions: Array<Omit<GuideItem, "content"> & { content: Record<Loc
     updatedAt: "2026-03-24",
     content: {
       en: howToCheckOpenGraphMetadataEn,
-      ko: howToCheckOpenGraphMetadataEn,
-      ja: howToCheckOpenGraphMetadataEn,
-      es: howToCheckOpenGraphMetadataEn,
-      fr: howToCheckOpenGraphMetadataEn,
-      de: howToCheckOpenGraphMetadataEn
+      ko: howToCheckOpenGraphMetadataKo,
+      ja: howToCheckOpenGraphMetadataJa,
+      es: howToCheckOpenGraphMetadataEs,
+      fr: howToCheckOpenGraphMetadataFr,
+      de: howToCheckOpenGraphMetadataDe
     }
   },
   {
@@ -988,11 +1013,11 @@ const guideDefinitions: Array<Omit<GuideItem, "content"> & { content: Record<Loc
     updatedAt: "2026-03-24",
     content: {
       en: howToExtractYoutubeThumbnailsEn,
-      ko: howToExtractYoutubeThumbnailsEn,
-      ja: howToExtractYoutubeThumbnailsEn,
-      es: howToExtractYoutubeThumbnailsEn,
-      fr: howToExtractYoutubeThumbnailsEn,
-      de: howToExtractYoutubeThumbnailsEn
+      ko: howToExtractYoutubeThumbnailsKo,
+      ja: howToExtractYoutubeThumbnailsJa,
+      es: howToExtractYoutubeThumbnailsEs,
+      fr: howToExtractYoutubeThumbnailsFr,
+      de: howToExtractYoutubeThumbnailsDe
     }
   },
   {
@@ -1019,11 +1044,11 @@ const guideDefinitions: Array<Omit<GuideItem, "content"> & { content: Record<Loc
     updatedAt: "2026-03-24",
     content: {
       en: howToConvertTimestampsQuicklyEn,
-      ko: howToConvertTimestampsQuicklyEn,
-      ja: howToConvertTimestampsQuicklyEn,
-      es: howToConvertTimestampsQuicklyEn,
-      fr: howToConvertTimestampsQuicklyEn,
-      de: howToConvertTimestampsQuicklyEn
+      ko: howToConvertTimestampsQuicklyKo,
+      ja: howToConvertTimestampsQuicklyJa,
+      es: howToConvertTimestampsQuicklyEs,
+      fr: howToConvertTimestampsQuicklyFr,
+      de: howToConvertTimestampsQuicklyDe
     }
   }
 
