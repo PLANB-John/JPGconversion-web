@@ -456,25 +456,118 @@ const howToExtractYoutubeThumbnailsEn: GuideLocalizedContent = {
 
 
 
-const whenToUseBase64EncodingKo: GuideLocalizedContent = { ...whenToUseBase64EncodingEn, title: "Base64 인코딩을 언제 써야 할까", description: "웹/개발 작업에서 Base64가 유용한 경우와 불필요한 경우를 구분하는 방법을 안내합니다.", categoryLabel: "개발 워크플로", useCasesTitle: "Base64가 특히 유용한 경우", closingTitle: "실무적으로 사용하세요", relatedToolLabel: "Base64 인코더 열기" };
+const whenToUseBase64EncodingKo: GuideLocalizedContent = {
+  ...whenToUseBase64EncodingEn,
+  title: "Base64 인코딩을 언제 써야 할까",
+  description: "웹/개발 작업에서 Base64가 유용한 경우와 불필요한 경우를 구분하는 방법을 안내합니다.",
+  intro: "Base64는 암호화가 아니라 데이터를 텍스트로 안전하게 전달하기 위한 인코딩 방식입니다. API 테스트, 로그 확인, 메일 데이터 점검처럼 텍스트 중심 환경에서 특히 유용합니다.",
+  categoryLabel: "개발 워크플로",
+  useCasesTitle: "Base64가 특히 유용한 경우",
+  useCases: [
+    "텍스트 기반 시스템에서 바이너리 데이터를 전달할 때",
+    "API 요청/응답의 인코딩 값을 확인할 때",
+    "디버깅 중 원본 값과 인코딩 값을 비교할 때",
+    "MIME 첨부 데이터 구조를 확인할 때",
+    "복붙 과정에서 문자 깨짐을 줄이고 싶을 때",
+    "짧은 데이터 조각을 안전하게 이동할 때"
+  ],
+  closingTitle: "실무적으로 사용하세요",
+  closingText: "Base64는 호환성 문제를 해결할 때 가장 빛납니다. 압축이나 보안을 기대하기보다, 필요한 순간에만 간단히 적용하는 습관이 효율적입니다.",
+  relatedToolLabel: "Base64 인코더 열기",
+  sections: [
+    { heading: "Base64가 실제로 하는 일", paragraphs: ["Base64는 데이터를 텍스트 안전 문자 집합으로 바꿔서 전송/저장을 쉽게 만듭니다.", "즉, 목적은 호환성입니다. 파일 크기 절감이나 보안 강화가 목적은 아닙니다."] },
+    { heading: "언제 쓰면 좋은가", paragraphs: ["텍스트 기반 시스템에서 바이너리 값을 전달할 때 특히 유용합니다.", "API 테스트, 로그 디버깅, 메일 데이터 확인처럼 짧은 실무 작업에서 효율이 높습니다."] },
+    { heading: "자주 하는 실수", paragraphs: ["Base64를 암호화로 오해하면 보안 사고로 이어질 수 있습니다.", "큰 파일을 무분별하게 인코딩하면 크기 증가로 성능이 나빠질 수 있습니다."] },
+    { heading: "빠른 실무 절차", paragraphs: ["원본 데이터 확인 → 필요한 경우에만 인코딩 → 대상 시스템에서 동작 검증 → 디버깅 시 즉시 디코딩 순서로 진행하세요.", "단순한 전송 도구로 쓰면 Base64는 매우 실용적입니다."] }
+  ]
+};
 const whenToUseBase64EncodingJa: GuideLocalizedContent = { ...whenToUseBase64EncodingEn, title: "Base64エンコードを使うべき場面", description: "Base64が役立つケースと不要なケースを、Web開発の実務目線で整理します。", categoryLabel: "開発ワークフロー", useCasesTitle: "Base64が有効な場面", closingTitle: "実用的に使う", relatedToolLabel: "Base64エンコーダーを開く" };
 const whenToUseBase64EncodingEs: GuideLocalizedContent = { ...whenToUseBase64EncodingEn, title: "Cuándo usar codificación Base64", description: "Aprende cuándo Base64 aporta valor y cuándo no es necesario en flujos web y de desarrollo.", categoryLabel: "Flujo de desarrollo", useCasesTitle: "Cuándo resulta útil", closingTitle: "Úsalo de forma práctica", relatedToolLabel: "Abrir codificador Base64" };
 const whenToUseBase64EncodingFr: GuideLocalizedContent = { ...whenToUseBase64EncodingEn, title: "Quand utiliser l'encodage Base64", description: "Identifiez quand Base64 est utile et quand il est inutile dans les workflows web et dev.", categoryLabel: "Workflow développeur", useCasesTitle: "Quand Base64 est utile", closingTitle: "Restez pragmatique", relatedToolLabel: "Ouvrir l’encodeur Base64" };
 const whenToUseBase64EncodingDe: GuideLocalizedContent = { ...whenToUseBase64EncodingEn, title: "Wann Base64-Encoding sinnvoll ist", description: "Erfahre, wann Base64 in Web- und Entwickler-Workflows hilft und wann nicht.", categoryLabel: "Entwickler-Workflow", useCasesTitle: "Wann Base64 hilfreich ist", closingTitle: "Praktisch bleiben", relatedToolLabel: "Base64-Encoder öffnen" };
 
-const howToCheckOpenGraphMetadataKo: GuideLocalizedContent = { ...howToCheckOpenGraphMetadataEn, title: "Open Graph 메타데이터 확인 방법", description: "소셜/메신저 공유 시 링크 미리보기가 정확히 보이도록 Open Graph를 점검하는 방법입니다.", categoryLabel: "소셜 미리보기", useCasesTitle: "이럴 때 특히 유용합니다", closingTitle: "가볍게 점검하세요", relatedToolLabel: "OG 미리보기 열기" };
+const howToCheckOpenGraphMetadataKo: GuideLocalizedContent = {
+  ...howToCheckOpenGraphMetadataEn,
+  title: "Open Graph 메타데이터 확인 방법",
+  description: "소셜/메신저 공유 시 링크 미리보기가 정확히 보이도록 Open Graph를 점검하는 방법입니다.",
+  intro: "페이지를 공유했을 때 보이는 제목, 설명, 대표 이미지는 클릭률에 큰 영향을 줍니다. Open Graph 태그를 확인하면 미리보기 품질을 빠르게 개선할 수 있습니다.",
+  categoryLabel: "소셜 미리보기",
+  useCasesTitle: "이럴 때 특히 유용합니다",
+  useCases: [
+    "새 블로그 글이나 가이드를 발행할 때",
+    "랜딩 페이지를 공유하기 전에 점검할 때",
+    "대표 이미지나 제목을 교체한 뒤 결과를 확인할 때",
+    "메신저/커뮤니티 공유 미리보기가 이상할 때",
+    "다국어 페이지의 카드 일관성을 확인할 때",
+    "캠페인 링크 클릭률을 높이고 싶을 때"
+  ],
+  closingTitle: "가볍게 점검하세요",
+  closingText: "복잡한 감사를 할 필요는 없습니다. 배포 전 1분 점검만으로도 누락 태그, 잘린 제목, 잘못된 이미지 같은 핵심 문제를 대부분 잡을 수 있습니다.",
+  relatedToolLabel: "OG 미리보기 열기",
+  sections: [
+    { heading: "Open Graph 메타데이터의 역할", paragraphs: ["공유 카드의 제목·설명·이미지는 사용자의 클릭 여부를 좌우합니다.", "OG 태그를 명확히 설정하면 플랫폼이 임의로 잘못 추측하는 일을 줄일 수 있습니다."] },
+    { heading: "점검할 핵심 항목", paragraphs: ["og:title, og:description, og:image, og:type, og:url 값을 우선 확인하세요.", "이미지 크기/비율, 언어별 페이지의 값 일관성, 캐시 반영 상태도 함께 점검하면 좋습니다."] },
+    { heading: "빠른 점검 루틴", paragraphs: ["배포 전 URL을 넣어 미리보기를 확인하고, 잘림·누락·오타를 바로 수정하세요.", "수정 후에는 다시 로드해 실제 공유 카드가 의도대로 보이는지 검증합니다."] }
+  ]
+};
 const howToCheckOpenGraphMetadataJa: GuideLocalizedContent = { ...howToCheckOpenGraphMetadataEn, title: "Open Graphメタデータの確認方法", description: "SNSやメッセージアプリでリンクの見え方を整えるためのOG確認手順です。", categoryLabel: "ソーシャルプレビュー", useCasesTitle: "有効な場面", closingTitle: "軽く確認する習慣を", relatedToolLabel: "OGプレビューを開く" };
 const howToCheckOpenGraphMetadataEs: GuideLocalizedContent = { ...howToCheckOpenGraphMetadataEn, title: "Cómo revisar metadatos Open Graph", description: "Comprueba Open Graph para que los enlaces se muestren mejor en redes y apps de mensajería.", categoryLabel: "Vista previa social", useCasesTitle: "Cuándo conviene", closingTitle: "Revisión rápida y útil", relatedToolLabel: "Abrir vista previa OG" };
 const howToCheckOpenGraphMetadataFr: GuideLocalizedContent = { ...howToCheckOpenGraphMetadataEn, title: "Comment vérifier les métadonnées Open Graph", description: "Vérifiez Open Graph pour améliorer l’aperçu des liens sur les réseaux et messageries.", categoryLabel: "Aperçu social", useCasesTitle: "Quand c’est utile", closingTitle: "Un contrôle léger suffit", relatedToolLabel: "Ouvrir l’aperçu OG" };
 const howToCheckOpenGraphMetadataDe: GuideLocalizedContent = { ...howToCheckOpenGraphMetadataEn, title: "So prüfst du Open-Graph-Metadaten", description: "Prüfe Open Graph, damit Link-Vorschauen in Social- und Messaging-Apps sauber dargestellt werden.", categoryLabel: "Social Preview", useCasesTitle: "Wann es besonders nützlich ist", closingTitle: "Prüfung schlank halten", relatedToolLabel: "OG-Vorschau öffnen" };
 
-const howToExtractYoutubeThumbnailsKo: GuideLocalizedContent = { ...howToExtractYoutubeThumbnailsEn, title: "YouTube 썸네일 추출 방법", description: "유튜브 썸네일 이미지를 빠르게 확인하고 참고용으로 활용하는 방법을 안내합니다.", categoryLabel: "콘텐츠 워크플로", useCasesTitle: "썸네일을 추출하는 이유", closingTitle: "간단한 흐름으로 충분합니다", relatedToolLabel: "유튜브 썸네일 추출기 열기" };
+const howToExtractYoutubeThumbnailsKo: GuideLocalizedContent = {
+  ...howToExtractYoutubeThumbnailsEn,
+  title: "YouTube 썸네일 추출 방법",
+  description: "유튜브 썸네일 이미지를 빠르게 확인하고 참고용으로 활용하는 방법을 안내합니다.",
+  intro: "썸네일은 영상의 첫인상을 결정합니다. URL에서 대표 이미지를 바로 추출하면 경쟁 채널 분석, 자료 제작, 내부 리뷰를 훨씬 빠르게 진행할 수 있습니다.",
+  categoryLabel: "콘텐츠 워크플로",
+  useCasesTitle: "썸네일을 추출하는 이유",
+  useCases: [
+    "경쟁 영상 썸네일 스타일을 비교할 때",
+    "제목/썸네일 조합을 분석할 때",
+    "교육 자료나 제안서에 썸네일 예시를 넣을 때",
+    "팀 내부 리뷰에 원본 썸네일 URL이 필요할 때",
+    "영상 리서치 결과를 정리할 때",
+    "썸네일 품질을 빠르게 확인할 때"
+  ],
+  closingTitle: "간단한 흐름으로 충분합니다",
+  closingText: "영상 링크를 넣고 썸네일을 확인하는 작업만으로도 콘텐츠 분석 속도가 크게 올라갑니다. 필요한 해상도와 사용 목적을 먼저 정하면 더 효율적입니다.",
+  relatedToolLabel: "유튜브 썸네일 추출기 열기",
+  sections: [
+    { heading: "썸네일 추출이 유용한 이유", paragraphs: ["썸네일은 제목보다 먼저 시선을 끌기 때문에 성과 분석에 중요한 단서가 됩니다.", "직접 이미지를 비교하면 색상, 텍스트 배치, 인물 클로즈업 같은 패턴을 빠르게 파악할 수 있습니다."] },
+    { heading: "실무에서 쓰는 방법", paragraphs: ["영상 URL을 입력해 가능한 썸네일 크기를 확인한 뒤, 목적에 맞는 버전을 선택하세요.", "분석 문서나 내부 리뷰 자료에는 원본 URL과 함께 저장하면 재검토가 쉽습니다."] },
+    { heading: "주의할 점", paragraphs: ["모든 영상이 모든 해상도 썸네일을 제공하는 것은 아닙니다.", "썸네일 접근 가능 여부와 별개로 저작권/사용 권한은 별도로 확인해야 합니다."] }
+  ]
+};
 const howToExtractYoutubeThumbnailsJa: GuideLocalizedContent = { ...howToExtractYoutubeThumbnailsEn, title: "YouTubeサムネイルの抽出方法", description: "YouTubeのサムネイル画像を素早く確認・参照するための実用ガイドです。", categoryLabel: "コンテンツワークフロー", useCasesTitle: "抽出が役立つ場面", closingTitle: "シンプルに進める", relatedToolLabel: "YouTubeサムネ抽出を開く" };
 const howToExtractYoutubeThumbnailsEs: GuideLocalizedContent = { ...howToExtractYoutubeThumbnailsEn, title: "Cómo extraer miniaturas de YouTube", description: "Extrae miniaturas de YouTube rápidamente para revisión, referencia y trabajo de contenido.", categoryLabel: "Flujo de contenido", useCasesTitle: "Por qué extraer miniaturas", closingTitle: "Mantén el proceso simple", relatedToolLabel: "Abrir extractor de miniaturas" };
 const howToExtractYoutubeThumbnailsFr: GuideLocalizedContent = { ...howToExtractYoutubeThumbnailsEn, title: "Comment extraire des miniatures YouTube", description: "Récupérez rapidement des miniatures YouTube pour la veille, la référence et la préparation de contenu.", categoryLabel: "Workflow contenu", useCasesTitle: "Pourquoi extraire des miniatures", closingTitle: "Gardez un workflow simple", relatedToolLabel: "Ouvrir l’extracteur YouTube" };
 const howToExtractYoutubeThumbnailsDe: GuideLocalizedContent = { ...howToExtractYoutubeThumbnailsEn, title: "So extrahierst du YouTube-Thumbnails", description: "Extrahiere YouTube-Thumbnails schnell für Analyse, Referenz und Content-Planung.", categoryLabel: "Content-Workflow", useCasesTitle: "Warum Thumbnails extrahieren", closingTitle: "Einfacher Ablauf reicht", relatedToolLabel: "Thumbnail-Extractor öffnen" };
 
-const howToConvertTimestampsQuicklyKo: GuideLocalizedContent = { ...howToConvertTimestampsQuicklyEn, title: "타임스탬프를 빠르게 변환하는 방법", description: "로그와 API의 시간 값을 빠르게 읽을 수 있도록 타임스탬프 변환 흐름을 정리했습니다.", categoryLabel: "개발 워크플로", useCasesTitle: "이럴 때 특히 유용합니다", closingTitle: "가볍고 빠르게 확인하세요", relatedToolLabel: "타임스탬프 변환기 열기" };
+const howToConvertTimestampsQuicklyKo: GuideLocalizedContent = {
+  ...howToConvertTimestampsQuicklyEn,
+  title: "타임스탬프를 빠르게 변환하는 방법",
+  description: "로그와 API의 시간 값을 빠르게 읽을 수 있도록 타임스탬프 변환 흐름을 정리했습니다.",
+  intro: "Unix timestamp는 시스템 간 교환에는 편하지만 사람에게는 바로 읽기 어렵습니다. 빠른 변환 습관을 만들면 장애 분석, 로그 추적, QA 확인 속도가 크게 좋아집니다.",
+  categoryLabel: "개발 워크플로",
+  useCasesTitle: "이럴 때 특히 유용합니다",
+  useCases: [
+    "로그 오류 발생 시각을 사람 기준 시간으로 볼 때",
+    "API 응답의 시간 필드를 검증할 때",
+    "타임존 차이로 생긴 버그를 확인할 때",
+    "백엔드/프론트 시간 표시가 다른 원인을 찾을 때",
+    "QA 재현 시간대를 정확히 맞출 때",
+    "모니터링 알림 시간을 팀과 공유할 때"
+  ],
+  closingTitle: "가볍고 빠르게 확인하세요",
+  closingText: "타임스탬프 변환은 복잡한 작업이 아닙니다. 입력값, 단위(초/밀리초), 타임존만 빠르게 점검해도 대부분의 시간 관련 이슈를 바로 파악할 수 있습니다.",
+  relatedToolLabel: "타임스탬프 변환기 열기",
+  sections: [
+    { heading: "왜 빠른 변환이 중요한가", paragraphs: ["숫자 타임스탬프를 사람이 읽을 수 있는 날짜로 바꾸면 원인 분석 속도가 크게 빨라집니다.", "특히 장애 대응이나 API 검증에서는 몇 초 차이도 중요한 단서가 됩니다."] },
+    { heading: "자주 확인할 포인트", paragraphs: ["입력 단위가 초인지 밀리초인지 먼저 구분하세요.", "UTC와 로컬 타임존을 모두 확인해 화면 표시 시간과 저장 시간이 맞는지 점검하세요."] },
+    { heading: "간단한 작업 흐름", paragraphs: ["값을 붙여 넣고 변환 결과를 확인한 뒤, 필요한 경우 역변환으로 다시 검증하세요.", "로그, DB, API 응답을 같은 기준 시간대로 맞추면 디버깅이 훨씬 쉬워집니다."] }
+  ]
+};
 const howToConvertTimestampsQuicklyJa: GuideLocalizedContent = { ...howToConvertTimestampsQuicklyEn, title: "タイムスタンプを素早く変換する方法", description: "ログやAPIの時刻値を素早く読み解くための実用的な変換フローを紹介します。", categoryLabel: "開発ワークフロー", useCasesTitle: "有効な場面", closingTitle: "軽く素早く確認", relatedToolLabel: "タイムスタンプ変換を開く" };
 const howToConvertTimestampsQuicklyEs: GuideLocalizedContent = { ...howToConvertTimestampsQuicklyEn, title: "Cómo convertir timestamps rápidamente", description: "Convierte timestamps con rapidez para interpretar logs y datos temporales con más confianza.", categoryLabel: "Flujo de desarrollo", useCasesTitle: "Cuándo es más útil", closingTitle: "Proceso simple y rápido", relatedToolLabel: "Abrir convertidor de timestamp" };
 const howToConvertTimestampsQuicklyFr: GuideLocalizedContent = { ...howToConvertTimestampsQuicklyEn, title: "Comment convertir des timestamps rapidement", description: "Convertissez rapidement les timestamps pour lire les logs et fiabiliser l’analyse temporelle.", categoryLabel: "Workflow développeur", useCasesTitle: "Quand c’est le plus utile", closingTitle: "Restez simple et rapide", relatedToolLabel: "Ouvrir le convertisseur" };
@@ -549,6 +642,24 @@ const howToUseAJsonFormatterForDebuggingEn: GuideLocalizedContent = {
         "That makes a JSON formatter useful in both technical debugging and cross-functional collaboration."
       ]
     }
+  ]
+};
+
+const howToUseAJsonFormatterForDebuggingKo: GuideLocalizedContent = {
+  ...howToUseAJsonFormatterForDebuggingEn,
+  title: "디버깅에 JSON 포매터를 사용하는 방법",
+  description: "JSON 포매터로 페이로드를 읽기 쉽게 정리하고 구조 오류를 더 빠르게 찾는 실무 방법을 소개합니다.",
+  intro: "압축되거나 중첩된 JSON은 사람이 바로 읽기 어렵습니다. 포매터로 구조를 정리하면 누락 필드, 괄호 오류, 예상과 다른 값이 빠르게 드러납니다.",
+  categoryLabel: "개발 워크플로",
+  useCasesTitle: "포매터가 특히 유용한 상황",
+  useCases: ["API 응답 검토", "요청 본문 디버깅", "로그에서 복사한 JSON 검증", "설정 파일 구조 확인", "테스트 데이터 정리", "팀 공유용 예시 작성"],
+  closingTitle: "단순한 흐름이면 충분합니다",
+  closingText: "원본 JSON을 붙여 넣고 정렬한 뒤 구조와 핵심 필드를 확인하세요. 이 작은 단계만으로 디버깅 시간이 크게 줄어듭니다.",
+  relatedToolLabel: "JSON 포매터 열기",
+  sections: [
+    { heading: "포매팅이 필요한 이유", paragraphs: ["한 줄 JSON은 문법은 맞아도 검토 속도를 크게 떨어뜨립니다.", "정렬된 구조는 배열/객체 경계를 명확히 보여 줘서 오류 탐지를 쉽게 만듭니다."] },
+    { heading: "실무 점검 순서", paragraphs: ["원본을 그대로 붙여 넣고 포맷을 실행하세요.", "그다음 누락 쉼표, 잘못된 중첩, 필드 오타, null/boolean 차이를 순서대로 확인하면 됩니다."] },
+    { heading: "자주 하는 실수", paragraphs: ["포맷 결과가 보인다고 항상 유효 JSON인 것은 아닙니다.", "디버깅 중에는 minify보다 가독성을 우선해야 문제를 더 빨리 찾을 수 있습니다."] }
   ]
 };
 
@@ -628,6 +739,42 @@ const howToConvertImagesToWebpEn: GuideLocalizedContent = {
         "That is useful not only for users, but also for site quality in general. Performance improvements often come from small repeated actions, and image conversion is one of the most practical ones."
       ]
     }
+  ]
+};
+
+const howToConvertImagesToWebpKo: GuideLocalizedContent = {
+  ...howToConvertImagesToWebpEn,
+  title: "이미지를 WebP로 변환하는 방법",
+  description: "이미지를 WebP로 바꿔 파일 크기를 줄이고 페이지 로딩 성능을 개선하는 실용적인 흐름입니다.",
+  intro: "WebP는 시각 품질을 유지하면서도 웹 전송 용량을 줄이기 쉬운 형식입니다. 블로그, 랜딩 페이지, 문서 썸네일 같은 실무에 특히 잘 맞습니다.",
+  categoryLabel: "이미지 형식",
+  useCasesTitle: "이럴 때 특히 유용합니다",
+  useCases: ["게시 전 이미지 최적화", "콘텐츠 썸네일 경량화", "이미지 많은 페이지 속도 개선", "웹용 스크린샷 정리", "반복 업로드 자산 관리", "운영 비용 절감"],
+  closingTitle: "단순하게 운영하세요",
+  closingText: "복잡한 그래픽 툴 없이도 브라우저 기반 변환기로 충분한 경우가 많습니다. 핵심은 용량과 품질의 균형입니다.",
+  relatedToolLabel: "WebP 변환기 열기",
+  sections: [
+    { heading: "왜 WebP로 변환하나", paragraphs: ["큰 이미지는 모바일 환경에서 체감 속도를 크게 떨어뜨립니다.", "WebP 변환은 가장 간단하게 체감 성능을 올릴 수 있는 최적화 단계 중 하나입니다."] },
+    { heading: "변환할 때 확인할 점", paragraphs: ["용량만 보지 말고 텍스트 선명도, 경계선, 그라디언트 품질을 함께 확인하세요.", "콘텐츠 이미지와 상품 이미지는 허용 가능한 품질 기준이 다를 수 있습니다."] },
+    { heading: "권장 작업 흐름", paragraphs: ["원본 선택 → 변환 → 전후 비교 → 웹에 반영 순서로 진행하세요.", "수정 가능 원본이 필요한 자산은 원본 파일도 함께 보관하는 것이 안전합니다."] }
+  ]
+};
+
+const howToConvertImagesToWebpJa: GuideLocalizedContent = {
+  ...howToConvertImagesToWebpEn,
+  title: "画像をWebPに変換する方法",
+  description: "画像をWebPに変換して、ファイルサイズを抑えながらページ表示を軽くする実践ガイドです。",
+  intro: "WebPは、見た目を保ちながら配信用の容量を小さくしやすい画像形式です。記事画像やサムネイルなど日常的なWeb運用で効果を出しやすいのが特徴です。",
+  categoryLabel: "画像フォーマット",
+  useCasesTitle: "特に役立つ場面",
+  useCases: ["公開前の画像最適化", "記事サムネイルの軽量化", "画像の多いページの高速化", "Web向けスクリーンショット整理", "繰り返し使う素材の管理", "表示速度の改善"],
+  closingTitle: "シンプルな運用で十分",
+  closingText: "複雑なデザインツールがなくても、ブラウザ変換だけで十分なケースは多くあります。重要なのは容量と見た目のバランスです。",
+  relatedToolLabel: "WebP変換ツールを開く",
+  sections: [
+    { heading: "なぜWebPに変換するのか", paragraphs: ["重い画像は特にモバイルで体感速度を下げます。", "WebP変換は、手間を増やさずに表示速度を改善しやすい方法です。"] },
+    { heading: "変換時のチェックポイント", paragraphs: ["容量だけでなく、文字の鮮明さや輪郭、グラデーションの見え方も確認しましょう。", "用途ごとに許容できる画質は異なるため、実際の掲載場所で確認するのが安全です。"] },
+    { heading: "実務フロー", paragraphs: ["元画像を選択し、変換後に前後比較してから公開素材を差し替えます。", "再編集が必要な画像は、元ファイルを別途保管しておくと安心です。"] }
   ]
 };
 
@@ -874,21 +1021,22 @@ const guideDefinitions: Array<Omit<GuideItem, "content"> & { content: Record<Loc
       },
       ko: {
         title: "SEO 제목/설명 글자 수 세는 방법",
-        description: "Learn how to count characters for SEO titles and meta descriptions so your pages stay clear, readable, and more likely to display well in search results.",
-        intro: "A simple character check can prevent common SEO mistakes before a page goes live. If your title is too long, search engines may shorten it. If your description is too vague or too crowded, users may skip it even when your page ranks well.",
-        categoryLabel: "SEO Writing",
-        useCasesTitle: "When this is most useful",
-        useCases: ["Publishing new blog articles.", "Writing category page titles.", "Updating meta descriptions for older content.", "Preparing landing pages for campaigns.", "Checking consistency across many pages.", "Improving snippets for multilingual sites."],
-        closingTitle: "Keep the workflow lightweight",
-        closingText: "You do not need to overcomplicate this task. A simple browser-based character counter is often enough for day-to-day SEO writing. The goal is not perfection. The goal is to avoid preventable mistakes and publish cleaner page copy. When paired with a good page title, a useful meta description, and relevant on-page content, character review becomes one small but valuable part of a stronger SEO process.",
+        description: "SEO 제목과 메타 설명의 글자 수를 점검해 검색 결과에서 더 명확하고 읽기 쉬운 문구를 만드는 방법입니다.",
+        intro: "페이지를 발행하기 전에 글자 수를 한 번만 확인해도 잘림, 의미 부족, 과도한 문구 같은 흔한 문제를 줄일 수 있습니다.",
+        categoryLabel: "SEO 작성",
+        useCasesTitle: "이럴 때 특히 유용합니다",
+        useCases: ["새 블로그 글 발행", "카테고리 페이지 제목 작성", "기존 메타 설명 개선", "캠페인 랜딩 페이지 준비", "여러 페이지 문구 일관성 점검", "다국어 스니펫 품질 개선"],
+        closingTitle: "가볍게 점검하세요",
+        closingText: "완벽한 숫자를 맞추는 것이 목표가 아닙니다. 핵심은 사용자가 이해하기 쉬운 문구를 유지하면서 불필요한 잘림을 줄이는 것입니다.",
         relatedToolLabel: "문자 수 카운터 열기",
         sections: [
-          { heading: "Why character count matters for SEO", paragraphs: ["Search results do not always show your title and description exactly as written, but length still matters. Very long text is more likely to be truncated. Very short text may miss important context or fail to explain what the page offers.", "A practical character counter helps you review text quickly, compare options, and keep your search snippets cleaner. You do not need a complicated SEO suite for this step. For many pages, a lightweight browser-based tool is enough."], bullets: ["Write titles that are easier to scan.", "Avoid cutting off important keywords.", "Compare multiple headline options quickly.", "Keep descriptions readable on both desktop and mobile.", "Maintain a more consistent style across your site."] },
-          { heading: "A practical way to review titles and descriptions", paragraphs: ["A good workflow is to start with meaning first and count second. Do not force a title to hit an exact number if it becomes awkward. Instead, write a clear draft, then use a character counter to tighten it.", "For example, a weak title may be too generic: “SEO Tips for Better Search Results”. It is short, but it does not say much. A stronger version may be: “How to Count Characters for SEO Titles and Descriptions”. This is more specific, more useful, and still easy to review with a counter. The same idea applies to descriptions. A description should explain what the page helps with, not just repeat keywords."] },
-          { heading: "How to use a character counter for SEO work", paragraphs: ["You can keep the process very simple.", "1. Draft your title naturally. Write the clearest version first. Focus on the page topic and the user's search intent. Ask: What is this page about? What problem does it solve? Why would someone click it?", "2. Check the character count. Paste the text into a character counter and review the total length. This is the fastest way to spot titles or descriptions that are much longer than expected.", "3. Trim unnecessary words. Look for filler words, repeated phrases, or vague wording. In many cases, removing one or two extra phrases makes the snippet cleaner without losing meaning.", "For example, “A complete and detailed guide to learning how to count characters for SEO titles” can often become “How to Count Characters for SEO Titles”.", "4. Compare two or three variations. Do not stop at the first acceptable version. Make a few alternatives and compare them side by side. Sometimes a slightly shorter version is stronger and easier to understand.", "5. Review the final wording for clarity. A title that fits well but sounds unnatural is still a bad title. Always do one final read to make sure the text is useful to humans, not just adjusted for length."] },
-          { heading: "Common mistakes to avoid", paragraphs: ["One common mistake is treating character count as the only SEO rule. It is important, but it is not everything. Search engines care about relevance, clarity, page quality, and user intent too.", "Another mistake is stuffing titles with too many keywords. Even if the length looks acceptable, the result can feel spammy and reduce trust.", "It is also a mistake to write descriptions that are technically the right length but say nothing helpful. Users need a reason to click. A strong description should explain the value of the page in clear language.", "Finally, avoid copying the same title pattern across too many pages without adjusting it for each topic. Unique and specific copy usually performs better."] }
+          { heading: "왜 글자 수 점검이 중요한가", paragraphs: ["검색 결과는 공간이 제한되어 있어 너무 긴 제목/설명은 잘릴 가능성이 높습니다.", "반대로 너무 짧으면 페이지의 핵심 가치를 전달하지 못할 수 있어 클릭 기회를 놓치기 쉽습니다."], bullets: ["핵심 키워드가 잘리지 않도록 관리", "제목 가독성 개선", "여러 문안 빠른 비교", "모바일/데스크톱 노출 균형", "사이트 전반 문체 일관성 유지"] },
+          { heading: "실무 점검 방법", paragraphs: ["먼저 자연스러운 문구를 작성한 뒤 카운터로 길이를 확인하세요.", "길이가 길면 중복 표현과 군더더기를 줄이고, 짧으면 의도와 가치를 더 분명하게 보강합니다."] },
+          { heading: "빠른 작업 순서", paragraphs: ["초안 작성 → 글자 수 확인 → 불필요 표현 정리 → 2~3개 문안 비교 → 최종 문맥 검토 순서로 진행하세요.", "숫자만 맞추는 것보다 사람이 읽었을 때 자연스럽고 구체적인 문구가 더 중요합니다."] },
+          { heading: "자주 하는 실수", paragraphs: ["글자 수만 SEO의 전부라고 생각하는 것은 큰 오해입니다.", "키워드를 과하게 반복하거나, 길이는 맞지만 의미가 빈약한 설명을 쓰는 실수도 자주 발생합니다."] }
         ]
       },
+
       ja: {
         title: "SEOタイトルと説明文の文字数を数える方法",
         description: "Learn how to count characters for SEO titles and meta descriptions so your pages stay clear, readable, and more likely to display well in search results.",
@@ -968,8 +1116,8 @@ const guideDefinitions: Array<Omit<GuideItem, "content"> & { content: Record<Loc
     updatedAt: "2026-03-24",
     content: {
       en: howToConvertImagesToWebpEn,
-      ko: howToConvertImagesToWebpEn,
-      ja: howToConvertImagesToWebpEn,
+      ko: howToConvertImagesToWebpKo,
+      ja: howToConvertImagesToWebpJa,
       es: howToConvertImagesToWebpEn,
       fr: howToConvertImagesToWebpEn,
       de: howToConvertImagesToWebpEn
@@ -1028,7 +1176,7 @@ const guideDefinitions: Array<Omit<GuideItem, "content"> & { content: Record<Loc
     updatedAt: "2026-03-24",
     content: {
       en: howToUseAJsonFormatterForDebuggingEn,
-      ko: howToUseAJsonFormatterForDebuggingEn,
+      ko: howToUseAJsonFormatterForDebuggingKo,
       ja: howToUseAJsonFormatterForDebuggingEn,
       es: howToUseAJsonFormatterForDebuggingEn,
       fr: howToUseAJsonFormatterForDebuggingEn,
