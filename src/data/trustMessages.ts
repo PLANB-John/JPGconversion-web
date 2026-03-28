@@ -167,7 +167,7 @@ export const trustMessages: Record<LocaleCode, TrustMessages> = {
       intro:
         "If you want to hear from users, keep the contact method simple and easy to maintain. You can replace the placeholder details below before launch.",
       emailLabel: "Contact email",
-      emailValue: "hello@example.com",
+      emailValue: "tooliova.init@gmail.com",
       emailHelp: "Placeholder only — replace this with your real support email before launch.",
       replaceTitle: "Easy to update later",
       replaceBody:
@@ -299,7 +299,7 @@ export const trustMessages: Record<LocaleCode, TrustMessages> = {
       description: "현재 이 도구 사이트에 설정된 연락처 자리표시자를 확인하고 나중에 실제 지원 정보로 교체하세요.",
       intro: "사용자 의견을 받고 싶다면 연락 수단은 단순하고 관리하기 쉬운 방식이 좋습니다. 아래 자리표시자는 출시 전에 실제 정보로 교체하세요.",
       emailLabel: "연락 이메일",
-      emailValue: "hello@example.com",
+      emailValue: "tooliova.init@gmail.com",
       emailHelp: "자리표시자 전용입니다. 출시 전에 실제 지원 이메일로 바꿔 주세요.",
       replaceTitle: "나중에 쉽게 수정 가능",
       replaceBody:
@@ -430,7 +430,7 @@ export const trustMessages: Record<LocaleCode, TrustMessages> = {
       description: "このツールサイトの現在の連絡先プレースホルダーを確認し、後から実際のサポート情報に差し替えられるようにしています。",
       intro: "ユーザーからの連絡を受けたい場合は、管理しやすいシンプルな連絡手段がおすすめです。以下のプレースホルダーは公開前に実際の情報へ置き換えてください。",
       emailLabel: "連絡先メール",
-      emailValue: "hello@example.com",
+      emailValue: "tooliova.init@gmail.com",
       emailHelp: "プレースホルダーです。公開前に実際のサポート用メールアドレスへ変更してください。",
       replaceTitle: "あとで簡単に更新できます",
       replaceBody:
@@ -563,7 +563,7 @@ export const trustMessages: Record<LocaleCode, TrustMessages> = {
       intro:
         "Si quieres recibir mensajes de los usuarios, conviene mantener el método de contacto simple y fácil de gestionar. Puedes reemplazar los datos de ejemplo antes del lanzamiento.",
       emailLabel: "Correo de contacto",
-      emailValue: "hello@example.com",
+      emailValue: "tooliova.init@gmail.com",
       emailHelp: "Solo es un marcador de posición: sustitúyelo por tu correo real de soporte antes del lanzamiento.",
       replaceTitle: "Fácil de actualizar después",
       replaceBody:
@@ -697,7 +697,7 @@ export const trustMessages: Record<LocaleCode, TrustMessages> = {
       intro:
         "Si vous souhaitez recevoir des messages des utilisateurs, gardez le moyen de contact simple et facile à maintenir. Vous pourrez remplacer les informations de démonstration avant le lancement.",
       emailLabel: "E-mail de contact",
-      emailValue: "hello@example.com",
+      emailValue: "tooliova.init@gmail.com",
       emailHelp: "Valeur provisoire uniquement — remplacez-la par votre vraie adresse d'assistance avant le lancement.",
       replaceTitle: "Facile à modifier plus tard",
       replaceBody:
@@ -831,7 +831,7 @@ export const trustMessages: Record<LocaleCode, TrustMessages> = {
       intro:
         "Wenn Sie Rückmeldungen von Nutzern erhalten möchten, sollte die Kontaktmöglichkeit einfach und pflegeleicht bleiben. Die Platzhalterangaben unten können Sie vor dem Start austauschen.",
       emailLabel: "Kontakt-E-Mail",
-      emailValue: "hello@example.com",
+      emailValue: "tooliova.init@gmail.com",
       emailHelp: "Nur ein Platzhalter — bitte vor dem Launch durch Ihre echte Support-E-Mail ersetzen.",
       replaceTitle: "Später leicht austauschbar",
       replaceBody:
