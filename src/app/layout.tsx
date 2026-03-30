@@ -29,6 +29,9 @@ export const metadata: Metadata = {
     // Set this during deployment when Search Console verification is ready.
     google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
   },
+  other: {
+    "google-adsense-account": "ca-pub-7078124525466670"
+  },
   robots: {
     index: true,
     follow: true,
