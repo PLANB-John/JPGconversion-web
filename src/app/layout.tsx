@@ -29,9 +29,6 @@ export const metadata: Metadata = {
     // Set this during deployment when Search Console verification is ready.
     google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
   },
-  other: {
-    "google-adsense-account": "ca-pub-7078124525466670"
-  },
   robots: {
     index: true,
     follow: true,
@@ -52,6 +49,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <meta name="google-adsense-account" content="ca-pub-7078124525466670" />
+      </head>
       <body className="min-h-screen bg-slate-50 text-slate-900 antialiased">
         <AdSense />
         {children}
