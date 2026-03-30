@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { AdSense } from "@/components/AdSense";
 import { Analytics } from "@/components/Analytics";
 import { siteConfig } from "@/data/site";
 import { getMetadataBase } from "@/lib/seo";
@@ -49,6 +50,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="min-h-screen bg-slate-50 text-slate-900 antialiased">
+        <AdSense />
         {children}
         <Analytics />
       </body>
