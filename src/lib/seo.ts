@@ -81,9 +81,6 @@ export function buildLocalizedMetadata({ locale, pagePath = "", title, descripti
       card: "summary_large_image",
       title,
       description
-    },
-    other: {
-      "google-adsense-account": "ca-pub-7078124525466670"
     }
   };
 }
