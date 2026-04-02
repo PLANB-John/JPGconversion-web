@@ -39,6 +39,9 @@ export const metadata: Metadata = {
       "max-snippet": -1,
       "max-video-preview": -1
     }
+  },
+  other: {
+    "google-adsense-account": "ca-pub-7078124525466670"
   }
 };
 
@@ -49,9 +52,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-        <meta name="google-adsense-account" content="ca-pub-7078124525466670" />
-      </head>
       <body className="min-h-screen bg-slate-50 text-slate-900 antialiased">
         <AdSense />
         {children}
