@@ -8,6 +8,10 @@ export type GuideSlug =
   | "how-to-build-utm-links"
   | "json-formatting-basics"
   | "how-to-count-characters-for-seo"
+  | "meta-title-length-guide"
+  | "meta-description-length-for-ctr"
+  | "utm-parameters-explained"
+  | "common-utm-tagging-mistakes"
   | "when-to-use-base64-encoding"
   | "how-to-check-open-graph-metadata"
   | "how-to-extract-youtube-thumbnails"
@@ -38,6 +42,7 @@ export type GuideItem = {
   slug: GuideSlug;
   category: ToolCategory;
   relatedToolSlug?: string;
+  relatedGuideSlugs?: GuideSlug[];
   publishedAt: string;
   updatedAt: string;
   content: GuideLocalizedContent;
@@ -778,6 +783,458 @@ const howToConvertImagesToWebpJa: GuideLocalizedContent = {
   ]
 };
 
+const metaTitleLengthGuideContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: {
+    title: "How Many Characters Should a Meta Title Be?",
+    description: "Use a practical title-length workflow so your title tags stay clear, clickable, and less likely to be truncated in search results.",
+    intro: "There is no perfect title length for every page, but a practical range helps. If a meta title is too long, search results may cut it off. If it is too short, you may miss useful context.",
+    categoryLabel: "SEO Writing",
+    useCasesTitle: "When this guide helps most",
+    useCases: ["Writing titles for new blog posts.", "Refreshing old category pages.", "Improving low-CTR pages.", "Standardizing titles across a content team."],
+    closingTitle: "Write for people first, then trim",
+    closingText: "Start with a clear title, then tighten the wording with a quick character check. The best title is specific, readable, and focused on intent.",
+    relatedToolLabel: "Open the Character Counter",
+    sections: [
+      { heading: "A practical target range", paragraphs: ["Many SEO teams aim for roughly 50 to 60 characters as a working range. This is not a strict rule, but it often helps titles display more cleanly.", "Treat the range as a checkpoint, not a hard limit. A slightly longer title can still perform if the wording is strong and front-loaded."] },
+      { heading: "Put important words first", paragraphs: ["Search users scan quickly. Lead with your core topic, then add supporting context.", "If truncation happens, the most useful part of the title should still be visible."] },
+      {
+        heading: "Simple title editing checklist",
+        paragraphs: ["Before publishing, run a fast quality pass."],
+        bullets: ["Keep one clear topic per title.", "Remove filler phrases like “complete guide to”.", "Avoid repeating the same keyword unnaturally.", "Check final length in a character counter."]
+      },
+      { heading: "Common mistakes", paragraphs: ["A frequent mistake is chasing an exact character number while sacrificing readability. Another is writing vague titles that fit the length but do not explain value.", "It is also common to place brand names first on every page. For many pages, putting the topic first is more useful."] },
+      { heading: "Quick workflow for teams", paragraphs: ["Draft 2–3 title options, check length, then choose the clearest one. Save your preferred pattern in an internal style note so future titles stay consistent.", "This keeps SEO writing practical and repeatable without slowing publishing."] }
+    ]
+  },
+  ko: {
+    title: "메타 타이틀은 몇 글자가 적당할까요?",
+    description: "검색 결과에서 잘리지 않고 클릭을 유도하기 쉬운 메타 타이틀 길이 점검 방법을 소개합니다.",
+    intro: "모든 페이지에 정답 길이가 있는 것은 아니지만, 실무에서 참고할 범위를 잡아두면 훨씬 편합니다. 너무 길면 잘리고, 너무 짧으면 정보가 부족해질 수 있습니다.",
+    categoryLabel: "SEO 작성",
+    useCasesTitle: "이럴 때 특히 유용합니다",
+    useCases: ["새 블로그 글 제목 작성", "기존 카테고리 페이지 개선", "CTR이 낮은 페이지 점검", "팀 내 제목 작성 기준 통일"],
+    closingTitle: "먼저 명확하게 쓰고, 그다음 다듬으세요",
+    closingText: "핵심은 자연스럽고 명확한 제목입니다. 마지막에 글자 수를 점검해 불필요한 부분만 줄이면 됩니다.",
+    relatedToolLabel: "문자 수 카운터 열기",
+    sections: [
+      { heading: "실무에서 자주 쓰는 길이 범위", paragraphs: ["보통 50~60자 전후를 실무 기준으로 많이 사용합니다.", "절대 규칙은 아니므로, 핵심 정보가 앞에 있다면 약간 길어도 괜찮습니다."] },
+      { heading: "중요한 단어를 앞에 배치하기", paragraphs: ["사용자는 검색 결과를 빠르게 훑어봅니다. 핵심 주제를 먼저 쓰고 보조 설명을 뒤에 붙이세요.", "일부가 잘려도 핵심 의미가 남도록 구성하는 것이 좋습니다."] },
+      { heading: "게시 전 체크리스트", paragraphs: ["간단한 최종 점검만으로 품질을 크게 높일 수 있습니다."], bullets: ["제목에 주제를 하나로 명확히 담기", "군더더기 표현 줄이기", "키워드 과반복 피하기", "문자 수 도구로 최종 길이 확인"] },
+      { heading: "자주 하는 실수", paragraphs: ["정확한 글자 수만 맞추려다가 어색한 제목이 되는 경우가 많습니다.", "브랜드명을 항상 맨 앞에 넣어 핵심 주제가 뒤로 밀리는 것도 흔한 실수입니다."] },
+      { heading: "팀 운영 팁", paragraphs: ["제목 초안을 2~3개 만든 뒤 길이와 명확성을 비교해 하나를 고르세요.", "선택 기준을 간단한 내부 가이드로 남겨두면 일관성을 유지하기 쉽습니다."] }
+    ]
+  },
+  ja: {
+    title: "メタタイトルは何文字が適切？",
+    description: "検索結果で見切れにくく、内容が伝わりやすいタイトルタグの文字数チェック方法を解説します。",
+    intro: "すべてのページに共通する正解はありませんが、目安を持つと実務が安定します。長すぎると省略され、短すぎると情報不足になりがちです。",
+    categoryLabel: "SEOライティング",
+    useCasesTitle: "役立つシーン",
+    useCases: ["新しい記事タイトルの作成", "既存ページのCTR改善", "カテゴリページの見直し", "チーム内ルールの統一"],
+    closingTitle: "まず伝わるタイトルを作る",
+    closingText: "最初にわかりやすい文を作り、最後に文字数を調整する流れが実用的です。読みやすさを優先しましょう。",
+    relatedToolLabel: "文字数カウンターを開く",
+    sections: [
+      { heading: "実務で使いやすい目安", paragraphs: ["一般的には50〜60文字前後が確認しやすい目安です。", "ただし固定ルールではありません。重要語を先頭に置けていれば少し長くても問題ない場合があります。"] },
+      { heading: "重要な語句を先に置く", paragraphs: ["検索結果では先頭の情報が最も読まれます。テーマを最初に置いて、補足は後ろに回しましょう.", "省略されても要点が残る構成を意識すると安全です。"] },
+      { heading: "公開前の簡易チェック", paragraphs: ["公開前に短い確認を行うだけで質が上がります。"], bullets: ["1タイトル1テーマにする", "不要な語句を削る", "不自然なキーワード反復を避ける", "文字数ツールで最終確認する"] },
+      { heading: "よくある失敗", paragraphs: ["文字数だけを合わせて不自然なタイトルになるケースがよくあります。", "どのページでもブランド名を先頭に置いてしまい、主題が後ろに下がるのも典型的です。"] },
+      { heading: "チーム向けワークフロー", paragraphs: ["タイトル案を2〜3個作成し、文字数と明確さで比較して選びます。", "判断基準を短い社内メモに残すと、更新時の品質を揃えやすくなります。"] }
+    ]
+  },
+  es: {
+    title: "¿Cuántos caracteres debe tener un meta title?",
+    description: "Aprende una forma práctica de ajustar la longitud del title tag para que sea claro, útil y menos propenso a truncarse.",
+    intro: "No existe una cifra perfecta para todos los casos, pero trabajar con un rango orientativo ayuda mucho. Si el título es muy largo, puede cortarse; si es demasiado corto, puede perder contexto.",
+    categoryLabel: "Redacción SEO",
+    useCasesTitle: "Cuándo te conviene",
+    useCases: ["Crear títulos para artículos nuevos.", "Optimizar páginas con CTR bajo.", "Actualizar categorías antiguas.", "Mantener consistencia en equipos de contenido."],
+    closingTitle: "Primero claridad, luego ajuste",
+    closingText: "Escribe un título claro y después recórtalo con una revisión rápida de caracteres. La prioridad es que se entienda y responda a la intención de búsqueda.",
+    relatedToolLabel: "Abrir contador de caracteres",
+    sections: [
+      { heading: "Rango recomendado en la práctica", paragraphs: ["Muchos equipos trabajan alrededor de 50 a 60 caracteres como referencia inicial.", "No es una regla rígida: lo importante es que las palabras clave principales aparezcan al inicio."] },
+      { heading: "Pon lo importante al principio", paragraphs: ["Las personas escanean rápido los resultados. Empieza por el tema principal y deja el contexto adicional para el final.", "Así, incluso con truncamiento, el mensaje principal sigue visible."] },
+      { heading: "Checklist rápida antes de publicar", paragraphs: ["Haz una revisión breve antes de cerrar el título."], bullets: ["Un solo enfoque por título.", "Quitar frases de relleno.", "Evitar repetir keywords de forma forzada.", "Verificar longitud en el contador."] },
+      { heading: "Errores habituales", paragraphs: ["Un error común es perseguir un número exacto y terminar con un texto poco natural.", "Otro es poner siempre la marca al principio y esconder el tema principal."] },
+      { heading: "Flujo simple para equipos", paragraphs: ["Crea 2 o 3 opciones de título, compáralas y elige la más clara.", "Guarda el criterio en una guía interna corta para mantener consistencia."] }
+    ]
+  },
+  fr: {
+    title: "Combien de caractères pour une balise title ?",
+    description: "Apprenez à ajuster la longueur d'un title tag pour qu'il reste clair, utile et moins souvent tronqué dans les résultats de recherche.",
+    intro: "Il n'existe pas une longueur parfaite pour toutes les pages, mais une plage de travail aide beaucoup. Trop long, le titre peut être coupé. Trop court, il peut manquer de contexte.",
+    categoryLabel: "Rédaction SEO",
+    useCasesTitle: "Quand ce guide est utile",
+    useCases: ["Rédiger des titres pour de nouveaux articles.", "Améliorer des pages à faible CTR.", "Mettre à jour des pages catégories.", "Harmoniser la rédaction dans une équipe."],
+    closingTitle: "Clarté d'abord, ajustement ensuite",
+    closingText: "Rédigez d'abord un titre clair, puis affinez sa longueur avec un compteur. Un bon title est précis, lisible et orienté intention.",
+    relatedToolLabel: "Ouvrir le compteur de caractères",
+    sections: [
+      { heading: "Une plage pratique à viser", paragraphs: ["Beaucoup d'équipes SEO visent environ 50 à 60 caractères comme repère.", "Ce n'est pas une règle stricte : l'essentiel est de placer l'information clé au début."] },
+      { heading: "Mettre les mots importants en premier", paragraphs: ["Les utilisateurs balayent vite les résultats. Commencez par le sujet principal, puis ajoutez le contexte.", "Même en cas de troncature, l'idée principale reste visible."] },
+      { heading: "Checklist avant publication", paragraphs: ["Une vérification rapide suffit souvent."], bullets: ["Un sujet clair par titre.", "Supprimer les formulations inutiles.", "Éviter la répétition forcée de mots-clés.", "Contrôler la longueur finale."] },
+      { heading: "Erreurs fréquentes", paragraphs: ["Se focaliser sur un nombre exact et perdre la fluidité du texte est une erreur classique.", "Mettre la marque en premier sur toutes les pages peut aussi masquer le sujet principal."] },
+      { heading: "Workflow d'équipe", paragraphs: ["Préparez 2 ou 3 variantes, comparez-les, puis choisissez la plus lisible.", "Documentez la logique dans une courte note interne pour garder une cohérence durable."] }
+    ]
+  },
+  de: {
+    title: "Wie viele Zeichen sollte ein Meta Title haben?",
+    description: "Ein praktischer Leitfaden zur Title-Länge, damit Titel klar bleiben und in Suchergebnissen seltener abgeschnitten werden.",
+    intro: "Es gibt keine perfekte Länge für jede Seite. Ein sinnvoller Rahmen hilft aber, bessere Titel zu schreiben. Zu lange Titel werden oft gekürzt, zu kurze liefern zu wenig Kontext.",
+    categoryLabel: "SEO-Texte",
+    useCasesTitle: "Wann dieser Guide hilft",
+    useCases: ["Titel für neue Inhalte schreiben.", "Seiten mit niedriger CTR optimieren.", "Kategorie-Seiten überarbeiten.", "Teamweite Schreibregeln vereinheitlichen."],
+    closingTitle: "Erst klar formulieren, dann kürzen",
+    closingText: "Schreibe zuerst einen verständlichen Titel und optimiere danach die Länge. Wichtig ist, dass der Titel konkret und gut lesbar bleibt.",
+    relatedToolLabel: "Zeichenzähler öffnen",
+    sections: [
+      { heading: "Praktischer Zielbereich", paragraphs: ["Viele SEO-Teams arbeiten mit etwa 50 bis 60 Zeichen als Richtwert.", "Das ist keine harte Grenze. Entscheidend ist, dass die wichtigsten Begriffe vorne stehen."] },
+      { heading: "Wichtige Begriffe nach vorn", paragraphs: ["Nutzer scannen Suchergebnisse schnell. Stelle das Hauptthema an den Anfang und ergänze Details danach.", "So bleibt die Kernaussage sichtbar, auch wenn der Titel gekürzt wird."] },
+      { heading: "Kurze Checkliste vor dem Veröffentlichen", paragraphs: ["Ein schneller Qualitätscheck reicht oft aus."], bullets: ["Ein klares Thema pro Titel.", "Füllwörter streichen.", "Keine unnatürliche Keyword-Wiederholung.", "Länge im Zeichenzähler prüfen."] },
+      { heading: "Häufige Fehler", paragraphs: ["Ein typischer Fehler ist, nur eine exakte Zeichenzahl zu treffen und dafür Lesbarkeit zu verlieren.", "Ebenso problematisch: den Markennamen immer zuerst zu setzen und das Thema nach hinten zu schieben."] },
+      { heading: "Einfacher Team-Workflow", paragraphs: ["Erstelle 2 bis 3 Varianten, vergleiche sie und wähle die klarste.", "Halte die Entscheidungskriterien kurz intern fest, damit neue Titel konsistent bleiben."] }
+    ]
+  }
+};
+
+const metaDescriptionLengthForCtrContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: {
+    title: "How Long Should a Meta Description Be for Better CTR?",
+    description: "Learn a practical meta description length workflow that improves clarity, reduces truncation risk, and supports better click-through rates.",
+    intro: "A meta description does not directly guarantee rankings, but it strongly influences whether users click. Good length helps, but relevance and clarity matter just as much.",
+    categoryLabel: "SEO Writing",
+    useCasesTitle: "Best times to use this",
+    useCases: ["Writing new page snippets.", "Refreshing older SERP snippets.", "Improving low-CTR pages.", "Editing multilingual metadata."],
+    closingTitle: "Treat length as a quality check",
+    closingText: "Aim for concise, useful copy that matches search intent. Character count is a guardrail, not the goal.",
+    relatedToolLabel: "Open the Character Counter",
+    sections: [
+      { heading: "Useful length range", paragraphs: ["A common working range is around 140 to 160 characters. This often fits well on many search result layouts.", "Still, there is no fixed guarantee because snippet display can vary by query and device."] },
+      { heading: "Write value, not filler", paragraphs: ["A strong description quickly explains what the page offers and why it is worth clicking.", "Avoid vague lines that simply repeat the title without adding context."] },
+      { heading: "Practical structure that works", paragraphs: ["For many pages, this pattern is effective: topic + benefit + clear expectation.", "Example: “Learn how to set practical meta title and description lengths so your snippets stay readable and click-friendly.”"] },
+      { heading: "Quick CTR-focused checklist", paragraphs: ["Before publishing, confirm these points."], bullets: ["Mention the specific page topic.", "Add one practical outcome or benefit.", "Keep language natural and direct.", "Check the final character count."] },
+      { heading: "Common pitfalls", paragraphs: ["Stuffing keywords can make snippets look spammy and lower trust.", "Copying one generic description across many pages also weakens relevance and click potential."] }
+    ]
+  },
+  ko: {
+    title: "CTR을 높이려면 메타 설명은 얼마나 길어야 할까요?",
+    description: "메타 설명 길이를 실무적으로 점검해 잘림을 줄이고 클릭 유도를 개선하는 방법을 설명합니다.",
+    intro: "메타 설명이 순위를 직접 보장하지는 않지만, 검색 결과에서 클릭 여부에는 큰 영향을 줍니다. 길이와 함께 명확성, 관련성이 중요합니다.",
+    categoryLabel: "SEO 작성",
+    useCasesTitle: "이럴 때 유용합니다",
+    useCases: ["새 페이지 스니펫 작성", "기존 검색 스니펫 개선", "CTR 낮은 페이지 보완", "다국어 메타데이터 편집"],
+    closingTitle: "길이는 기준선, 핵심은 내용",
+    closingText: "문자 수는 가이드일 뿐입니다. 검색 의도에 맞는 명확한 설명을 먼저 작성하세요.",
+    relatedToolLabel: "문자 수 카운터 열기",
+    sections: [
+      { heading: "실무 기준 길이", paragraphs: ["보통 140~160자 전후를 많이 사용합니다.", "다만 검색어와 기기에 따라 노출 길이는 달라질 수 있으니 절대 기준으로 보지는 마세요."] },
+      { heading: "핵심 가치를 먼저 쓰기", paragraphs: ["좋은 설명은 이 페이지가 무엇을 해결해 주는지 빠르게 전달합니다.", "제목을 반복하는 문장만 쓰면 클릭 이유가 약해집니다."] },
+      { heading: "작성 패턴", paragraphs: ["주제 + 이점 + 기대 결과 순서로 쓰면 초보자도 쉽게 정리할 수 있습니다.", "예: “메타 타이틀/설명 길이를 실무 기준으로 정리해 검색 스니펫 가독성과 클릭률을 개선하세요.”"] },
+      { heading: "게시 전 체크리스트", paragraphs: ["마지막에 네 가지만 확인하세요."], bullets: ["페이지 주제가 명확한가", "사용자 이점이 보이는가", "문장이 자연스러운가", "문자 수가 과도하지 않은가"] },
+      { heading: "피해야 할 실수", paragraphs: ["키워드만 나열하면 스팸처럼 보일 수 있습니다.", "여러 페이지에 같은 설명을 복사해 쓰는 것도 관련성을 떨어뜨립니다."] }
+    ]
+  },
+  ja: {
+    title: "CTRを上げるメタディスクリプションの適切な長さは？",
+    description: "メタディスクリプションの文字数を実務的に調整し、見切れを減らしつつクリックされやすくする方法を紹介します。",
+    intro: "メタディスクリプションは順位を直接決める要素ではありませんが、クリック率には大きく影響します。長さだけでなく、内容の明確さが重要です。",
+    categoryLabel: "SEOライティング",
+    useCasesTitle: "活用シーン",
+    useCases: ["新規ページの説明文作成", "既存スニペットの改善", "CTRの低いページの見直し", "多言語メタ情報の調整"],
+    closingTitle: "文字数は目安として使う",
+    closingText: "まず検索意図に合う説明を作り、最後に文字数を整える流れが効果的です。",
+    relatedToolLabel: "文字数カウンターを開く",
+    sections: [
+      { heading: "実務で使う長さの目安", paragraphs: ["多くの場合、140〜160文字前後が扱いやすい目安です。", "ただし表示は検索クエリや端末で変わるため、固定値としては扱わないでください。"] },
+      { heading: "価値を先に伝える", paragraphs: ["良い説明文は、ページで得られる内容やメリットを短く示します。", "タイトルの言い換えだけではクリック理由になりにくいです。"] },
+      { heading: "書きやすい構成", paragraphs: ["「主題 + 利点 + 期待結果」の順でまとめると整理しやすくなります。", "例: 「メタタイトルと説明文の適切な長さを学び、検索スニペットの読みやすさとCTRを改善します。」"] },
+      { heading: "公開前チェック", paragraphs: ["最後に次を確認しましょう。"], bullets: ["ページ内容が明確か", "読者メリットが入っているか", "自然な日本語か", "文字数が過剰でないか"] },
+      { heading: "よくある失敗", paragraphs: ["キーワードを詰め込みすぎると不自然に見えます。", "同じ説明文を複数ページへ使い回すと関連性が下がります。"] }
+    ]
+  },
+  es: {
+    title: "¿Cuánto debe medir una meta description para mejorar el CTR?",
+    description: "Guía práctica para ajustar la longitud de la meta description y redactar snippets más claros y más clicables.",
+    intro: "La meta description no garantiza posiciones, pero sí influye mucho en el clic. La longitud ayuda, aunque el mensaje y la relevancia pesan igual o más.",
+    categoryLabel: "Redacción SEO",
+    useCasesTitle: "Cuándo aplicarlo",
+    useCases: ["Redactar snippets para páginas nuevas.", "Actualizar resultados antiguos.", "Mejorar páginas con CTR bajo.", "Revisar metadatos multilingües."],
+    closingTitle: "Usa la longitud como control de calidad",
+    closingText: "Primero escribe una propuesta útil para el usuario. Después ajusta caracteres para mantenerla clara y visible.",
+    relatedToolLabel: "Abrir contador de caracteres",
+    sections: [
+      { heading: "Rango recomendado", paragraphs: ["Como punto de partida, suele funcionar alrededor de 140 a 160 caracteres.", "Aun así, el recorte puede variar según consulta y dispositivo."] },
+      { heading: "Evita texto de relleno", paragraphs: ["Una buena descripción explica rápidamente qué ofrece la página.", "Si solo repites el título, el snippet aporta poco valor."] },
+      { heading: "Estructura sencilla", paragraphs: ["Tema + beneficio + expectativa es una fórmula útil para principiantes.", "Ejemplo: “Aprende a definir longitudes prácticas para title y description y mejora la legibilidad de tus snippets.”"] },
+      { heading: "Checklist antes de publicar", paragraphs: ["Haz una validación breve."], bullets: ["Tema claro", "Beneficio concreto", "Lenguaje natural", "Longitud revisada"] },
+      { heading: "Errores comunes", paragraphs: ["Saturar con keywords reduce confianza.", "Usar la misma descripción en muchas URLs baja relevancia."] }
+    ]
+  },
+  fr: {
+    title: "Quelle longueur pour une meta description qui améliore le CTR ?",
+    description: "Une méthode simple pour ajuster la longueur des meta descriptions et rédiger des snippets plus clairs et plus engageants.",
+    intro: "La meta description n'assure pas à elle seule le classement, mais elle influence fortement le taux de clic. La longueur compte, tout comme la clarté du message.",
+    categoryLabel: "Rédaction SEO",
+    useCasesTitle: "Quand l'utiliser",
+    useCases: ["Rédiger des snippets pour de nouvelles pages.", "Mettre à jour des résultats anciens.", "Améliorer des pages à faible CTR.", "Relire des métadonnées multilingues."],
+    closingTitle: "La longueur sert de garde-fou",
+    closingText: "Commencez par un texte utile pour l'utilisateur, puis ajustez le nombre de caractères pour garder une lecture fluide.",
+    relatedToolLabel: "Ouvrir le compteur de caractères",
+    sections: [
+      { heading: "Plage utile en pratique", paragraphs: ["Un repère courant se situe autour de 140 à 160 caractères.", "L'affichage peut varier selon la requête et l'appareil, donc ce n'est pas une règle absolue."] },
+      { heading: "Privilégier la valeur", paragraphs: ["Une bonne description dit rapidement ce que la page apporte.", "Évitez les formulations vagues ou la simple répétition du title."] },
+      { heading: "Structure recommandée", paragraphs: ["Sujet + bénéfice + résultat attendu fonctionne bien dans la plupart des cas.", "Exemple : « Apprenez à définir des longueurs meta pratiques pour garder des extraits lisibles et plus cliquables. »"] },
+      { heading: "Checklist rapide", paragraphs: ["Avant publication, vérifiez l'essentiel."], bullets: ["Sujet explicite", "Bénéfice concret", "Texte naturel", "Longueur contrôlée"] },
+      { heading: "Pièges fréquents", paragraphs: ["Trop de mots-clés donne un rendu spammy.", "Réutiliser la même description sur de nombreuses pages affaiblit la pertinence."] }
+    ]
+  },
+  de: {
+    title: "Wie lang sollte eine Meta Description für bessere CTR sein?",
+    description: "Praktischer Leitfaden zur Description-Länge, damit Snippets klarer wirken und eher geklickt werden.",
+    intro: "Meta Descriptions bestimmen Rankings nicht direkt, beeinflussen aber stark, ob Nutzer klicken. Gute Länge hilft, doch Relevanz und Klarheit sind genauso wichtig.",
+    categoryLabel: "SEO-Texte",
+    useCasesTitle: "Wann das besonders hilft",
+    useCases: ["Neue Seiten-Snippets schreiben.", "Ältere Suchergebnisse überarbeiten.", "Seiten mit niedriger CTR verbessern.", "Mehrsprachige Metadaten prüfen."],
+    closingTitle: "Länge als Qualitätscheck nutzen",
+    closingText: "Erst einen nützlichen Text schreiben, dann auf passende Zeichenlänge bringen. So bleibt das Snippet natürlich und klickstark.",
+    relatedToolLabel: "Zeichenzähler öffnen",
+    sections: [
+      { heading: "Praktischer Bereich", paragraphs: ["Als Arbeitswert funktionieren oft etwa 140 bis 160 Zeichen.", "Die tatsächliche Darstellung kann je nach Suchanfrage und Gerät variieren."] },
+      { heading: "Mehr Aussage, weniger Fülltext", paragraphs: ["Eine gute Description erklärt schnell den Nutzen der Seite.", "Bloß den Title zu wiederholen bringt selten zusätzliche Klickgründe."] },
+      { heading: "Einfache Struktur", paragraphs: ["Thema + Nutzen + Erwartung ist ein robuster Aufbau.", "Beispiel: „Lerne praxisnahe Längen für Meta Title und Description, damit deine Snippets klarer und klickfreundlicher werden.“"] },
+      { heading: "Kurze Prüfliste", paragraphs: ["Vor dem Veröffentlichen kurz prüfen."], bullets: ["Thema klar genannt", "Nutzen enthalten", "Natürlich formuliert", "Zeichenlänge geprüft"] },
+      { heading: "Häufige Fehler", paragraphs: ["Keyword-Stuffing wirkt schnell unseriös.", "Die gleiche Description für viele Seiten zu verwenden, schwächt Relevanz und CTR."] }
+    ]
+  }
+};
+
+const utmParametersExplainedContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: {
+    title: "UTM Parameters Explained for Beginners",
+    description: "Understand what UTM parameters are, what each core field means, and how to start campaign tracking without messy analytics data.",
+    intro: "UTM parameters are short tags added to a URL so analytics tools can identify traffic source, channel, and campaign context.",
+    categoryLabel: "Campaign Tracking",
+    useCasesTitle: "When beginners usually need this",
+    useCases: ["Running social media campaigns.", "Sharing links in newsletters.", "Tracking partner referrals.", "Comparing paid channels."],
+    closingTitle: "Start simple and stay consistent",
+    closingText: "You do not need complex tagging to begin. A small naming convention and a reliable UTM builder are enough to create clean, useful reports.",
+    relatedToolLabel: "Open the UTM Builder",
+    sections: [
+      { heading: "What UTM means", paragraphs: ["UTM stands for Urchin Tracking Module. In practice, it means adding query parameters to links so traffic attribution is clearer in analytics.", "Without UTMs, many campaign visits can be grouped into generic buckets, which makes performance analysis harder."] },
+      { heading: "The five common UTM fields", paragraphs: ["Most workflows use these parameters:"], bullets: ["utm_source: where traffic comes from (newsletter, facebook, partner-site).", "utm_medium: channel type (email, social, cpc).", "utm_campaign: campaign name (spring-launch, april-sale).", "utm_term: optional keyword value, often for paid search.", "utm_content: optional variant label for A/B links or creatives."] },
+      { heading: "Basic naming rules", paragraphs: ["Use lowercase, keep terms short, and pick one separator style such as hyphens.", "Inconsistent names like “Email”, “email”, and “e-mail” split your reporting into separate rows."] },
+      { heading: "How to build and test a UTM link", paragraphs: ["Enter the destination URL, add source/medium/campaign, then generate the final link in a UTM builder.", "Open the link once before launch to verify that it resolves correctly and includes all expected parameters."] },
+      { heading: "When to skip extra parameters", paragraphs: ["Not every link needs utm_term or utm_content. Add only what helps analysis decisions.", "Over-tagging creates noisy data and makes dashboards harder to read."] }
+    ]
+  },
+  ko: {
+    title: "초보자를 위한 UTM 파라미터 설명",
+    description: "UTM이 무엇인지, 핵심 항목이 무엇을 의미하는지, 처음 캠페인 추적을 어떻게 시작하면 되는지 쉽게 정리했습니다.",
+    intro: "UTM 파라미터는 URL 끝에 붙이는 짧은 태그로, 분석 도구에서 유입 출처와 채널, 캠페인을 구분할 수 있게 해 줍니다.",
+    categoryLabel: "캠페인 추적",
+    useCasesTitle: "이럴 때 필요합니다",
+    useCases: ["SNS 캠페인 운영", "뉴스레터 링크 공유", "파트너 유입 추적", "유료 채널 성과 비교"],
+    closingTitle: "작게 시작하고 일관성 유지",
+    closingText: "복잡한 체계 없이도 시작할 수 있습니다. 간단한 네이밍 규칙과 UTM 빌더만으로도 충분히 깔끔한 데이터를 만들 수 있습니다.",
+    relatedToolLabel: "UTM 빌더 열기",
+    sections: [
+      { heading: "UTM이란 무엇인가", paragraphs: ["UTM은 Urchin Tracking Module의 약자입니다. 실무에서는 URL 쿼리 파라미터를 붙여 유입 정보를 구분하는 방식으로 이해하면 됩니다.", "UTM이 없으면 캠페인 유입이 일반 트래픽으로 섞여 분석이 어려워질 수 있습니다."] },
+      { heading: "핵심 5가지 파라미터", paragraphs: ["기본적으로 아래 항목을 가장 많이 사용합니다."], bullets: ["utm_source: 유입 출처", "utm_medium: 채널 유형", "utm_campaign: 캠페인 이름", "utm_term: (선택) 키워드", "utm_content: (선택) 소재/버전 구분"] },
+      { heading: "네이밍 규칙 정하기", paragraphs: ["소문자 사용, 짧은 단어, 구분자는 하이픈처럼 하나로 통일하세요.", "같은 의미를 여러 표기법으로 쓰면 리포트가 분산됩니다."] },
+      { heading: "UTM 링크 만드는 순서", paragraphs: ["목적 URL 입력 → source/medium/campaign 입력 → 링크 생성 순으로 진행하세요.", "배포 전에 링크를 한 번 열어 파라미터 누락이나 오타를 확인하는 것이 안전합니다."] },
+      { heading: "불필요한 태그는 생략", paragraphs: ["모든 링크에 utm_term, utm_content가 필요한 것은 아닙니다.", "분석 의사결정에 필요한 항목만 넣어야 데이터가 깔끔합니다."] }
+    ]
+  },
+  ja: {
+    title: "初心者向け：UTMパラメータの基本",
+    description: "UTMとは何か、主要パラメータの意味、実務での最初の使い方をわかりやすく解説します。",
+    intro: "UTMパラメータはURLに追加するタグで、アクセス解析で流入元やキャンペーンを判別しやすくするために使います。",
+    categoryLabel: "キャンペーン計測",
+    useCasesTitle: "よく使う場面",
+    useCases: ["SNS投稿の効果測定", "メール配信リンクの管理", "提携先流入の確認", "広告チャネル比較"],
+    closingTitle: "最初はシンプルで十分",
+    closingText: "複雑な設計は不要です。基本ルールを揃えてUTMビルダーを使えば、読みやすいレポートを作れます。",
+    relatedToolLabel: "UTMビルダーを開く",
+    sections: [
+      { heading: "UTMとは", paragraphs: ["UTMはUrchin Tracking Moduleの略です。実務では、URLに識別タグを付けて流入を分解する仕組みとして使います。", "UTMがないと、キャンペーン流入が曖昧な分類にまとめられやすくなります。"] },
+      { heading: "よく使う5項目", paragraphs: ["基本は次の5つです。"], bullets: ["utm_source: 流入元", "utm_medium: チャネル種別", "utm_campaign: キャンペーン名", "utm_term: 任意のキーワード", "utm_content: 任意のクリエイティブ区別"] },
+      { heading: "命名ルールを統一する", paragraphs: ["小文字で統一し、語句は短く、区切り記号も一つに揃えましょう。", "表記ゆれがあるとレポートが分散して比較しづらくなります。"] },
+      { heading: "UTMリンク作成の流れ", paragraphs: ["遷移先URLを入力し、source / medium / campaignを設定して生成します。", "公開前にリンクを1回開き、遷移先とパラメータを確認してください。"] },
+      { heading: "追加パラメータは必要な時だけ", paragraphs: ["すべてのリンクにtermやcontentを付ける必要はありません。", "分析判断に使う情報だけを追加すると運用が軽くなります。"] }
+    ]
+  },
+  es: {
+    title: "Parámetros UTM explicados para principiantes",
+    description: "Qué son los UTM, para qué sirve cada campo principal y cómo empezar a medir campañas sin ensuciar tus datos.",
+    intro: "Los parámetros UTM son etiquetas que se añaden a una URL para identificar fuente, canal y campaña en analítica.",
+    categoryLabel: "Medición de campañas",
+    useCasesTitle: "Cuándo los vas a usar",
+    useCases: ["Campañas en redes sociales.", "Enlaces en newsletters.", "Tráfico de afiliados o partners.", "Comparación entre canales de pago."],
+    closingTitle: "Empieza simple y consistente",
+    closingText: "No hace falta un sistema complejo al inicio. Con una convención básica y un UTM Builder ya puedes obtener reportes útiles.",
+    relatedToolLabel: "Abrir UTM Builder",
+    sections: [
+      { heading: "Qué significa UTM", paragraphs: ["UTM significa Urchin Tracking Module. En práctica, son parámetros en la URL para mejorar la atribución del tráfico.", "Sin UTM, muchas visitas de campaña quedan agrupadas en categorías genéricas."] },
+      { heading: "Cinco campos comunes", paragraphs: ["Los más usados son:"], bullets: ["utm_source: origen del tráfico.", "utm_medium: tipo de canal.", "utm_campaign: nombre de campaña.", "utm_term: keyword opcional.", "utm_content: variante opcional del anuncio o enlace."] },
+      { heading: "Reglas de nombre", paragraphs: ["Usa minúsculas, nombres cortos y un separador único (por ejemplo, guion).", "Variantes como Email/email/e-mail fragmentan los informes."] },
+      { heading: "Cómo crear y validar el enlace", paragraphs: ["Completa URL destino + source + medium + campaign en el constructor.", "Prueba el enlace antes de lanzarlo para comprobar destino y parámetros."] },
+      { heading: "No etiquetes de más", paragraphs: ["No todos los enlaces requieren term y content.", "Si etiquetas demasiado, tus dashboards se vuelven ruidosos."] }
+    ]
+  },
+  fr: {
+    title: "Paramètres UTM expliqués pour débutants",
+    description: "Comprenez les paramètres UTM, les champs essentiels et une méthode simple pour démarrer le tracking de campagne.",
+    intro: "Les paramètres UTM sont des balises ajoutées à une URL pour identifier la source, le canal et la campagne dans les outils d'analyse.",
+    categoryLabel: "Suivi de campagne",
+    useCasesTitle: "Cas d'usage courants",
+    useCases: ["Campagnes social media.", "Liens dans les newsletters.", "Suivi de partenaires.", "Comparaison de canaux payants."],
+    closingTitle: "Simple au départ, cohérent ensuite",
+    closingText: "Inutile de complexifier. Une convention de nommage claire et un générateur UTM suffisent pour des données exploitables.",
+    relatedToolLabel: "Ouvrir le créateur UTM",
+    sections: [
+      { heading: "UTM, c'est quoi ?", paragraphs: ["UTM signifie Urchin Tracking Module. Concrètement, ce sont des paramètres d'URL pour mieux attribuer le trafic.", "Sans UTM, une partie du trafic campagne devient difficile à distinguer dans les rapports."] },
+      { heading: "Les 5 paramètres principaux", paragraphs: ["Les plus utiles au quotidien sont :"], bullets: ["utm_source : origine du trafic.", "utm_medium : type de canal.", "utm_campaign : nom de campagne.", "utm_term : mot-clé optionnel.", "utm_content : variante optionnelle du lien/créatif."] },
+      { heading: "Règles de nommage", paragraphs: ["Restez en minuscules, utilisez des noms courts, et un séparateur unique.", "Des variantes d'écriture créent des lignes séparées dans vos rapports."] },
+      { heading: "Créer et tester un lien UTM", paragraphs: ["Saisissez l'URL finale puis source, medium et campaign dans l'outil.", "Ouvrez le lien avant diffusion pour vérifier destination et paramètres."] },
+      { heading: "Ajouter seulement l'utile", paragraphs: ["term et content ne sont pas obligatoires partout.", "Trop de tags rend l'analyse plus complexe."] }
+    ]
+  },
+  de: {
+    title: "UTM-Parameter einfach erklärt (für Einsteiger)",
+    description: "Was UTM-Parameter sind, was die wichtigsten Felder bedeuten und wie du Kampagnen-Tracking sauber startest.",
+    intro: "UTM-Parameter sind URL-Tags, mit denen Analytics-Tools Quelle, Kanal und Kampagne besser zuordnen können.",
+    categoryLabel: "Kampagnen-Tracking",
+    useCasesTitle: "Typische Einsatzfälle",
+    useCases: ["Social-Media-Kampagnen.", "Newsletter-Links.", "Partner-Traffic messen.", "Bezahlte Kanäle vergleichen."],
+    closingTitle: "Einfach starten, konsistent bleiben",
+    closingText: "Für den Start brauchst du kein komplexes Setup. Eine klare Benennung und ein UTM-Builder reichen für saubere Reports.",
+    relatedToolLabel: "UTM-Builder öffnen",
+    sections: [
+      { heading: "Was bedeutet UTM?", paragraphs: ["UTM steht für Urchin Tracking Module. Praktisch sind es URL-Parameter für bessere Traffic-Attribution.", "Ohne UTM landen Kampagnenbesuche oft in unscharfen Standard-Kategorien."] },
+      { heading: "Die fünf Standardfelder", paragraphs: ["Am häufigsten werden diese genutzt:"], bullets: ["utm_source: Herkunft des Traffics.", "utm_medium: Kanaltyp.", "utm_campaign: Kampagnenname.", "utm_term: optionales Keyword.", "utm_content: optionale Variantenkennung."] },
+      { heading: "Benennung sauber halten", paragraphs: ["Nutze Kleinbuchstaben, kurze Begriffe und ein einheitliches Trennzeichen.", "Unterschiedliche Schreibweisen erzeugen getrennte Report-Zeilen."] },
+      { heading: "Link bauen und prüfen", paragraphs: ["Ziel-URL eintragen, dann source/medium/campaign ergänzen und Link erzeugen.", "Vor dem Versand einmal öffnen und prüfen, ob alles korrekt ist."] },
+      { heading: "Nicht übertaggen", paragraphs: ["term und content sind nicht immer nötig.", "Zu viele Parameter machen Dashboards unübersichtlich."] }
+    ]
+  }
+};
+
+const commonUtmTaggingMistakesContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: {
+    title: "Common UTM Tagging Mistakes and How to Avoid Them",
+    description: "Avoid the UTM errors that cause messy reports: inconsistent naming, broken links, duplicate tagging, and missing governance.",
+    intro: "UTM tracking is simple to start but easy to misuse. Small mistakes in naming or formatting can split your analytics data and make campaign reporting unreliable.",
+    categoryLabel: "Campaign Tracking",
+    useCasesTitle: "When this matters most",
+    useCases: ["Managing many campaigns at once.", "Working with multiple marketers.", "Comparing channels month to month.", "Auditing old UTM links."],
+    closingTitle: "Good tracking is mostly discipline",
+    closingText: "The technical part is quick. The hard part is consistency. A shared naming guide and a simple review step prevent most UTM issues.",
+    relatedToolLabel: "Open the UTM Builder",
+    sections: [
+      { heading: "Mistake 1: inconsistent naming", paragraphs: ["Using variations like facebook/Facebook/fb creates separate rows in reports.", "Pick one standard and apply it everywhere."] },
+      { heading: "Mistake 2: tagging internal links", paragraphs: ["UTM parameters are meant for inbound campaign traffic. Adding them to internal navigation can overwrite session attribution.", "Use UTMs on external campaign links, not regular on-site links."] },
+      { heading: "Mistake 3: unreadable campaign names", paragraphs: ["Long, vague campaign labels are hard to manage later.", "Use concise names that describe purpose and date or theme clearly."] },
+      {
+        heading: "Mistake 4: skipping validation",
+        paragraphs: ["Many tracking errors are simple typos or broken URLs."],
+        bullets: ["Open each generated link once.", "Confirm destination page and redirect behavior.", "Check required UTM fields are present.", "Store approved links in one shared place."]
+      },
+      { heading: "Mistake 5: no ownership", paragraphs: ["If everyone creates tags differently, data quality drops fast.", "Assign ownership of naming rules and review updates monthly."] }
+    ]
+  },
+  ko: {
+    title: "자주 발생하는 UTM 태깅 실수와 예방법",
+    description: "UTM 네이밍 불일치, 잘못된 링크, 내부 링크 오태깅 등 실제로 자주 생기는 문제를 예방하는 방법을 정리했습니다.",
+    intro: "UTM은 시작은 쉽지만 운영이 느슨하면 데이터가 빠르게 지저분해집니다. 작은 표기 차이만으로도 리포트가 분산될 수 있습니다.",
+    categoryLabel: "캠페인 추적",
+    useCasesTitle: "특히 중요한 상황",
+    useCases: ["동시 캠페인이 많은 경우", "여러 담당자가 링크를 만드는 경우", "월별 채널 성과 비교", "기존 UTM 링크 점검"],
+    closingTitle: "핵심은 도구보다 운영 규칙",
+    closingText: "기술적으로는 간단하지만 일관성 유지가 가장 중요합니다. 네이밍 규칙과 검수 단계만 있어도 대부분의 실수를 막을 수 있습니다.",
+    relatedToolLabel: "UTM 빌더 열기",
+    sections: [
+      { heading: "실수 1: 네이밍 불일치", paragraphs: ["facebook/Facebook/fb처럼 표기가 섞이면 리포트가 분리됩니다.", "표준 표기를 정하고 팀 전체가 동일하게 사용하세요."] },
+      { heading: "실수 2: 내부 링크에 UTM 사용", paragraphs: ["UTM은 외부 유입 추적용입니다. 내부 링크에 붙이면 세션 출처가 덮어써질 수 있습니다.", "캠페인 유입 링크에만 사용하세요."] },
+      { heading: "실수 3: 길고 모호한 캠페인명", paragraphs: ["나중에 분석할 때 의미를 해석하기 어렵습니다.", "짧고 목적이 분명한 이름을 사용하세요."] },
+      { heading: "실수 4: 검증 생략", paragraphs: ["대부분의 오류는 오타나 잘못된 URL입니다."], bullets: ["생성 링크 한 번 열기", "도착 페이지/리다이렉트 확인", "필수 파라미터 누락 확인", "검증된 링크를 한곳에 저장"] },
+      { heading: "실수 5: 담당자 부재", paragraphs: ["태깅 책임자가 없으면 규칙이 쉽게 무너집니다.", "월 1회 정도 규칙 점검 시간을 두면 품질 유지에 도움이 됩니다."] }
+    ]
+  },
+  ja: {
+    title: "よくあるUTMタグ設定ミスと防ぎ方",
+    description: "命名のゆれ、内部リンクへの誤付与、未検証リンクなど、UTM運用で起きやすいミスを実務目線で整理します。",
+    intro: "UTM計測は簡単に始められますが、運用ルールがないとデータ品質がすぐ下がります。小さな表記差でもレポートが分断されます。",
+    categoryLabel: "キャンペーン計測",
+    useCasesTitle: "重要になる場面",
+    useCases: ["複数キャンペーンの同時運用", "複数担当者でのリンク作成", "月次チャネル比較", "過去UTMの監査"],
+    closingTitle: "継続運用の設計が重要",
+    closingText: "設定作業自体は短時間ですが、統一ルールと確認手順が成果を左右します。",
+    relatedToolLabel: "UTMビルダーを開く",
+    sections: [
+      { heading: "ミス1: 命名ルールの不一致", paragraphs: ["facebook/Facebook/fb のような表記ゆれは別データとして集計されます。", "共通ルールを決めて全員で統一しましょう。"] },
+      { heading: "ミス2: 内部リンクへのUTM付与", paragraphs: ["UTMは外部流入の計測用です。内部リンクに使うと流入元が上書きされる場合があります。", "外部配布リンクのみに限定してください。"] },
+      { heading: "ミス3: 曖昧なキャンペーン名", paragraphs: ["長すぎる、または意味が曖昧な名前は後で比較しづらくなります。", "短く目的が分かる命名にします。"] },
+      { heading: "ミス4: 公開前チェックなし", paragraphs: ["多くの問題はURLミスや入力漏れです。"], bullets: ["リンクを1回開く", "遷移先とリダイレクトを確認", "必須UTM項目を確認", "承認済みリンクを共有管理"] },
+      { heading: "ミス5: 運用責任者がいない", paragraphs: ["誰でも自由に作成するとルールが崩れやすくなります。", "定期的に命名ルールを見直す担当を決めましょう。"] }
+    ]
+  },
+  es: {
+    title: "Errores comunes al etiquetar UTM y cómo evitarlos",
+    description: "Evita fallos de etiquetado UTM que rompen tus reportes: nombres inconsistentes, links mal construidos y falta de control.",
+    intro: "El tracking con UTM es fácil de iniciar, pero también fácil de desordenar. Errores pequeños pueden fragmentar tus datos y dificultar el análisis.",
+    categoryLabel: "Medición de campañas",
+    useCasesTitle: "Cuándo más importa",
+    useCases: ["Muchas campañas en paralelo.", "Varios responsables de marketing.", "Comparativas mensuales por canal.", "Auditoría de enlaces antiguos."],
+    closingTitle: "La consistencia es la clave",
+    closingText: "La parte técnica toma minutos. Lo difícil es mantener criterios estables. Una guía común y revisión corta evita la mayoría de errores.",
+    relatedToolLabel: "Abrir UTM Builder",
+    sections: [
+      { heading: "Error 1: nombres inconsistentes", paragraphs: ["facebook/Facebook/fb generan filas distintas en analítica.", "Define una convención única y aplícala siempre."] },
+      { heading: "Error 2: usar UTM en enlaces internos", paragraphs: ["Los UTM son para tráfico de entrada. En enlaces internos pueden sobrescribir la atribución de sesión.", "Úsalos solo en enlaces externos de campaña."] },
+      { heading: "Error 3: campañas poco legibles", paragraphs: ["Nombres largos o vagos dificultan el análisis posterior.", "Elige nombres cortos y descriptivos."] },
+      { heading: "Error 4: no validar enlaces", paragraphs: ["Muchos problemas son simples typos."], bullets: ["Abrir cada enlace generado.", "Confirmar página de destino.", "Revisar parámetros obligatorios.", "Guardar enlaces aprobados en un lugar común."] },
+      { heading: "Error 5: sin responsable de gobierno", paragraphs: ["Si cada persona etiqueta distinto, la calidad del dato cae.", "Asigna ownership y revisa convenciones de forma periódica."] }
+    ]
+  },
+  fr: {
+    title: "Erreurs fréquentes de marquage UTM et comment les éviter",
+    description: "Évitez les erreurs UTM qui brouillent vos rapports : nommage incohérent, liens mal vérifiés et absence de gouvernance.",
+    intro: "Le marquage UTM est simple au départ, mais des écarts minimes suffisent à dégrader la qualité des données.",
+    categoryLabel: "Suivi de campagne",
+    useCasesTitle: "Quand c'est critique",
+    useCases: ["Multiples campagnes en parallèle.", "Plusieurs personnes qui créent des liens.", "Comparaison mensuelle des canaux.", "Audit des anciens liens UTM."],
+    closingTitle: "La discipline fait la différence",
+    closingText: "L'outil est rapide, la cohérence est le vrai enjeu. Une convention partagée et une vérification courte couvrent l'essentiel.",
+    relatedToolLabel: "Ouvrir le créateur UTM",
+    sections: [
+      { heading: "Erreur 1 : nommage incohérent", paragraphs: ["facebook/Facebook/fb séparent artificiellement vos résultats.", "Fixez une convention unique et appliquez-la partout."] },
+      { heading: "Erreur 2 : UTM sur des liens internes", paragraphs: ["Les UTM servent au trafic entrant. En interne, ils peuvent écraser l'attribution de session.", "Réservez-les aux liens externes de campagne."] },
+      { heading: "Erreur 3 : campagnes illisibles", paragraphs: ["Des noms trop longs ou vagues compliquent les analyses futures.", "Préférez des noms courts et explicites."] },
+      { heading: "Erreur 4 : absence de validation", paragraphs: ["Beaucoup d'erreurs viennent d'URL cassées ou de fautes de frappe."], bullets: ["Tester chaque lien.", "Vérifier la destination.", "Contrôler les paramètres obligatoires.", "Centraliser les liens validés."] },
+      { heading: "Erreur 5 : pas de responsable", paragraphs: ["Sans pilotage, chacun applique ses propres règles.", "Attribuez un référent pour maintenir la cohérence."] }
+    ]
+  },
+  de: {
+    title: "Häufige UTM-Tagging-Fehler und wie du sie vermeidest",
+    description: "Die typischen UTM-Fehler im Alltag vermeiden: uneinheitliche Namen, falsche Linknutzung und fehlende Qualitätskontrolle.",
+    intro: "UTM-Tracking ist schnell eingerichtet, aber leicht falsch genutzt. Schon kleine Abweichungen können Reports unbrauchbar machen.",
+    categoryLabel: "Kampagnen-Tracking",
+    useCasesTitle: "Wann es besonders wichtig ist",
+    useCases: ["Viele Kampagnen gleichzeitig.", "Mehrere Teammitglieder erstellen Links.", "Monatliche Kanalvergleiche.", "Bestehende UTM-Links prüfen."],
+    closingTitle: "Gute Daten brauchen klare Regeln",
+    closingText: "Der technische Teil ist kurz. Entscheidend sind einheitliche Namensregeln und ein fester Prüfschritt.",
+    relatedToolLabel: "UTM-Builder öffnen",
+    sections: [
+      { heading: "Fehler 1: uneinheitliche Benennung", paragraphs: ["facebook/Facebook/fb erzeugen getrennte Zeilen im Report.", "Lege eine Schreibweise fest und nutze sie überall."] },
+      { heading: "Fehler 2: interne Links taggen", paragraphs: ["UTMs sind für eingehenden Kampagnen-Traffic gedacht. Bei internen Links kann die Attribution überschrieben werden.", "Setze UTMs nur bei externen Kampagnenlinks ein."] },
+      { heading: "Fehler 3: unklare Kampagnennamen", paragraphs: ["Zu lange oder vage Namen sind später schwer auszuwerten.", "Nutze kurze, eindeutig beschreibende Bezeichnungen."] },
+      { heading: "Fehler 4: fehlende Prüfung", paragraphs: ["Viele Probleme sind einfache Tippfehler."], bullets: ["Jeden Link einmal öffnen.", "Zielseite und Redirect prüfen.", "Pflichtparameter kontrollieren.", "Freigegebene Links zentral speichern."] },
+      { heading: "Fehler 5: kein Ownership", paragraphs: ["Ohne Zuständigkeit driftet die Tagging-Qualität schnell auseinander.", "Bestimme Verantwortliche und prüfe Standards regelmäßig."] }
+    ]
+  }
+};
+
 const guideDefinitions: Array<Omit<GuideItem, "content"> & { content: Record<LocaleCode, GuideLocalizedContent> }> = [
   {
     slug: "how-to-use-html-color-picker",
@@ -1107,6 +1564,42 @@ const guideDefinitions: Array<Omit<GuideItem, "content"> & { content: Record<Loc
       }
     }
   },
+  {
+    slug: "meta-title-length-guide",
+    category: "web-marketing",
+    relatedToolSlug: "character-counter",
+    relatedGuideSlugs: ["how-to-count-characters-for-seo", "meta-description-length-for-ctr"],
+    publishedAt: "2026-04-03",
+    updatedAt: "2026-04-03",
+    content: metaTitleLengthGuideContent
+  },
+  {
+    slug: "meta-description-length-for-ctr",
+    category: "web-marketing",
+    relatedToolSlug: "character-counter",
+    relatedGuideSlugs: ["how-to-count-characters-for-seo", "meta-title-length-guide"],
+    publishedAt: "2026-04-03",
+    updatedAt: "2026-04-03",
+    content: metaDescriptionLengthForCtrContent
+  },
+  {
+    slug: "utm-parameters-explained",
+    category: "web-marketing",
+    relatedToolSlug: "utm-builder",
+    relatedGuideSlugs: ["how-to-build-utm-links", "common-utm-tagging-mistakes"],
+    publishedAt: "2026-04-03",
+    updatedAt: "2026-04-03",
+    content: utmParametersExplainedContent
+  },
+  {
+    slug: "common-utm-tagging-mistakes",
+    category: "web-marketing",
+    relatedToolSlug: "utm-builder",
+    relatedGuideSlugs: ["how-to-build-utm-links", "utm-parameters-explained"],
+    publishedAt: "2026-04-03",
+    updatedAt: "2026-04-03",
+    content: commonUtmTaggingMistakesContent
+  },
 
   {
     slug: "how-to-convert-images-to-webp",
@@ -1240,14 +1733,23 @@ export function getGuide(locale: LocaleCode, slug: string): GuideItem | undefine
 }
 
 export function getRelatedGuides(locale: LocaleCode, slug: string, limit = 2): GuideItem[] {
-  const currentGuide = getGuide(locale, slug);
+  const currentGuideDefinition = guideDefinitions.find((guide) => guide.slug === slug);
 
-  if (!currentGuide) {
+  if (!currentGuideDefinition) {
     return [];
   }
 
-  return getGuides(locale)
-    .filter((guide) => guide.slug !== slug && guide.category === currentGuide.category)
+  const localizedGuides = getGuides(locale);
+
+  if (currentGuideDefinition.relatedGuideSlugs?.length) {
+    return currentGuideDefinition.relatedGuideSlugs
+      .map((relatedSlug) => localizedGuides.find((guide) => guide.slug === relatedSlug))
+      .filter((guide): guide is GuideItem => Boolean(guide))
+      .slice(0, limit);
+  }
+
+  return localizedGuides
+    .filter((guide) => guide.slug !== slug && guide.category === currentGuideDefinition.category)
     .slice(0, limit);
 }
 
