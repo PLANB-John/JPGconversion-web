@@ -21,7 +21,11 @@ export type GuideSlug =
   | "open-graph-image-size-guide"
   | "fix-missing-social-preview-images"
   | "png-vs-jpg-vs-webp"
-  | "when-not-to-use-webp";
+  | "when-not-to-use-webp"
+  | "compress-images-for-page-speed"
+  | "best-image-file-size-for-websites"
+  | "json-parse-error-examples"
+  | "validate-json-before-api-requests";
 
 type GuideSection = {
   heading: string;
@@ -1685,6 +1689,286 @@ const whenNotToUseWebpContent: Record<LocaleCode, GuideLocalizedContent> = {
   }
 };
 
+
+const compressImagesForPageSpeedContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: {
+    title: "How to Compress Images for Faster Page Speed",
+    description: "Learn a practical workflow to compress website images, reduce page weight, and keep quality clear on desktop and mobile.",
+    intro: "Heavy images are one of the most common reasons pages feel slow. The good news is you do not need a complex workflow to fix this. With a simple compression routine, you can reduce file size, keep images sharp enough for real users, and improve load speed across your site.",
+    categoryLabel: "Image optimization",
+    useCasesTitle: "When this guide helps",
+    useCases: ["Speeding up blog posts with many screenshots.", "Reducing bounce rate on image-heavy landing pages.", "Preparing e-commerce product photos for faster mobile loading.", "Improving Core Web Vitals before a release."],
+    closingTitle: "Compress with purpose",
+    closingText: "Compression works best when you choose quality based on the page goal, not on guesswork. Keep an original file, export a smaller web version, and quickly test the page after upload.",
+    relatedToolLabel: "Open Image Compressor",
+    sections: [
+      { heading: "Start with the largest files first", paragraphs: ["Open your image folder and sort files by size. Large hero images and full-width blog visuals usually create the biggest delay.", "Compressing a few oversized files can often deliver a faster result than trying to optimize every image at once."] },
+      { heading: "Choose the right format before compressing", paragraphs: ["Compression works better when the base format matches the content.", "Use JPG for photos, PNG for graphics that need clean edges or transparency, and WebP when your workflow supports it for better size-to-quality balance."] },
+      { heading: "Use a quality range instead of one fixed setting", paragraphs: ["Do not treat compression like an all-or-nothing switch. Test a small range such as 80, 70, and 60 quality, then compare readability.", "For most website images, medium compression is enough to cut file size without obvious visual damage."], bullets: ["Check text readability inside screenshots.", "Zoom in once to confirm faces and edges stay natural.", "Prefer slightly smaller files for mobile-first pages."] },
+      { heading: "Resize dimensions for real layout width", paragraphs: ["A 3000px-wide image is often unnecessary if the page displays it at 900px. Resize first, then compress.", "Serving images close to their actual display size can remove more weight than compression alone."] },
+      { heading: "Run a quick page-speed check after upload", paragraphs: ["After replacing images, test one or two important pages. Confirm visual quality and loading behavior on mobile.", "If quality drops too much, step back to a slightly higher setting. If speed is still weak, look for another oversized image and repeat."] }
+    ]
+  },
+  ko: {
+    title: "페이지 속도를 높이기 위한 이미지 압축 방법",
+    description: "웹사이트 이미지를 가볍게 줄이면서도 품질을 유지하는 실무형 압축 흐름을 소개합니다.",
+    intro: "이미지 용량이 크면 페이지가 느려지는 경우가 많습니다. 복잡한 도구 없이도 기본 압축 루틴만 있으면 파일 크기를 줄이고 모바일 체감 속도를 개선할 수 있습니다.",
+    categoryLabel: "이미지 최적화",
+    useCasesTitle: "이 가이드가 유용한 상황",
+    useCases: ["스크린샷이 많은 블로그 글을 빠르게 만들 때", "이미지가 많은 랜딩 페이지 이탈률을 줄이고 싶을 때", "모바일 상품 이미지를 최적화할 때", "배포 전 Core Web Vitals를 점검할 때"],
+    closingTitle: "목적에 맞게 압축하세요",
+    closingText: "압축은 숫자 맞추기가 아니라 페이지 목적에 맞는 품질을 정하는 작업입니다. 원본은 보관하고 웹용 파일을 따로 만들어 테스트하세요.",
+    relatedToolLabel: "Image Compressor 열기",
+    sections: [
+      { heading: "먼저 큰 파일부터 정리", paragraphs: ["폴더에서 파일 크기순으로 정렬해 가장 무거운 이미지를 먼저 찾으세요.", "히어로 이미지 몇 장만 줄여도 체감 속도가 크게 좋아지는 경우가 많습니다."] },
+      { heading: "형식을 먼저 맞추기", paragraphs: ["압축 전에 이미지 형식이 콘텐츠에 맞는지 확인하세요.", "사진은 JPG, 투명 그래픽은 PNG, 지원 환경이 된다면 WebP를 고려하면 효율이 좋습니다."] },
+      { heading: "고정값 대신 범위 테스트", paragraphs: ["한 가지 품질 값만 쓰지 말고 80, 70, 60처럼 짧게 비교해 보세요.", "대부분의 웹 이미지에서는 중간 압축만으로도 용량을 크게 줄일 수 있습니다."], bullets: ["스크린샷 안 텍스트가 읽히는지 확인", "얼굴·경계선이 뭉개지지 않는지 확대 확인", "모바일 중심 페이지는 조금 더 작은 파일 우선"] },
+      { heading: "실제 표시 크기로 리사이즈", paragraphs: ["페이지에서 900px로 보이는 이미지를 3000px 그대로 올리면 낭비가 큽니다.", "표시 크기에 맞춰 줄인 뒤 압축하면 용량을 더 크게 절감할 수 있습니다."] },
+      { heading: "업로드 후 빠른 속도 점검", paragraphs: ["이미지를 교체한 뒤 핵심 페이지를 모바일 기준으로 확인하세요.", "품질이 너무 떨어지면 압축 강도를 조금 낮추고, 속도가 부족하면 큰 파일을 하나 더 최적화하세요."] }
+    ]
+  },
+  ja: {
+    title: "ページ表示を速くする画像圧縮のやり方",
+    description: "Web用画像の容量を抑えつつ見た目を保つ、実践的な圧縮フローを紹介します。",
+    intro: "画像が重いと、ページ全体の表示が遅くなります。難しい設定がなくても、基本的な圧縮手順だけで容量を減らし、体感速度を改善できます。",
+    categoryLabel: "画像最適化",
+    useCasesTitle: "役立つ場面",
+    useCases: ["画像の多いブログ記事を軽くしたいとき", "ランディングページの表示速度を改善したいとき", "EC商品画像をモバイル向けに最適化するとき", "公開前にCore Web Vitalsを整えるとき"],
+    closingTitle: "目的に合わせて圧縮する",
+    closingText: "圧縮は数字合わせではなく、ページ目的に合う画質を選ぶ作業です。元画像を残し、配信用ファイルを作って確認しましょう。",
+    relatedToolLabel: "Image Compressorを開く",
+    sections: [
+      { heading: "まず大きい画像から対応", paragraphs: ["ファイルサイズ順に並べて、最も重い画像から処理します。", "ヒーロー画像など数枚を最適化するだけでも体感速度が改善しやすいです。"] },
+      { heading: "圧縮前に形式を確認", paragraphs: ["画像内容に合う形式を選ぶと圧縮効果が高まります。", "写真はJPG、透過が必要な図はPNG、対応環境があればWebPを検討してください。"] },
+      { heading: "固定値ではなく範囲で比較", paragraphs: ["品質を1つに決め打ちせず、80・70・60などを比較しましょう。", "多くのWeb画像は中程度の圧縮で十分に軽くできます。"], bullets: ["スクリーンショット内の文字が読めるか", "顔や輪郭が不自然に崩れていないか", "モバイル中心ページでは軽さを優先"] },
+      { heading: "実際の表示幅に合わせてリサイズ", paragraphs: ["表示幅が900pxなら、3000px画像をそのまま使う必要はありません。", "先にサイズを合わせてから圧縮すると、さらに容量を減らせます。"] },
+      { heading: "差し替え後に速度を確認", paragraphs: ["画像を更新したら主要ページをモバイルで確認します。", "画質が落ちすぎたら設定を少し戻し、まだ重ければ別の大きな画像を追加で最適化します。"] }
+    ]
+  },
+  es: {
+    title: "Cómo comprimir imágenes para mejorar la velocidad de página",
+    description: "Aprende un flujo práctico para reducir el peso de imágenes web sin perder calidad visual importante.",
+    intro: "Las imágenes pesadas son una causa común de páginas lentas. Con una rutina simple de compresión puedes bajar tamaño, mantener buena calidad y mejorar la carga en móvil y escritorio.",
+    categoryLabel: "Optimización de imagen",
+    useCasesTitle: "Cuándo ayuda esta guía",
+    useCases: ["Acelerar artículos con muchas capturas", "Reducir peso en landing pages con varias imágenes", "Optimizar fotos de producto para móvil", "Mejorar métricas de rendimiento antes de publicar"],
+    closingTitle: "Comprime con criterio",
+    closingText: "La mejor compresión depende del objetivo de la página. Conserva el original, exporta versión web y valida el resultado en una prueba rápida.",
+    relatedToolLabel: "Abrir Image Compressor",
+    sections: [
+      { heading: "Empieza por los archivos más pesados", paragraphs: ["Ordena tus imágenes por tamaño y localiza las más grandes.", "Optimizar unas pocas imágenes clave suele dar mejoras inmediatas."] },
+      { heading: "Elige formato correcto antes de comprimir", paragraphs: ["La compresión funciona mejor si el formato base es adecuado.", "Usa JPG para fotos, PNG para gráficos con transparencia y WebP cuando tu flujo lo permita."] },
+      { heading: "Prueba un rango de calidad", paragraphs: ["No uses un único valor fijo. Compara, por ejemplo, calidad 80, 70 y 60.", "En muchos casos, compresión media reduce mucho el tamaño sin dañar la lectura."], bullets: ["Verifica textos en capturas.", "Amplía una vez para revisar bordes y rostros.", "En páginas mobile-first, prioriza archivos algo más livianos."] },
+      { heading: "Ajusta dimensiones al ancho real", paragraphs: ["Si la imagen se muestra a 900px, no hace falta subirla a 3000px.", "Redimensionar antes de comprimir recorta mucho peso adicional."] },
+      { heading: "Haz una revisión rápida después", paragraphs: ["Tras reemplazar imágenes, prueba las páginas clave en móvil.", "Si se ve demasiado comprimida, sube un poco la calidad; si sigue lenta, optimiza otra imagen grande."] }
+    ]
+  },
+  fr: {
+    title: "Comment compresser des images pour accélérer la vitesse de page",
+    description: "Suivez une méthode simple pour réduire le poids des images web tout en conservant une qualité visuelle suffisante.",
+    intro: "Des images trop lourdes ralentissent souvent un site. Une routine de compression simple suffit pour réduire la taille des fichiers et améliorer le chargement.",
+    categoryLabel: "Optimisation d'image",
+    useCasesTitle: "Quand ce guide est utile",
+    useCases: ["Alléger un article avec beaucoup de visuels", "Améliorer une landing page riche en images", "Optimiser des photos produit pour mobile", "Préparer de meilleures métriques de performance"],
+    closingTitle: "Compresser avec intention",
+    closingText: "La bonne compression dépend de l'objectif de la page. Gardez l'original, exportez une version web, puis vérifiez le rendu.",
+    relatedToolLabel: "Ouvrir Image Compressor",
+    sections: [
+      { heading: "Traiter d'abord les fichiers les plus lourds", paragraphs: ["Classez vos images par taille pour identifier les plus volumineuses.", "Optimiser quelques visuels clés peut déjà améliorer nettement la vitesse."] },
+      { heading: "Choisir le bon format avant compression", paragraphs: ["Le format de départ influence le résultat.", "JPG convient aux photos, PNG aux graphiques avec transparence, et WebP offre souvent un bon compromis poids/qualité."] },
+      { heading: "Tester une plage de qualité", paragraphs: ["Évitez un réglage unique. Comparez par exemple 80, 70 et 60.", "Une compression moyenne suffit souvent pour gagner du poids sans perte visible majeure."], bullets: ["Vérifiez la lisibilité du texte dans les captures.", "Zoomez rapidement pour contrôler contours et visages.", "Pour le mobile, privilégiez des fichiers un peu plus légers."] },
+      { heading: "Redimensionner selon la largeur réelle", paragraphs: ["Inutile d'envoyer une image de 3000px si elle s'affiche à 900px.", "Réduire les dimensions avant compression supprime encore plus de poids."] },
+      { heading: "Contrôler rapidement après mise en ligne", paragraphs: ["Testez une ou deux pages importantes après remplacement.", "Si la qualité chute trop, remontez légèrement le niveau; si c'est encore lent, optimisez une autre image lourde."] }
+    ]
+  },
+  de: {
+    title: "So komprimierst du Bilder für schnellere Seiten",
+    description: "Eine praktische Anleitung, um Bildgrößen für Websites zu reduzieren und trotzdem gute Qualität zu behalten.",
+    intro: "Zu große Bilder sind ein häufiger Grund für langsame Seiten. Mit einem einfachen Kompressionsablauf kannst du Dateigrößen deutlich senken und die Ladezeit verbessern.",
+    categoryLabel: "Bildoptimierung",
+    useCasesTitle: "Wann der Guide hilft",
+    useCases: ["Blogbeiträge mit vielen Screenshots beschleunigen", "Bildlastige Landingpages leichter machen", "Produktfotos für Mobile optimieren", "Performance-Werte vor dem Release verbessern"],
+    closingTitle: "Bewusst komprimieren",
+    closingText: "Die beste Kompression richtet sich nach dem Seitenziel. Original behalten, Web-Version exportieren und kurz testen.",
+    relatedToolLabel: "Image Compressor öffnen",
+    sections: [
+      { heading: "Zuerst die größten Dateien optimieren", paragraphs: ["Sortiere Bilder nach Dateigröße und beginne mit den größten Dateien.", "Schon wenige optimierte Hero-Bilder können die Seite spürbar beschleunigen."] },
+      { heading: "Vorher das passende Format wählen", paragraphs: ["Kompression funktioniert besser mit dem richtigen Ausgangsformat.", "JPG für Fotos, PNG für Grafiken mit Transparenz, WebP bei unterstütztem Workflow."] },
+      { heading: "Mit Qualitätsbereichen arbeiten", paragraphs: ["Nutze nicht nur einen festen Wert. Vergleiche z. B. 80, 70 und 60.", "Mittlere Kompression reduziert oft stark, ohne deutlich sichtbare Verluste."], bullets: ["Text in Screenshots auf Lesbarkeit prüfen.", "Einmal hineinzoomen und Kanten/Gesichter kontrollieren.", "Bei Mobile-first Seiten eher kleinere Dateien bevorzugen."] },
+      { heading: "Auf reale Anzeigegröße verkleinern", paragraphs: ["Wird ein Bild nur mit 900px angezeigt, sind 3000px meist unnötig.", "Erst verkleinern, dann komprimieren spart zusätzlich Gewicht."] },
+      { heading: "Nach dem Austausch kurz testen", paragraphs: ["Prüfe wichtige Seiten nach dem Upload auf dem Smartphone.", "Bei zu starkem Qualitätsverlust etwas höher gehen; bei weiter langsamer Seite die nächste große Datei optimieren."] }
+    ]
+  }
+};
+
+const bestImageFileSizeForWebsitesContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: {
+    title: "Best Image File Size for Websites and Blogs",
+    description: "Understand practical image size targets for hero images, blog visuals, and thumbnails so pages stay sharp and fast.",
+    intro: "There is no single perfect image file size for every website. A better approach is to set realistic size targets based on where each image appears, then export consistently.",
+    categoryLabel: "Image optimization",
+    useCasesTitle: "What this helps you decide",
+    useCases: ["Choosing upload guidelines for blog editors.", "Setting image standards for a marketing team.", "Reducing oversized hero images.", "Balancing quality and speed on mobile."],
+    closingTitle: "Aim for consistency, not perfection",
+    closingText: "If your team uses clear size ranges and checks visual quality once before publish, your pages will stay faster with less rework.",
+    relatedToolLabel: "Open Image Compressor",
+    sections: [
+      { heading: "Use target ranges by image type", paragraphs: ["Different placements need different file budgets.", "Hero images can be larger, while inline blog images and thumbnails should stay lighter."], bullets: ["Hero image: often around 150–400 KB after optimization.", "Inline blog image: often around 80–200 KB.", "Small thumbnails/icons: often below 60 KB."] },
+      { heading: "Dimensions matter as much as KB", paragraphs: ["A huge pixel size usually creates a large file even with compression.", "Match export width to the layout. Most blog images do not need ultra-high dimensions."] },
+      { heading: "Choose format by content goal", paragraphs: ["For file size control, format choice is critical.", "Use JPG for photo-heavy content, PNG for graphics needing transparency, and WebP when supported to reduce size further."] },
+      { heading: "Set a simple publishing checklist", paragraphs: ["Small process rules prevent random uploads.", "Before publishing, confirm image dimensions, file size range, and visual clarity on mobile."] },
+      { heading: "Review real pages, not only files", paragraphs: ["A file may look fine alone but still slow a page when many images load together.", "Check important URLs in page-speed tools and adjust the heaviest assets first."] }
+    ]
+  },
+  ko: { title: "웹사이트와 블로그에 적절한 이미지 파일 크기", description: "히어로, 본문, 썸네일별로 현실적인 이미지 용량 기준을 정하는 방법을 설명합니다.", intro: "모든 웹사이트에 맞는 단일 정답 용량은 없습니다. 이미지 위치별 기준 범위를 정하고 일관되게 적용하는 것이 더 효과적입니다.", categoryLabel: "이미지 최적화", useCasesTitle: "이 가이드로 결정할 수 있는 것", useCases: ["블로그 업로드 기준 수립", "마케팅 팀 이미지 표준 정리", "과도하게 큰 히어로 이미지 축소", "모바일 품질과 속도 균형"], closingTitle: "완벽보다 일관성이 중요", closingText: "팀이 크기 기준을 공유하고 게시 전 한 번만 품질을 확인해도 페이지 속도와 운영 효율이 좋아집니다.", relatedToolLabel: "Image Compressor 열기", sections: [
+      { heading: "이미지 유형별 목표 범위 설정", paragraphs: ["배치 위치에 따라 허용 용량이 달라야 합니다.", "히어로 이미지는 상대적으로 커도 되지만 본문·썸네일은 더 가볍게 관리하세요."], bullets: ["히어로 이미지: 최적화 후 약 150–400KB", "본문 이미지: 약 80–200KB", "작은 썸네일/아이콘: 60KB 이하 권장"] },
+      { heading: "KB만큼 픽셀 크기도 중요", paragraphs: ["해상도가 과도하면 압축해도 용량이 커집니다.", "레이아웃에 맞는 표시 폭으로 내보내는 습관을 들이세요."] },
+      { heading: "콘텐츠 목적에 맞는 형식 선택", paragraphs: ["파일 크기 관리에서 포맷 선택은 핵심입니다.", "사진은 JPG, 투명 그래픽은 PNG, 가능하면 WebP를 사용해 용량을 더 줄일 수 있습니다."] },
+      { heading: "간단한 게시 체크리스트 운영", paragraphs: ["짧은 규칙만 있어도 무작위 업로드를 줄일 수 있습니다.", "게시 전 이미지 크기·용량·모바일 가독성을 확인하세요."] },
+      { heading: "파일 단독이 아닌 실제 페이지 확인", paragraphs: ["파일 하나는 작아 보여도 여러 장이 모이면 페이지가 느려질 수 있습니다.", "핵심 URL에서 가장 무거운 자산부터 조정하세요."] }
+    ] },
+  ja: { title: "Webサイトとブログに最適な画像ファイルサイズ", description: "ヒーロー画像・本文画像・サムネイルごとの実用的な容量目安を紹介します。", intro: "すべてに通用する単一の正解サイズはありません。表示場所ごとに目安を決めて、同じルールで運用するのが現実的です。", categoryLabel: "画像最適化", useCasesTitle: "このガイドで決められること", useCases: ["ブログ投稿のアップロード基準作成", "チームの画像運用ルール統一", "重いヒーロー画像の見直し", "モバイルでの品質と速度の両立"], closingTitle: "完璧より一貫性", closingText: "サイズ目安を共有し、公開前に一度だけ確認するだけでも、速度と運用効率は大きく改善します。", relatedToolLabel: "Image Compressorを開く", sections: [
+      { heading: "用途別に容量目標を決める", paragraphs: ["配置場所で許容サイズは変わります。", "ヒーロー画像はやや大きくても、本文画像やサムネイルは軽く保つのが基本です。"], bullets: ["ヒーロー画像: 最適化後 150〜400KB 目安", "本文画像: 80〜200KB 目安", "小さなサムネイル/アイコン: 60KB未満を目安"] },
+      { heading: "KBだけでなくピクセル幅も調整", paragraphs: ["解像度が大きすぎると、圧縮しても重くなります。", "実際の表示幅に合わせて書き出すことが重要です。"] },
+      { heading: "内容に合う形式を選ぶ", paragraphs: ["容量管理では形式選びが重要です。", "写真はJPG、透過が必要ならPNG、対応していればWebPを活用します。"] },
+      { heading: "公開前チェックを簡単に固定化", paragraphs: ["短いチェック手順があれば、重い画像の混入を防げます。", "公開前にサイズ・容量・モバイル表示を確認しましょう。"] },
+      { heading: "ファイル単体ではなくページ全体で確認", paragraphs: ["単体で軽く見えても、複数枚でページは重くなります。", "重要ページで計測し、重い画像から順に改善します。"] }
+    ] },
+  es: { title: "Mejor tamaño de archivo de imagen para sitios web y blogs", description: "Define objetivos de peso realistas por tipo de imagen para mantener buena calidad y mejor velocidad.", intro: "No existe un único tamaño perfecto para todas las imágenes. Lo más útil es fijar rangos por ubicación y aplicarlos de forma consistente.", categoryLabel: "Optimización de imagen", useCasesTitle: "Qué puedes resolver con esta guía", useCases: ["Definir reglas de subida para blog", "Establecer estándares de equipo", "Reducir hero images demasiado pesadas", "Mejorar experiencia móvil"], closingTitle: "Busca consistencia", closingText: "Con rangos claros y una revisión breve antes de publicar, tu sitio será más rápido y fácil de mantener.", relatedToolLabel: "Abrir Image Compressor", sections: [
+      { heading: "Usa rangos según tipo de imagen", paragraphs: ["Cada ubicación necesita un presupuesto distinto.", "Las imágenes hero pueden pesar más; las de artículo y miniaturas deben ser más livianas."], bullets: ["Hero: aprox. 150–400 KB", "Imagen en artículo: aprox. 80–200 KB", "Miniaturas/iconos: normalmente menos de 60 KB"] },
+      { heading: "Las dimensiones importan", paragraphs: ["Muchos píxeles generan archivos grandes aunque comprimas.", "Exporta al ancho real de uso en la página."] },
+      { heading: "Formato según objetivo", paragraphs: ["La elección de formato impacta directamente en el peso.", "JPG para fotos, PNG para transparencias, WebP para mejor equilibrio cuando sea compatible."] },
+      { heading: "Crea un checklist simple", paragraphs: ["Un proceso corto evita cargas aleatorias.", "Antes de publicar, revisa dimensiones, peso y claridad en móvil."] },
+      { heading: "Evalúa páginas reales", paragraphs: ["Un archivo puede verse bien solo, pero ralentizar cuando se cargan varios.", "Analiza URLs clave y optimiza primero los assets más pesados."] }
+    ] },
+  fr: { title: "Taille idéale des images pour sites web et blogs", description: "Définissez des objectifs de poids d'image selon les usages pour garder un site rapide et lisible.", intro: "Il n'existe pas de taille unique parfaite. Le plus efficace est d'utiliser des fourchettes selon le type d'image et de les appliquer partout.", categoryLabel: "Optimisation d'image", useCasesTitle: "Ce que ce guide permet", useCases: ["Créer des règles d'upload pour le blog", "Standardiser les visuels d'équipe", "Réduire des hero images trop lourdes", "Améliorer la vitesse sur mobile"], closingTitle: "Visez la régularité", closingText: "Avec des fourchettes claires et une vérification rapide avant publication, vos pages restent plus légères et plus stables.", relatedToolLabel: "Ouvrir Image Compressor", sections: [
+      { heading: "Définir des fourchettes par type", paragraphs: ["Chaque emplacement a un budget de poids différent.", "Les hero images peuvent être plus lourdes, mais les images d'article et miniatures doivent rester légères."], bullets: ["Hero image : souvent 150–400 Ko", "Image d'article : souvent 80–200 Ko", "Miniature/icône : souvent moins de 60 Ko"] },
+      { heading: "La dimension compte autant que le poids", paragraphs: ["Une résolution trop grande alourdit le fichier même après compression.", "Exportez selon la largeur réellement affichée."] },
+      { heading: "Choisir le format selon le besoin", paragraphs: ["Le format influence fortement le poids final.", "JPG pour les photos, PNG pour la transparence, WebP si compatible pour réduire davantage."] },
+      { heading: "Mettre en place une checklist courte", paragraphs: ["Un petit process évite les uploads incohérents.", "Avant publication, vérifiez dimensions, poids et lisibilité sur mobile."] },
+      { heading: "Tester les pages réelles", paragraphs: ["Un fichier peut sembler correct seul, mais ralentir une page avec plusieurs visuels.", "Mesurez les URLs importantes et optimisez d'abord les plus gros assets."] }
+    ] },
+  de: { title: "Beste Bilddateigröße für Websites und Blogs", description: "Praktische Größenziele für Hero-Bilder, Bloggrafiken und Thumbnails, damit Seiten schnell bleiben.", intro: "Eine einzige perfekte Dateigröße gibt es nicht. Sinnvoller sind klare Zielbereiche pro Bildtyp und ein konsistenter Workflow.", categoryLabel: "Bildoptimierung", useCasesTitle: "Was du damit festlegst", useCases: ["Upload-Regeln für Blogteams", "Bildstandards im Marketing", "Zu große Hero-Bilder reduzieren", "Mobile-Performance verbessern"], closingTitle: "Konsequent statt perfekt", closingText: "Mit klaren Größenbereichen und einem kurzen Check vor dem Veröffentlichen bleiben Seiten schneller und der Aufwand sinkt.", relatedToolLabel: "Image Compressor öffnen", sections: [
+      { heading: "Zielbereiche nach Bildtyp nutzen", paragraphs: ["Je nach Platzierung gelten unterschiedliche Budgets.", "Hero-Bilder dürfen etwas größer sein, Inline-Bilder und Thumbnails sollten deutlich leichter bleiben."], bullets: ["Hero-Bild: oft etwa 150–400 KB", "Inline-Blogbild: oft etwa 80–200 KB", "Kleine Thumbnails/Icons: meist unter 60 KB"] },
+      { heading: "Pixelmaße sind genauso wichtig", paragraphs: ["Zu große Abmessungen erzeugen auch bei Kompression unnötig große Dateien.", "Exportiere Bilder passend zur tatsächlichen Darstellungsbreite."] },
+      { heading: "Format nach Inhalt wählen", paragraphs: ["Die Formatwahl beeinflusst die Dateigröße stark.", "JPG für Fotos, PNG für Transparenz, WebP bei Unterstützung für bessere Effizienz."] },
+      { heading: "Kurze Publishing-Checkliste festlegen", paragraphs: ["Einfache Regeln verhindern zufällige, zu schwere Uploads.", "Vor dem Veröffentlichen Größe, Dateigewicht und mobile Lesbarkeit prüfen."] },
+      { heading: "Echte Seiten statt Einzeldateien prüfen", paragraphs: ["Eine einzelne Datei kann okay sein, die Seite aber mit vielen Bildern trotzdem verlangsamen.", "Miss wichtige URLs und optimiere zuerst die größten Assets."] }
+    ] }
+};
+
+const jsonParseErrorExamplesContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: {
+    title: "JSON Parse Error Examples and How to Read Them",
+    description: "Learn common JSON parse errors, what the messages usually mean, and how to fix invalid JSON quickly.",
+    intro: "JSON parse errors can look intimidating at first, especially when an API returns a long message. In most cases, the issue is a small syntax problem. If you learn to read the error structure, you can find and fix mistakes much faster.",
+    categoryLabel: "Developer workflow",
+    useCasesTitle: "When this guide is useful",
+    useCases: ["Debugging API request payloads.", "Fixing JSON files in config workflows.", "Reviewing webhook test data.", "Helping beginners understand syntax errors."],
+    closingTitle: "Read errors from left to right",
+    closingText: "Most parse errors become easy once you identify the location and expected token. Keep your JSON formatted and validate early to avoid repeated debugging.",
+    relatedToolLabel: "Open JSON Formatter",
+    sections: [
+      { heading: "How parse error messages are usually structured", paragraphs: ["Many messages include three clues: what failed, where it failed, and what the parser expected.", "Even if wording differs by tool, line and column information usually points near the real problem."] },
+      { heading: "Example 1: Missing comma between fields", paragraphs: ["A common error appears when two key-value pairs are placed without a comma.", "The parser may say something like 'expected , or }' near a specific position. Check the previous line, not only the exact column."] },
+      { heading: "Example 2: Single quotes instead of double quotes", paragraphs: ["Valid JSON requires double quotes around keys and string values.", "If you copied data from JavaScript-like code, replace single quotes with double quotes before sending to an API."] },
+      { heading: "Example 3: Trailing comma at the end", paragraphs: ["Many parsers reject a comma after the last item in an object or array.", "Remove the last comma and format again."], bullets: ["Bad: {\"name\":\"Ana\",}", "Good: {\"name\":\"Ana\"}", "Bad: [1,2,3,]", "Good: [1,2,3]"] },
+      { heading: "A repeatable debugging workflow", paragraphs: ["Paste the payload into a JSON formatter, then auto-format it.", "If formatting fails, read the first reported error, fix only that issue, and run validation again. Solving errors one by one is faster than guessing multiple edits at once."] }
+    ]
+  },
+  ko: { title: "JSON 파싱 오류 예시와 읽는 방법", description: "자주 발생하는 JSON 오류 메시지를 읽고 빠르게 수정하는 방법을 설명합니다.", intro: "JSON 오류 메시지는 처음 보면 어렵게 느껴지지만 대부분은 작은 문법 실수입니다. 메시지 구조를 읽는 법만 익히면 수정 속도가 크게 빨라집니다.", categoryLabel: "개발 워크플로", useCasesTitle: "이 가이드가 유용한 상황", useCases: ["API 요청 본문 디버깅", "설정 파일 JSON 오류 수정", "웹훅 테스트 데이터 점검", "초보자 문법 오류 교육"], closingTitle: "오류를 순서대로 읽기", closingText: "오류 위치와 기대한 토큰을 먼저 확인하면 대부분 빠르게 해결됩니다. 먼저 포맷하고 일찍 검증하세요.", relatedToolLabel: "JSON Formatter 열기", sections: [
+      { heading: "파싱 오류 메시지의 기본 구조", paragraphs: ["대부분 오류는 무엇이 잘못됐는지, 어디서 발생했는지, 무엇을 기대했는지를 알려줍니다.", "도구마다 표현은 달라도 line/column 정보는 원인 근처를 가리킵니다."] },
+      { heading: "예시 1: 필드 사이 쉼표 누락", paragraphs: ["객체 항목 사이에 쉼표를 빼먹으면 자주 발생합니다.", "메시지에 ', 또는 } 예상'처럼 나오면 해당 줄 바로 위아래를 함께 확인하세요."] },
+      { heading: "예시 2: 작은따옴표 사용", paragraphs: ["JSON 키와 문자열 값은 반드시 큰따옴표를 써야 합니다.", "JavaScript 객체를 복사해 왔다면 작은따옴표를 큰따옴표로 바꾸세요."] },
+      { heading: "예시 3: 마지막 trailing comma", paragraphs: ["객체나 배열 마지막의 쉼표를 허용하지 않는 파서가 많습니다.", "마지막 쉼표를 지우고 다시 검증하세요."], bullets: ["오류: {\"name\":\"Ana\",}", "정상: {\"name\":\"Ana\"}", "오류: [1,2,3,]", "정상: [1,2,3]"] },
+      { heading: "반복 가능한 디버깅 루틴", paragraphs: ["JSON Formatter에 붙여넣고 자동 정렬을 먼저 실행하세요.", "첫 번째 오류 하나만 고치고 다시 검증하면, 추측 수정보다 훨씬 빠르게 해결됩니다."] }
+    ] },
+  ja: { title: "JSONパースエラーの例と読み解き方", description: "よくあるJSONエラーの意味を理解し、無効なJSONを素早く修正する方法を解説します。", intro: "JSONのパースエラーは難しく見えますが、原因は小さな構文ミスであることがほとんどです。メッセージの読み方を覚えるだけで修正が速くなります。", categoryLabel: "開発ワークフロー", useCasesTitle: "役立つ場面", useCases: ["APIリクエスト本文のデバッグ", "設定ファイルのJSON修正", "Webhookテストデータ確認", "初心者向けエラー説明"], closingTitle: "エラーは順番に読む", closingText: "位置情報と期待トークンを先に確認すれば、多くのエラーはすぐ直せます。整形と早期検証を習慣化しましょう。", relatedToolLabel: "JSON Formatterを開く", sections: [
+      { heading: "パースエラーの基本構造", paragraphs: ["多くのメッセージは『何が失敗したか』『どこで失敗したか』『何を期待したか』を含みます。", "表現はツールで異なっても、行番号と列番号は原因付近を示します。"] },
+      { heading: "例1: フィールド間のカンマ不足", paragraphs: ["オブジェクトの項目間でカンマを忘れるとよく発生します。", "'expected , or }' のような表示が出たら、その位置の前後を確認してください。"] },
+      { heading: "例2: シングルクォートの使用", paragraphs: ["JSONではキーと文字列はダブルクォート必須です。", "JavaScript風データをコピーした場合は、シングルクォートを修正します。"] },
+      { heading: "例3: 末尾カンマ", paragraphs: ["オブジェクトや配列の最後のカンマを許可しないパーサーは多いです。", "最後のカンマを削除して再検証します。"], bullets: ["NG: {\"name\":\"Ana\",}", "OK: {\"name\":\"Ana\"}", "NG: [1,2,3,]", "OK: [1,2,3]"] },
+      { heading: "再現しやすいデバッグ手順", paragraphs: ["JSON Formatterに貼り付けて自動整形を実行します。", "最初のエラーだけを修正して再検証すると、まとめて推測修正するより効率的です。"] }
+    ] },
+  es: { title: "Ejemplos de errores JSON Parse y cómo leerlos", description: "Aprende a interpretar errores comunes de JSON y corregirlos rápido antes de enviar datos a una API.", intro: "Los errores de parseo JSON parecen complejos al inicio, pero casi siempre son fallos pequeños de sintaxis. Si sabes leer el mensaje, encontrarás el problema más rápido.", categoryLabel: "Flujo de desarrollo", useCasesTitle: "Cuándo te sirve", useCases: ["Depurar payloads de API", "Corregir archivos JSON de configuración", "Revisar datos de prueba de webhooks", "Enseñar errores de sintaxis a principiantes"], closingTitle: "Lee el error paso a paso", closingText: "Identificar ubicación y token esperado suele resolver el problema en minutos. Formatea y valida temprano para evitar retrabajo.", relatedToolLabel: "Abrir JSON Formatter", sections: [
+      { heading: "Estructura típica del mensaje", paragraphs: ["Muchos mensajes indican qué falló, dónde falló y qué esperaba el parser.", "Aunque cambie el texto, la línea y columna suelen señalar la zona del error real."] },
+      { heading: "Ejemplo 1: Falta una coma", paragraphs: ["Ocurre cuando dos campos van seguidos sin coma.", "Si ves 'expected , or }', revisa también la línea anterior, no solo la columna exacta."] },
+      { heading: "Ejemplo 2: Comillas simples", paragraphs: ["JSON válido exige comillas dobles en claves y strings.", "Si copiaste desde un objeto estilo JavaScript, corrige las comillas antes de enviar."] },
+      { heading: "Ejemplo 3: Coma final", paragraphs: ["Muchos parsers no aceptan coma después del último elemento.", "Quita la coma final y valida otra vez."], bullets: ["Incorrecto: {\"name\":\"Ana\",}", "Correcto: {\"name\":\"Ana\"}", "Incorrecto: [1,2,3,]", "Correcto: [1,2,3]"] },
+      { heading: "Flujo de depuración repetible", paragraphs: ["Pega el payload en un JSON Formatter y ejecuta autoformato.", "Corrige solo el primer error reportado y vuelve a validar. Es más rápido que editar varias cosas a la vez."] }
+    ] },
+  fr: { title: "Exemples d'erreurs JSON Parse et comment les lire", description: "Comprenez les erreurs JSON courantes et apprenez à les corriger rapidement avant vos requêtes API.", intro: "Les erreurs de parsing JSON peuvent sembler compliquées, mais la cause est souvent une petite faute de syntaxe. Savoir lire le message fait gagner beaucoup de temps.", categoryLabel: "Workflow développeur", useCasesTitle: "Quand ce guide aide", useCases: ["Déboguer des payloads API", "Corriger des fichiers JSON de configuration", "Vérifier des données de test webhook", "Former des débutants aux erreurs de syntaxe"], closingTitle: "Lire l'erreur dans l'ordre", closingText: "Repérez d'abord la position et le token attendu. Avec un formatage et une validation rapide, la plupart des erreurs se corrigent facilement.", relatedToolLabel: "Ouvrir JSON Formatter", sections: [
+      { heading: "Structure habituelle d'un message", paragraphs: ["La plupart des messages indiquent ce qui a échoué, où, et ce qui était attendu.", "Même si la formulation varie, ligne et colonne pointent généralement vers la bonne zone."] },
+      { heading: "Exemple 1 : virgule manquante", paragraphs: ["Très fréquent entre deux champs d'objet.", "Si vous voyez 'expected , or }', vérifiez aussi la ligne précédente."] },
+      { heading: "Exemple 2 : guillemets simples", paragraphs: ["En JSON valide, clés et chaînes doivent être entre guillemets doubles.", "Les données copiées depuis du pseudo-JS nécessitent souvent cette correction."] },
+      { heading: "Exemple 3 : virgule finale", paragraphs: ["Beaucoup de parseurs refusent une virgule après le dernier élément.", "Retirez-la puis validez à nouveau."], bullets: ["Incorrect : {\"name\":\"Ana\",}", "Correct : {\"name\":\"Ana\"}", "Incorrect : [1,2,3,]", "Correct : [1,2,3]"] },
+      { heading: "Routine de débogage simple", paragraphs: ["Collez le payload dans un JSON Formatter puis lancez le formatage automatique.", "Corrigez d'abord la première erreur seulement, puis relancez la validation."] }
+    ] },
+  de: { title: "JSON-Parse-Fehler: Beispiele und richtig lesen", description: "Häufige JSON-Fehler verstehen und Schritt für Schritt beheben, bevor Requests an APIs gehen.", intro: "JSON-Parse-Fehler wirken oft kompliziert, sind aber meist kleine Syntaxprobleme. Wenn du Fehlermeldungen richtig liest, findest du die Ursache deutlich schneller.", categoryLabel: "Developer-Workflow", useCasesTitle: "Wann dieser Guide hilft", useCases: ["API-Payloads debuggen", "JSON-Konfigurationsdateien reparieren", "Webhook-Testdaten prüfen", "Einsteiger in Syntaxfehler einführen"], closingTitle: "Meldungen strukturiert lesen", closingText: "Position und erwartetes Token zuerst prüfen. Mit frühem Formatieren und Validieren lassen sich die meisten Fehler schnell lösen.", relatedToolLabel: "JSON Formatter öffnen", sections: [
+      { heading: "Typischer Aufbau der Fehlermeldung", paragraphs: ["Viele Meldungen enthalten: was fehlgeschlagen ist, wo es passiert ist und was erwartet wurde.", "Auch bei anderer Formulierung zeigen Zeile und Spalte meist auf die richtige Stelle."] },
+      { heading: "Beispiel 1: Komma zwischen Feldern fehlt", paragraphs: ["Das passiert häufig bei zwei Key-Value-Paaren ohne Trennkomma.", "Bei Hinweisen wie 'expected , or }' immer auch die vorherige Zeile prüfen."] },
+      { heading: "Beispiel 2: Einfache statt doppelte Anführungszeichen", paragraphs: ["Gültiges JSON braucht doppelte Anführungszeichen für Keys und Strings.", "Bei kopierten JavaScript-Objekten erst die Quotes korrigieren."] },
+      { heading: "Beispiel 3: Nachgestelltes Komma", paragraphs: ["Viele Parser erlauben kein Komma nach dem letzten Element.", "Letztes Komma entfernen und erneut validieren."], bullets: ["Falsch: {\"name\":\"Ana\",}", "Richtig: {\"name\":\"Ana\"}", "Falsch: [1,2,3,]", "Richtig: [1,2,3]"] },
+      { heading: "Wiederholbarer Debug-Workflow", paragraphs: ["Payload in den JSON Formatter einfügen und automatisch formatieren.", "Nur den ersten gemeldeten Fehler beheben und danach erneut prüfen."] }
+    ] }
+};
+
+const validateJsonBeforeApiRequestsContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: {
+    title: "How to Validate JSON Before Sending API Requests",
+    description: "Use a simple preflight checklist to validate JSON payloads and avoid avoidable API request failures.",
+    intro: "Many API errors are caused by invalid JSON, not by the API itself. A quick validation step before sending requests can save debugging time, reduce failed calls, and make integrations more reliable.",
+    categoryLabel: "Developer workflow",
+    useCasesTitle: "Where this is useful",
+    useCases: ["Testing new endpoints in staging.", "Sending webhook payloads.", "Building no-code and low-code API automations.", "Reviewing JSON before production releases."],
+    closingTitle: "Validate before you ship",
+    closingText: "A 30-second JSON check prevents many avoidable API errors. Add this step to your normal workflow and your requests will fail less often for simple syntax reasons.",
+    relatedToolLabel: "Open JSON Formatter",
+    sections: [
+      { heading: "Why validation should happen before every request", paragraphs: ["If JSON is malformed, the server cannot parse the payload correctly. You might see vague 400 errors that hide a tiny formatting mistake.", "Validation catches these issues earlier so you can focus on business logic instead of syntax cleanup."] },
+      { heading: "Preflight checklist before clicking send", paragraphs: ["Use the same short checklist each time."], bullets: ["Keys and string values use double quotes.", "No trailing commas in objects or arrays.", "Brackets and braces are balanced.", "Data types match API expectations (number, string, boolean, null).", "Required fields are present and not empty."] },
+      { heading: "Format JSON to spot structure problems", paragraphs: ["Auto-formatting makes nested objects easier to read.", "When indentation looks broken, the problem is usually near that section. Fix the structure first, then validate again."] },
+      { heading: "Validate sample payloads with real edge cases", paragraphs: ["Do not test with only one perfect example.", "Also validate payloads with optional fields missing, empty arrays, and special characters. This reveals schema assumptions before production."] },
+      { heading: "Log failed requests with context", paragraphs: ["If a request still fails, log the exact payload and response message in a safe environment.", "Comparing valid and failed payloads side by side helps isolate the issue quickly."] }
+    ]
+  },
+  ko: { title: "API 요청 전 JSON 검증하는 방법", description: "요청 전 짧은 검증 루틴으로 JSON 오류를 줄이고 API 실패를 예방하는 방법을 안내합니다.", intro: "많은 API 실패는 서버 문제가 아니라 잘못된 JSON 형식에서 시작됩니다. 전송 전에 짧게 검증하면 디버깅 시간을 줄이고 성공률을 높일 수 있습니다.", categoryLabel: "개발 워크플로", useCasesTitle: "이 가이드가 유용한 곳", useCases: ["스테이징에서 새 엔드포인트 테스트", "웹훅 페이로드 전송", "노코드/로우코드 자동화", "배포 전 요청 데이터 점검"], closingTitle: "전송 전에 검증", closingText: "30초 JSON 확인만으로도 불필요한 400 오류를 크게 줄일 수 있습니다. 요청 루틴에 고정해 두세요.", relatedToolLabel: "JSON Formatter 열기", sections: [
+      { heading: "매 요청 전에 검증해야 하는 이유", paragraphs: ["JSON 문법이 틀리면 서버는 페이로드를 제대로 파싱하지 못합니다.", "사전에 검증하면 문법 문제가 아닌 실제 로직 문제에 집중할 수 있습니다."] },
+      { heading: "전송 전 체크리스트", paragraphs: ["매번 같은 짧은 항목을 확인하세요."], bullets: ["키/문자열 값은 큰따옴표 사용", "객체·배열 끝 쉼표 제거", "중괄호/대괄호 짝 확인", "데이터 타입이 API 요구사항과 일치", "필수 필드 누락 여부 확인"] },
+      { heading: "포맷팅으로 구조 오류 찾기", paragraphs: ["자동 정렬을 하면 중첩 구조가 쉽게 보입니다.", "들여쓰기가 이상한 구간 근처에서 문법 오류가 자주 발견됩니다."] },
+      { heading: "현실적인 샘플로 검증", paragraphs: ["정상 예시 하나만으로 끝내지 마세요.", "선택 필드 누락, 빈 배열, 특수문자 케이스도 함께 점검하면 운영 오류를 줄일 수 있습니다."] },
+      { heading: "실패 요청은 문맥과 함께 기록", paragraphs: ["여전히 실패하면 안전한 환경에서 페이로드와 응답 메시지를 함께 기록하세요.", "정상/실패 요청을 나란히 비교하면 원인을 빠르게 찾을 수 있습니다."] }
+    ] },
+  ja: { title: "APIリクエスト送信前にJSONを検証する方法", description: "送信前の簡単なチェックでJSONエラーを減らし、API失敗を防ぐ実践手順を紹介します。", intro: "APIエラーの多くはサーバー側ではなく、無効なJSONが原因です。送信前に検証するだけでデバッグ時間を大きく減らせます。", categoryLabel: "開発ワークフロー", useCasesTitle: "役立つ場面", useCases: ["ステージングで新規エンドポイント検証", "Webhook payload送信", "ノーコード連携の品質確認", "本番前のJSONレビュー"], closingTitle: "送信前検証を標準化", closingText: "30秒のJSON確認で多くの400エラーを防げます。日常フローに組み込みましょう。", relatedToolLabel: "JSON Formatterを開く", sections: [
+      { heading: "なぜ毎回検証するべきか", paragraphs: ["JSONが不正だとサーバーは正しく解釈できません。", "先に検証すれば、構文ではなく業務ロジックの問題に集中できます。"] },
+      { heading: "送信前チェックリスト", paragraphs: ["毎回同じ短い項目で確認します。"], bullets: ["キーと文字列はダブルクォート", "末尾カンマがない", "括弧の対応が取れている", "型がAPI仕様と一致", "必須フィールドが欠けていない"] },
+      { heading: "整形して構造を見える化", paragraphs: ["自動整形でネスト構造の崩れを見つけやすくなります。", "インデントが不自然な箇所の近くを優先的に確認しましょう。"] },
+      { heading: "現実的なテストデータで確認", paragraphs: ["理想ケース1つだけで終わらせないでください。", "任意項目欠落、空配列、特殊文字なども検証しておくと本番事故を減らせます。"] },
+      { heading: "失敗リクエストを記録する", paragraphs: ["失敗時は安全な環境でpayloadとレスポンスを記録します。", "成功ケースと比較すると原因を特定しやすくなります。"] }
+    ] },
+  es: { title: "Cómo validar JSON antes de enviar solicitudes API", description: "Aplica una revisión rápida de JSON antes de cada request para evitar errores evitables en APIs.", intro: "Muchos fallos de API provienen de JSON inválido, no del endpoint. Validar antes de enviar ahorra tiempo de depuración y mejora la confiabilidad.", categoryLabel: "Flujo de desarrollo", useCasesTitle: "Dónde ayuda", useCases: ["Pruebas de endpoints nuevos", "Envío de payloads de webhook", "Automatizaciones no-code", "Revisión previa a producción"], closingTitle: "Valida antes de enviar", closingText: "Un chequeo de 30 segundos evita muchos errores 400 por sintaxis. Hazlo parte de tu rutina.", relatedToolLabel: "Abrir JSON Formatter", sections: [
+      { heading: "Por qué validar cada vez", paragraphs: ["Si el JSON está mal formado, el servidor no podrá parsearlo bien.", "Validar antes evita perder tiempo en errores de formato fáciles de corregir."] },
+      { heading: "Checklist previo al envío", paragraphs: ["Usa siempre la misma lista corta."], bullets: ["Claves y strings con comillas dobles", "Sin comas finales", "Corchetes y llaves balanceados", "Tipos de datos correctos", "Campos obligatorios presentes"] },
+      { heading: "Formatea para detectar estructura", paragraphs: ["El autoformato hace más visible la estructura anidada.", "Si la indentación se rompe, el error suele estar cerca."] },
+      { heading: "Valida casos reales", paragraphs: ["No pruebes solo un caso ideal.", "Incluye campos opcionales vacíos, arreglos vacíos y caracteres especiales para detectar problemas temprano."] },
+      { heading: "Registra fallos con contexto", paragraphs: ["Si aún falla, guarda payload y respuesta en un entorno seguro.", "Comparar request válida y fallida acelera el diagnóstico."] }
+    ] },
+  fr: { title: "Comment valider du JSON avant d'envoyer des requêtes API", description: "Adoptez une vérification JSON rapide avant l'envoi pour éviter des erreurs API faciles à prévenir.", intro: "Beaucoup d'erreurs API viennent d'un JSON invalide, pas de l'API elle-même. Une validation avant envoi réduit fortement le temps de débogage.", categoryLabel: "Workflow développeur", useCasesTitle: "Cas utiles", useCases: ["Tester de nouveaux endpoints", "Envoyer des payloads webhook", "Automatisations low-code/no-code", "Relecture avant mise en production"], closingTitle: "Valider avant d'envoyer", closingText: "Un contrôle de 30 secondes évite de nombreuses erreurs 400 liées à la syntaxe. Intégrez-le à votre routine.", relatedToolLabel: "Ouvrir JSON Formatter", sections: [
+      { heading: "Pourquoi valider avant chaque requête", paragraphs: ["Si le JSON est mal formé, le serveur ne peut pas l'interpréter correctement.", "Valider en amont évite des erreurs simples qui coûtent du temps."] },
+      { heading: "Checklist avant envoi", paragraphs: ["Utilisez toujours la même courte liste."], bullets: ["Clés et chaînes entre guillemets doubles", "Pas de virgule finale", "Accolades et crochets équilibrés", "Types conformes à l'API", "Champs obligatoires présents"] },
+      { heading: "Formater pour voir la structure", paragraphs: ["Le formatage automatique clarifie les objets imbriqués.", "Une indentation cassée signale souvent la zone à corriger."] },
+      { heading: "Tester des cas réalistes", paragraphs: ["N'utilisez pas uniquement un exemple parfait.", "Validez aussi des cas avec champs optionnels absents, tableaux vides ou caractères spéciaux."] },
+      { heading: "Journaliser les échecs avec contexte", paragraphs: ["En cas d'échec, conservez payload et réponse dans un environnement sûr.", "Comparer une requête valide et une requête échouée accélère l'analyse."] }
+    ] },
+  de: { title: "JSON vor API-Requests validieren: So geht's", description: "Mit einer kurzen Vorabprüfung JSON-Fehler vermeiden und API-Requests stabiler machen.", intro: "Viele API-Fehler entstehen durch ungültiges JSON statt durch das API-System selbst. Eine schnelle Validierung vor dem Senden spart Debug-Zeit.", categoryLabel: "Developer-Workflow", useCasesTitle: "Wann das hilft", useCases: ["Neue Endpoints testen", "Webhook-Payloads senden", "No-Code-Automationen prüfen", "Vor Produktions-Release validieren"], closingTitle: "Vor dem Senden prüfen", closingText: "Ein 30-Sekunden-Check verhindert viele 400-Fehler durch Syntax. Mach ihn zum festen Teil deines Ablaufs.", relatedToolLabel: "JSON Formatter öffnen", sections: [
+      { heading: "Warum vor jedem Request validieren", paragraphs: ["Fehlerhaftes JSON kann vom Server nicht korrekt geparst werden.", "Frühe Validierung verhindert vermeidbare Formatfehler."] },
+      { heading: "Preflight-Checkliste", paragraphs: ["Nutze immer dieselbe kurze Liste."], bullets: ["Keys und Strings mit doppelten Anführungszeichen", "Keine nachgestellten Kommata", "Klammern korrekt geschlossen", "Datentypen laut API-Schema", "Pflichtfelder vorhanden"] },
+      { heading: "Mit Formatierung Strukturfehler erkennen", paragraphs: ["Auto-Formatierung macht verschachtelte Strukturen lesbar.", "Bei kaputter Einrückung liegt der Fehler meist in diesem Bereich."] },
+      { heading: "Mit realistischen Fällen testen", paragraphs: ["Nicht nur den perfekten Beispiel-Payload prüfen.", "Teste auch fehlende optionale Felder, leere Arrays und Sonderzeichen."] },
+      { heading: "Fehlgeschlagene Requests mit Kontext loggen", paragraphs: ["Bei Fehlern Payload und Antwort in sicherer Umgebung protokollieren.", "Der Vergleich mit einem funktionierenden Request zeigt die Ursache oft schnell."] }
+    ] }
+};
+
 const guideDefinitions: Array<Omit<GuideItem, "content"> & { content: Record<LocaleCode, GuideLocalizedContent> }> = [
   {
     slug: "how-to-use-html-color-picker",
@@ -2085,6 +2369,43 @@ const guideDefinitions: Array<Omit<GuideItem, "content"> & { content: Record<Loc
     publishedAt: "2026-04-03",
     updatedAt: "2026-04-03",
     content: whenNotToUseWebpContent
+  },
+
+  {
+    slug: "compress-images-for-page-speed",
+    category: "color-image",
+    relatedToolSlug: "image-compressor",
+    relatedGuideSlugs: ["how-to-convert-images-to-webp", "best-image-file-size-for-websites"],
+    publishedAt: "2026-04-04",
+    updatedAt: "2026-04-04",
+    content: compressImagesForPageSpeedContent
+  },
+  {
+    slug: "best-image-file-size-for-websites",
+    category: "color-image",
+    relatedToolSlug: "image-compressor",
+    relatedGuideSlugs: ["compress-images-for-page-speed", "png-vs-jpg-vs-webp"],
+    publishedAt: "2026-04-04",
+    updatedAt: "2026-04-04",
+    content: bestImageFileSizeForWebsitesContent
+  },
+  {
+    slug: "json-parse-error-examples",
+    category: "developer",
+    relatedToolSlug: "json-formatter",
+    relatedGuideSlugs: ["json-formatting-basics", "how-to-use-a-json-formatter-for-debugging"],
+    publishedAt: "2026-04-04",
+    updatedAt: "2026-04-04",
+    content: jsonParseErrorExamplesContent
+  },
+  {
+    slug: "validate-json-before-api-requests",
+    category: "developer",
+    relatedToolSlug: "json-formatter",
+    relatedGuideSlugs: ["json-formatting-basics", "json-parse-error-examples"],
+    publishedAt: "2026-04-04",
+    updatedAt: "2026-04-04",
+    content: validateJsonBeforeApiRequestsContent
   },
 
   {
