@@ -1255,7 +1255,7 @@ const openGraphImageSizeGuideContent: Record<LocaleCode, GuideLocalizedContent> 
     useCases: ["Launching blog posts and landing pages.", "Updating a site-wide social preview template.", "Fixing inconsistent previews across teams.", "Preparing multilingual page assets."],
     closingTitle: "Use one reliable baseline",
     closingText: "Pick one recommended size, reuse it consistently, and test before publishing. That simple workflow prevents most preview-image issues.",
-    relatedToolLabel: "Open the Open Graph Checker / Preview",
+    relatedToolLabel: "Open Open Graph Checker",
     sections: [
       { heading: "Start with a safe default size", paragraphs: ["For most websites, 1200×630 pixels is the most reliable Open Graph image size. It fits the common 1.91:1 ratio used by major social platforms.", "You can publish larger images with the same ratio, but this baseline is usually enough for sharp previews and predictable rendering."] },
       { heading: "Keep the composition center-safe", paragraphs: ["Some apps crop previews slightly differently. Keep logos, faces, and key text near the center area so they are not cut off.", "Avoid placing important text too close to the edges, especially on the top and bottom."] },
@@ -1273,7 +1273,7 @@ const openGraphImageSizeGuideContent: Record<LocaleCode, GuideLocalizedContent> 
     useCases: ["새 글/랜딩 페이지 발행", "팀 공통 썸네일 템플릿 정리", "채널별 미리보기 불일치 해결", "다국어 페이지 자산 준비"],
     closingTitle: "기준 하나로 통일하세요",
     closingText: "권장 크기를 하나 정하고 반복 적용한 뒤 게시 전에 미리보기 점검만 해도 공유 품질이 크게 좋아집니다.",
-    relatedToolLabel: "Open Graph Checker / Preview 열기",
+    relatedToolLabel: "Open Graph 검사기 열기",
     sections: [
       { heading: "안전한 기본값부터 사용", paragraphs: ["대부분의 사이트에서는 1200×630px(1.91:1)이 가장 안정적입니다.", "같은 비율로 더 크게 만들 수도 있지만, 기본 운영에는 이 크기면 충분한 경우가 많습니다."] },
       { heading: "중앙 중심으로 배치", paragraphs: ["플랫폼마다 미세한 크롭 차이가 있어 가장 중요한 요소는 중앙 근처에 두는 것이 안전합니다.", "특히 상하 가장자리에는 핵심 문구를 붙이지 마세요."] },
@@ -1291,7 +1291,7 @@ const openGraphImageSizeGuideContent: Record<LocaleCode, GuideLocalizedContent> 
     useCases: ["記事やLP公開前の最終確認", "チーム共通テンプレート作成", "プレビュー表示の不一致修正", "多言語ページ用画像の準備"],
     closingTitle: "基準を固定して再利用する",
     closingText: "推奨サイズを1つ決め、毎回同じ手順で確認するだけで、共有プレビューのトラブルは大きく減らせます。",
-    relatedToolLabel: "Open Graph Checker / Previewを開く",
+    relatedToolLabel: "Open Graphチェッカーを開く",
     sections: [
       { heading: "まずは安全な標準サイズ", paragraphs: ["一般的には1200×630px（1.91:1）が最も使いやすい標準です。", "同じ比率で大きくすることも可能ですが、通常運用ではこのサイズで十分です。"] },
       { heading: "重要要素は中央寄せ", paragraphs: ["アプリごとにトリミングが少し異なるため、ロゴや文字は中央付近に配置しましょう。", "端に重要テキストを置くと欠けるリスクが上がります。"] },
@@ -1309,7 +1309,7 @@ const openGraphImageSizeGuideContent: Record<LocaleCode, GuideLocalizedContent> 
     useCases: ["Publicar artículos o landing pages.", "Unificar plantillas de preview en el equipo.", "Corregir previews inconsistentes.", "Preparar recursos para páginas multilingües."],
     closingTitle: "Define una base y repítela",
     closingText: "Con una dimensión base, metadatos coherentes y una prueba rápida antes de publicar, la mayoría de problemas desaparece.",
-    relatedToolLabel: "Abrir Open Graph Checker / Preview",
+    relatedToolLabel: "Abrir verificador Open Graph",
     sections: [
       { heading: "Empieza con un tamaño seguro", paragraphs: ["Para la mayoría de sitios, 1200×630 px es la opción más confiable (relación 1.91:1).", "Puedes usar tamaños mayores con la misma proporción, pero este estándar suele bastar."] },
       { heading: "Diseña pensando en recortes", paragraphs: ["Algunas plataformas recortan distinto. Mantén logo y texto importante cerca del centro.", "Evita ubicar contenido clave pegado a los bordes."] },
@@ -1327,7 +1327,7 @@ const openGraphImageSizeGuideContent: Record<LocaleCode, GuideLocalizedContent> 
     useCases: ["Publication d'articles et pages de campagne.", "Standardisation d'un template social.", "Correction d'aperçus incohérents.", "Préparation d'assets multilingues."],
     closingTitle: "Fixez une base unique",
     closingText: "Adoptez une dimension de référence, gardez des métadonnées cohérentes et vérifiez avant publication pour éviter la majorité des erreurs.",
-    relatedToolLabel: "Ouvrir Open Graph Checker / Preview",
+    relatedToolLabel: "Ouvrir le vérificateur Open Graph",
     sections: [
       { heading: "Utiliser une dimension de référence", paragraphs: ["Dans la plupart des cas, 1200×630 px (ratio 1,91:1) est la valeur la plus sûre.", "Vous pouvez exporter plus grand avec le même ratio, mais cette base suffit généralement."] },
       { heading: "Protéger la zone centrale", paragraphs: ["Chaque plateforme recadre légèrement différemment. Placez logo et texte important au centre.", "Évitez les informations critiques collées aux bords."] },
@@ -1345,7 +1345,7 @@ const openGraphImageSizeGuideContent: Record<LocaleCode, GuideLocalizedContent> 
     useCases: ["Neue Artikel oder Landingpages veröffentlichen.", "Teamweite Preview-Vorlage festlegen.", "Unklare Vorschauen beheben.", "Assets für mehrsprachige Seiten vorbereiten."],
     closingTitle: "Eine verlässliche Basis reicht",
     closingText: "Lege ein Standardmaß fest, nutze es konsequent und teste vor dem Teilen. Damit vermeidest du die meisten OG-Bildprobleme.",
-    relatedToolLabel: "Open Graph Checker / Preview öffnen",
+    relatedToolLabel: "Open-Graph-Prüfer öffnen",
     sections: [
       { heading: "Mit einem sicheren Standard starten", paragraphs: ["Für die meisten Websites ist 1200×630 px (1,91:1) der zuverlässigste Standard.", "Größere Varianten mit gleichem Verhältnis sind möglich, aber meist nicht nötig."] },
       { heading: "Wichtige Inhalte mittig platzieren", paragraphs: ["Plattformen schneiden Vorschauen leicht unterschiedlich zu. Lege Logo und Kernaussage in die Mitte.", "Wichtiger Text sollte nicht zu nah am Rand stehen."] },
@@ -1366,7 +1366,7 @@ const fixMissingSocialPreviewImagesContent: Record<LocaleCode, GuideLocalizedCon
     useCases: ["A new page shows only text in previews.", "Old image keeps showing after an update.", "Preview works in one app but fails in another.", "Team needs a repeatable QA checklist."],
     closingTitle: "Debug in order, not by guesswork",
     closingText: "Check tags, image URL, and cache in sequence. This prevents random fixes and saves publishing time.",
-    relatedToolLabel: "Open the Open Graph Checker / Preview",
+    relatedToolLabel: "Open Open Graph Checker",
     sections: [
       { heading: "Check required OG tags first", paragraphs: ["Confirm your page outputs og:title, og:description, and og:image in the HTML head.", "Missing or malformed og:image is the most common cause of blank previews."] },
       { heading: "Verify the image URL is usable by crawlers", paragraphs: ["The og:image value should be an absolute HTTPS URL, not a relative path.", "Open the image URL in an incognito window to ensure it is public and not blocked by auth, hotlink protection, or robots rules."] },
@@ -1384,7 +1384,7 @@ const fixMissingSocialPreviewImagesContent: Record<LocaleCode, GuideLocalizedCon
     useCases: ["새 페이지 공유 시 이미지 없음", "이미지 교체 후 예전 썸네일 고정", "플랫폼별 표시 결과 불일치", "팀 공통 QA 체크리스트 필요"],
     closingTitle: "추측보다 순서 점검",
     closingText: "태그 → 이미지 URL → 캐시 순서로 확인하면 불필요한 재작업을 줄일 수 있습니다.",
-    relatedToolLabel: "Open Graph Checker / Preview 열기",
+    relatedToolLabel: "Open Graph 검사기 열기",
     sections: [
       { heading: "필수 OG 태그 먼저 확인", paragraphs: ["페이지 head에 og:title, og:description, og:image가 있는지 확인하세요.", "특히 og:image 누락/오타가 가장 흔한 원인입니다."] },
       { heading: "크롤러가 이미지에 접근 가능한지 확인", paragraphs: ["og:image는 상대경로가 아닌 절대 HTTPS URL이어야 합니다.", "시크릿 창에서 URL을 직접 열어 로그인 없이 접근 가능한지 확인하세요."] },
@@ -1402,7 +1402,7 @@ const fixMissingSocialPreviewImagesContent: Record<LocaleCode, GuideLocalizedCon
     useCases: ["新規ページで画像が出ない", "画像更新後も古いサムネイルが残る", "アプリごとに表示が違う", "公開前の確認手順を統一したい"],
     closingTitle: "順番に確認するのが最短",
     closingText: "タグ、画像URL、キャッシュの順に確認すれば、場当たり対応を減らせます。",
-    relatedToolLabel: "Open Graph Checker / Previewを開く",
+    relatedToolLabel: "Open Graphチェッカーを開く",
     sections: [
       { heading: "まず必須OGタグを確認", paragraphs: ["head内にog:title、og:description、og:imageがあるか確認します。", "特にog:imageの欠落や記述ミスは最も多い原因です。"] },
       { heading: "クローラーが画像URLへ到達できるか", paragraphs: ["og:imageは相対パスではなくHTTPSの絶対URLを使います。", "シークレットウィンドウで画像URLを開き、認証不要で見えるか確認してください。"] },
@@ -1420,7 +1420,7 @@ const fixMissingSocialPreviewImagesContent: Record<LocaleCode, GuideLocalizedCon
     useCases: ["Nueva página sin imagen en preview.", "Sigue saliendo la imagen antigua.", "Funciona en una red pero falla en otra.", "Necesitas checklist para el equipo."],
     closingTitle: "Diagnostica por pasos",
     closingText: "Revisar etiquetas, URL y caché en orden evita pruebas aleatorias y acelera la publicación.",
-    relatedToolLabel: "Abrir Open Graph Checker / Preview",
+    relatedToolLabel: "Abrir verificador Open Graph",
     sections: [
       { heading: "Revisa primero las etiquetas OG", paragraphs: ["Confirma en el head que existen og:title, og:description y og:image.", "La ausencia o error en og:image es la causa más frecuente."] },
       { heading: "Comprueba que el bot puede abrir la imagen", paragraphs: ["og:image debe ser una URL absoluta con HTTPS.", "Abre la URL en incógnito para validar acceso público sin login."] },
@@ -1438,7 +1438,7 @@ const fixMissingSocialPreviewImagesContent: Record<LocaleCode, GuideLocalizedCon
     useCases: ["Nouvelle page sans image d'aperçu.", "Ancienne image toujours affichée.", "Résultat différent selon la plateforme.", "Besoin d'une checklist équipe."],
     closingTitle: "Vérifier dans le bon ordre",
     closingText: "Tags, URL image, puis cache : cette séquence évite les corrections au hasard.",
-    relatedToolLabel: "Ouvrir Open Graph Checker / Preview",
+    relatedToolLabel: "Ouvrir le vérificateur Open Graph",
     sections: [
       { heading: "Contrôler les balises OG essentielles", paragraphs: ["Vérifiez la présence de og:title, og:description et og:image dans le head.", "Une balise og:image manquante ou invalide est la panne la plus courante."] },
       { heading: "Vérifier l'accès crawler à l'image", paragraphs: ["La valeur og:image doit être une URL absolue HTTPS.", "Testez l'URL en navigation privée pour confirmer l'accès public."] },
@@ -1456,7 +1456,7 @@ const fixMissingSocialPreviewImagesContent: Record<LocaleCode, GuideLocalizedCon
     useCases: ["Neue Seite zeigt keine Bildvorschau.", "Altes Bild bleibt trotz Update sichtbar.", "Je Plattform anderes Ergebnis.", "Team braucht reproduzierbare QA-Schritte."],
     closingTitle: "Systematisch statt zufällig testen",
     closingText: "Prüfe zuerst Tags, dann Bild-URL, dann Cache. So sparst du Zeit und vermeidest Trial-and-Error.",
-    relatedToolLabel: "Open Graph Checker / Preview öffnen",
+    relatedToolLabel: "Open-Graph-Prüfer öffnen",
     sections: [
       { heading: "Zuerst die Pflicht-Tags prüfen", paragraphs: ["Im head sollten og:title, og:description und og:image vorhanden sein.", "Fehlende oder falsche og:image-Angaben sind die häufigste Ursache."] },
       { heading: "Bild-URL für Crawler verifizieren", paragraphs: ["og:image muss eine absolute HTTPS-URL sein.", "Öffne die Bild-URL im Inkognito-Modus und prüfe öffentlichen Zugriff ohne Login."] },
