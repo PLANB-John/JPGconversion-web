@@ -17,7 +17,11 @@ export type GuideSlug =
   | "how-to-extract-youtube-thumbnails"
   | "how-to-convert-timestamps-quickly"
   | "how-to-use-a-json-formatter-for-debugging"
-  | "how-to-convert-images-to-webp";
+  | "how-to-convert-images-to-webp"
+  | "open-graph-image-size-guide"
+  | "fix-missing-social-preview-images"
+  | "png-vs-jpg-vs-webp"
+  | "when-not-to-use-webp";
 
 type GuideSection = {
   heading: string;
@@ -1235,6 +1239,452 @@ const commonUtmTaggingMistakesContent: Record<LocaleCode, GuideLocalizedContent>
   }
 };
 
+
+
+const openGraphImageSizeGuideContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: {
+    title: "Recommended Open Graph Image Size for Social Sharing",
+    description: "Use practical OG image dimensions so shared links show a clean preview on social apps and messaging platforms.",
+    intro: "If your shared links look cropped, blurry, or inconsistent, the image size is often the cause. A clear Open Graph image standard helps every new page look better when shared.",
+    categoryLabel: "Social preview",
+    useCasesTitle: "When this guide helps",
+    useCases: ["Launching blog posts and landing pages.", "Updating a site-wide social preview template.", "Fixing inconsistent previews across teams.", "Preparing multilingual page assets."],
+    closingTitle: "Use one reliable baseline",
+    closingText: "Pick one recommended size, reuse it consistently, and test before publishing. That simple workflow prevents most preview-image issues.",
+    relatedToolLabel: "Open the Open Graph Checker / Preview",
+    sections: [
+      { heading: "Start with a safe default size", paragraphs: ["For most websites, 1200×630 pixels is the most reliable Open Graph image size. It fits the common 1.91:1 ratio used by major social platforms.", "You can publish larger images with the same ratio, but this baseline is usually enough for sharp previews and predictable rendering."] },
+      { heading: "Keep the composition center-safe", paragraphs: ["Some apps crop previews slightly differently. Keep logos, faces, and key text near the center area so they are not cut off.", "Avoid placing important text too close to the edges, especially on the top and bottom."] },
+      { heading: "Practical export checklist", paragraphs: ["Before upload, run a quick quality pass."], bullets: ["Use 1200×630 as your primary export.", "Use JPG for photos, PNG when sharp text or flat graphics matter.", "Keep file size reasonable so bots can fetch it quickly.", "Use an absolute HTTPS URL in og:image.", "Make sure the image is publicly accessible (no login needed)."] },
+      { heading: "Match your metadata and image", paragraphs: ["A strong preview is not just the image. Keep og:title, og:description, and the visual message aligned.", "When title and image conflict, users trust the preview less and click less often."] },
+      { heading: "Test after publishing", paragraphs: ["After updating metadata, run the page URL through an Open Graph checker to confirm the fetched image and text.", "If old data still appears, request recrawl or clear caches in the platform debugger."] }
+    ]
+  },
+  ko: {
+    title: "소셜 공유용 권장 Open Graph 이미지 크기",
+    description: "공유 링크 미리보기가 안정적으로 보이도록 실무에서 쓰기 좋은 OG 이미지 크기 기준을 정리합니다.",
+    intro: "공유했을 때 이미지가 잘리거나 흐리게 보인다면 크기 비율이 원인인 경우가 많습니다. OG 이미지 기준을 하나로 정하면 대부분의 문제를 미리 막을 수 있습니다.",
+    categoryLabel: "소셜 미리보기",
+    useCasesTitle: "이럴 때 유용합니다",
+    useCases: ["새 글/랜딩 페이지 발행", "팀 공통 썸네일 템플릿 정리", "채널별 미리보기 불일치 해결", "다국어 페이지 자산 준비"],
+    closingTitle: "기준 하나로 통일하세요",
+    closingText: "권장 크기를 하나 정하고 반복 적용한 뒤 게시 전에 미리보기 점검만 해도 공유 품질이 크게 좋아집니다.",
+    relatedToolLabel: "Open Graph Checker / Preview 열기",
+    sections: [
+      { heading: "안전한 기본값부터 사용", paragraphs: ["대부분의 사이트에서는 1200×630px(1.91:1)이 가장 안정적입니다.", "같은 비율로 더 크게 만들 수도 있지만, 기본 운영에는 이 크기면 충분한 경우가 많습니다."] },
+      { heading: "중앙 중심으로 배치", paragraphs: ["플랫폼마다 미세한 크롭 차이가 있어 가장 중요한 요소는 중앙 근처에 두는 것이 안전합니다.", "특히 상하 가장자리에는 핵심 문구를 붙이지 마세요."] },
+      { heading: "내보내기 체크리스트", paragraphs: ["업로드 전에 아래 항목만 빠르게 확인하세요."], bullets: ["기본 1200×630으로 제작", "사진은 JPG, 선명한 텍스트/도형은 PNG 검토", "파일 용량을 과도하게 키우지 않기", "og:image에 절대 HTTPS URL 사용", "로그인 없이 접근 가능한 공개 이미지 사용"] },
+      { heading: "메타데이터와 메시지 일치", paragraphs: ["이미지만 좋다고 충분하지 않습니다. 제목/설명과 이미지 메시지가 같은 방향이어야 합니다.", "불일치하면 신뢰도가 떨어져 클릭률에도 불리합니다."] },
+      { heading: "게시 후 즉시 테스트", paragraphs: ["URL을 OG 미리보기 도구로 확인해 실제로 어떤 이미지가 읽히는지 점검하세요.", "기존 캐시가 남아 있으면 디버거에서 재수집을 요청하세요."] }
+    ]
+  },
+  ja: {
+    title: "ソーシャル共有向けOpen Graph画像の推奨サイズ",
+    description: "共有リンクの見え方を安定させるために、実務で使いやすいOG画像サイズの基準を紹介します。",
+    intro: "共有時に画像が切れる・ぼやける場合、原因はサイズや比率であることが多いです。最初に基準を決めると運用が安定します。",
+    categoryLabel: "ソーシャルプレビュー",
+    useCasesTitle: "役立つ場面",
+    useCases: ["記事やLP公開前の最終確認", "チーム共通テンプレート作成", "プレビュー表示の不一致修正", "多言語ページ用画像の準備"],
+    closingTitle: "基準を固定して再利用する",
+    closingText: "推奨サイズを1つ決め、毎回同じ手順で確認するだけで、共有プレビューのトラブルは大きく減らせます。",
+    relatedToolLabel: "Open Graph Checker / Previewを開く",
+    sections: [
+      { heading: "まずは安全な標準サイズ", paragraphs: ["一般的には1200×630px（1.91:1）が最も使いやすい標準です。", "同じ比率で大きくすることも可能ですが、通常運用ではこのサイズで十分です。"] },
+      { heading: "重要要素は中央寄せ", paragraphs: ["アプリごとにトリミングが少し異なるため、ロゴや文字は中央付近に配置しましょう。", "端に重要テキストを置くと欠けるリスクが上がります。"] },
+      { heading: "書き出し時チェック", paragraphs: ["公開前に次を確認します。"], bullets: ["1200×630で書き出す", "写真はJPG、文字中心デザインはPNGも検討", "ファイルを重くしすぎない", "og:imageはHTTPSの絶対URLにする", "画像が公開アクセス可能か確認する"] },
+      { heading: "タイトルと画像の整合", paragraphs: ["画像だけでなく、og:titleとog:descriptionとの一貫性も重要です。", "内容がずれるとプレビューの信頼感が下がります。"] },
+      { heading: "公開後にプレビュー検証", paragraphs: ["OGチェッカーでURLを読み込み、実際の取得画像を確認してください。", "古いキャッシュが残る場合は再クロールを依頼します。"] }
+    ]
+  },
+  es: {
+    title: "Tamaño recomendado de imagen Open Graph para compartir",
+    description: "Usa dimensiones OG prácticas para que tus enlaces se vean claros al compartir en redes y apps de mensajería.",
+    intro: "Si una vista previa sale cortada o borrosa, normalmente el problema está en el tamaño de la imagen. Definir un estándar OG evita muchos errores.",
+    categoryLabel: "Vista previa social",
+    useCasesTitle: "Cuándo conviene",
+    useCases: ["Publicar artículos o landing pages.", "Unificar plantillas de preview en el equipo.", "Corregir previews inconsistentes.", "Preparar recursos para páginas multilingües."],
+    closingTitle: "Define una base y repítela",
+    closingText: "Con una dimensión base, metadatos coherentes y una prueba rápida antes de publicar, la mayoría de problemas desaparece.",
+    relatedToolLabel: "Abrir Open Graph Checker / Preview",
+    sections: [
+      { heading: "Empieza con un tamaño seguro", paragraphs: ["Para la mayoría de sitios, 1200×630 px es la opción más confiable (relación 1.91:1).", "Puedes usar tamaños mayores con la misma proporción, pero este estándar suele bastar."] },
+      { heading: "Diseña pensando en recortes", paragraphs: ["Algunas plataformas recortan distinto. Mantén logo y texto importante cerca del centro.", "Evita ubicar contenido clave pegado a los bordes."] },
+      { heading: "Checklist rápida de exportación", paragraphs: ["Antes de subir la imagen, revisa:"], bullets: ["Exportar en 1200×630.", "JPG para fotos, PNG para texto/gráficos nítidos.", "Peso de archivo razonable.", "Usar URL absoluta HTTPS en og:image.", "Confirmar acceso público sin login."] },
+      { heading: "Alinea imagen y metadatos", paragraphs: ["El preview funciona mejor cuando imagen, título y descripción cuentan el mismo mensaje.", "Si se contradicen, baja la confianza y el clic."] },
+      { heading: "Prueba después de publicar", paragraphs: ["Valida la URL en el checker para ver qué está leyendo el bot realmente.", "Si aparece una versión antigua, fuerza recrawl o limpia caché."] }
+    ]
+  },
+  fr: {
+    title: "Taille recommandée d'image Open Graph pour le partage",
+    description: "Utilisez des dimensions OG fiables pour obtenir des aperçus clairs lors du partage sur réseaux sociaux et messageries.",
+    intro: "Quand un aperçu est flou ou recadré, le format de l'image est souvent en cause. Une règle simple de dimension OG évite ces problèmes.",
+    categoryLabel: "Aperçu social",
+    useCasesTitle: "Quand ce guide aide le plus",
+    useCases: ["Publication d'articles et pages de campagne.", "Standardisation d'un template social.", "Correction d'aperçus incohérents.", "Préparation d'assets multilingues."],
+    closingTitle: "Fixez une base unique",
+    closingText: "Adoptez une dimension de référence, gardez des métadonnées cohérentes et vérifiez avant publication pour éviter la majorité des erreurs.",
+    relatedToolLabel: "Ouvrir Open Graph Checker / Preview",
+    sections: [
+      { heading: "Utiliser une dimension de référence", paragraphs: ["Dans la plupart des cas, 1200×630 px (ratio 1,91:1) est la valeur la plus sûre.", "Vous pouvez exporter plus grand avec le même ratio, mais cette base suffit généralement."] },
+      { heading: "Protéger la zone centrale", paragraphs: ["Chaque plateforme recadre légèrement différemment. Placez logo et texte important au centre.", "Évitez les informations critiques collées aux bords."] },
+      { heading: "Checklist d'export", paragraphs: ["Avant publication, vérifiez :"], bullets: ["Image en 1200×630.", "JPG pour photo, PNG pour texte/graphismes nets.", "Poids de fichier raisonnable.", "URL HTTPS absolue dans og:image.", "Image accessible publiquement."] },
+      { heading: "Aligner visuel et balises", paragraphs: ["L'image doit raconter la même chose que le titre et la description OG.", "Une incohérence réduit la confiance au clic."] },
+      { heading: "Tester après mise en ligne", paragraphs: ["Passez l'URL dans un checker OG pour voir l'aperçu réel.", "Si l'ancienne image reste affichée, demandez un nouveau crawl."] }
+    ]
+  },
+  de: {
+    title: "Empfohlene Open-Graph-Bildgröße für Social Sharing",
+    description: "Nutze praxistaugliche OG-Bildmaße, damit geteilte Links in sozialen Netzwerken sauber dargestellt werden.",
+    intro: "Wenn Link-Vorschauen abgeschnitten oder unscharf wirken, liegt es oft an Größe und Seitenverhältnis des Bildes. Ein fester OG-Standard schafft Konsistenz.",
+    categoryLabel: "Social Preview",
+    useCasesTitle: "Wann das besonders hilft",
+    useCases: ["Neue Artikel oder Landingpages veröffentlichen.", "Teamweite Preview-Vorlage festlegen.", "Unklare Vorschauen beheben.", "Assets für mehrsprachige Seiten vorbereiten."],
+    closingTitle: "Eine verlässliche Basis reicht",
+    closingText: "Lege ein Standardmaß fest, nutze es konsequent und teste vor dem Teilen. Damit vermeidest du die meisten OG-Bildprobleme.",
+    relatedToolLabel: "Open Graph Checker / Preview öffnen",
+    sections: [
+      { heading: "Mit einem sicheren Standard starten", paragraphs: ["Für die meisten Websites ist 1200×630 px (1,91:1) der zuverlässigste Standard.", "Größere Varianten mit gleichem Verhältnis sind möglich, aber meist nicht nötig."] },
+      { heading: "Wichtige Inhalte mittig platzieren", paragraphs: ["Plattformen schneiden Vorschauen leicht unterschiedlich zu. Lege Logo und Kernaussage in die Mitte.", "Wichtiger Text sollte nicht zu nah am Rand stehen."] },
+      { heading: "Praktische Export-Checkliste", paragraphs: ["Vor dem Upload kurz prüfen:"], bullets: ["Primär in 1200×630 exportieren.", "JPG für Fotos, PNG für scharfe Textgrafiken.", "Dateigröße sinnvoll halten.", "In og:image eine absolute HTTPS-URL nutzen.", "Bild muss öffentlich erreichbar sein."] },
+      { heading: "Metadaten und Bild abstimmen", paragraphs: ["Eine gute Vorschau braucht konsistente Botschaften in Bild, Titel und Beschreibung.", "Widersprüche wirken unklar und senken die Klickwahrscheinlichkeit."] },
+      { heading: "Nach Veröffentlichung testen", paragraphs: ["URL im OG-Checker prüfen und geladene Vorschau kontrollieren.", "Bei altem Cache einen erneuten Crawl anstoßen."] }
+    ]
+  }
+};
+
+const fixMissingSocialPreviewImagesContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: {
+    title: "How to Fix Missing Preview Images on Shared Links",
+    description: "Troubleshoot missing social preview images with a clear step-by-step Open Graph workflow.",
+    intro: "When a shared link shows no image, the issue is usually metadata, image access, or cache behavior. A short debugging sequence can solve most cases quickly.",
+    categoryLabel: "Social preview",
+    useCasesTitle: "Common situations",
+    useCases: ["A new page shows only text in previews.", "Old image keeps showing after an update.", "Preview works in one app but fails in another.", "Team needs a repeatable QA checklist."],
+    closingTitle: "Debug in order, not by guesswork",
+    closingText: "Check tags, image URL, and cache in sequence. This prevents random fixes and saves publishing time.",
+    relatedToolLabel: "Open the Open Graph Checker / Preview",
+    sections: [
+      { heading: "Check required OG tags first", paragraphs: ["Confirm your page outputs og:title, og:description, and og:image in the HTML head.", "Missing or malformed og:image is the most common cause of blank previews."] },
+      { heading: "Verify the image URL is usable by crawlers", paragraphs: ["The og:image value should be an absolute HTTPS URL, not a relative path.", "Open the image URL in an incognito window to ensure it is public and not blocked by auth, hotlink protection, or robots rules."] },
+      { heading: "Validate image format and size", paragraphs: ["Some previews fail because the image is too small, too large, or in an unusual format.", "Use a standard size like 1200×630 and common formats such as JPG or PNG for safer compatibility."] },
+      { heading: "Handle cache and recrawl", paragraphs: ["Social platforms cache previews. Even after fixing tags, old results can remain.", "Use platform debugger tools or your OG checker to trigger a fresh scrape."] },
+      { heading: "Quick troubleshooting checklist", paragraphs: ["Run this short list before publishing."], bullets: ["og:image exists in page source.", "Image URL is absolute, HTTPS, and public.", "Image is not blocked by headers or robots settings.", "Dimensions are social-preview friendly.", "Preview re-scrape has been requested."] }
+    ]
+  },
+  ko: {
+    title: "공유 링크에서 미리보기 이미지가 안 나올 때 해결 방법",
+    description: "OG 메타데이터, 이미지 접근성, 캐시를 순서대로 점검해 미리보기 이미지 누락 문제를 빠르게 해결하세요.",
+    intro: "공유 링크에 이미지가 보이지 않는 문제는 대부분 태그 누락, URL 접근 제한, 캐시 이슈로 설명됩니다. 점검 순서만 지켜도 빠르게 해결할 수 있습니다.",
+    categoryLabel: "소셜 미리보기",
+    useCasesTitle: "자주 발생하는 상황",
+    useCases: ["새 페이지 공유 시 이미지 없음", "이미지 교체 후 예전 썸네일 고정", "플랫폼별 표시 결과 불일치", "팀 공통 QA 체크리스트 필요"],
+    closingTitle: "추측보다 순서 점검",
+    closingText: "태그 → 이미지 URL → 캐시 순서로 확인하면 불필요한 재작업을 줄일 수 있습니다.",
+    relatedToolLabel: "Open Graph Checker / Preview 열기",
+    sections: [
+      { heading: "필수 OG 태그 먼저 확인", paragraphs: ["페이지 head에 og:title, og:description, og:image가 있는지 확인하세요.", "특히 og:image 누락/오타가 가장 흔한 원인입니다."] },
+      { heading: "크롤러가 이미지에 접근 가능한지 확인", paragraphs: ["og:image는 상대경로가 아닌 절대 HTTPS URL이어야 합니다.", "시크릿 창에서 URL을 직접 열어 로그인 없이 접근 가능한지 확인하세요."] },
+      { heading: "포맷과 크기 점검", paragraphs: ["너무 작은 이미지, 비표준 형식은 미리보기 실패를 유발할 수 있습니다.", "1200×630 JPG/PNG 같은 안전한 조합을 권장합니다."] },
+      { heading: "캐시 재수집 처리", paragraphs: ["소셜 플랫폼은 미리보기를 캐시합니다. 수정 후에도 이전 결과가 남을 수 있습니다.", "디버거/체커로 재수집을 요청해 최신 데이터를 반영하세요."] },
+      { heading: "게시 전 체크리스트", paragraphs: ["아래 항목을 최종 확인하세요."], bullets: ["소스에 og:image 존재", "절대 HTTPS 공개 URL 사용", "헤더/robots로 차단되지 않음", "크기 비율이 미리보기 친화적", "재수집 요청 완료"] }
+    ]
+  },
+  ja: {
+    title: "共有リンクでプレビュー画像が出ないときの直し方",
+    description: "OGタグ、画像URL、キャッシュを順番に確認して、プレビュー画像が表示されない問題を解決します。",
+    intro: "リンク共有時に画像が出ない原因は、タグ不足・画像アクセス不可・キャッシュのいずれかであることが多いです。短い手順で切り分けできます。",
+    categoryLabel: "ソーシャルプレビュー",
+    useCasesTitle: "よくあるケース",
+    useCases: ["新規ページで画像が出ない", "画像更新後も古いサムネイルが残る", "アプリごとに表示が違う", "公開前の確認手順を統一したい"],
+    closingTitle: "順番に確認するのが最短",
+    closingText: "タグ、画像URL、キャッシュの順に確認すれば、場当たり対応を減らせます。",
+    relatedToolLabel: "Open Graph Checker / Previewを開く",
+    sections: [
+      { heading: "まず必須OGタグを確認", paragraphs: ["head内にog:title、og:description、og:imageがあるか確認します。", "特にog:imageの欠落や記述ミスは最も多い原因です。"] },
+      { heading: "クローラーが画像URLへ到達できるか", paragraphs: ["og:imageは相対パスではなくHTTPSの絶対URLを使います。", "シークレットウィンドウで画像URLを開き、認証不要で見えるか確認してください。"] },
+      { heading: "画像サイズと形式を見直す", paragraphs: ["小さすぎる画像や特殊形式は失敗の原因になります。", "1200×630のJPG/PNGを基本にすると互換性が高いです。"] },
+      { heading: "キャッシュを更新する", paragraphs: ["SNSはプレビューをキャッシュします。修正後もしばらく古い表示が残ることがあります。", "デバッガーやチェッカーで再クロールを実行してください。"] },
+      { heading: "公開前の最終チェック", paragraphs: ["以下を満たせば多くの問題を防げます。"], bullets: ["ページソースにog:imageがある", "画像URLがHTTPS絶対パスで公開アクセス可能", "robotsやヘッダーでブロックしていない", "画像サイズが適切", "再取得を実行済み"] }
+    ]
+  },
+  es: {
+    title: "Cómo arreglar imágenes de vista previa faltantes en enlaces compartidos",
+    description: "Soluciona previews sin imagen revisando etiquetas Open Graph, acceso del archivo y caché en un orden claro.",
+    intro: "Si un enlace compartido aparece sin imagen, casi siempre se debe a metadatos OG, URL no accesible o caché antigua. Un flujo corto de diagnóstico suele bastar.",
+    categoryLabel: "Vista previa social",
+    useCasesTitle: "Casos habituales",
+    useCases: ["Nueva página sin imagen en preview.", "Sigue saliendo la imagen antigua.", "Funciona en una red pero falla en otra.", "Necesitas checklist para el equipo."],
+    closingTitle: "Diagnostica por pasos",
+    closingText: "Revisar etiquetas, URL y caché en orden evita pruebas aleatorias y acelera la publicación.",
+    relatedToolLabel: "Abrir Open Graph Checker / Preview",
+    sections: [
+      { heading: "Revisa primero las etiquetas OG", paragraphs: ["Confirma en el head que existen og:title, og:description y og:image.", "La ausencia o error en og:image es la causa más frecuente."] },
+      { heading: "Comprueba que el bot puede abrir la imagen", paragraphs: ["og:image debe ser una URL absoluta con HTTPS.", "Abre la URL en incógnito para validar acceso público sin login."] },
+      { heading: "Valida tamaño y formato", paragraphs: ["Un archivo demasiado pequeño o formato raro puede romper el preview.", "Usa combinaciones seguras: 1200×630 en JPG o PNG."] },
+      { heading: "Gestiona caché y recrawl", paragraphs: ["Las plataformas guardan caché de previews. Puede tardar en reflejar cambios.", "Solicita nuevo scrape con depurador o checker."] },
+      { heading: "Checklist rápida", paragraphs: ["Antes de compartir, valida:"], bullets: ["Existe og:image en el HTML.", "URL absoluta HTTPS y pública.", "Sin bloqueos por robots o cabeceras.", "Dimensión adecuada para social.", "Recrawl solicitado."] }
+    ]
+  },
+  fr: {
+    title: "Comment corriger les images d'aperçu manquantes sur les liens partagés",
+    description: "Résolvez rapidement les aperçus sans image en vérifiant tags Open Graph, accessibilité de l'image et cache.",
+    intro: "Quand un lien partagé n'affiche pas d'image, la cause vient souvent des balises OG, d'une URL non accessible, ou d'un cache ancien. Un diagnostic court suffit dans la plupart des cas.",
+    categoryLabel: "Aperçu social",
+    useCasesTitle: "Cas fréquents",
+    useCases: ["Nouvelle page sans image d'aperçu.", "Ancienne image toujours affichée.", "Résultat différent selon la plateforme.", "Besoin d'une checklist équipe."],
+    closingTitle: "Vérifier dans le bon ordre",
+    closingText: "Tags, URL image, puis cache : cette séquence évite les corrections au hasard.",
+    relatedToolLabel: "Ouvrir Open Graph Checker / Preview",
+    sections: [
+      { heading: "Contrôler les balises OG essentielles", paragraphs: ["Vérifiez la présence de og:title, og:description et og:image dans le head.", "Une balise og:image manquante ou invalide est la panne la plus courante."] },
+      { heading: "Vérifier l'accès crawler à l'image", paragraphs: ["La valeur og:image doit être une URL absolue HTTPS.", "Testez l'URL en navigation privée pour confirmer l'accès public."] },
+      { heading: "Valider format et dimensions", paragraphs: ["Une image trop petite ou un format atypique peut casser l'aperçu.", "Un format 1200×630 en JPG/PNG est généralement fiable."] },
+      { heading: "Forcer la mise à jour du cache", paragraphs: ["Les réseaux sociaux mettent les aperçus en cache, donc les modifications peuvent tarder à apparaître.", "Demandez un nouveau crawl via debugger/checker."] },
+      { heading: "Checklist avant partage", paragraphs: ["Contrôlez ces points :"], bullets: ["og:image présent dans le HTML.", "URL HTTPS absolue et publique.", "Pas de blocage robots/headers.", "Dimensions compatibles social.", "Recrawl demandé."] }
+    ]
+  },
+  de: {
+    title: "Fehlende Vorschau-Bilder bei geteilten Links beheben",
+    description: "Behebe fehlende Link-Vorschaubilder mit einem klaren Open-Graph-Check zu Tags, Bildzugriff und Cache.",
+    intro: "Wenn geteilte Links ohne Bild erscheinen, liegt es meist an OG-Metadaten, einem nicht erreichbaren Bild oder veraltetem Cache. Mit einem festen Ablauf findest du die Ursache schnell.",
+    categoryLabel: "Social Preview",
+    useCasesTitle: "Typische Situationen",
+    useCases: ["Neue Seite zeigt keine Bildvorschau.", "Altes Bild bleibt trotz Update sichtbar.", "Je Plattform anderes Ergebnis.", "Team braucht reproduzierbare QA-Schritte."],
+    closingTitle: "Systematisch statt zufällig testen",
+    closingText: "Prüfe zuerst Tags, dann Bild-URL, dann Cache. So sparst du Zeit und vermeidest Trial-and-Error.",
+    relatedToolLabel: "Open Graph Checker / Preview öffnen",
+    sections: [
+      { heading: "Zuerst die Pflicht-Tags prüfen", paragraphs: ["Im head sollten og:title, og:description und og:image vorhanden sein.", "Fehlende oder falsche og:image-Angaben sind die häufigste Ursache."] },
+      { heading: "Bild-URL für Crawler verifizieren", paragraphs: ["og:image muss eine absolute HTTPS-URL sein.", "Öffne die Bild-URL im Inkognito-Modus und prüfe öffentlichen Zugriff ohne Login."] },
+      { heading: "Format und Größe kontrollieren", paragraphs: ["Zu kleine Bilder oder ungewöhnliche Formate führen oft zu fehlender Vorschau.", "1200×630 in JPG oder PNG ist ein verlässlicher Ausgangspunkt."] },
+      { heading: "Cache aktualisieren", paragraphs: ["Plattformen cachen Vorschauen. Deshalb kann nach Änderungen noch alter Stand erscheinen.", "Per Debugger/Checker einen neuen Scrape anstoßen."] },
+      { heading: "Schnelle Checkliste", paragraphs: ["Vor dem Teilen kurz abhaken:"], bullets: ["og:image im HTML vorhanden.", "Absolute HTTPS-URL und öffentlich erreichbar.", "Keine Blockade via Robots/Header.", "Bildmaße social-tauglich.", "Neuabruf angefordert."] }
+    ]
+  }
+};
+
+const pngVsJpgVsWebpContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: {
+    title: "PNG vs JPG vs WebP: Which Format Should You Use?",
+    description: "Choose the right image format for web tasks by comparing PNG, JPG, and WebP with practical rules.",
+    intro: "There is no single best image format for every task. The right choice depends on image type, quality needs, and delivery speed.",
+    categoryLabel: "Image format",
+    useCasesTitle: "When this comparison is useful",
+    useCases: ["Preparing blog and landing page images.", "Exporting UI screenshots and graphics.", "Reducing website image weight.", "Setting team-wide image rules."],
+    closingTitle: "Pick format by use case",
+    closingText: "Use the format that matches the asset's purpose, not habit. A simple decision rule keeps your workflow fast and consistent.",
+    relatedToolLabel: "Open the WebP Converter",
+    sections: [
+      { heading: "Quick strengths of each format", paragraphs: ["JPG is strong for photos, PNG is strong for crisp graphics and transparency, and WebP often offers smaller files for web delivery.", "Each format solves a different problem, so comparing by use case works better than chasing one universal option."] },
+      { heading: "When to use JPG", paragraphs: ["Use JPG for photographic content where small file size matters and slight compression is acceptable.", "It is common for blog photos, article hero images, and product shots where transparency is not needed."] },
+      { heading: "When to use PNG", paragraphs: ["Use PNG for screenshots, UI elements, logos, and assets needing transparent backgrounds.", "PNG keeps edges and text crisp, but files can become large compared with JPG or WebP."] },
+      { heading: "When to use WebP", paragraphs: ["WebP is often a practical default for web publishing because it can deliver good quality at lower file size.", "It supports both lossy and lossless compression, and transparency, making it flexible for mixed assets."] },
+      { heading: "Simple decision checklist", paragraphs: ["Use this quick rule before exporting."], bullets: ["Photo-heavy image: start with JPG or WebP.", "Text, UI, logo, transparency: start with PNG or lossless WebP.", "Need best browser-delivery efficiency: test WebP first.", "Need edit-friendly master file: keep original source separately."] }
+    ]
+  },
+  ko: {
+    title: "PNG vs JPG vs WebP: 어떤 포맷을 써야 할까?",
+    description: "이미지 종류와 용도에 따라 PNG, JPG, WebP 중 어떤 형식을 선택하면 좋은지 실무 기준으로 정리합니다.",
+    intro: "모든 상황에서 항상 정답인 이미지 포맷은 없습니다. 콘텐츠 성격, 품질 요구, 전송 효율을 함께 보고 결정해야 합니다.",
+    categoryLabel: "이미지 형식",
+    useCasesTitle: "이 비교가 필요한 상황",
+    useCases: ["블로그/랜딩 이미지 준비", "UI 스크린샷 및 그래픽 내보내기", "웹 페이지 용량 최적화", "팀 공통 이미지 기준 수립"],
+    closingTitle: "용도 기준으로 선택하세요",
+    closingText: "습관이 아니라 자산 목적에 맞춰 형식을 고르면 품질과 성능을 함께 잡을 수 있습니다.",
+    relatedToolLabel: "WebP 변환기 열기",
+    sections: [
+      { heading: "형식별 핵심 강점", paragraphs: ["JPG는 사진, PNG는 선명한 그래픽/투명 배경, WebP는 웹 전송 효율에 강점이 있습니다.", "한 가지 포맷만 고집하기보다 자산별로 고르는 방식이 더 실용적입니다."] },
+      { heading: "JPG를 쓰면 좋은 경우", paragraphs: ["사진 위주의 콘텐츠에서 용량을 줄이고 싶을 때 적합합니다.", "블로그 본문 사진, 상품 이미지, 히어로 이미지에 자주 사용됩니다."] },
+      { heading: "PNG를 쓰면 좋은 경우", paragraphs: ["스크린샷, 로고, UI 요소처럼 선명한 경계와 투명 배경이 필요할 때 좋습니다.", "다만 파일이 커질 수 있으니 전송 성능은 함께 점검하세요."] },
+      { heading: "WebP를 쓰면 좋은 경우", paragraphs: ["웹 게시용에서는 WebP가 품질 대비 용량 효율이 좋아 기본 선택지로 많이 쓰입니다.", "손실/무손실과 투명도를 모두 지원해 활용 범위가 넓습니다."] },
+      { heading: "빠른 결정 체크리스트", paragraphs: ["내보내기 전 아래 기준을 적용하세요."], bullets: ["사진 중심: JPG 또는 WebP부터", "텍스트/로고/투명도 필요: PNG 또는 무손실 WebP", "웹 전송 최적화 우선: WebP 먼저 테스트", "수정용 마스터 파일은 별도 보관"] }
+    ]
+  },
+  ja: {
+    title: "PNG・JPG・WebPの違い：どの形式を使うべき？",
+    description: "用途別にPNG、JPG、WebPを比較し、Web運用で迷わないための実践ルールを紹介します。",
+    intro: "画像形式に万能な正解はありません。画像の種類、品質要件、表示速度の優先度で最適解は変わります。",
+    categoryLabel: "画像フォーマット",
+    useCasesTitle: "この比較が役立つ場面",
+    useCases: ["記事・LP画像の準備", "UIスクリーンショットの書き出し", "ページ容量の削減", "チーム運用ルールの作成"],
+    closingTitle: "用途に合わせて選ぶ",
+    closingText: "習慣で固定せず、素材の目的で選ぶと品質と速度を両立しやすくなります。",
+    relatedToolLabel: "WebP Converterを開く",
+    sections: [
+      { heading: "形式ごとの得意分野", paragraphs: ["JPGは写真、PNGは文字や透過を含む画像、WebPはWeb配信効率に強みがあります。", "1つに統一するより、用途ごとに使い分ける方が実務的です。"] },
+      { heading: "JPGを選ぶ場面", paragraphs: ["写真中心の画像でファイルサイズを抑えたいときに向いています。", "ブログ写真やヒーロー画像などで使いやすい形式です。"] },
+      { heading: "PNGを選ぶ場面", paragraphs: ["UI部品、ロゴ、スクリーンショット、透過背景が必要な素材に適しています。", "ただしファイルが大きくなりやすいので配信コストは要確認です。"] },
+      { heading: "WebPを選ぶ場面", paragraphs: ["Web公開では、品質を保ちながら軽量化しやすいWebPが有力です。", "透過対応に加え、非可逆・可逆の両方を選べる柔軟さがあります。"] },
+      { heading: "簡易判断チェック", paragraphs: ["迷ったら次の基準で判断します。"], bullets: ["写真中心: JPGまたはWebP", "文字・ロゴ・透過あり: PNGまたは可逆WebP", "配信効率優先: まずWebPを検証", "再編集用の元データは別保存"] }
+    ]
+  },
+  es: {
+    title: "PNG vs JPG vs WebP: ¿Qué formato deberías usar?",
+    description: "Elige el mejor formato de imagen para web comparando PNG, JPG y WebP con criterios prácticos.",
+    intro: "No existe un formato perfecto para todo. La mejor opción depende del tipo de imagen, la calidad necesaria y el rendimiento que buscas.",
+    categoryLabel: "Formato de imagen",
+    useCasesTitle: "Cuándo sirve esta comparación",
+    useCases: ["Preparar imágenes para blog y landing.", "Exportar capturas y gráficos UI.", "Reducir peso de páginas.", "Definir reglas de formato en equipo."],
+    closingTitle: "Elige según el uso",
+    closingText: "Usar el formato según el objetivo del recurso te da mejor equilibrio entre calidad y velocidad.",
+    relatedToolLabel: "Abrir WebP Converter",
+    sections: [
+      { heading: "Fortalezas rápidas", paragraphs: ["JPG destaca en fotos, PNG en gráficos nítidos y transparencia, y WebP en eficiencia para web.", "Comparar por caso de uso es más útil que imponer un formato único."] },
+      { heading: "Cuándo usar JPG", paragraphs: ["Ideal para fotos donde un tamaño menor importa y una compresión moderada es aceptable.", "Común en imágenes de artículos, banners y producto sin transparencia."] },
+      { heading: "Cuándo usar PNG", paragraphs: ["Úsalo para logos, capturas, elementos de interfaz y fondos transparentes.", "Mantiene nitidez en bordes y texto, aunque puede generar archivos más pesados."] },
+      { heading: "Cuándo usar WebP", paragraphs: ["WebP suele ser una buena base para publicar en web por su relación calidad/peso.", "Soporta compresión con y sin pérdida, además de transparencia."] },
+      { heading: "Checklist de decisión", paragraphs: ["Antes de exportar, revisa:"], bullets: ["Imagen fotográfica: empezar con JPG o WebP.", "Texto/UI/logo/transparencia: PNG o WebP sin pérdida.", "Prioridad en rendimiento web: probar WebP primero.", "Guardar archivo maestro editable por separado."] }
+    ]
+  },
+  fr: {
+    title: "PNG vs JPG vs WebP : quel format utiliser ?",
+    description: "Comparez PNG, JPG et WebP avec des règles simples pour choisir le bon format d'image pour le web.",
+    intro: "Il n'existe pas de format unique parfait. Le bon choix dépend du type d'image, du niveau de qualité attendu et du besoin de performance.",
+    categoryLabel: "Format d'image",
+    useCasesTitle: "Quand ce comparatif est utile",
+    useCases: ["Préparer des visuels d'articles et landing pages.", "Exporter captures UI et graphismes.", "Alléger les pages web.", "Définir des standards d'équipe."],
+    closingTitle: "Choisissez selon l'objectif",
+    closingText: "En sélectionnant le format selon l'usage réel de l'image, vous obtenez un meilleur compromis qualité/performance.",
+    relatedToolLabel: "Ouvrir WebP Converter",
+    sections: [
+      { heading: "Forces de chaque format", paragraphs: ["JPG convient aux photos, PNG aux graphismes nets et à la transparence, WebP à l'optimisation web.", "Comparer par cas d'usage est plus efficace qu'imposer un format unique."] },
+      { heading: "Quand utiliser JPG", paragraphs: ["Pertinent pour les photos quand vous souhaitez réduire le poids avec une légère compression.", "Très courant pour illustrations d'article et visuels marketing sans transparence."] },
+      { heading: "Quand utiliser PNG", paragraphs: ["Adapté aux logos, captures d'écran, éléments UI et fonds transparents.", "Le rendu des textes et contours est net, mais le poids peut être plus élevé."] },
+      { heading: "Quand utiliser WebP", paragraphs: ["WebP est souvent un bon choix par défaut pour la diffusion web grâce à son efficacité.", "Il gère la compression avec ou sans perte et la transparence."] },
+      { heading: "Checklist rapide", paragraphs: ["Avant export, vérifiez :"], bullets: ["Photo : JPG ou WebP.", "Texte/UI/logo/transparence : PNG ou WebP sans perte.", "Performance web prioritaire : tester WebP d'abord.", "Conserver un master éditable séparé."] }
+    ]
+  },
+  de: {
+    title: "PNG vs. JPG vs. WebP: Welches Format solltest du nutzen?",
+    description: "Vergleiche PNG, JPG und WebP mit praktischen Regeln, um das passende Bildformat für den Webeinsatz zu wählen.",
+    intro: "Es gibt kein einzelnes Bildformat, das immer am besten ist. Die richtige Wahl hängt von Bildtyp, Qualitätsanspruch und Performance-Ziel ab.",
+    categoryLabel: "Bildformat",
+    useCasesTitle: "Wann dieser Vergleich hilft",
+    useCases: ["Bilder für Blog und Landingpages vorbereiten.", "UI-Screenshots und Grafiken exportieren.", "Seitengröße reduzieren.", "Teamweite Formatregeln festlegen."],
+    closingTitle: "Nach Einsatzfall entscheiden",
+    closingText: "Wenn du das Format am Zweck ausrichtest, bekommst du meist den besten Mix aus Qualität und Ladezeit.",
+    relatedToolLabel: "WebP Converter öffnen",
+    sections: [
+      { heading: "Kurzüberblick der Stärken", paragraphs: ["JPG eignet sich für Fotos, PNG für scharfe Grafiken mit Transparenz, WebP für effiziente Web-Auslieferung.", "Ein formatbezogener Einsatz ist in der Praxis besser als ein Ein-Format-Ansatz."] },
+      { heading: "Wann JPG sinnvoll ist", paragraphs: ["Für fotolastige Motive mit Fokus auf kleinere Dateigrößen.", "Typisch bei Artikelbildern, Hero-Motiven und Produktfotos ohne Transparenz."] },
+      { heading: "Wann PNG sinnvoll ist", paragraphs: ["Für Logos, UI-Elemente, Screenshots und transparente Hintergründe.", "Kanten und Text bleiben klar, allerdings oft mit höherer Dateigröße."] },
+      { heading: "Wann WebP sinnvoll ist", paragraphs: ["Für viele Web-Workflows ist WebP ein effizienter Standard mit guter Qualitäts-/Größen-Balance.", "WebP unterstützt verlustbehaftete und verlustfreie Kompression plus Transparenz."] },
+      { heading: "Einfache Entscheidungs-Checkliste", paragraphs: ["Vor dem Export kurz prüfen:"], bullets: ["Foto-lastig: JPG oder WebP.", "Text/UI/Logo/Transparenz: PNG oder verlustfreies WebP.", "Maximale Web-Effizienz: zuerst WebP testen.", "Editierbares Master separat speichern."] }
+    ]
+  }
+};
+
+const whenNotToUseWebpContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: {
+    title: "When WebP Is Not the Best Image Format",
+    description: "Learn when WebP is not ideal and how to choose better alternatives for editing, archival, and specialized workflows.",
+    intro: "WebP is excellent for many web-delivery tasks, but it is not always the right answer. Knowing where it falls short helps you avoid quality and workflow problems.",
+    categoryLabel: "Image format",
+    useCasesTitle: "When this guide is useful",
+    useCases: ["Building an image workflow for teams.", "Choosing master formats for design work.", "Handling print or archival assets.", "Balancing compatibility requirements."],
+    closingTitle: "Use WebP intentionally",
+    closingText: "WebP is a great delivery format, but not always the best source format. Keep original masters and choose by context.",
+    relatedToolLabel: "Open the WebP Converter",
+    sections: [
+      { heading: "WebP is for delivery, not every stage", paragraphs: ["WebP shines when your goal is smaller files on the web.", "It is less ideal as the only working master if you need heavy re-editing, long-term archiving, or special production pipelines."] },
+      { heading: "Cases where another format is better", paragraphs: ["Some workflows are better served by PNG, JPG, or source design files."], bullets: ["You need layered editing and repeated exports.", "You need predictable print workflows.", "You must preserve original camera/photo data.", "A partner system has strict legacy format requirements.", "You are storing a long-term master library."] },
+      { heading: "Quality and artifact considerations", paragraphs: ["Repeated lossy conversion can degrade image quality over time.", "If you re-export assets many times, keep a high-quality original and generate WebP only for final web delivery."] },
+      { heading: "Compatibility and operational constraints", paragraphs: ["Modern browsers support WebP well, but internal tools, CMS plugins, and legacy systems may still behave inconsistently.", "Always test your full pipeline, not just the browser display."] },
+      { heading: "Practical hybrid workflow", paragraphs: ["Keep source files in an edit-friendly format, then export WebP for production pages.", "This gives you smaller delivery files without sacrificing future editing flexibility."] }
+    ]
+  },
+  ko: {
+    title: "WebP가 항상 최선이 아닌 경우",
+    description: "WebP의 한계를 이해하고 편집·보관·호환성 상황에서 더 나은 형식을 선택하는 방법을 소개합니다.",
+    intro: "WebP는 웹 배포에는 매우 유용하지만, 모든 단계의 원본 형식으로 쓰기에는 한계가 있습니다. 어떤 상황에서 다른 형식이 더 나은지 알아두면 운영이 쉬워집니다.",
+    categoryLabel: "이미지 형식",
+    useCasesTitle: "이 가이드가 필요한 상황",
+    useCases: ["팀 이미지 운영 체계 설계", "원본/배포 포맷 분리", "출력·보관용 자산 관리", "레거시 시스템 호환성 점검"],
+    closingTitle: "WebP는 목적형으로 사용",
+    closingText: "WebP는 배포용으로 훌륭하지만 항상 원본용은 아닙니다. 수정 가능한 원본을 별도로 유지하세요.",
+    relatedToolLabel: "WebP 변환기 열기",
+    sections: [
+      { heading: "WebP의 강점과 한계", paragraphs: ["강점은 웹 전송 효율입니다.", "반복 편집, 장기 보관, 특수 제작 파이프라인에서는 다른 형식이 더 적합할 수 있습니다."] },
+      { heading: "다른 형식이 유리한 경우", paragraphs: ["다음 상황에서는 PNG/JPG/원본 파일을 우선 검토하세요."], bullets: ["레이어 편집과 반복 수정이 많을 때", "인쇄 워크플로가 필요할 때", "원본 촬영 데이터 보존이 중요할 때", "협력 시스템이 레거시 형식만 지원할 때", "장기 보관용 마스터 라이브러리를 운영할 때"] },
+      { heading: "품질 저하 누적 주의", paragraphs: ["손실 압축 파일을 반복 변환하면 품질 저하가 누적됩니다.", "고품질 원본을 유지하고 최종 배포 단계에서만 WebP를 생성하세요."] },
+      { heading: "호환성은 전체 파이프라인으로 확인", paragraphs: ["브라우저 지원은 좋아졌지만 CMS 플러그인, 내부 툴, 일부 시스템은 예외가 있을 수 있습니다.", "브라우저 미리보기만 보지 말고 실제 운영 경로 전체를 점검하세요."] },
+      { heading: "실무형 하이브리드 방식", paragraphs: ["원본은 편집 친화적 형식으로 관리하고, 게시용으로만 WebP를 내보내세요.", "이 방식이 품질과 성능을 가장 안정적으로 균형 맞춥니다."] }
+    ]
+  },
+  ja: {
+    title: "WebPが最適ではないケース",
+    description: "WebPの弱点を理解し、編集・保管・互換性の観点でより適した形式を選ぶ方法を解説します。",
+    intro: "WebPはWeb配信に強い形式ですが、すべての工程で最適とは限りません。向かない場面を知ると運用トラブルを減らせます。",
+    categoryLabel: "画像フォーマット",
+    useCasesTitle: "役立つシーン",
+    useCases: ["チームの画像運用設計", "マスター形式の選定", "印刷・アーカイブ素材の管理", "互換性要件の確認"],
+    closingTitle: "WebPは配信用として使う",
+    closingText: "WebPは最終配信には有効ですが、編集元まで一本化する必要はありません。元データを別管理しましょう。",
+    relatedToolLabel: "WebP Converterを開く",
+    sections: [
+      { heading: "WebPは万能ではない", paragraphs: ["WebPの主な利点は配信効率です。", "一方で再編集や長期保管などでは別形式の方が扱いやすい場合があります。"] },
+      { heading: "別形式を選ぶべき例", paragraphs: ["次の条件ではPNG/JPG/元ファイルが適しています。"], bullets: ["レイヤー編集を繰り返す", "印刷前提の制作フロー", "撮影元データを厳密に保持したい", "連携先が旧形式のみ対応", "長期保管用マスターを維持する"] },
+      { heading: "再圧縮による品質劣化", paragraphs: ["非可逆変換を繰り返すと劣化が蓄積します。", "高品質な元画像を保持し、配信用にのみWebPを生成する運用が安全です。"] },
+      { heading: "互換性は実運用で確認", paragraphs: ["ブラウザ対応は広い一方、CMSや社内ツールでは例外が残ることがあります。", "表示確認だけでなく公開パイプライン全体をテストしてください。"] },
+      { heading: "現実的なハイブリッド運用", paragraphs: ["編集用マスターは別形式で管理し、公開用だけWebPへ変換します。", "将来の再編集と配信性能の両方を確保できます。"] }
+    ]
+  },
+  es: {
+    title: "Cuándo WebP no es el mejor formato de imagen",
+    description: "Descubre cuándo WebP no conviene y qué alternativas usar para edición, archivo y compatibilidad.",
+    intro: "WebP funciona muy bien para entregar imágenes en la web, pero no siempre es ideal como formato único de trabajo. Elegir bien evita pérdidas de calidad y bloqueos de flujo.",
+    categoryLabel: "Formato de imagen",
+    useCasesTitle: "Cuándo ayuda esta guía",
+    useCases: ["Diseñar un flujo de imágenes en equipo.", "Definir formato maestro editable.", "Gestionar recursos para impresión o archivo.", "Resolver requisitos de compatibilidad."],
+    closingTitle: "Usa WebP con intención",
+    closingText: "WebP es excelente para entrega final, pero no siempre para archivo maestro. Conserva originales de alta calidad.",
+    relatedToolLabel: "Abrir WebP Converter",
+    sections: [
+      { heading: "WebP sirve para entrega, no para todo", paragraphs: ["Su gran ventaja es reducir peso en publicación web.", "Puede quedarse corto como único formato si necesitas edición continua o conservación a largo plazo."] },
+      { heading: "Casos donde otro formato rinde mejor", paragraphs: ["Estas situaciones suelen requerir PNG, JPG o archivo fuente."], bullets: ["Edición por capas y cambios frecuentes.", "Flujo orientado a impresión.", "Conservación de datos originales de cámara.", "Sistemas heredados con formatos restringidos.", "Biblioteca maestra para archivo prolongado."] },
+      { heading: "Riesgo de degradación por recomprimir", paragraphs: ["Convertir en pérdida varias veces puede degradar la imagen acumulativamente.", "Mantén un original de calidad y genera WebP solo al final del flujo."] },
+      { heading: "Compatibilidad real del proceso", paragraphs: ["Aunque el navegador moderno lo soporta bien, plugins CMS o sistemas internos pueden fallar.", "Prueba todo el pipeline, no solo la vista final."] },
+      { heading: "Flujo híbrido recomendado", paragraphs: ["Guarda el master en formato editable y exporta WebP para producción.", "Así conservas flexibilidad y rendimiento."] }
+    ]
+  },
+  fr: {
+    title: "Quand WebP n'est pas le meilleur format d'image",
+    description: "Comprenez les limites de WebP et choisissez de meilleures alternatives selon vos besoins d'édition, d'archivage et de compatibilité.",
+    intro: "WebP est très performant pour la diffusion web, mais ce n'est pas toujours le meilleur format de travail principal. Identifier ses limites évite des problèmes de qualité et de process.",
+    categoryLabel: "Format d'image",
+    useCasesTitle: "Quand ce guide est utile",
+    useCases: ["Définir un workflow image d'équipe.", "Choisir un format master éditable.", "Gérer des assets d'impression ou d'archive.", "Répondre à des contraintes de compatibilité."],
+    closingTitle: "Utiliser WebP au bon moment",
+    closingText: "WebP est excellent pour la diffusion finale, pas forcément pour le master. Conservez un original éditable.",
+    relatedToolLabel: "Ouvrir WebP Converter",
+    sections: [
+      { heading: "WebP est un format de diffusion", paragraphs: ["Son principal avantage est la réduction de poids pour le web.", "Comme format unique de travail, il peut être limité pour la retouche continue ou l'archivage long terme."] },
+      { heading: "Quand un autre format est préférable", paragraphs: ["Dans ces cas, PNG, JPG ou fichier source sont souvent plus adaptés."], bullets: ["Retouches fréquentes avec couches.", "Workflow orienté impression.", "Conservation stricte des données d'origine.", "Intégration avec systèmes legacy.", "Bibliothèque master d'archivage."] },
+      { heading: "Attention à la perte cumulative", paragraphs: ["Des conversions avec perte répétées peuvent dégrader progressivement le rendu.", "Gardez un original haute qualité et générez WebP uniquement pour la mise en ligne."] },
+      { heading: "Vérifier toute la chaîne", paragraphs: ["Le support navigateur est bon, mais des outils internes ou plugins CMS peuvent poser problème.", "Testez l'ensemble du pipeline avant standardisation."] },
+      { heading: "Workflow hybride recommandé", paragraphs: ["Conservez le master dans un format éditable puis exportez WebP pour la production.", "Vous combinez ainsi flexibilité d'édition et performance de livraison."] }
+    ]
+  },
+  de: {
+    title: "Wann WebP nicht das beste Bildformat ist",
+    description: "Erfahre, wann WebP ungeeignet ist und welche Alternativen sich für Bearbeitung, Archivierung und Kompatibilität besser eignen.",
+    intro: "WebP ist stark für die Web-Auslieferung, aber nicht automatisch die beste Wahl für jeden Schritt im Bildprozess. Wer die Grenzen kennt, vermeidet spätere Probleme.",
+    categoryLabel: "Bildformat",
+    useCasesTitle: "Wann dieser Guide hilft",
+    useCases: ["Bild-Workflows im Team aufsetzen.", "Master-Format für Bearbeitung festlegen.", "Print- und Archiv-Assets verwalten.", "Kompatibilitätsanforderungen erfüllen."],
+    closingTitle: "WebP bewusst einsetzen",
+    closingText: "WebP eignet sich hervorragend für die Auslieferung, aber nicht immer als einziges Ausgangsformat. Bewahre editierbare Originale auf.",
+    relatedToolLabel: "WebP Converter öffnen",
+    sections: [
+      { heading: "WebP ist stark bei Auslieferung", paragraphs: ["Der größte Vorteil ist die kleinere Dateigröße im Web.", "Als alleiniges Arbeitsformat ist WebP bei intensiver Bearbeitung oder Langzeitarchivierung oft unpraktisch."] },
+      { heading: "Wann andere Formate besser sind", paragraphs: ["In diesen Fällen sind PNG, JPG oder Quelldateien oft die bessere Wahl."], bullets: ["Häufige Nachbearbeitung mit Ebenen.", "Print-orientierte Produktion.", "Originaldaten aus Kamera/Fotografie erhalten.", "Legacy-Systeme mit festen Formatvorgaben.", "Langfristige Master-Archivierung."] },
+      { heading: "Qualitätsverlust durch Mehrfachkonvertierung", paragraphs: ["Wiederholte verlustbehaftete Konvertierung kann Qualität schrittweise abbauen.", "Halte ein hochwertiges Original vor und erzeuge WebP nur für den finalen Web-Einsatz."] },
+      { heading: "Kompatibilität ganzheitlich prüfen", paragraphs: ["Browser unterstützen WebP meist gut, aber CMS-Plugins oder interne Tools können Ausnahmen haben.", "Teste daher den gesamten Workflow statt nur die Frontend-Ansicht."] },
+      { heading: "Praktischer Hybrid-Ansatz", paragraphs: ["Master-Datei editierbar behalten und für Produktion in WebP exportieren.", "So bleiben Bearbeitbarkeit und Performance gleichzeitig erhalten."] }
+    ]
+  }
+};
+
 const guideDefinitions: Array<Omit<GuideItem, "content"> & { content: Record<LocaleCode, GuideLocalizedContent> }> = [
   {
     slug: "how-to-use-html-color-picker",
@@ -1599,6 +2049,42 @@ const guideDefinitions: Array<Omit<GuideItem, "content"> & { content: Record<Loc
     publishedAt: "2026-04-03",
     updatedAt: "2026-04-03",
     content: commonUtmTaggingMistakesContent
+  },
+  {
+    slug: "open-graph-image-size-guide",
+    category: "web-marketing",
+    relatedToolSlug: "og-preview",
+    relatedGuideSlugs: ["how-to-check-open-graph-metadata", "fix-missing-social-preview-images"],
+    publishedAt: "2026-04-03",
+    updatedAt: "2026-04-03",
+    content: openGraphImageSizeGuideContent
+  },
+  {
+    slug: "fix-missing-social-preview-images",
+    category: "web-marketing",
+    relatedToolSlug: "og-preview",
+    relatedGuideSlugs: ["how-to-check-open-graph-metadata", "open-graph-image-size-guide"],
+    publishedAt: "2026-04-03",
+    updatedAt: "2026-04-03",
+    content: fixMissingSocialPreviewImagesContent
+  },
+  {
+    slug: "png-vs-jpg-vs-webp",
+    category: "color-image",
+    relatedToolSlug: "webp-converter",
+    relatedGuideSlugs: ["what-is-webp", "how-to-convert-images-to-webp"],
+    publishedAt: "2026-04-03",
+    updatedAt: "2026-04-03",
+    content: pngVsJpgVsWebpContent
+  },
+  {
+    slug: "when-not-to-use-webp",
+    category: "color-image",
+    relatedToolSlug: "webp-converter",
+    relatedGuideSlugs: ["what-is-webp", "png-vs-jpg-vs-webp"],
+    publishedAt: "2026-04-03",
+    updatedAt: "2026-04-03",
+    content: whenNotToUseWebpContent
   },
 
   {
