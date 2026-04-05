@@ -24,10 +24,21 @@ export type GuideSlug =
   | "when-not-to-use-webp"
   | "compress-images-for-page-speed"
   | "best-image-file-size-for-websites"
+  | "why-large-images-slow-down-websites"
+  | "optimize-blog-images-before-uploading"
+  | "image-compression-mistakes-that-hurt-quality"
   | "json-parse-error-examples"
   | "validate-json-before-api-requests"
   | "reduce-image-size-without-losing-too-much-quality"
   | "minified-vs-pretty-json"
+  | "unix-timestamp-seconds-vs-milliseconds"
+  | "convert-api-timestamps-to-readable-dates"
+  | "why-your-timestamp-looks-wrong-in-javascript"
+  | "debug-timezone-confusion-in-timestamps"
+  | "base64-vs-url-encoding"
+  | "how-to-decode-base64-safely-for-debugging"
+  | "common-base64-mistakes-in-web-workflows"
+  | "when-plain-text-is-better-than-base64"
   | "track-social-campaigns-with-utm-links"
   | "track-email-clicks-with-utm-parameters"
   | "check-character-count-before-publishing"
@@ -2170,6 +2181,305 @@ const previewSharedLinksBeforePostingContent: Record<LocaleCode, GuideLocalizedC
   de: { title: "So prüfst du geteilte Links vor dem Posten", description: "Link-Previews vor Veröffentlichung testen, damit Titel, Beschreibung und Bild überall korrekt erscheinen.", intro: "Eine fehlerhafte Vorschau kostet Vertrauen und Klicks, obwohl die Zielseite funktioniert. Ein kurzer Vorab-Check verhindert das.", categoryLabel: "Publishing-Workflow", useCasesTitle: "Hilfreich für", useCases: ["Social-Posts", "Newsletter-Links", "Landingpage-Launches", "Mehrsprachige QA"], closingTitle: "Erst prüfen, dann posten", closingText: "Ein schneller Preview-Check spart spätere Korrekturen und hält die Qualität konsistent.", relatedToolLabel: "OG Preview öffnen", sections: [{ heading: "Die 3 Kernelemente prüfen", paragraphs: ["Titel, Beschreibung und Bild bestimmen die Vorschauqualität.", "Fehlt eines davon, sinkt oft die Klickrate."] }, { heading: "Pre-Post-Checkliste", paragraphs: ["Für wichtige Links immer diese Punkte prüfen."], bullets: ["Titel passt zur Seite", "Beschreibung ist klar", "Bild ist relevant und sauber zugeschnitten", "URL zeigt auf die richtige Seite/Locale"] }, { heading: "Plattformübergreifend testen", paragraphs: ["Darstellung variiert je nach Netzwerk.", "Mindestens ein Social-Netzwerk plus Messenger testen."] }, { heading: "Cache berücksichtigen", paragraphs: ["Veraltete Vorschau deutet oft auf Plattform-Cache hin.", "Per Re-Scrape oder URL-Update aktualisieren."] }, { heading: "In SOP aufnehmen", paragraphs: ["Preview-Prüfung als festen Schritt im Publishing-Prozess verankern."] }] }
 };
 
+const whyLargeImagesSlowDownWebsitesContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: {
+    title: "Why Large Images Slow Down Your Website",
+    description: "Learn why oversized images hurt load speed and how to fix them with a simple compression workflow.",
+    intro: "If a page feels slow, large image files are often the biggest reason. You can usually fix this quickly by resizing and compressing only the heaviest images first.",
+    categoryLabel: "Image optimization",
+    useCasesTitle: "When this helps",
+    useCases: ["Improving mobile load speed.", "Reducing bounce on image-heavy pages.", "Fixing slow blog hero sections.", "Preparing a faster product page."],
+    closingTitle: "Speed starts with image weight",
+    closingText: "You do not need perfect settings. Use a repeatable image routine and remove obvious file-size waste first.",
+    relatedToolLabel: "Open Image Compressor",
+    sections: [
+      { heading: "Large files block fast rendering", paragraphs: ["Browsers must download image bytes before a page looks complete.", "When one hero image is huge, the first screen feels delayed for every visitor."] },
+      { heading: "Mobile users feel the problem first", paragraphs: ["Phones often run on slower networks and limited data plans.", "Oversized images can make a normal page feel broken on mobile even if desktop seems fine."] },
+      { heading: "Resize before compressing", paragraphs: ["Do not upload a 3000px image if your layout shows 900px.", "Reducing dimensions first often saves more weight than quality tweaks alone."], bullets: ["Match real display width.", "Compress the resized file.", "Replace only the biggest offenders first."] },
+      { heading: "Check speed after each batch", paragraphs: ["Optimize a few images, then test the page quickly.", "Small iterative changes are easier to validate than a full site-wide image rewrite."] },
+      { heading: "Build a lightweight publishing rule", paragraphs: ["Use a simple checklist for every new upload: right dimensions, right format, reasonable quality.", "This prevents slow pages from returning later."] }
+    ]
+  },
+  ko: { title: "큰 이미지가 웹사이트를 느리게 만드는 이유", description: "과도한 이미지 용량이 로딩 속도를 떨어뜨리는 원인과 실용적인 해결 방법을 정리합니다.", intro: "페이지가 느리다면 가장 먼저 큰 이미지를 점검하세요. 무거운 파일 몇 개만 정리해도 체감 속도가 크게 개선됩니다.", categoryLabel: "이미지 최적화", useCasesTitle: "이럴 때 유용해요", useCases: ["모바일 로딩 개선", "이미지 많은 페이지 이탈 감소", "블로그 히어로 이미지 최적화", "상품 페이지 속도 개선"], closingTitle: "속도는 이미지 용량에서 시작", closingText: "완벽한 수치보다 반복 가능한 업로드 기준이 중요합니다.", relatedToolLabel: "Image Compressor 열기", sections: [{ heading: "큰 파일은 첫 화면 표시를 늦춥니다", paragraphs: ["이미지는 내려받아야 화면에 표시됩니다.", "히어로 이미지가 크면 첫 화면 체감 속도가 바로 느려집니다."] }, { heading: "모바일에서 문제 체감이 더 큽니다", paragraphs: ["모바일 네트워크에서는 큰 파일 영향이 더 큽니다.", "데스크톱에서 괜찮아 보여도 모바일에서는 느릴 수 있습니다."] }, { heading: "압축 전에 리사이즈", paragraphs: ["표시 폭보다 훨씬 큰 이미지는 낭비입니다.", "먼저 크기를 맞춘 뒤 압축하세요."], bullets: ["표시 크기에 맞추기", "리사이즈 후 압축", "큰 파일부터 우선 처리"] }, { heading: "배치별로 속도 확인", paragraphs: ["몇 장씩 바꾼 뒤 페이지를 확인하면 품질 관리가 쉽습니다.", "한 번에 전체 변경보다 안전합니다."] }, { heading: "게시 기준을 간단히 고정", paragraphs: ["업로드 전 크기·포맷·품질 체크를 습관화하면 재발을 막을 수 있습니다."] }] },
+  ja: { title: "大きな画像がWebサイトを遅くする理由", description: "画像サイズが表示速度に与える影響と、すぐ実践できる改善手順を解説します。", intro: "ページが重いときは、まず画像容量を疑うのが近道です。大きい画像を優先的に最適化するだけで改善しやすくなります。", categoryLabel: "画像最適化", useCasesTitle: "役立つ場面", useCases: ["モバイル表示を速くしたい", "画像の多いページを軽くしたい", "ブログのヒーロー画像を調整したい", "商品ページを改善したい"], closingTitle: "速度改善は画像の軽量化から", closingText: "完璧な設定より、継続できる画像ルールを作ることが重要です。", relatedToolLabel: "Image Compressorを開く", sections: [{ heading: "大きい画像は初期表示を遅らせる", paragraphs: ["画像は表示前にダウンロードが必要です。", "特にヒーロー画像が重いと、最初の体感速度が下がります。"] }, { heading: "モバイルで影響が大きい", paragraphs: ["通信条件が弱い環境では差がさらに出ます。", "PCでは問題なく見えてもスマホでは遅く感じることがあります。"] }, { heading: "圧縮前にリサイズ", paragraphs: ["表示幅より極端に大きい画像は無駄です。", "先にサイズを合わせてから圧縮してください。"], bullets: ["表示サイズに合わせる", "リサイズ後に圧縮", "重い画像から優先対応"] }, { heading: "少しずつ改善して確認", paragraphs: ["数枚ずつ差し替えて確認すると失敗を減らせます.", "一気に全体変更するより安全です。"] }, { heading: "公開ルールを固定する", paragraphs: ["サイズ・形式・品質を毎回確認する運用にすると再発防止になります。"] }] },
+  es: { title: "Por qué las imágenes grandes ralentizan tu sitio web", description: "Entiende cómo el peso de imagen afecta la velocidad y cómo corregirlo con pasos simples.", intro: "Si tu web se siente lenta, las imágenes grandes suelen ser la causa principal. Optimiza primero los archivos más pesados.", categoryLabel: "Optimización de imagen", useCasesTitle: "Cuándo ayuda", useCases: ["Mejorar carga en móvil", "Reducir rebote en páginas visuales", "Acelerar cabeceras de blog", "Optimizar páginas de producto"], closingTitle: "La velocidad empieza por el peso", closingText: "Con un proceso simple y repetible puedes evitar gran parte del problema.", relatedToolLabel: "Abrir Image Compressor", sections: [{ heading: "Archivos grandes retrasan el render", paragraphs: ["El navegador necesita descargar la imagen antes de mostrarla.", "Una sola imagen hero pesada puede afectar toda la primera vista."] }, { heading: "En móvil se nota más", paragraphs: ["Las redes móviles suelen ser más limitadas.", "Una página aceptable en desktop puede ser lenta en teléfono."] }, { heading: "Redimensiona antes de comprimir", paragraphs: ["No subas 3000px si se verá a 900px.", "Ajustar dimensiones primero suele ahorrar más peso."], bullets: ["Usa ancho real de diseño", "Comprime después", "Empieza por imágenes más pesadas"] }, { heading: "Valida por lotes pequeños", paragraphs: ["Optimiza algunas imágenes y revisa resultados.", "Iterar en bloques reduce riesgos de calidad."] }, { heading: "Define regla de publicación", paragraphs: ["Tamaño, formato y calidad deben revisarse antes de cada upload."] }] },
+  fr: { title: "Pourquoi les images trop lourdes ralentissent votre site", description: "Comprenez l'impact des images volumineuses sur la vitesse et corrigez-le avec une méthode simple.", intro: "Si votre page est lente, le poids des images est souvent la cause principale. Commencez par les fichiers les plus lourds.", categoryLabel: "Optimisation d'image", useCasesTitle: "Quand c'est utile", useCases: ["Accélérer le mobile", "Réduire le rebond", "Alléger les articles de blog", "Optimiser les pages produit"], closingTitle: "La vitesse dépend du poids image", closingText: "Un processus simple et régulier suffit souvent à éviter ces lenteurs.", relatedToolLabel: "Ouvrir Image Compressor", sections: [{ heading: "Les gros fichiers retardent l'affichage", paragraphs: ["Le navigateur doit télécharger l'image avant de l'afficher.", "Une image hero trop lourde ralentit toute la première impression."] }, { heading: "Le mobile souffre davantage", paragraphs: ["Le réseau mobile est souvent plus contraint.", "Une page correcte sur desktop peut rester lente sur smartphone."] }, { heading: "Redimensionner avant compresser", paragraphs: ["Inutile d'envoyer 3000px pour un affichage à 900px.", "Adapter les dimensions d'abord réduit déjà beaucoup le poids."], bullets: ["Respecter la largeur réelle", "Compresser ensuite", "Traiter les plus gros fichiers en priorité"] }, { heading: "Vérifier par petites séries", paragraphs: ["Optimisez quelques images puis testez.", "Des itérations courtes limitent les erreurs de qualité."] }, { heading: "Formaliser une règle d'upload", paragraphs: ["Contrôlez taille, format et qualité à chaque publication."] }] },
+  de: { title: "Warum große Bilder deine Website verlangsamen", description: "So wirken übergroße Bilddateien auf Ladezeit und so behebst du es mit einem einfachen Ablauf.", intro: "Wenn Seiten langsam laden, sind große Bilder oft der Hauptgrund. Optimiere zuerst die größten Dateien.", categoryLabel: "Bildoptimierung", useCasesTitle: "Wann das hilft", useCases: ["Mobile Ladezeit verbessern", "Absprungrate senken", "Blog-Header beschleunigen", "Produktseiten optimieren"], closingTitle: "Tempo beginnt bei Bildgröße", closingText: "Mit klaren Upload-Regeln lassen sich viele Performance-Probleme vermeiden.", relatedToolLabel: "Image Compressor öffnen", sections: [{ heading: "Große Dateien verzögern den Aufbau", paragraphs: ["Bilder müssen erst geladen werden, bevor sie sichtbar sind.", "Ein zu großes Hero-Bild kann die komplette erste Ansicht ausbremsen."] }, { heading: "Mobil ist der Effekt stärker", paragraphs: ["Mobile Netzwerke sind oft langsamer.", "Desktop wirkt okay, Smartphone bleibt trotzdem träge."] }, { heading: "Vor Kompression skalieren", paragraphs: ["Keine 3000px hochladen, wenn 900px angezeigt werden.", "Erst verkleinern spart häufig mehr als reine Qualitätsänderung."], bullets: ["Auf reale Breite anpassen", "Danach komprimieren", "Mit größten Dateien starten"] }, { heading: "In kleinen Batches prüfen", paragraphs: ["Ein paar Bilder optimieren, dann Seite testen.", "So bleibt die Qualität besser kontrollierbar."] }, { heading: "Upload-Standard festlegen", paragraphs: ["Größe, Format und Qualität vor jedem Upload kurz prüfen."] }] }
+};
+
+const optimizeBlogImagesBeforeUploadingEn: GuideLocalizedContent = {
+  title: "How to Optimize Blog Images Before Uploading",
+  description: "A practical pre-upload checklist to keep blog images clear while reducing page weight.",
+  intro: "Publishing directly from camera or design exports usually creates oversized blog images. A short pre-upload process saves bandwidth and keeps posts fast.",
+  categoryLabel: "Image optimization",
+  useCasesTitle: "Use this when",
+  useCases: ["Publishing tutorials with screenshots.", "Preparing long-form blog posts.", "Improving mobile readability.", "Updating older slow articles."],
+  closingTitle: "Optimize once, publish faster",
+  closingText: "A 2-minute image check before uploading prevents most blog image performance issues.",
+  relatedToolLabel: "Open Image Compressor",
+  sections: [
+    { heading: "Set a target width per content block", paragraphs: ["Define a default width for hero images and inline images.", "This avoids random image sizes across posts and reduces file waste."] },
+    { heading: "Pick format by content type", paragraphs: ["Use JPG/WebP for photos and PNG for diagrams needing crisp edges or transparency.", "Avoid using one format for everything just out of habit."] },
+    { heading: "Compress with readability in mind", paragraphs: ["Blog screenshots must keep text readable after compression.", "Test a small quality range and keep the lightest acceptable version."], bullets: ["Check text labels at normal zoom.", "Review mobile view once.", "Avoid aggressive compression on charts."] },
+    { heading: "Rename and organize files before upload", paragraphs: ["Use clear file names so your media library stays maintainable.", "Consistent naming also helps when replacing old files later."] },
+    { heading: "Preview the post before publishing", paragraphs: ["Open the draft on desktop and mobile to confirm quality and loading.", "If an image still looks heavy, optimize that file again before publishing."] }
+  ]
+};
+
+const optimizeBlogImagesBeforeUploadingContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: optimizeBlogImagesBeforeUploadingEn,
+  ko: { ...optimizeBlogImagesBeforeUploadingEn, title: "업로드 전에 블로그 이미지를 최적화하는 방법", description: "블로그 게시 전 이미지 용량과 품질을 빠르게 점검하는 실무 체크리스트입니다.", intro: "원본 이미지를 그대로 올리면 블로그가 쉽게 느려집니다. 업로드 전에 짧게 정리하면 속도와 품질을 함께 지킬 수 있습니다." },
+  ja: { ...optimizeBlogImagesBeforeUploadingEn, title: "アップロード前にブログ画像を最適化する方法", description: "ブログ画像を軽くしつつ見やすさを保つ、公開前チェック手順です。", intro: "元画像をそのまま投稿すると記事が重くなりがちです。公開前の短い最適化で読みやすさと速度を両立できます。" },
+  es: { ...optimizeBlogImagesBeforeUploadingEn, title: "Cómo optimizar imágenes de blog antes de subirlas", description: "Checklist práctico para reducir peso sin perder claridad en tus artículos.", intro: "Subir imágenes sin ajustar suele ralentizar el blog. Un proceso corto antes de publicar mejora velocidad y experiencia." },
+  fr: { ...optimizeBlogImagesBeforeUploadingEn, title: "Comment optimiser les images de blog avant publication", description: "Checklist simple pour alléger vos images de blog sans perdre la lisibilité.", intro: "Publier des images brutes alourdit vite un article. Une préparation rapide avant upload améliore nettement la vitesse." },
+  de: { ...optimizeBlogImagesBeforeUploadingEn, title: "So optimierst du Blogbilder vor dem Upload", description: "Praktische Checkliste, um Blogbilder kleiner zu machen und trotzdem gut lesbar zu halten.", intro: "Unbearbeitete Originalbilder verlangsamen Blogseiten schnell. Ein kurzer Vorab-Workflow verbessert Tempo und Lesbarkeit." }
+};
+
+const imageCompressionMistakesThatHurtQualityEn: GuideLocalizedContent = {
+  title: "Image Compression Mistakes That Hurt Quality",
+  description: "Avoid common compression errors that make website images blurry, noisy, or unreadable.",
+  intro: "Image compression should reduce size, not destroy clarity. Most quality issues come from a few avoidable workflow mistakes.",
+  categoryLabel: "Image optimization",
+  useCasesTitle: "Common situations",
+  useCases: ["Blurry blog screenshots.", "Noisy product photos.", "Over-compressed hero images.", "Inconsistent image quality across pages."],
+  closingTitle: "Small fixes make a big difference",
+  closingText: "Set simple compression rules and compare output in real page context before publishing.",
+  relatedToolLabel: "Open Image Compressor",
+  sections: [
+    { heading: "Mistake 1: compressing without resizing first", paragraphs: ["Large dimensions plus strong compression can still look bad and stay heavy.", "Resize to real display width before adjusting quality."] },
+    { heading: "Mistake 2: using one quality value for every image", paragraphs: ["A universal setting rarely works across photos, screenshots, and graphics.", "Test by content type instead of forcing one number."] },
+    { heading: "Mistake 3: checking only at extreme zoom", paragraphs: ["Zoomed inspection can hide how files look in actual layout.", "Always review images where users actually see them."], bullets: ["Check mobile first.", "Review text in screenshots.", "Confirm skin tones and edges look natural."] },
+    { heading: "Mistake 4: repeated re-export cycles", paragraphs: ["Saving the same lossy image many times can stack quality loss.", "Keep a high-quality source and export web versions from it."] },
+    { heading: "Mistake 5: ignoring format fit", paragraphs: ["Wrong format choice can force aggressive compression.", "Use formats based on content needs, not habit."] }
+  ]
+};
+
+const imageCompressionMistakesThatHurtQualityContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: imageCompressionMistakesThatHurtQualityEn,
+  ko: { ...imageCompressionMistakesThatHurtQualityEn, title: "화질을 망치는 이미지 압축 실수", description: "이미지가 흐려지거나 깨져 보이게 만드는 대표 압축 실수를 정리합니다.", intro: "압축의 목적은 용량 절감이지 화질 파괴가 아닙니다. 대부분의 문제는 간단한 실수에서 시작됩니다." },
+  ja: { ...imageCompressionMistakesThatHurtQualityEn, title: "画質を落とす画像圧縮の失敗例", description: "画像をぼやけさせる圧縮ミスと、避けるための基本ルールを解説します。", intro: "圧縮は軽量化のための手段です。見た目が悪くなる場合はワークフローの見直しで改善できます。" },
+  es: { ...imageCompressionMistakesThatHurtQualityEn, title: "Errores de compresión de imagen que dañan la calidad", description: "Evita errores comunes que vuelven tus imágenes borrosas o poco legibles.", intro: "Comprimir no debería arruinar la imagen. La mayoría de problemas vienen de pasos mal aplicados." },
+  fr: { ...imageCompressionMistakesThatHurtQualityEn, title: "Erreurs de compression qui dégradent la qualité d'image", description: "Évitez les erreurs fréquentes qui rendent les images floues ou trop dégradées.", intro: "La compression doit alléger, pas détériorer. Quelques mauvaises pratiques expliquent la plupart des défauts visuels." },
+  de: { ...imageCompressionMistakesThatHurtQualityEn, title: "Kompressionsfehler, die Bildqualität verschlechtern", description: "Diese häufigen Fehler machen Webbilder unscharf oder unlesbar – und so vermeidest du sie.", intro: "Kompression soll Dateigröße senken, nicht Bildqualität zerstören. Die meisten Probleme sind leicht vermeidbar." }
+};
+
+const unixTimestampSecondsVsMillisecondsEn: GuideLocalizedContent = {
+  title: "Unix Timestamp in Seconds vs Milliseconds Explained",
+  description: "Understand the difference between second and millisecond timestamps so date conversions stop breaking.",
+  intro: "Many timestamp bugs come from mixing seconds and milliseconds. Once you know how to spot the scale, conversion becomes quick and reliable.",
+  categoryLabel: "Developer workflow",
+  useCasesTitle: "Useful when",
+  useCases: ["Debugging API date fields.", "Fixing JavaScript date parsing.", "Reading logs from mixed systems.", "Validating webhook payloads."],
+  closingTitle: "Always check timestamp scale first",
+  closingText: "Before converting any timestamp, identify whether it is 10 digits (seconds) or 13 digits (milliseconds).",
+  relatedToolLabel: "Open Timestamp Converter",
+  sections: [
+    { heading: "The key difference in one line", paragraphs: ["Seconds-based Unix timestamps are usually 10 digits.", "Milliseconds-based timestamps are usually 13 digits."] },
+    { heading: "Why the mismatch happens", paragraphs: ["Backend systems may store seconds while frontend tools expect milliseconds.", "Copying values between systems without checking units creates wrong dates."] },
+    { heading: "Quick detection workflow", paragraphs: ["Start by checking digit length, then convert using the correct unit."], bullets: ["10 digits: treat as seconds.", "13 digits: treat as milliseconds.", "If unsure, test both and validate expected year/timezone."] },
+    { heading: "Common JavaScript pitfall", paragraphs: ["JavaScript Date APIs usually expect milliseconds.", "Passing a seconds value directly often shows a date near 1970."] },
+    { heading: "Team best practice", paragraphs: ["Document timestamp units in API schemas and internal docs.", "Clear unit labels prevent repeated debugging across teams."] }
+  ]
+};
+
+const unixTimestampSecondsVsMillisecondsContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: unixTimestampSecondsVsMillisecondsEn,
+  ko: { ...unixTimestampSecondsVsMillisecondsEn, title: "유닉스 타임스탬프 초 vs 밀리초 쉽게 이해하기", description: "초 단위와 밀리초 단위를 구분해 날짜 변환 오류를 줄이는 방법입니다.", intro: "타임스탬프 오류의 대부분은 단위 혼동에서 시작됩니다. 자릿수만 확인해도 빠르게 해결할 수 있습니다." },
+  ja: { ...unixTimestampSecondsVsMillisecondsEn, title: "Unixタイムスタンプの秒とミリ秒の違い", description: "秒・ミリ秒の見分け方を理解して日付変換ミスを防ぎます。", intro: "多くのタイムスタンプ不具合は単位の取り違えが原因です。桁数チェックで素早く判別できます。" },
+  es: { ...unixTimestampSecondsVsMillisecondsEn, title: "Unix timestamp en segundos vs milisegundos", description: "Aprende a distinguir unidades para evitar fechas incorrectas al convertir timestamps.", intro: "Muchos errores de fecha vienen de mezclar segundos y milisegundos. Detectar la escala soluciona casi todo." },
+  fr: { ...unixTimestampSecondsVsMillisecondsEn, title: "Unix timestamp en secondes vs millisecondes", description: "Distinguez correctement les unités pour éviter les mauvaises conversions de date.", intro: "La plupart des bugs de timestamp viennent d'une confusion d'unité. La longueur du nombre donne déjà la réponse." },
+  de: { ...unixTimestampSecondsVsMillisecondsEn, title: "Unix-Timestamp in Sekunden vs Millisekunden erklärt", description: "So erkennst du die richtige Einheit und vermeidest fehlerhafte Datumswerte.", intro: "Viele Zeitstempel-Fehler entstehen durch Einheitenmix. Ein schneller Blick auf die Stellenzahl reicht oft aus." }
+};
+
+const convertApiTimestampsToReadableDatesEn: GuideLocalizedContent = {
+  title: "How to Convert API Timestamps to Readable Dates",
+  description: "A beginner-friendly workflow for turning raw API timestamps into human-readable date values.",
+  intro: "API responses often return timestamps instead of readable dates. Converting them correctly helps debugging, reporting, and UI rendering.",
+  categoryLabel: "Developer workflow",
+  useCasesTitle: "When to use this",
+  useCases: ["Inspecting API responses.", "Building dashboards.", "Formatting logs.", "Showing dates in admin tools."],
+  closingTitle: "Convert with context",
+  closingText: "Always convert with the correct unit and timezone, then validate one known sample value.",
+  relatedToolLabel: "Open Timestamp Converter",
+  sections: [
+    { heading: "Start by confirming timestamp unit", paragraphs: ["Check if the value is in seconds or milliseconds before conversion.", "Using the wrong unit creates meaningless dates."] },
+    { heading: "Apply timezone intentionally", paragraphs: ["Readable output depends on timezone choice.", "Decide whether you need UTC, server time, or user-local time."] },
+    { heading: "Use one sample value to validate", paragraphs: ["Pick one timestamp with a known real-world time and compare conversion output.", "This catches unit and timezone issues quickly."], bullets: ["Confirm expected year.", "Check hour offset.", "Verify daylight saving periods if relevant."] },
+    { heading: "Standardize display format", paragraphs: ["Use one consistent date format in your UI and logs.", "Consistency reduces confusion across teams and locales."] }
+  ]
+};
+
+const convertApiTimestampsToReadableDatesContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: convertApiTimestampsToReadableDatesEn,
+  ko: { ...convertApiTimestampsToReadableDatesEn, title: "API 타임스탬프를 읽기 쉬운 날짜로 변환하는 방법", description: "원시 타임스탬프를 사람이 읽는 날짜 형식으로 안정적으로 변환하는 절차입니다.", intro: "API 응답은 종종 타임스탬프만 제공합니다. 단위와 시간대를 맞춰 변환하면 디버깅과 화면 표시가 쉬워집니다." },
+  ja: { ...convertApiTimestampsToReadableDatesEn, title: "APIのタイムスタンプを読みやすい日付に変換する方法", description: "生のtimestampを実用的な日付表示へ変換する基本手順を紹介します。", intro: "APIレスポンスはtimestamp形式のことが多く、表示前の変換が必要です。単位とタイムゾーン確認が最優先です。" },
+  es: { ...convertApiTimestampsToReadableDatesEn, title: "Cómo convertir timestamps de API a fechas legibles", description: "Flujo simple para convertir valores timestamp en fechas fáciles de leer.", intro: "Muchas APIs devuelven timestamps crudos. Convertirlos bien mejora depuración y visualización en interfaz." },
+  fr: { ...convertApiTimestampsToReadableDatesEn, title: "Comment convertir des timestamps API en dates lisibles", description: "Méthode simple pour transformer des timestamps bruts en dates compréhensibles.", intro: "Les APIs renvoient souvent des timestamps. Une conversion correcte facilite le debug et l'affichage côté interface." },
+  de: { ...convertApiTimestampsToReadableDatesEn, title: "API-Timestamps in lesbare Datumswerte umwandeln", description: "Praktischer Ablauf, um rohe Zeitstempel korrekt als Datum darzustellen.", intro: "APIs liefern häufig rohe Timestamps. Mit richtiger Einheit und Zeitzone werden daraus verlässliche Datumsanzeigen." }
+};
+
+const whyYourTimestampLooksWrongInJavascriptEn: GuideLocalizedContent = {
+  title: "Why Your Timestamp Looks Wrong in JavaScript",
+  description: "Fix common JavaScript timestamp mistakes caused by unit mismatch and timezone assumptions.",
+  intro: "If JavaScript shows the wrong date, the problem is usually not Date itself. It is often a seconds-vs-milliseconds mismatch or a timezone misunderstanding.",
+  categoryLabel: "Developer workflow",
+  useCasesTitle: "Typical problems",
+  useCases: ["Date near 1970 appears unexpectedly.", "Correct day but wrong hour.", "Different time in frontend vs backend.", "Broken date formatting in UI."],
+  closingTitle: "Debug unit first, timezone second",
+  closingText: "Most JavaScript timestamp bugs are solved by checking units and then checking timezone conversion.",
+  relatedToolLabel: "Open Timestamp Converter",
+  sections: [
+    { heading: "JavaScript Date expects milliseconds", paragraphs: ["new Date(value) expects milliseconds in most timestamp workflows.", "Passing seconds directly creates incorrect output."] },
+    { heading: "Local time vs UTC confusion", paragraphs: ["Some methods show local timezone by default.", "Use UTC-aware formatting when you need environment-independent results."] },
+    { heading: "Debug checklist", paragraphs: ["Follow this order to isolate the issue quickly."], bullets: ["Confirm unit length.", "Convert to UTC and local for comparison.", "Check source API timezone assumptions."] },
+    { heading: "Avoid hidden string parsing issues", paragraphs: ["Different date string formats can parse inconsistently.", "Prefer numeric timestamps or ISO-8601 strings for predictable behavior."] }
+  ]
+};
+
+const whyYourTimestampLooksWrongInJavascriptContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: whyYourTimestampLooksWrongInJavascriptEn,
+  ko: { ...whyYourTimestampLooksWrongInJavascriptEn, title: "JavaScript에서 타임스탬프가 이상하게 보이는 이유", description: "초/밀리초 혼동과 시간대 설정 문제로 생기는 JS 날짜 오류를 정리합니다.", intro: "JavaScript Date가 틀린 것이 아니라 입력 단위나 시간대 해석이 잘못된 경우가 대부분입니다." },
+  ja: { ...whyYourTimestampLooksWrongInJavascriptEn, title: "JavaScriptでタイムスタンプ表示がずれる理由", description: "秒・ミリ秒の混同やタイムゾーン設定による日付ずれを解消します。", intro: "Dateオブジェクト自体より、入力単位や表示方法の違いが原因になるケースが多いです。" },
+  es: { ...whyYourTimestampLooksWrongInJavascriptEn, title: "Por qué tu timestamp se ve mal en JavaScript", description: "Corrige errores comunes de fecha en JS por unidad o zona horaria.", intro: "Cuando la fecha se ve mal en JavaScript, casi siempre hay confusión entre segundos/milisegundos o UTC/local." },
+  fr: { ...whyYourTimestampLooksWrongInJavascriptEn, title: "Pourquoi votre timestamp est incorrect en JavaScript", description: "Résolvez les erreurs de date JS liées aux unités et aux fuseaux horaires.", intro: "En JavaScript, les mauvaises dates viennent souvent d'une confusion secondes/millisecondes ou UTC/local." },
+  de: { ...whyYourTimestampLooksWrongInJavascriptEn, title: "Warum dein Timestamp in JavaScript falsch aussieht", description: "Häufige JS-Datumsfehler durch Einheiten- und Zeitzonenprobleme schnell beheben.", intro: "Wenn Datumsausgaben in JS falsch sind, liegt es meist an Sekunden/Millisekunden oder UTC/Lokalzeit." }
+};
+
+const debugTimezoneConfusionInTimestampsEn: GuideLocalizedContent = {
+  title: "How to Debug Timezone Confusion in Timestamps",
+  description: "Learn a simple process to find timezone mismatches across APIs, databases, and frontend displays.",
+  intro: "Timezone confusion happens when systems store one timezone and display another. A structured debug approach helps you find where the shift starts.",
+  categoryLabel: "Developer workflow",
+  useCasesTitle: "Common scenarios",
+  useCases: ["API returns UTC but UI shows local time.", "Database values look shifted.", "Scheduled events fire at wrong hour.", "Reports differ by region."],
+  closingTitle: "Trace each conversion step",
+  closingText: "Write down source timezone, transport format, and display timezone for each layer to remove guesswork.",
+  relatedToolLabel: "Open Timestamp Converter",
+  sections: [
+    { heading: "Find the source of truth", paragraphs: ["Identify where the original time is created and in what timezone.", "Without this anchor, downstream debugging becomes guesswork."] },
+    { heading: "Track conversions across layers", paragraphs: ["Check backend serialization, API transport, and frontend rendering separately.", "A single implicit conversion can shift output by hours."] },
+    { heading: "Use fixed test values", paragraphs: ["Test with known timestamps and compare expected vs actual at each step."], bullets: ["Use UTC examples.", "Include DST boundary dates.", "Test from multiple client timezones."] },
+    { heading: "Log timezone metadata", paragraphs: ["When possible, log timezone context alongside timestamp values.", "This makes future incident debugging much faster."] }
+  ]
+};
+
+const debugTimezoneConfusionInTimestampsContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: debugTimezoneConfusionInTimestampsEn,
+  ko: { ...debugTimezoneConfusionInTimestampsEn, title: "타임스탬프 시간대 혼동 디버깅 방법", description: "API·DB·프론트엔드 사이에서 발생하는 시간대 불일치를 단계별로 찾는 방법입니다.", intro: "시간대 문제는 저장과 표시 기준이 다를 때 발생합니다. 변환 지점을 순서대로 추적하면 빠르게 원인을 찾을 수 있습니다." },
+  ja: { ...debugTimezoneConfusionInTimestampsEn, title: "タイムスタンプのタイムゾーン混乱をデバッグする方法", description: "API・DB・フロント間で起きる時刻ずれを段階的に特定する手順です。", intro: "保存時刻と表示時刻の基準が混ざると、タイムゾーン問題が起きます。各変換点を追跡するのが近道です。" },
+  es: { ...debugTimezoneConfusionInTimestampsEn, title: "Cómo depurar confusión de zonas horarias en timestamps", description: "Proceso práctico para detectar desajustes de zona horaria en todo el flujo.", intro: "Los errores de zona horaria aparecen cuando cada capa interpreta el tiempo distinto. Trazar cada conversión evita suposiciones." },
+  fr: { ...debugTimezoneConfusionInTimestampsEn, title: "Comment déboguer les confusions de fuseau horaire dans les timestamps", description: "Méthode structurée pour repérer les décalages de fuseau entre systèmes.", intro: "Les décalages viennent souvent d'une conversion implicite. Suivre chaque étape du flux permet de localiser l'erreur." },
+  de: { ...debugTimezoneConfusionInTimestampsEn, title: "Zeitzonen-Verwirrung bei Timestamps debuggen", description: "Schritt-für-Schritt-Prozess, um Zeitzonenverschiebungen zwischen Systemen zu finden.", intro: "Zeitzonenfehler entstehen oft zwischen Speicherung, API-Transport und Darstellung. Jede Umwandlung einzeln prüfen." }
+};
+
+const base64VsUrlEncodingEn: GuideLocalizedContent = {
+  title: "Base64 vs URL Encoding: What’s the Difference?",
+  description: "Understand when to use Base64 and when URL encoding is the correct choice in web workflows.",
+  intro: "Base64 and URL encoding solve different problems. Mixing them up causes broken links, invalid payloads, and confusing debug sessions.",
+  categoryLabel: "Developer workflow",
+  useCasesTitle: "Useful for",
+  useCases: ["Building query strings.", "Transferring binary data in text channels.", "Debugging API parameters.", "Encoding values in redirects."],
+  closingTitle: "Choose encoding by purpose",
+  closingText: "URL encoding protects URL characters. Base64 converts data representation. Use the right one for the job.",
+  relatedToolLabel: "Open Base64 Encode/Decode",
+  sections: [
+    { heading: "URL encoding keeps URLs valid", paragraphs: ["URL encoding escapes reserved characters in URLs.", "Use it for query params, path segments, and redirect values."] },
+    { heading: "Base64 changes data into text-safe blocks", paragraphs: ["Base64 is useful for transporting binary or structured values as text.", "It is not a replacement for URL encoding in links."] },
+    { heading: "Common confusion patterns", paragraphs: ["Developers often Base64 a value and still need URL encoding if it goes into a URL.", "Treat these as separate steps when needed."], bullets: ["URL params: URL encode.", "Binary payloads in text fields: Base64.", "Sensitive data: use encryption, not Base64."] },
+    { heading: "Debugging rule of thumb", paragraphs: ["If a URL breaks, inspect URL encoding first.", "If unreadable blob data appears, decode Base64 to inspect original content."] }
+  ]
+};
+
+const base64VsUrlEncodingContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: base64VsUrlEncodingEn,
+  ko: { ...base64VsUrlEncodingEn, title: "Base64와 URL 인코딩의 차이", description: "웹 워크플로에서 Base64와 URL 인코딩을 언제 써야 하는지 구분합니다.", intro: "두 인코딩은 목적이 다릅니다. 혼용하면 링크 오류나 디버깅 혼란이 쉽게 발생합니다." },
+  ja: { ...base64VsUrlEncodingEn, title: "Base64とURLエンコードの違い", description: "用途の異なる2つのエンコードを正しく使い分けるためのガイドです。", intro: "Base64とURLエンコードは解決する問題が異なります。混同するとリンクやAPI処理で不具合が出ます。" },
+  es: { ...base64VsUrlEncodingEn, title: "Base64 vs URL encoding: ¿cuál es la diferencia?", description: "Diferencia clave entre ambos métodos y cuándo usar cada uno.", intro: "Base64 y URL encoding no son intercambiables. Elegir mal rompe URLs y payloads." },
+  fr: { ...base64VsUrlEncodingEn, title: "Base64 vs encodage URL : quelle différence ?", description: "Comprendre quand utiliser Base64 et quand utiliser l'encodage URL.", intro: "Ces deux encodages répondent à des besoins différents. Les confondre crée des erreurs évitables." },
+  de: { ...base64VsUrlEncodingEn, title: "Base64 vs URL-Encoding: Was ist der Unterschied?", description: "Wann Base64 sinnvoll ist und wann URL-Encoding die richtige Wahl ist.", intro: "Beide Verfahren lösen unterschiedliche Aufgaben. Falsche Nutzung führt schnell zu kaputten Links oder fehlerhaften Payloads." }
+};
+
+const howToDecodeBase64SafelyForDebuggingEn: GuideLocalizedContent = {
+  title: "How to Decode Base64 Safely for Debugging",
+  description: "A safe, practical approach to decode Base64 strings without exposing sensitive data.",
+  intro: "Base64 decoding is useful in debugging, but decoded data can include tokens, credentials, or personal information. Handle it carefully.",
+  categoryLabel: "Developer workflow",
+  useCasesTitle: "Common use cases",
+  useCases: ["Inspecting JWT parts.", "Reading API payload fragments.", "Debugging encoded logs.", "Checking webhook content."],
+  closingTitle: "Decode carefully, not casually",
+  closingText: "Use secure environments, mask sensitive output, and avoid sharing raw decoded values in public channels.",
+  relatedToolLabel: "Open Base64 Encode/Decode",
+  sections: [
+    { heading: "Use a trusted environment", paragraphs: ["Decode only in secure tools and trusted browsers.", "Avoid pasting sensitive values into unknown online services."] },
+    { heading: "Inspect only what you need", paragraphs: ["Decode enough to verify structure or field values.", "Do not copy full decoded secrets into tickets or chat."] },
+    { heading: "Watch for malformed input", paragraphs: ["Some strings include URL-safe variants, prefixes, or missing padding.", "Normalize input before assuming data is corrupt."], bullets: ["Trim whitespace.", "Check URL-safe characters.", "Handle missing '=' padding if needed."] },
+    { heading: "Sanitize before sharing", paragraphs: ["If you need help from teammates, redact keys and personal data first.", "Share minimal context to solve the issue safely."] }
+  ]
+};
+
+const howToDecodeBase64SafelyForDebuggingContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: howToDecodeBase64SafelyForDebuggingEn,
+  ko: { ...howToDecodeBase64SafelyForDebuggingEn, title: "디버깅을 위한 안전한 Base64 디코딩 방법", description: "민감 정보 노출 없이 Base64를 확인하는 안전한 디버깅 절차입니다.", intro: "디코딩 결과에는 토큰이나 개인 정보가 포함될 수 있습니다. 안전한 환경에서 최소한만 확인하세요." },
+  ja: { ...howToDecodeBase64SafelyForDebuggingEn, title: "デバッグ時にBase64を安全にデコードする方法", description: "機密情報を守りながらBase64内容を確認する実践手順です。", intro: "デコード結果には機密データが含まれる可能性があります。扱う場所と共有方法に注意しましょう。" },
+  es: { ...howToDecodeBase64SafelyForDebuggingEn, title: "Cómo decodificar Base64 de forma segura para depurar", description: "Buenas prácticas para inspeccionar Base64 sin exponer datos sensibles.", intro: "Al decodificar puedes revelar credenciales o datos personales. Hazlo siempre en un entorno confiable." },
+  fr: { ...howToDecodeBase64SafelyForDebuggingEn, title: "Comment décoder Base64 en toute sécurité pour le debug", description: "Méthode pratique pour décoder Base64 sans exposer d'informations sensibles.", intro: "Le contenu décodé peut contenir des secrets. Travaillez dans un environnement sûr et partagez uniquement le nécessaire." },
+  de: { ...howToDecodeBase64SafelyForDebuggingEn, title: "Base64 sicher für Debugging decodieren", description: "So analysierst du Base64-Inhalte ohne sensible Daten unnötig offenzulegen.", intro: "Decodierte Inhalte können Tokens oder personenbezogene Daten enthalten. Deshalb immer mit Sicherheitsfokus arbeiten." }
+};
+
+const commonBase64MistakesInWebWorkflowsEn: GuideLocalizedContent = {
+  title: "Common Base64 Mistakes in Web Workflows",
+  description: "Avoid the most frequent Base64 mistakes that break integrations and slow debugging.",
+  intro: "Base64 is simple, but workflow mistakes are common: wrong assumptions about security, encoding the wrong layer, and malformed strings.",
+  categoryLabel: "Developer workflow",
+  useCasesTitle: "Typical mistakes appear in",
+  useCases: ["API requests.", "Auth token handling.", "Data URLs.", "Webhook payload troubleshooting."],
+  closingTitle: "Keep Base64 usage intentional",
+  closingText: "Use Base64 only where compatibility requires it, and validate decode/encode behavior in tests.",
+  relatedToolLabel: "Open Base64 Encode/Decode",
+  sections: [
+    { heading: "Mistake: treating Base64 as encryption", paragraphs: ["Base64 is reversible encoding, not data protection.", "Never rely on it for confidentiality."] },
+    { heading: "Mistake: encoding data unnecessarily", paragraphs: ["Many APIs already accept raw JSON or multipart uploads.", "Extra encoding adds complexity and size overhead."] },
+    { heading: "Mistake: ignoring format variants", paragraphs: ["Standard and URL-safe Base64 are different.", "Using the wrong variant can break signatures or parsing."], bullets: ["Match API spec exactly.", "Verify padding rules.", "Document expected variant."] },
+    { heading: "Mistake: weak debugging hygiene", paragraphs: ["Copying raw decoded values into logs or chats can leak sensitive data.", "Mask or truncate sensitive fields before sharing."] }
+  ]
+};
+
+const commonBase64MistakesInWebWorkflowsContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: commonBase64MistakesInWebWorkflowsEn,
+  ko: { ...commonBase64MistakesInWebWorkflowsEn, title: "웹 워크플로에서 자주 하는 Base64 실수", description: "연동 실패를 부르는 Base64 실수와 예방 방법을 정리합니다.", intro: "Base64 자체는 단순하지만, 적용 방식이 잘못되면 API 오류와 디버깅 비용이 크게 늘어납니다." },
+  ja: { ...commonBase64MistakesInWebWorkflowsEn, title: "WebワークフローでよくあるBase64の失敗", description: "連携不具合につながる典型的なBase64ミスを防ぐためのガイドです。", intro: "Base64は便利ですが、使い方を誤ると不具合の原因になります。よくある失敗を先に押さえましょう。" },
+  es: { ...commonBase64MistakesInWebWorkflowsEn, title: "Errores comunes de Base64 en flujos web", description: "Evita fallos típicos de Base64 que rompen integraciones y debugging.", intro: "Base64 parece simple, pero su uso incorrecto provoca errores evitables en APIs y logs." },
+  fr: { ...commonBase64MistakesInWebWorkflowsEn, title: "Erreurs Base64 fréquentes dans les workflows web", description: "Évitez les erreurs courantes Base64 qui cassent les intégrations.", intro: "Base64 est simple, mais son mauvais usage crée des bugs récurrents et coûteux à diagnostiquer." },
+  de: { ...commonBase64MistakesInWebWorkflowsEn, title: "Häufige Base64-Fehler in Web-Workflows", description: "So vermeidest du typische Base64-Fehler, die Integrationen stören.", intro: "Base64 ist leicht zu nutzen, aber falsche Annahmen führen schnell zu Debugging-Problemen." }
+};
+
+const whenPlainTextIsBetterThanBase64En: GuideLocalizedContent = {
+  title: "When Plain Text Is Better Than Base64",
+  description: "Know when plain text is the cleaner option and Base64 only adds noise and overhead.",
+  intro: "Base64 is useful in specific compatibility cases, but many workflows are better with plain text. Simpler data is easier to read, test, and maintain.",
+  categoryLabel: "Developer workflow",
+  useCasesTitle: "Choose plain text for",
+  useCases: ["Readable config values.", "Simple API parameters.", "Logs and debugging output.", "Team documentation examples."],
+  closingTitle: "Prefer simplicity by default",
+  closingText: "If plain text works safely, keep it plain. Add Base64 only when a system truly requires encoded transport.",
+  relatedToolLabel: "Open Base64 Encode/Decode",
+  sections: [
+    { heading: "Plain text improves readability", paragraphs: ["Humans can quickly inspect and verify plain values.", "Encoded strings hide meaning and slow collaboration."] },
+    { heading: "Encoding adds payload size", paragraphs: ["Base64 increases data size compared with original content.", "Avoid this overhead when there is no compatibility benefit."] },
+    { heading: "Debugging is faster with direct values", paragraphs: ["Plain text reduces decode steps in incident response.", "Teams can spot typos and mismatches faster."], bullets: ["Use plain text in internal docs.", "Keep logs readable.", "Reserve Base64 for strict transport needs."] },
+    { heading: "Use Base64 only when required", paragraphs: ["Examples include binary transfer through text-only channels or strict API contracts.", "Outside those cases, plain text is usually the better engineering choice."] }
+  ]
+};
+
+const whenPlainTextIsBetterThanBase64Content: Record<LocaleCode, GuideLocalizedContent> = {
+  en: whenPlainTextIsBetterThanBase64En,
+  ko: { ...whenPlainTextIsBetterThanBase64En, title: "Base64보다 평문이 더 나은 경우", description: "불필요한 인코딩을 줄이고 더 읽기 쉬운 워크플로를 만드는 기준입니다.", intro: "호환성 요구가 없다면 평문이 더 단순하고 유지보수하기 쉽습니다." },
+  ja: { ...whenPlainTextIsBetterThanBase64En, title: "Base64よりプレーンテキストが適している場面", description: "不要なエンコードを避け、読みやすい運用を保つ判断基準を紹介します。", intro: "互換性要件がないなら、プレーンテキストの方が分かりやすく保守しやすいです。" },
+  es: { ...whenPlainTextIsBetterThanBase64En, title: "Cuándo el texto plano es mejor que Base64", description: "Identifica casos donde Base64 solo añade complejidad innecesaria.", intro: "Si no existe una necesidad real de compatibilidad, texto plano suele ser más simple y útil." },
+  fr: { ...whenPlainTextIsBetterThanBase64En, title: "Quand le texte brut vaut mieux que Base64", description: "Repérez les cas où Base64 ajoute surtout de la complexité inutile.", intro: "Sans contrainte technique, le texte brut reste plus lisible et plus simple à maintenir." },
+  de: { ...whenPlainTextIsBetterThanBase64En, title: "Wann Klartext besser ist als Base64", description: "Erkenne Situationen, in denen Base64 nur unnötige Komplexität erzeugt.", intro: "Ohne echte Kompatibilitätsanforderung ist Klartext oft die bessere Wahl." }
+};
+
 const guideDefinitions: Array<Omit<GuideItem, "content"> & { content: Record<LocaleCode, GuideLocalizedContent> }> = [
   {
     slug: "how-to-use-html-color-picker",
@@ -2591,6 +2901,33 @@ const guideDefinitions: Array<Omit<GuideItem, "content"> & { content: Record<Loc
     content: bestImageFileSizeForWebsitesContent
   },
   {
+    slug: "why-large-images-slow-down-websites",
+    category: "color-image",
+    relatedToolSlug: "image-compressor",
+    relatedGuideSlugs: ["compress-images-for-page-speed", "best-image-file-size-for-websites"],
+    publishedAt: "2026-04-05",
+    updatedAt: "2026-04-05",
+    content: whyLargeImagesSlowDownWebsitesContent
+  },
+  {
+    slug: "optimize-blog-images-before-uploading",
+    category: "color-image",
+    relatedToolSlug: "image-compressor",
+    relatedGuideSlugs: ["compress-images-for-page-speed", "reduce-image-size-without-losing-too-much-quality"],
+    publishedAt: "2026-04-05",
+    updatedAt: "2026-04-05",
+    content: optimizeBlogImagesBeforeUploadingContent
+  },
+  {
+    slug: "image-compression-mistakes-that-hurt-quality",
+    category: "color-image",
+    relatedToolSlug: "image-compressor",
+    relatedGuideSlugs: ["best-image-file-size-for-websites", "reduce-image-size-without-losing-too-much-quality"],
+    publishedAt: "2026-04-05",
+    updatedAt: "2026-04-05",
+    content: imageCompressionMistakesThatHurtQualityContent
+  },
+  {
     slug: "json-parse-error-examples",
     category: "developer",
     relatedToolSlug: "json-formatter",
@@ -2701,6 +3038,7 @@ const guideDefinitions: Array<Omit<GuideItem, "content"> & { content: Record<Loc
     slug: "when-to-use-base64-encoding",
     category: "developer",
     relatedToolSlug: "base64-encode-decode",
+    relatedGuideSlugs: ["base64-vs-url-encoding", "how-to-decode-base64-safely-for-debugging"],
     publishedAt: "2026-03-24",
     updatedAt: "2026-03-24",
     content: {
@@ -2711,6 +3049,42 @@ const guideDefinitions: Array<Omit<GuideItem, "content"> & { content: Record<Loc
       fr: whenToUseBase64EncodingFr,
       de: whenToUseBase64EncodingDe
     }
+  },
+  {
+    slug: "base64-vs-url-encoding",
+    category: "developer",
+    relatedToolSlug: "base64-encode-decode",
+    relatedGuideSlugs: ["when-to-use-base64-encoding", "how-to-decode-base64-safely-for-debugging"],
+    publishedAt: "2026-04-05",
+    updatedAt: "2026-04-05",
+    content: base64VsUrlEncodingContent
+  },
+  {
+    slug: "how-to-decode-base64-safely-for-debugging",
+    category: "developer",
+    relatedToolSlug: "base64-encode-decode",
+    relatedGuideSlugs: ["when-to-use-base64-encoding", "base64-vs-url-encoding"],
+    publishedAt: "2026-04-05",
+    updatedAt: "2026-04-05",
+    content: howToDecodeBase64SafelyForDebuggingContent
+  },
+  {
+    slug: "common-base64-mistakes-in-web-workflows",
+    category: "developer",
+    relatedToolSlug: "base64-encode-decode",
+    relatedGuideSlugs: ["when-to-use-base64-encoding", "how-to-decode-base64-safely-for-debugging"],
+    publishedAt: "2026-04-05",
+    updatedAt: "2026-04-05",
+    content: commonBase64MistakesInWebWorkflowsContent
+  },
+  {
+    slug: "when-plain-text-is-better-than-base64",
+    category: "developer",
+    relatedToolSlug: "base64-encode-decode",
+    relatedGuideSlugs: ["when-to-use-base64-encoding", "common-base64-mistakes-in-web-workflows"],
+    publishedAt: "2026-04-05",
+    updatedAt: "2026-04-05",
+    content: whenPlainTextIsBetterThanBase64Content
   },
   {
     slug: "how-to-check-open-graph-metadata",
@@ -2762,6 +3136,7 @@ const guideDefinitions: Array<Omit<GuideItem, "content"> & { content: Record<Loc
     slug: "how-to-convert-timestamps-quickly",
     category: "developer",
     relatedToolSlug: "timestamp-converter",
+    relatedGuideSlugs: ["unix-timestamp-seconds-vs-milliseconds", "convert-api-timestamps-to-readable-dates"],
     publishedAt: "2026-03-24",
     updatedAt: "2026-03-24",
     content: {
@@ -2772,6 +3147,42 @@ const guideDefinitions: Array<Omit<GuideItem, "content"> & { content: Record<Loc
       fr: howToConvertTimestampsQuicklyFr,
       de: howToConvertTimestampsQuicklyDe
     }
+  },
+  {
+    slug: "unix-timestamp-seconds-vs-milliseconds",
+    category: "developer",
+    relatedToolSlug: "timestamp-converter",
+    relatedGuideSlugs: ["how-to-convert-timestamps-quickly", "validate-json-before-api-requests"],
+    publishedAt: "2026-04-05",
+    updatedAt: "2026-04-05",
+    content: unixTimestampSecondsVsMillisecondsContent
+  },
+  {
+    slug: "convert-api-timestamps-to-readable-dates",
+    category: "developer",
+    relatedToolSlug: "timestamp-converter",
+    relatedGuideSlugs: ["how-to-convert-timestamps-quickly", "unix-timestamp-seconds-vs-milliseconds"],
+    publishedAt: "2026-04-05",
+    updatedAt: "2026-04-05",
+    content: convertApiTimestampsToReadableDatesContent
+  },
+  {
+    slug: "why-your-timestamp-looks-wrong-in-javascript",
+    category: "developer",
+    relatedToolSlug: "timestamp-converter",
+    relatedGuideSlugs: ["how-to-convert-timestamps-quickly", "unix-timestamp-seconds-vs-milliseconds"],
+    publishedAt: "2026-04-05",
+    updatedAt: "2026-04-05",
+    content: whyYourTimestampLooksWrongInJavascriptContent
+  },
+  {
+    slug: "debug-timezone-confusion-in-timestamps",
+    category: "developer",
+    relatedToolSlug: "timestamp-converter",
+    relatedGuideSlugs: ["convert-api-timestamps-to-readable-dates", "why-your-timestamp-looks-wrong-in-javascript"],
+    publishedAt: "2026-04-05",
+    updatedAt: "2026-04-05",
+    content: debugTimezoneConfusionInTimestampsContent
   }
 
 
