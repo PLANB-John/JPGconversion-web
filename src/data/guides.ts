@@ -15,6 +15,10 @@ export type GuideSlug =
   | "when-to-use-base64-encoding"
   | "how-to-check-open-graph-metadata"
   | "how-to-extract-youtube-thumbnails"
+  | "download-youtube-thumbnail-by-url"
+  | "youtube-thumbnail-sizes-explained"
+  | "check-youtube-thumbnail-quality"
+  | "when-to-use-youtube-thumbnails-for-reference"
   | "how-to-convert-timestamps-quickly"
   | "how-to-use-a-json-formatter-for-debugging"
   | "how-to-convert-images-to-webp"
@@ -44,7 +48,15 @@ export type GuideSlug =
   | "check-character-count-before-publishing"
   | "blog-title-length-for-readability"
   | "why-open-graph-images-look-wrong"
-  | "preview-shared-links-before-posting";
+  | "preview-shared-links-before-posting"
+  | "hex-vs-rgb-vs-hsl"
+  | "match-website-colors-consistently"
+  | "copy-web-color-from-screen"
+  | "common-color-picker-mistakes"
+  | "extract-brand-colors-from-image"
+  | "build-color-palette-from-photo"
+  | "when-image-color-sampling-helps"
+  | "mistakes-when-extracting-colors-from-images";
 
 type GuideSection = {
   heading: string;
@@ -2480,6 +2492,330 @@ const whenPlainTextIsBetterThanBase64Content: Record<LocaleCode, GuideLocalizedC
   de: { ...whenPlainTextIsBetterThanBase64En, title: "Wann Klartext besser ist als Base64", description: "Erkenne Situationen, in denen Base64 nur unnötige Komplexität erzeugt.", intro: "Ohne echte Kompatibilitätsanforderung ist Klartext oft die bessere Wahl." }
 };
 
+const downloadYoutubeThumbnailByUrlEn: GuideLocalizedContent = {
+  title: "How to Download a YouTube Thumbnail by URL",
+  description: "A quick workflow to fetch and save YouTube thumbnail images from a video URL.",
+  intro: "If you need a thumbnail for review, inspiration, or content planning, you can extract it directly from a YouTube video URL in a few seconds.",
+  categoryLabel: "YouTube workflow",
+  useCasesTitle: "When this helps",
+  useCases: ["Collecting visual references for content ideas.", "Preparing social drafts with preview images.", "Comparing thumbnail styles across channels."],
+  closingTitle: "Use the URL, then save the best size",
+  closingText: "Paste the video link, check available sizes, and download the one that matches your use case.",
+  relatedToolLabel: "Open YouTube Thumbnail Extractor",
+  sections: [
+    { heading: "Copy a clean video URL", paragraphs: ["Use a full YouTube link from the address bar or share menu.", "Remove extra tracking parameters when possible so parsing stays simple."] },
+    { heading: "Paste and extract thumbnails", paragraphs: ["Drop the URL into the extractor to generate available thumbnail images.", "Most videos provide multiple size options, so preview before downloading."] },
+    { heading: "Choose the right file for your task", paragraphs: ["Use larger images for mockups and quality checks.", "For quick notes or internal docs, a smaller version may be enough."], bullets: ["Compare dimensions before saving.", "Check text readability at actual display size.", "Keep filenames organized by channel or campaign."] },
+    { heading: "Respect usage rights", paragraphs: ["Use thumbnails as references unless you have permission to republish.", "When in doubt, create your own variation instead of copying directly."] }
+  ]
+};
+
+const downloadYoutubeThumbnailByUrlContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: downloadYoutubeThumbnailByUrlEn,
+  ko: { ...downloadYoutubeThumbnailByUrlEn, title: "URL로 YouTube 썸네일 다운로드하는 방법", description: "영상 URL만으로 YouTube 썸네일 이미지를 빠르게 저장하는 방법입니다.", intro: "기획 참고나 비교용으로 썸네일이 필요할 때, 영상 URL만 붙여 넣어 바로 추출할 수 있습니다." },
+  ja: { ...downloadYoutubeThumbnailByUrlEn, title: "URLからYouTubeサムネイルを保存する方法", description: "動画URLからYouTubeサムネイル画像をすばやく取得する手順です。", intro: "企画や比較用にサムネイルが必要なときは、動画URLを使えばすぐに抽出できます。" },
+  es: { ...downloadYoutubeThumbnailByUrlEn, title: "Cómo descargar una miniatura de YouTube por URL", description: "Flujo rápido para obtener y guardar miniaturas de YouTube desde una URL.", intro: "Si necesitas una miniatura para referencia o planificación, puedes extraerla en segundos con el enlace del video." },
+  fr: { ...downloadYoutubeThumbnailByUrlEn, title: "Comment télécharger une miniature YouTube via URL", description: "Méthode rapide pour récupérer et enregistrer une miniature YouTube depuis une URL.", intro: "Pour une référence visuelle ou une préparation éditoriale, collez simplement l'URL de la vidéo." },
+  de: { ...downloadYoutubeThumbnailByUrlEn, title: "YouTube-Thumbnail per URL herunterladen", description: "Schneller Ablauf, um Vorschaubilder aus einer YouTube-URL zu speichern.", intro: "Für Recherchen oder Content-Planung kannst du Thumbnails direkt aus der Video-URL extrahieren." }
+};
+
+const youtubeThumbnailSizesExplainedEn: GuideLocalizedContent = {
+  title: "What Thumbnail Sizes Are Available on YouTube?",
+  description: "Understand common YouTube thumbnail size variants and when each one is useful.",
+  intro: "YouTube thumbnails are available in several sizes. Choosing the right version helps you avoid blurry comparisons and layout mistakes.",
+  categoryLabel: "YouTube workflow",
+  useCasesTitle: "Useful for",
+  useCases: ["Checking image sharpness before analysis.", "Preparing visual audits for a channel.", "Selecting the best reference size for slides."],
+  closingTitle: "Always compare size before reuse",
+  closingText: "Use the largest available image for quality checks, then scale down only if needed.",
+  relatedToolLabel: "Open YouTube Thumbnail Extractor",
+  sections: [
+    { heading: "Why multiple sizes exist", paragraphs: ["YouTube serves different thumbnail sizes for different surfaces.", "That is why one image can look sharp on desktop but soft in another context."] },
+    { heading: "Common sizes you will see", paragraphs: ["Most extractors show default, medium, high, and max-resolution variants.", "Not every video has every size, especially older uploads."], bullets: ["Default: fast preview.", "Medium/High: general review.", "Max resolution: best for detail checks."] },
+    { heading: "How to pick the right one", paragraphs: ["If you are inspecting typography or small details, start with the largest option.", "If you only need a quick visual reference in notes, a medium size is often fine."] },
+    { heading: "Quality check tips", paragraphs: ["Zoom to inspect edges and text clarity before using a thumbnail as inspiration.", "If quality is weak at source, do not expect perfect results after resizing."] }
+  ]
+};
+
+const youtubeThumbnailSizesExplainedContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: youtubeThumbnailSizesExplainedEn,
+  ko: { ...youtubeThumbnailSizesExplainedEn, title: "YouTube 썸네일 크기 종류 정리", description: "YouTube 썸네일 크기별 특징과 상황별 선택 기준을 설명합니다.", intro: "썸네일은 여러 크기로 제공됩니다. 목적에 맞는 크기를 고르면 흐릿한 비교를 줄일 수 있습니다." },
+  ja: { ...youtubeThumbnailSizesExplainedEn, title: "YouTubeサムネイルのサイズを解説", description: "YouTubeで取得できる主なサムネイルサイズと使い分けを紹介します。", intro: "サムネイルには複数サイズがあります。用途に合うサイズを選ぶと確認精度が上がります。" },
+  es: { ...youtubeThumbnailSizesExplainedEn, title: "¿Qué tamaños de miniatura ofrece YouTube?", description: "Guía práctica de tamaños de miniatura de YouTube y su uso recomendado.", intro: "YouTube ofrece miniaturas en distintos tamaños. Elegir bien evita comparaciones borrosas." },
+  fr: { ...youtubeThumbnailSizesExplainedEn, title: "Quelles tailles de miniature sont disponibles sur YouTube ?", description: "Comprenez les formats de miniatures YouTube et leur usage pratique.", intro: "Les miniatures YouTube existent en plusieurs tailles. Le bon choix évite les analyses floues." },
+  de: { ...youtubeThumbnailSizesExplainedEn, title: "Welche Thumbnail-Größen gibt es bei YouTube?", description: "Überblick über gängige YouTube-Thumbnail-Größen und ihren praktischen Einsatz.", intro: "YouTube stellt Thumbnails in mehreren Größen bereit. Die richtige Wahl verhindert unscharfe Vergleiche." }
+};
+
+const checkYoutubeThumbnailQualityEn: GuideLocalizedContent = {
+  title: "How to Check YouTube Thumbnail Quality Before Reusing It",
+  description: "A practical checklist for reviewing thumbnail clarity and suitability before reuse.",
+  intro: "Before you reuse a thumbnail for references, inspect its quality first. Small compression artifacts can become very visible in presentations or mockups.",
+  categoryLabel: "YouTube workflow",
+  useCasesTitle: "Quick quality checks for",
+  useCases: ["Decks and reports.", "Creative benchmark boards.", "Team feedback sessions."],
+  closingTitle: "Check quality before you commit",
+  closingText: "A 30-second review avoids blurry visuals and saves rework later.",
+  relatedToolLabel: "Open YouTube Thumbnail Extractor",
+  sections: [
+    { heading: "Start with the largest available image", paragraphs: ["Always inspect the highest resolution first.", "If the largest version looks weak, smaller versions will not improve quality."] },
+    { heading: "Inspect text and edge sharpness", paragraphs: ["Zoom in and verify that text edges are readable, not smeared.", "Look at faces, logos, and high-contrast lines for compression noise."] },
+    { heading: "Check real usage size", paragraphs: ["A thumbnail can look acceptable when tiny but fail at slide or article size.", "Preview it at the size you plan to use before finalizing."], bullets: ["Test at 100% zoom.", "Check on both light and dark backgrounds.", "Avoid aggressive upscaling."] },
+    { heading: "Document source and intent", paragraphs: ["Save where the image came from and why it was used.", "This keeps team communication clear when references are reviewed later."] }
+  ]
+};
+
+const checkYoutubeThumbnailQualityContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: checkYoutubeThumbnailQualityEn,
+  ko: { ...checkYoutubeThumbnailQualityEn, title: "재사용 전 YouTube 썸네일 품질 확인 방법", description: "썸네일 재사용 전에 선명도와 적합성을 점검하는 실전 체크리스트입니다.", intro: "참고용으로 썸네일을 쓸 때는 먼저 품질을 확인하세요. 작은 압축 흔적도 실제 작업에서 크게 보일 수 있습니다." },
+  ja: { ...checkYoutubeThumbnailQualityEn, title: "再利用前にYouTubeサムネイル品質を確認する方法", description: "サムネイルを使う前に画質を見極める実践チェックリストです。", intro: "参照用途でも、先に品質確認をしておくと後戻りを減らせます。" },
+  es: { ...checkYoutubeThumbnailQualityEn, title: "Cómo revisar la calidad de una miniatura de YouTube antes de reutilizarla", description: "Checklist práctico para validar nitidez y uso antes de reutilizar miniaturas.", intro: "Antes de reutilizar una miniatura como referencia, revisa su calidad para evitar resultados borrosos." },
+  fr: { ...checkYoutubeThumbnailQualityEn, title: "Comment vérifier la qualité d'une miniature YouTube avant réutilisation", description: "Checklist pratique pour valider netteté et pertinence avant réutilisation.", intro: "Avant toute réutilisation, vérifiez la qualité de la miniature pour éviter un rendu flou." },
+  de: { ...checkYoutubeThumbnailQualityEn, title: "So prüfst du die Qualität eines YouTube-Thumbnails vor der Nutzung", description: "Praktische Checkliste für Schärfe und Eignung vor der Wiederverwendung.", intro: "Bevor du ein Thumbnail als Referenz nutzt, solltest du die Qualität kurz prüfen." }
+};
+
+const whenToUseYoutubeThumbnailsForReferenceEn: GuideLocalizedContent = {
+  title: "When to Use YouTube Thumbnails for Reference Only",
+  description: "Learn when YouTube thumbnails are good inspiration material and when they should not be reused directly.",
+  intro: "YouTube thumbnails are useful for analysis, trend research, and moodboards. But that does not automatically mean they are safe to republish.",
+  categoryLabel: "YouTube workflow",
+  useCasesTitle: "Best used for",
+  useCases: ["Style benchmarking.", "Competitor research.", "Creative direction discussions."],
+  closingTitle: "Reference first, recreate second",
+  closingText: "Use thumbnails to learn patterns, then build original assets for publishing.",
+  relatedToolLabel: "Open YouTube Thumbnail Extractor",
+  sections: [
+    { heading: "Use thumbnails as visual research", paragraphs: ["Collect examples to compare color, framing, and text hierarchy.", "This helps teams discuss what works without copying exact designs."] },
+    { heading: "Know the copyright boundary", paragraphs: ["Most third-party thumbnails should be treated as protected creative assets.", "If publication rights are unclear, avoid direct reuse."] },
+    { heading: "Turn references into original work", paragraphs: ["Extract practical patterns instead of duplicating layouts.", "Build your own version with original text, imagery, and branding."], bullets: ["Analyze composition.", "Note contrast and typography choices.", "Create fresh final artwork."] },
+    { heading: "Keep source notes", paragraphs: ["Track where references came from for internal review.", "Good documentation reduces confusion in content approval steps."] }
+  ]
+};
+
+const whenToUseYoutubeThumbnailsForReferenceContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: whenToUseYoutubeThumbnailsForReferenceEn,
+  ko: { ...whenToUseYoutubeThumbnailsForReferenceEn, title: "YouTube 썸네일을 참고용으로만 써야 할 때", description: "썸네일을 영감 자료로 활용할 때와 직접 재사용을 피해야 할 때를 정리합니다.", intro: "썸네일은 트렌드 분석과 무드보드에 유용하지만, 그대로 재게시 가능한 것은 아닙니다." },
+  ja: { ...whenToUseYoutubeThumbnailsForReferenceEn, title: "YouTubeサムネイルを参考用途に留めるべき場面", description: "参考には使えても、そのまま再利用すべきでないケースを整理します。", intro: "サムネイルは分析素材として便利ですが、再公開の可否とは別問題です。" },
+  es: { ...whenToUseYoutubeThumbnailsForReferenceEn, title: "Cuándo usar miniaturas de YouTube solo como referencia", description: "Cuándo sirven para inspiración y cuándo no conviene reutilizarlas directamente.", intro: "Las miniaturas de YouTube son útiles para analizar estilos, pero eso no implica permiso de republicación." },
+  fr: { ...whenToUseYoutubeThumbnailsForReferenceEn, title: "Quand utiliser les miniatures YouTube uniquement comme référence", description: "Savoir quand s'en inspirer et quand éviter la réutilisation directe.", intro: "Les miniatures sont utiles pour l'analyse, mais pas forcément réutilisables telles quelles." },
+  de: { ...whenToUseYoutubeThumbnailsForReferenceEn, title: "Wann YouTube-Thumbnails nur als Referenz dienen sollten", description: "Wann Thumbnails als Inspiration sinnvoll sind und wann direkte Nutzung problematisch ist.", intro: "Thumbnails eignen sich gut zur Analyse, aber nicht automatisch zur direkten Weiterverwendung." }
+};
+
+const hexVsRgbVsHslEn: GuideLocalizedContent = {
+  title: "HEX vs RGB vs HSL: Which Color Format Should You Use?",
+  description: "Pick the most practical color format for CSS, design systems, and quick UI updates.",
+  intro: "HEX, RGB, and HSL describe the same colors in different ways. The best format depends on your workflow, not on which one is \"more correct.\"",
+  categoryLabel: "Color workflow",
+  useCasesTitle: "Common decisions",
+  useCases: ["Writing CSS quickly.", "Sharing colors with teammates.", "Adjusting lightness or saturation."],
+  closingTitle: "Use the format that speeds your work",
+  closingText: "Keep a preferred format for consistency, but convert when a task needs better control.",
+  relatedToolLabel: "Open HTML Color Picker",
+  sections: [
+    { heading: "HEX is compact and familiar", paragraphs: ["HEX values are short and common in frontend workflows.", "They are easy to copy, but not always intuitive for manual tweaking."] },
+    { heading: "RGB is explicit for screen channels", paragraphs: ["RGB shows red, green, and blue channel values directly.", "It is useful when teams discuss channel-level adjustments."] },
+    { heading: "HSL is practical for tuning", paragraphs: ["HSL makes hue, saturation, and lightness easier to reason about.", "It is often the fastest format for creating variants like hover or muted states."], bullets: ["Use HEX for quick copy-paste.", "Use RGB for channel clarity.", "Use HSL for controlled adjustments."] },
+    { heading: "Choose one default, not one forever", paragraphs: ["Set a team default format to reduce inconsistency.", "Switch formats when debugging or design tasks require it."] }
+  ]
+};
+
+const hexVsRgbVsHslContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: hexVsRgbVsHslEn,
+  ko: { ...hexVsRgbVsHslEn, title: "HEX vs RGB vs HSL: 어떤 색상 형식을 써야 할까?", description: "CSS와 디자인 작업에서 상황별로 적절한 색상 형식을 고르는 방법입니다.", intro: "세 형식은 같은 색을 다르게 표현합니다. 중요한 것은 작업 속도와 관리 편의성입니다." },
+  ja: { ...hexVsRgbVsHslEn, title: "HEX・RGB・HSLの違いと使い分け", description: "CSSやデザイン作業で実用的な色形式を選ぶためのガイドです。", intro: "3つの形式は同じ色を別の見方で表します。用途で選ぶのが最適です。" },
+  es: { ...hexVsRgbVsHslEn, title: "HEX vs RGB vs HSL: ¿qué formato de color usar?", description: "Cómo elegir el formato de color más práctico para CSS y diseño.", intro: "HEX, RGB y HSL representan el mismo color de formas distintas. Elige según el flujo de trabajo." },
+  fr: { ...hexVsRgbVsHslEn, title: "HEX vs RGB vs HSL : quel format de couleur choisir ?", description: "Choisissez le format le plus pratique pour CSS et workflows design.", intro: "HEX, RGB et HSL décrivent la même couleur différemment. Le bon choix dépend de votre usage." },
+  de: { ...hexVsRgbVsHslEn, title: "HEX vs RGB vs HSL: Welches Farbformat passt?", description: "Das passende Farbformat für CSS, Designsysteme und schnelle UI-Anpassungen.", intro: "Alle drei Formate beschreiben dieselbe Farbe. Entscheidend ist, welches Format deinen Workflow unterstützt." }
+};
+
+const matchWebsiteColorsConsistentlyEn: GuideLocalizedContent = {
+  title: "How to Match Website Colors More Consistently",
+  description: "A simple process to keep color choices aligned across pages and components.",
+  intro: "Inconsistent color usage makes interfaces feel unpolished. A small color-matching routine helps teams ship cleaner UI updates.",
+  categoryLabel: "Color workflow",
+  useCasesTitle: "Useful for",
+  useCases: ["Landing page updates.", "Component library cleanup.", "Marketing page QA."],
+  closingTitle: "Consistency beats perfect guessing",
+  closingText: "Capture values once, reuse them everywhere, and keep notes for future edits.",
+  relatedToolLabel: "Open HTML Color Picker",
+  sections: [
+    { heading: "Start from trusted source colors", paragraphs: ["Use existing brand tokens or production styles as your baseline.", "Avoid selecting colors by eye when an exact value already exists."] },
+    { heading: "Sample and compare before replacing", paragraphs: ["Pick the current color and compare it against your target value.", "Small numeric differences can look very different on actual components."] },
+    { heading: "Store a small approved set", paragraphs: ["Keep a shortlist of primary, secondary, and neutral values.", "This reduces accidental color drift across pages."], bullets: ["Record HEX and RGB/HSL equivalents.", "Name colors by role, not by appearance.", "Share updates with designers and developers."] },
+    { heading: "Recheck in context", paragraphs: ["Validate colors in real UI states like hover, disabled, and dark backgrounds.", "A color that looks right in isolation can fail in context."] }
+  ]
+};
+
+const matchWebsiteColorsConsistentlyContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: matchWebsiteColorsConsistentlyEn,
+  ko: { ...matchWebsiteColorsConsistentlyEn, title: "웹사이트 색상을 더 일관되게 맞추는 방법", description: "페이지와 컴포넌트 전반에서 색상 일관성을 유지하는 간단한 절차입니다.", intro: "색상 사용이 흔들리면 UI 완성도가 떨어집니다. 짧은 점검 루틴만으로도 품질을 높일 수 있습니다." },
+  ja: { ...matchWebsiteColorsConsistentlyEn, title: "Webサイトの色を一貫して合わせる方法", description: "ページやコンポーネント間で色を揃えるためのシンプルな手順です。", intro: "色のばらつきはUIの品質を下げます。小さな運用ルールで改善できます。" },
+  es: { ...matchWebsiteColorsConsistentlyEn, title: "Cómo igualar colores web de forma más consistente", description: "Proceso simple para mantener coherencia de color en todo el sitio.", intro: "La inconsistencia de color hace que la interfaz se vea poco cuidada. Un flujo corto de revisión ayuda mucho." },
+  fr: { ...matchWebsiteColorsConsistentlyEn, title: "Comment harmoniser les couleurs d'un site avec plus de constance", description: "Méthode simple pour garder des couleurs cohérentes entre pages et composants.", intro: "Des couleurs incohérentes donnent une impression brouillonne. Une routine légère suffit souvent à corriger cela." },
+  de: { ...matchWebsiteColorsConsistentlyEn, title: "Website-Farben konsistenter abstimmen", description: "Ein einfacher Prozess für stimmige Farben über Seiten und Komponenten hinweg.", intro: "Uneinheitliche Farben wirken schnell unfertig. Mit einem kleinen Prüfablauf bleibt das UI konsistent." }
+};
+
+const copyWebColorFromScreenEn: GuideLocalizedContent = {
+  title: "How to Copy a Web Color from the Screen Quickly",
+  description: "Quickly sample a color from your screen and paste it into your CSS workflow.",
+  intro: "When you need to match an existing UI element, screen sampling is often faster than searching through code or design files.",
+  categoryLabel: "Color workflow",
+  useCasesTitle: "Great for",
+  useCases: ["Fixing one-off UI mismatches.", "Replicating colors from screenshots.", "Fast debugging during QA."],
+  closingTitle: "Sample fast, then verify",
+  closingText: "Screen-picked colors are convenient, but always confirm the final value in your source files.",
+  relatedToolLabel: "Open HTML Color Picker",
+  sections: [
+    { heading: "Use zoom for accurate picking", paragraphs: ["If the target area is small, zoom in before sampling.", "This reduces accidental picks from anti-aliased edges."] },
+    { heading: "Capture and convert format", paragraphs: ["Copy the sampled value and convert it to the format your project uses.", "Most workflows need HEX or HSL for final CSS updates."] },
+    { heading: "Cross-check against source styles", paragraphs: ["After sampling, compare with token or stylesheet values to avoid drift.", "Treat sampled colors as a shortcut, not the single source of truth."], bullets: ["Check hover/active states too.", "Test on different displays if possible.", "Update variables instead of hardcoded values."] },
+    { heading: "Document what changed", paragraphs: ["Write a short note in your commit or changelog about the color update.", "Small documentation habits prevent repeated guesswork later."] }
+  ]
+};
+
+const copyWebColorFromScreenContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: copyWebColorFromScreenEn,
+  ko: { ...copyWebColorFromScreenEn, title: "화면에서 웹 색상을 빠르게 복사하는 방법", description: "화면에서 색상을 샘플링해 CSS 작업에 바로 적용하는 빠른 방법입니다.", intro: "기존 UI 색상을 맞춰야 할 때는 코드 탐색보다 화면 샘플링이 더 빠를 수 있습니다." },
+  ja: { ...copyWebColorFromScreenEn, title: "画面からWebカラーをすばやくコピーする方法", description: "画面上の色を抽出してCSSにすぐ反映するための実践手順です。", intro: "既存UIに色を合わせる場面では、コード検索より画面抽出が速いことがあります。" },
+  es: { ...copyWebColorFromScreenEn, title: "Cómo copiar rápidamente un color web desde la pantalla", description: "Toma un color de pantalla y úsalo enseguida en tu flujo CSS.", intro: "Cuando debes igualar un color existente, muestrear en pantalla suele ser la opción más rápida." },
+  fr: { ...copyWebColorFromScreenEn, title: "Comment copier rapidement une couleur web depuis l'écran", description: "Prélevez une couleur à l'écran et réutilisez-la immédiatement en CSS.", intro: "Pour retrouver une couleur d'interface, l'échantillonnage à l'écran est souvent plus rapide que la recherche manuelle." },
+  de: { ...copyWebColorFromScreenEn, title: "Webfarbe schnell vom Bildschirm übernehmen", description: "Farbe direkt vom Screen aufnehmen und in den CSS-Workflow einfügen.", intro: "Wenn du eine bestehende UI-Farbe treffen musst, ist Screen-Sampling oft der schnellste Weg." }
+};
+
+const commonColorPickerMistakesEn: GuideLocalizedContent = {
+  title: "Common Color Picker Mistakes in Web Design",
+  description: "Avoid common picker mistakes that lead to inconsistent, inaccessible, or hard-to-maintain color choices.",
+  intro: "Color pickers are simple tools, but common mistakes can still create rework in design and frontend implementation.",
+  categoryLabel: "Color workflow",
+  useCasesTitle: "Common issues appear in",
+  useCases: ["Rapid landing page edits.", "Theme updates.", "Design-to-code handoff."],
+  closingTitle: "Small checks prevent big cleanup",
+  closingText: "A few validation steps keep your color system cleaner and easier to maintain.",
+  relatedToolLabel: "Open HTML Color Picker",
+  sections: [
+    { heading: "Mistake: picking by eye only", paragraphs: ["Visual guesses drift over time, especially across displays.", "Always copy numeric values and compare them directly."] },
+    { heading: "Mistake: ignoring format consistency", paragraphs: ["Mixed HEX/RGB/HSL usage without a rule creates confusion.", "Set a preferred format for commits and documentation."] },
+    { heading: "Mistake: skipping context checks", paragraphs: ["A color can look fine in a swatch but fail in real UI states.", "Test contrast, hover states, and adjacent surfaces before shipping."], bullets: ["Test text readability.", "Check light and dark backgrounds.", "Review disabled and active states."] },
+    { heading: "Mistake: hardcoding values everywhere", paragraphs: ["Repeated literals are difficult to update later.", "Use tokens or variables so changes remain centralized."] }
+  ]
+};
+
+const commonColorPickerMistakesContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: commonColorPickerMistakesEn,
+  ko: { ...commonColorPickerMistakesEn, title: "웹 디자인에서 자주 하는 컬러 피커 실수", description: "일관성 저하와 유지보수 문제를 부르는 대표적인 컬러 선택 실수를 정리했습니다.", intro: "컬러 피커는 단순하지만, 작은 실수가 디자인과 구현 단계에서 큰 재작업으로 이어질 수 있습니다." },
+  ja: { ...commonColorPickerMistakesEn, title: "Webデザインでよくあるカラーピッカーの失敗", description: "色の不一致や保守性低下を招く典型的なミスを防ぎます。", intro: "カラーピッカーは便利ですが、運用ミスでUI品質が下がることがあります。" },
+  es: { ...commonColorPickerMistakesEn, title: "Errores comunes con el selector de color en diseño web", description: "Evita fallos frecuentes que generan inconsistencia y más mantenimiento.", intro: "Aunque el selector de color es simple, su mal uso produce retrabajo en diseño y frontend." },
+  fr: { ...commonColorPickerMistakesEn, title: "Erreurs courantes de color picker en web design", description: "Évitez les erreurs fréquentes qui nuisent à la cohérence et à la maintenance.", intro: "Le color picker est simple, mais de mauvaises habitudes créent vite du travail supplémentaire." },
+  de: { ...commonColorPickerMistakesEn, title: "Häufige Color-Picker-Fehler im Webdesign", description: "Typische Fehler vermeiden, die zu Inkonsistenz und Mehraufwand führen.", intro: "Auch mit einfachen Tools entstehen schnell Farbfehler, die später viel Nacharbeit kosten." }
+};
+
+const extractBrandColorsFromImageEn: GuideLocalizedContent = {
+  title: "How to Extract Brand Colors from an Image",
+  description: "A beginner-friendly way to sample reliable brand-like colors from logos, packaging, or campaign images.",
+  intro: "When official color codes are missing, image sampling helps you build a usable palette quickly and consistently.",
+  categoryLabel: "Color workflow",
+  useCasesTitle: "Great for",
+  useCases: ["Fast brand audits.", "Social asset alignment.", "Moodboard-to-design handoff."],
+  closingTitle: "Extract, verify, then standardize",
+  closingText: "Use sampled colors as a starting point, then lock approved values in your design system.",
+  relatedToolLabel: "Open Image Color Extractor",
+  sections: [
+    { heading: "Start with a clean source image", paragraphs: ["Use a high-quality image with good lighting and minimal compression.", "Low-quality sources produce unreliable color values."] },
+    { heading: "Sample key visual areas", paragraphs: ["Pick colors from logo marks, dominant backgrounds, and accents.", "Take multiple samples from each area to avoid one-pixel noise."] },
+    { heading: "Group and name your palette", paragraphs: ["Organize extracted colors by role such as primary, secondary, and accent.", "Naming by usage makes handoff easier than naming by appearance."], bullets: ["Record HEX values.", "Keep fallback neutrals.", "Share usage notes with teammates."] },
+    { heading: "Validate across screens", paragraphs: ["Compare sampled colors on different displays when possible.", "Slight device variation is normal, so finalize from a trusted reference."] }
+  ]
+};
+
+const extractBrandColorsFromImageContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: extractBrandColorsFromImageEn,
+  ko: { ...extractBrandColorsFromImageEn, title: "이미지에서 브랜드 색상을 추출하는 방법", description: "로고·패키지·캠페인 이미지에서 브랜드 색상을 실용적으로 추출하는 방법입니다.", intro: "공식 색상 코드가 없을 때 이미지 샘플링으로 빠르게 팔레트 초안을 만들 수 있습니다." },
+  ja: { ...extractBrandColorsFromImageEn, title: "画像からブランドカラーを抽出する方法", description: "ロゴやビジュアルから実用的にブランド色を取り出す手順です。", intro: "公式カラーコードがない場合でも、画像サンプリングで色設計を始められます。" },
+  es: { ...extractBrandColorsFromImageEn, title: "Cómo extraer colores de marca desde una imagen", description: "Método sencillo para obtener colores útiles de logos o imágenes de campaña.", intro: "Si no tienes códigos oficiales, el muestreo de imagen te ayuda a construir una paleta inicial confiable." },
+  fr: { ...extractBrandColorsFromImageEn, title: "Comment extraire des couleurs de marque depuis une image", description: "Méthode simple pour récupérer des couleurs utiles depuis logos ou visuels.", intro: "Sans codes officiels, l'échantillonnage d'image permet de créer rapidement une base de palette." },
+  de: { ...extractBrandColorsFromImageEn, title: "Brand-Farben aus einem Bild extrahieren", description: "Einsteigerfreundlicher Ablauf, um Farben aus Logos oder Kampagnenbildern abzuleiten.", intro: "Wenn offizielle Farbwerte fehlen, hilft Bild-Sampling beim schnellen Aufbau einer brauchbaren Palette." }
+};
+
+const buildColorPaletteFromPhotoEn: GuideLocalizedContent = {
+  title: "How to Build a Simple Color Palette from a Photo",
+  description: "Turn a single photo into a practical palette you can use for web or social design.",
+  intro: "Photos are a great starting point for color direction. With a simple extraction workflow, you can convert mood into reusable color tokens.",
+  categoryLabel: "Color workflow",
+  useCasesTitle: "Useful for",
+  useCases: ["Campaign concepts.", "Landing page mood exploration.", "Quick social templates."],
+  closingTitle: "Keep the palette small and usable",
+  closingText: "A focused 4–6 color set is usually easier to apply than a large unstructured list.",
+  relatedToolLabel: "Open Image Color Extractor",
+  sections: [
+    { heading: "Choose one strong reference photo", paragraphs: ["Pick a photo with clear color mood and sufficient quality.", "Avoid heavily filtered images if you need realistic brand usage."] },
+    { heading: "Extract dominant and accent colors", paragraphs: ["Capture both the main tones and one or two accent colors.", "This gives you balance between stable backgrounds and attention points."] },
+    { heading: "Reduce to a practical set", paragraphs: ["Trim duplicates and near-duplicates until the palette is easy to apply.", "Keep contrast in mind for text and UI components."], bullets: ["1-2 base neutrals.", "1 primary brand tone.", "1-2 accent colors.", "Optional warning/success utility colors."] },
+    { heading: "Test in a quick mockup", paragraphs: ["Apply the palette to a basic layout before finalizing.", "If one color dominates too much, swap it early."] }
+  ]
+};
+
+const buildColorPaletteFromPhotoContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: buildColorPaletteFromPhotoEn,
+  ko: { ...buildColorPaletteFromPhotoEn, title: "사진에서 간단한 컬러 팔레트 만드는 방법", description: "한 장의 사진에서 웹/소셜에 쓸 수 있는 실용 팔레트를 만드는 방법입니다.", intro: "사진의 분위기를 색상 토큰으로 바꾸면 빠르게 디자인 방향을 잡을 수 있습니다." },
+  ja: { ...buildColorPaletteFromPhotoEn, title: "写真からシンプルなカラーパレットを作る方法", description: "1枚の写真から実用的な配色セットを作る手順です。", intro: "写真のムードを色トークンに変換すると、デザインの方向性を決めやすくなります。" },
+  es: { ...buildColorPaletteFromPhotoEn, title: "Cómo crear una paleta de color simple desde una foto", description: "Convierte una foto en una paleta práctica para web o redes.", intro: "Una foto puede definir muy bien el tono visual. Con una extracción simple obtienes colores reutilizables." },
+  fr: { ...buildColorPaletteFromPhotoEn, title: "Comment créer une palette simple à partir d'une photo", description: "Transformez une photo en palette exploitable pour le web et le social.", intro: "Une photo donne une direction visuelle claire. L'extraction permet de la convertir en couleurs réutilisables." },
+  de: { ...buildColorPaletteFromPhotoEn, title: "Einfache Farbpalette aus einem Foto erstellen", description: "So wandelst du ein Foto in eine praktische Palette für Web und Social um.", intro: "Fotos geben schnell eine Farbrichtung vor. Mit Extraktion entstehen direkt nutzbare Farbwerte." }
+};
+
+const whenImageColorSamplingHelpsEn: GuideLocalizedContent = {
+  title: "When Image Color Sampling Helps Design Workflows",
+  description: "Understand where image color sampling saves time in real design and content workflows.",
+  intro: "Color sampling is most useful when you need fast alignment, not perfect color science. Used well, it speeds up early design decisions.",
+  categoryLabel: "Color workflow",
+  useCasesTitle: "High-impact moments",
+  useCases: ["Early concept direction.", "Brand adaptation for campaigns.", "Rapid prototype styling."],
+  closingTitle: "Use sampling as a workflow accelerator",
+  closingText: "Sampling is great for speed; finalize with design tokens and accessibility checks.",
+  relatedToolLabel: "Open Image Color Extractor",
+  sections: [
+    { heading: "Great for early-stage exploration", paragraphs: ["Sampling helps teams discuss direction quickly with real visual references.", "It reduces time spent guessing color combinations from scratch."] },
+    { heading: "Useful for cross-team communication", paragraphs: ["A sampled palette gives product, design, and marketing teams a shared starting point.", "This is especially helpful during campaign planning."] },
+    { heading: "Not a replacement for final QA", paragraphs: ["Sampled colors still need accessibility and consistency checks.", "Treat extracted values as drafts until validated."], bullets: ["Run contrast checks.", "Align with existing tokens.", "Review in real UI components."] },
+    { heading: "Best practice: sample then systematize", paragraphs: ["Move confirmed colors into your design variables or style guide.", "That keeps future implementation stable."] }
+  ]
+};
+
+const whenImageColorSamplingHelpsContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: whenImageColorSamplingHelpsEn,
+  ko: { ...whenImageColorSamplingHelpsEn, title: "이미지 색상 샘플링이 디자인 워크플로에 도움이 되는 순간", description: "실무 디자인 과정에서 색상 샘플링이 시간을 줄여 주는 상황을 설명합니다.", intro: "샘플링은 완벽한 색채 이론보다 빠른 정렬이 필요할 때 특히 효과적입니다." },
+  ja: { ...whenImageColorSamplingHelpsEn, title: "画像カラーサンプリングがデザインに役立つ場面", description: "実務フローでカラーサンプリングが効くタイミングを整理します。", intro: "サンプリングは厳密性よりスピードが必要な初期段階で特に有効です。" },
+  es: { ...whenImageColorSamplingHelpsEn, title: "Cuándo el muestreo de color en imágenes mejora el flujo de diseño", description: "Situaciones reales donde muestrear colores acelera decisiones de diseño.", intro: "El muestreo no busca perfección absoluta; busca rapidez para alinear decisiones visuales." },
+  fr: { ...whenImageColorSamplingHelpsEn, title: "Quand l'échantillonnage de couleurs d'image aide le workflow design", description: "Cas concrets où l'échantillonnage fait gagner du temps en conception.", intro: "L'échantillonnage sert surtout à aller vite sur l'alignement visuel, pas à finaliser la colorimétrie." },
+  de: { ...whenImageColorSamplingHelpsEn, title: "Wann Farb-Sampling aus Bildern Design-Workflows verbessert", description: "Praxisfälle, in denen Farb-Sampling echte Zeit spart.", intro: "Sampling ist ideal, wenn schnelle Abstimmung wichtiger ist als perfekte Farbmetrik." }
+};
+
+const mistakesWhenExtractingColorsFromImagesEn: GuideLocalizedContent = {
+  title: "Common Mistakes When Extracting Colors from Images",
+  description: "Avoid extraction mistakes that create noisy palettes and inconsistent design decisions.",
+  intro: "Image color extraction is quick, but poor source images and weak selection habits often produce unreliable palettes.",
+  categoryLabel: "Color workflow",
+  useCasesTitle: "Watch out during",
+  useCases: ["Palette creation.", "Brand approximation.", "Photo-based UI theming."],
+  closingTitle: "Better inputs produce better palettes",
+  closingText: "Use clean images, sample intentionally, and validate before rollout.",
+  relatedToolLabel: "Open Image Color Extractor",
+  sections: [
+    { heading: "Mistake: sampling low-quality images", paragraphs: ["Compression artifacts distort extracted colors.", "Always start with the highest quality image you can access."] },
+    { heading: "Mistake: collecting too many similar colors", paragraphs: ["Large noisy palettes are hard to use consistently.", "Merge near-duplicates into a smaller practical set."] },
+    { heading: "Mistake: skipping context and contrast checks", paragraphs: ["Extracted colors may look good in isolation but fail in interfaces.", "Test text readability and UI state combinations early."], bullets: ["Run contrast checks.", "Preview on real components.", "Validate light and dark surfaces."] },
+    { heading: "Mistake: no naming or documentation", paragraphs: ["Unnamed colors are difficult to reuse across teams.", "Assign role-based names and capture final approved values."] }
+  ]
+};
+
+const mistakesWhenExtractingColorsFromImagesContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: mistakesWhenExtractingColorsFromImagesEn,
+  ko: { ...mistakesWhenExtractingColorsFromImagesEn, title: "이미지에서 색상 추출할 때 자주 하는 실수", description: "노이즈 많은 팔레트와 불안정한 색상 결정을 부르는 추출 실수를 피하는 방법입니다.", intro: "색상 추출은 빠르지만, 원본 품질과 샘플링 습관이 나쁘면 결과가 쉽게 흔들립니다." },
+  ja: { ...mistakesWhenExtractingColorsFromImagesEn, title: "画像から色を抽出するときのよくある失敗", description: "ノイズの多い配色や不安定な判断につながるミスを防ぎます。", intro: "抽出は手軽ですが、元画像や選び方が悪いと使いにくいパレットになります。" },
+  es: { ...mistakesWhenExtractingColorsFromImagesEn, title: "Errores comunes al extraer colores de imágenes", description: "Evita errores que generan paletas ruidosas e inconsistentes.", intro: "Extraer colores es rápido, pero una mala fuente o selección débil produce resultados poco fiables." },
+  fr: { ...mistakesWhenExtractingColorsFromImagesEn, title: "Erreurs fréquentes lors de l'extraction de couleurs d'images", description: "Évitez les erreurs qui créent des palettes confuses et difficiles à appliquer.", intro: "L'extraction est rapide, mais de mauvaises sources ou habitudes donnent des résultats peu fiables." },
+  de: { ...mistakesWhenExtractingColorsFromImagesEn, title: "Häufige Fehler beim Extrahieren von Farben aus Bildern", description: "Fehler vermeiden, die zu unruhigen Paletten und inkonsistenten Entscheidungen führen.", intro: "Farbextraktion ist schnell, aber schlechte Vorlagen und unsaubere Auswahl schaden der Qualität." }
+};
+
 const guideDefinitions: Array<Omit<GuideItem, "content"> & { content: Record<LocaleCode, GuideLocalizedContent> }> = [
   {
     slug: "how-to-use-html-color-picker",
@@ -3183,6 +3519,114 @@ const guideDefinitions: Array<Omit<GuideItem, "content"> & { content: Record<Loc
     publishedAt: "2026-04-05",
     updatedAt: "2026-04-05",
     content: debugTimezoneConfusionInTimestampsContent
+  },
+  {
+    slug: "download-youtube-thumbnail-by-url",
+    category: "web-marketing",
+    relatedToolSlug: "youtube-thumbnail-extractor",
+    relatedGuideSlugs: ["how-to-extract-youtube-thumbnails", "check-youtube-thumbnail-quality"],
+    publishedAt: "2026-04-05",
+    updatedAt: "2026-04-05",
+    content: downloadYoutubeThumbnailByUrlContent
+  },
+  {
+    slug: "youtube-thumbnail-sizes-explained",
+    category: "web-marketing",
+    relatedToolSlug: "youtube-thumbnail-extractor",
+    relatedGuideSlugs: ["how-to-extract-youtube-thumbnails", "download-youtube-thumbnail-by-url"],
+    publishedAt: "2026-04-05",
+    updatedAt: "2026-04-05",
+    content: youtubeThumbnailSizesExplainedContent
+  },
+  {
+    slug: "check-youtube-thumbnail-quality",
+    category: "web-marketing",
+    relatedToolSlug: "youtube-thumbnail-extractor",
+    relatedGuideSlugs: ["how-to-extract-youtube-thumbnails", "youtube-thumbnail-sizes-explained"],
+    publishedAt: "2026-04-05",
+    updatedAt: "2026-04-05",
+    content: checkYoutubeThumbnailQualityContent
+  },
+  {
+    slug: "when-to-use-youtube-thumbnails-for-reference",
+    category: "web-marketing",
+    relatedToolSlug: "youtube-thumbnail-extractor",
+    relatedGuideSlugs: ["check-youtube-thumbnail-quality", "download-youtube-thumbnail-by-url"],
+    publishedAt: "2026-04-05",
+    updatedAt: "2026-04-05",
+    content: whenToUseYoutubeThumbnailsForReferenceContent
+  },
+  {
+    slug: "hex-vs-rgb-vs-hsl",
+    category: "color-image",
+    relatedToolSlug: "html-color-picker",
+    relatedGuideSlugs: ["how-to-use-html-color-picker", "match-website-colors-consistently"],
+    publishedAt: "2026-04-05",
+    updatedAt: "2026-04-05",
+    content: hexVsRgbVsHslContent
+  },
+  {
+    slug: "match-website-colors-consistently",
+    category: "color-image",
+    relatedToolSlug: "html-color-picker",
+    relatedGuideSlugs: ["how-to-use-html-color-picker", "copy-web-color-from-screen"],
+    publishedAt: "2026-04-05",
+    updatedAt: "2026-04-05",
+    content: matchWebsiteColorsConsistentlyContent
+  },
+  {
+    slug: "copy-web-color-from-screen",
+    category: "color-image",
+    relatedToolSlug: "html-color-picker",
+    relatedGuideSlugs: ["how-to-use-html-color-picker", "hex-vs-rgb-vs-hsl"],
+    publishedAt: "2026-04-05",
+    updatedAt: "2026-04-05",
+    content: copyWebColorFromScreenContent
+  },
+  {
+    slug: "common-color-picker-mistakes",
+    category: "color-image",
+    relatedToolSlug: "html-color-picker",
+    relatedGuideSlugs: ["hex-vs-rgb-vs-hsl", "match-website-colors-consistently"],
+    publishedAt: "2026-04-05",
+    updatedAt: "2026-04-05",
+    content: commonColorPickerMistakesContent
+  },
+  {
+    slug: "extract-brand-colors-from-image",
+    category: "color-image",
+    relatedToolSlug: "image-color-extractor",
+    relatedGuideSlugs: ["image-color-extractor-guide", "build-color-palette-from-photo"],
+    publishedAt: "2026-04-05",
+    updatedAt: "2026-04-05",
+    content: extractBrandColorsFromImageContent
+  },
+  {
+    slug: "build-color-palette-from-photo",
+    category: "color-image",
+    relatedToolSlug: "image-color-extractor",
+    relatedGuideSlugs: ["image-color-extractor-guide", "extract-brand-colors-from-image"],
+    publishedAt: "2026-04-05",
+    updatedAt: "2026-04-05",
+    content: buildColorPaletteFromPhotoContent
+  },
+  {
+    slug: "when-image-color-sampling-helps",
+    category: "color-image",
+    relatedToolSlug: "image-color-extractor",
+    relatedGuideSlugs: ["image-color-extractor-guide", "build-color-palette-from-photo"],
+    publishedAt: "2026-04-05",
+    updatedAt: "2026-04-05",
+    content: whenImageColorSamplingHelpsContent
+  },
+  {
+    slug: "mistakes-when-extracting-colors-from-images",
+    category: "color-image",
+    relatedToolSlug: "image-color-extractor",
+    relatedGuideSlugs: ["extract-brand-colors-from-image", "when-image-color-sampling-helps"],
+    publishedAt: "2026-04-05",
+    updatedAt: "2026-04-05",
+    content: mistakesWhenExtractingColorsFromImagesContent
   }
 
 
