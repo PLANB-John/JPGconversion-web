@@ -7,8 +7,14 @@ export type UtmBuilderMessages = {
   metadataDescription: string;
   title: string;
   description: string;
+  whenToUseTitle: string;
+  whenToUseItems: string[];
   howToUseTitle: string;
   howToUseSteps: string[];
+  mistakesTitle: string;
+  mistakes: string[];
+  relatedGuidesTitle: string;
+  relatedGuidesDescription: string;
   baseUrlLabel: string;
   baseUrlPlaceholder: string;
   fieldPlaceholders: Record<UtmFieldKey, string>;
@@ -32,12 +38,26 @@ const utmBuilderMessages: Partial<Record<LocaleCode, UtmBuilderMessages>> = {
     metadataDescription: "Create UTM tracking links in your browser with live URL generation.",
     title: "UTM Builder",
     description: "Build clean marketing URLs with UTM parameters, preview the final link instantly, and copy it when you're ready.",
+    whenToUseTitle: "When to use this tool",
+    whenToUseItems: [
+      "Before publishing campaign links in email, ads, or social posts.",
+      "When your team needs a consistent URL tagging workflow.",
+      "When you want cleaner channel and campaign reporting."
+    ],
     howToUseTitle: "How to use",
     howToUseSteps: [
       "Enter the page URL you want to track.",
       "Fill in the UTM fields you need for your campaign.",
       "Copy the generated URL and use it in ads, emails, or social posts."
     ],
+    mistakesTitle: "Common mistakes",
+    mistakes: [
+      "Using different naming styles for the same campaign.",
+      "Tagging internal navigation links with UTM parameters.",
+      "Skipping a final check before sharing the URL."
+    ],
+    relatedGuidesTitle: "Related UTM guides",
+    relatedGuidesDescription: "Read a short guide to set better naming rules, avoid tracking mistakes, and keep reports clean.",
     baseUrlLabel: "Base URL",
     baseUrlPlaceholder: "https://example.com/landing-page",
     fieldPlaceholders: {
@@ -65,12 +85,18 @@ const utmBuilderMessages: Partial<Record<LocaleCode, UtmBuilderMessages>> = {
     metadataDescription: "브라우저에서 UTM 추적 링크를 실시간으로 생성하세요.",
     title: "UTM Builder",
     description: "UTM 파라미터가 포함된 마케팅 URL을 만들고, 최종 링크를 바로 확인한 뒤 복사할 수 있습니다.",
+    whenToUseTitle: "이 도구가 필요한 상황",
+    whenToUseItems: ["이메일, 광고, SNS 링크를 게시하기 전", "팀 공통 태깅 규칙이 필요할 때", "채널/캠페인 리포트를 더 깔끔하게 유지하고 싶을 때"],
     howToUseTitle: "사용 방법",
     howToUseSteps: [
       "추적할 페이지 URL을 입력하세요.",
       "캠페인에 필요한 UTM 항목을 입력하세요.",
       "생성된 URL을 복사해 광고, 이메일, SNS 게시물에 사용하세요."
     ],
+    mistakesTitle: "자주 하는 실수",
+    mistakes: ["같은 캠페인에 서로 다른 네이밍 형식 사용", "내부 이동 링크까지 UTM으로 태깅", "공유 전 최종 링크 확인 생략"],
+    relatedGuidesTitle: "관련 UTM 가이드",
+    relatedGuidesDescription: "네이밍 규칙 정리, 추적 오류 방지, 리포트 정리를 위한 짧은 가이드를 확인하세요.",
     baseUrlLabel: "기본 URL",
     baseUrlPlaceholder: "https://example.com/landing-page",
     fieldPlaceholders: {
@@ -98,12 +124,18 @@ const utmBuilderMessages: Partial<Record<LocaleCode, UtmBuilderMessages>> = {
     metadataDescription: "ブラウザ上でUTMトラッキングURLをリアルタイム生成できます。",
     title: "UTM Builder",
     description: "UTMパラメータ付きのマーケティングURLを作成し、完成リンクをすぐ確認してコピーできます。",
+    whenToUseTitle: "このツールを使う場面",
+    whenToUseItems: ["メール・広告・SNSのリンク公開前", "チームで同じUTM運用ルールを使いたいとき", "チャネル別レポートを整理したいとき"],
     howToUseTitle: "使い方",
     howToUseSteps: [
       "計測したいページURLを入力します。",
       "キャンペーンに必要なUTM項目を入力します。",
       "生成されたURLをコピーして広告、メール、SNS投稿に使います。"
     ],
+    mistakesTitle: "よくあるミス",
+    mistakes: ["同じ施策で命名ルールが混在すること", "内部リンクにUTMを付けること", "共有前の最終確認を省くこと"],
+    relatedGuidesTitle: "関連UTMガイド",
+    relatedGuidesDescription: "命名ルールやよくあるミス、実務フローを短いガイドで確認できます。",
     baseUrlLabel: "ベースURL",
     baseUrlPlaceholder: "https://example.com/landing-page",
     fieldPlaceholders: {
@@ -131,12 +163,26 @@ const utmBuilderMessages: Partial<Record<LocaleCode, UtmBuilderMessages>> = {
     metadataDescription: "Crea enlaces de seguimiento UTM en tu navegador con generación en vivo.",
     title: "UTM Builder",
     description: "Construye URLs de marketing con parámetros UTM, revisa el enlace final al instante y cópialo cuando esté listo.",
+    whenToUseTitle: "Cuándo usar esta herramienta",
+    whenToUseItems: [
+      "Antes de publicar enlaces en email, anuncios o redes sociales.",
+      "Cuando tu equipo necesita un flujo de etiquetado consistente.",
+      "Cuando quieres reportes de canales y campañas más limpios."
+    ],
     howToUseTitle: "Cómo usarlo",
     howToUseSteps: [
       "Introduce la URL de la página que quieres medir.",
       "Completa los campos UTM que necesites para tu campaña.",
       "Copia la URL generada y úsala en anuncios, correos o publicaciones sociales."
     ],
+    mistakesTitle: "Errores comunes",
+    mistakes: [
+      "Usar estilos de nombres distintos para la misma campaña.",
+      "Etiquetar enlaces internos con parámetros UTM.",
+      "No hacer una revisión final antes de compartir la URL."
+    ],
+    relatedGuidesTitle: "Guías UTM relacionadas",
+    relatedGuidesDescription: "Consulta una guía breve para mejorar nombres, evitar errores de tracking y mantener reportes limpios.",
     baseUrlLabel: "URL base",
     baseUrlPlaceholder: "https://example.com/landing-page",
     fieldPlaceholders: {
@@ -164,12 +210,26 @@ const utmBuilderMessages: Partial<Record<LocaleCode, UtmBuilderMessages>> = {
     metadataDescription: "Créez des liens UTM dans votre navigateur avec génération en direct.",
     title: "UTM Builder",
     description: "Créez des URL marketing avec paramètres UTM, prévisualisez le lien final instantanément et copiez-le quand il est prêt.",
+    whenToUseTitle: "Quand utiliser cet outil",
+    whenToUseItems: [
+      "Avant de publier des liens dans des e-mails, annonces ou posts sociaux.",
+      "Quand l'équipe a besoin d'une méthode de tagging cohérente.",
+      "Quand vous voulez des rapports canal/campagne plus propres."
+    ],
     howToUseTitle: "Mode d'emploi",
     howToUseSteps: [
       "Saisissez l'URL de la page que vous voulez suivre.",
       "Remplissez les champs UTM nécessaires à votre campagne.",
       "Copiez l'URL générée et utilisez-la dans vos publicités, e-mails ou publications sociales."
     ],
+    mistakesTitle: "Erreurs fréquentes",
+    mistakes: [
+      "Utiliser des conventions de nommage différentes pour une même campagne.",
+      "Taguer des liens internes avec des paramètres UTM.",
+      "Partager l'URL sans vérification finale."
+    ],
+    relatedGuidesTitle: "Guides UTM associés",
+    relatedGuidesDescription: "Lisez un guide court pour mieux nommer vos liens, éviter les erreurs de tracking et garder des rapports clairs.",
     baseUrlLabel: "URL de base",
     baseUrlPlaceholder: "https://example.com/landing-page",
     fieldPlaceholders: {
@@ -197,12 +257,26 @@ const utmBuilderMessages: Partial<Record<LocaleCode, UtmBuilderMessages>> = {
     metadataDescription: "Erstelle UTM-Tracking-Links direkt im Browser mit Live-Vorschau.",
     title: "UTM Builder",
     description: "Erstelle saubere Marketing-URLs mit UTM-Parametern, prüfe den finalen Link sofort und kopiere ihn bei Bedarf.",
+    whenToUseTitle: "Wann du dieses Tool nutzen solltest",
+    whenToUseItems: [
+      "Vor dem Veröffentlichen von Kampagnenlinks in E-Mails, Ads oder Social Posts.",
+      "Wenn dein Team ein einheitliches Tagging braucht.",
+      "Wenn Kanal- und Kampagnenreports sauberer werden sollen."
+    ],
     howToUseTitle: "So funktioniert's",
     howToUseSteps: [
       "Gib die Seiten-URL ein, die du tracken möchtest.",
       "Fülle die UTM-Felder aus, die du für deine Kampagne brauchst.",
       "Kopiere die generierte URL und nutze sie in Anzeigen, E-Mails oder Social Posts."
     ],
+    mistakesTitle: "Häufige Fehler",
+    mistakes: [
+      "Unterschiedliche Namensstile für dieselbe Kampagne verwenden.",
+      "Interne Navigationslinks mit UTM-Parametern versehen.",
+      "Den finalen Link vor dem Teilen nicht prüfen."
+    ],
+    relatedGuidesTitle: "Passende UTM-Guides",
+    relatedGuidesDescription: "Lies einen kurzen Guide für bessere Namensregeln, weniger Tracking-Fehler und sauberere Reports.",
     baseUrlLabel: "Basis-URL",
     baseUrlPlaceholder: "https://example.com/landing-page",
     fieldPlaceholders: {
