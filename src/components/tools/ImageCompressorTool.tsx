@@ -1,10 +1,13 @@
 "use client";
 
 import { useEffect, useId, useMemo, useState } from "react";
+import Link from "next/link";
 import type { ImageCompressorMessages } from "@/data/imageCompressorMessages";
 
 type Props = {
   messages: ImageCompressorMessages;
+  locale: string;
+  relatedGuides: Array<{ slug: string; title: string }>;
 };
 
 type OutputFormat = "image/jpeg" | "image/png" | "image/webp";
@@ -32,7 +35,7 @@ function getReductionPercent(originalSize: number, compressedSize: number) {
   return ((originalSize - compressedSize) / originalSize) * 100;
 }
 
-export function ImageCompressorTool({ messages }: Props) {
+export function ImageCompressorTool({ messages, locale, relatedGuides }: Props) {
   const [sourceFile, setSourceFile] = useState<File | null>(null);
   const [originalUrl, setOriginalUrl] = useState<string | null>(null);
   const [compressedUrl, setCompressedUrl] = useState<string | null>(null);
@@ -288,6 +291,54 @@ export function ImageCompressorTool({ messages }: Props) {
             </div>
           )}
         </article>
+      </section>
+
+      <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+        <h2 className="text-lg font-semibold text-slate-900">{messages.supportTitle}</h2>
+        <p className="mt-2 text-sm text-slate-600">{messages.supportDescription}</p>
+
+        <div className="mt-5 grid gap-4 md:grid-cols-2">
+          <article className="rounded-xl border border-slate-200 bg-slate-50 p-4">
+            <h3 className="text-sm font-semibold text-slate-900">{messages.whenToUseTitle}</h3>
+            <ul className="mt-2 list-disc space-y-1 pl-5 text-sm text-slate-600">
+              {messages.whenToUseItems.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </article>
+
+          <article className="rounded-xl border border-slate-200 bg-slate-50 p-4">
+            <h3 className="text-sm font-semibold text-slate-900">{messages.quickStepsTitle}</h3>
+            <ol className="mt-2 list-decimal space-y-1 pl-5 text-sm text-slate-600">
+              {messages.quickSteps.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ol>
+          </article>
+
+          <article className="rounded-xl border border-slate-200 bg-slate-50 p-4 md:col-span-2">
+            <h3 className="text-sm font-semibold text-slate-900">{messages.commonMistakesTitle}</h3>
+            <ul className="mt-2 list-disc space-y-1 pl-5 text-sm text-slate-600">
+              {messages.commonMistakes.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </article>
+        </div>
+
+        <div className="mt-6 rounded-xl border border-slate-200 bg-slate-50 p-4">
+          <h3 className="text-sm font-semibold text-slate-900">{messages.relatedGuidesTitle}</h3>
+          <p className="mt-1 text-sm text-slate-600">{messages.relatedGuidesDescription}</p>
+          <ul className="mt-3 grid gap-2 sm:grid-cols-2">
+            {relatedGuides.map((guide) => (
+              <li key={guide.slug}>
+                <Link className="text-sm font-medium text-slate-700 underline-offset-2 hover:text-slate-900 hover:underline" href={`/${locale}/guides/${guide.slug}`}>
+                  {guide.title}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
       </section>
     </div>
   );

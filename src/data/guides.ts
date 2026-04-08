@@ -31,6 +31,9 @@ export type GuideSlug =
   | "why-large-images-slow-down-websites"
   | "optimize-blog-images-before-uploading"
   | "image-compression-mistakes-that-hurt-quality"
+  | "compress-images-without-making-them-look-bad"
+  | "best-image-compression-settings-for-web"
+  | "resize-image-before-compressing"
   | "json-parse-error-examples"
   | "validate-json-before-api-requests"
   | "reduce-image-size-without-losing-too-much-quality"
@@ -2280,6 +2283,90 @@ const imageCompressionMistakesThatHurtQualityContent: Record<LocaleCode, GuideLo
   de: { ...imageCompressionMistakesThatHurtQualityEn, title: "Kompressionsfehler, die Bildqualität verschlechtern", description: "Diese häufigen Fehler machen Webbilder unscharf oder unlesbar – und so vermeidest du sie.", intro: "Kompression soll Dateigröße senken, nicht Bildqualität zerstören. Die meisten Probleme sind leicht vermeidbar." }
 };
 
+const compressImagesWithoutMakingThemLookBadEn: GuideLocalizedContent = {
+  title: "How to Compress Images Without Making Them Look Bad",
+  description: "Use a simple workflow to reduce file size while keeping images clear for real website visitors.",
+  intro: "Compression should make pages faster, not make images look broken. The best approach is to resize first, test a small quality range, and compare files in the same layout where users will see them.",
+  categoryLabel: "Image optimization",
+  useCasesTitle: "When this guide helps",
+  useCases: ["You need lighter images but still want a clean professional look.", "Your screenshots become blurry after compression.", "You want a repeatable quality check before upload.", "You need practical settings for mixed image types."],
+  closingTitle: "Aim for clear enough, not perfect",
+  closingText: "A practical quality target beats guesswork. Keep source files safe, export a web version, and publish the smallest version that still looks clear in context.",
+  relatedToolLabel: "Open Image Compressor",
+  sections: [
+    { heading: "Resize before you compress", paragraphs: ["If the page shows an image at 1000px width, uploading a 3000px file wastes bandwidth.", "Set dimensions close to real display size first, then compress for better results with fewer artifacts."] },
+    { heading: "Choose format by image type", paragraphs: ["Use JPG for photos, PNG for graphics that need clean edges or transparency, and WebP when you want a strong size-to-quality balance.", "Using the wrong format forces heavier compression and hurts quality faster."] },
+    { heading: "Test a small quality range", paragraphs: ["Instead of guessing one value, compare nearby settings such as 80, 70, and 60.", "Small drops often save a lot of size while staying visually acceptable."], bullets: ["Check screenshot text readability.", "Look at faces and edges at normal zoom.", "Prefer slightly smaller files on mobile-first pages."] },
+    { heading: "Review in real page context", paragraphs: ["Do not judge only from editor previews at extreme zoom.", "Open your draft page on desktop and mobile to confirm the image still supports the content."] },
+    { heading: "Keep one clean source file", paragraphs: ["Repeatedly compressing the same lossy file can stack artifacts.", "Store one high-quality original and export fresh compressed versions for upload."] }
+  ]
+};
+
+const compressImagesWithoutMakingThemLookBadContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: compressImagesWithoutMakingThemLookBadEn,
+  ko: { ...compressImagesWithoutMakingThemLookBadEn, title: "이미지를 망치지 않고 압축하는 방법", description: "파일 용량은 줄이고 시각 품질은 유지하는 실무형 이미지 압축 방법입니다.", intro: "압축의 목적은 속도 개선이지 화질 저하가 아닙니다. 리사이즈 후 품질 범위를 비교하면 초보자도 안정적으로 결과를 맞출 수 있습니다." },
+  ja: { ...compressImagesWithoutMakingThemLookBadEn, title: "見た目を崩さずに画像を圧縮する方法", description: "容量を減らしながら、Webで十分きれいに見える品質を保つ実践手順です。", intro: "圧縮はページ速度を上げるための作業です。リサイズ→品質比較→実ページ確認の順で進めると失敗を減らせます。" },
+  es: { ...compressImagesWithoutMakingThemLookBadEn, title: "Cómo comprimir imágenes sin que se vean mal", description: "Reduce peso de archivo manteniendo una calidad visual clara para web.", intro: "Comprimir no debe arruinar tus imágenes. Con redimensionado previo y una comparación rápida de calidad puedes lograr buen equilibrio." },
+  fr: { ...compressImagesWithoutMakingThemLookBadEn, title: "Comment compresser des images sans les dégrader visuellement", description: "Réduisez le poids des fichiers tout en gardant un rendu propre pour le web.", intro: "La compression doit accélérer vos pages, pas casser le rendu. Redimensionnez d'abord, testez quelques niveaux de qualité, puis validez dans la vraie mise en page." },
+  de: { ...compressImagesWithoutMakingThemLookBadEn, title: "Bilder komprimieren, ohne dass sie schlecht aussehen", description: "Dateigröße reduzieren und trotzdem eine klare, webtaugliche Bildqualität behalten.", intro: "Komprimierung soll Seiten schneller machen, nicht Bilder ruinieren. Mit Resize, Qualitätsvergleich und kurzer Layout-Prüfung gelingt der richtige Kompromiss." }
+};
+
+const bestImageCompressionSettingsForWebEn: GuideLocalizedContent = {
+  title: "Best Image Compression Settings for Blog and Website Uploads",
+  description: "Set practical compression defaults for website uploads so images stay clear while pages load faster.",
+  intro: "Many teams waste time guessing image settings for every upload. A simple baseline by image type helps you ship faster and keep quality consistent across blog posts, landing pages, and product pages.",
+  categoryLabel: "Image optimization",
+  useCasesTitle: "Use this when",
+  useCases: ["You want a default quality starting point for uploads.", "Your blog images are inconsistent from post to post.", "You need lightweight files for mobile visitors.", "You are documenting a team image workflow."],
+  closingTitle: "Start with defaults, then adjust",
+  closingText: "Good defaults reduce decision fatigue. Begin with a practical range, then raise or lower quality only when a specific image needs it.",
+  relatedToolLabel: "Open Image Compressor",
+  sections: [
+    { heading: "Set baseline quality by image type", paragraphs: ["Photos usually work well with medium compression, while screenshots may need slightly higher quality to keep text readable.", "Create one baseline for photos and one for text-heavy images so uploads stay consistent."] },
+    { heading: "Use dimension limits before quality tuning", paragraphs: ["File size drops faster when dimensions match layout width.", "For many websites, right-sizing dimensions saves more bytes than aggressive quality reduction."] },
+    { heading: "Recommended practical starting points", paragraphs: ["Use these as starting values, then adjust based on visual checks."], bullets: ["Blog photos: JPG/WebP around medium-high quality.", "Screenshots with text: keep quality a bit higher.", "Small UI graphics: compare PNG and WebP before choosing.", "Hero images: test on mobile first."] },
+    { heading: "Check file size targets per placement", paragraphs: ["Different placements can handle different weight limits.", "Set rough targets for thumbnails, inline images, and hero visuals so uploads stay predictable."] },
+    { heading: "Build a simple upload checklist", paragraphs: ["A repeatable checklist keeps quality and performance aligned across teammates."], bullets: ["Resize to real display width.", "Apply baseline compression setting.", "Review quickly on desktop and mobile.", "Publish the smallest clear version."] }
+  ]
+};
+
+const bestImageCompressionSettingsForWebContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: bestImageCompressionSettingsForWebEn,
+  ko: { ...bestImageCompressionSettingsForWebEn, title: "블로그와 웹 업로드를 위한 이미지 압축 최적 설정", description: "웹 업로드용 이미지 압축 기본값을 정해 품질과 속도를 함께 관리하는 방법입니다.", intro: "매번 감으로 설정하면 결과가 들쑥날쑥해집니다. 이미지 유형별 기본값을 정하면 게시 속도와 품질 일관성을 동시에 확보할 수 있습니다." },
+  ja: { ...bestImageCompressionSettingsForWebEn, title: "ブログ・Webアップロード向け画像圧縮の最適設定", description: "Web掲載用画像で使いやすい圧縮設定の基準をまとめた実践ガイドです。", intro: "毎回設定を悩むより、画像タイプごとの基準を決める方が効率的です。品質のばらつきも減らせます。" },
+  es: { ...bestImageCompressionSettingsForWebEn, title: "Mejores ajustes de compresión de imágenes para web y blog", description: "Define valores base de compresión para subir imágenes claras y livianas.", intro: "Si ajustas cada imagen desde cero, pierdes tiempo y consistencia. Con reglas simples por tipo de imagen puedes publicar más rápido." },
+  fr: { ...bestImageCompressionSettingsForWebEn, title: "Meilleurs réglages de compression pour images de blog et site web", description: "Définissez des réglages pratiques pour garder des images nettes et légères lors des uploads.", intro: "Sans réglages de base, la qualité varie trop d'un article à l'autre. Des valeurs par type d'image rendent le workflow plus fiable." },
+  de: { ...bestImageCompressionSettingsForWebEn, title: "Beste Bildkomprimierungs-Einstellungen für Blog- und Website-Uploads", description: "Praktische Standardwerte für Uploads, damit Bilder klar bleiben und Seiten schneller laden.", intro: "Wer bei jedem Upload neu rät, verliert Zeit. Mit Basiswerten pro Bildtyp werden Qualität und Performance deutlich konsistenter." }
+};
+
+const resizeImageBeforeCompressingEn: GuideLocalizedContent = {
+  title: "When to Resize an Image Before Compressing It",
+  description: "Learn when resizing first gives better image quality and smaller files than compression alone.",
+  intro: "Compression is important, but many file-size problems start with oversized dimensions. Resizing to match real layout width often removes more weight and protects visual quality at the same time.",
+  categoryLabel: "Image optimization",
+  useCasesTitle: "When this guide helps",
+  useCases: ["You upload high-resolution originals to relatively small layouts.", "Compressed files still feel too heavy.", "Images look soft after strong compression.", "You need a repeatable pre-upload workflow."],
+  closingTitle: "Resize first in most web workflows",
+  closingText: "If display size is much smaller than source size, resize first. Then apply moderate compression and validate the result in real page context.",
+  relatedToolLabel: "Open Image Compressor",
+  sections: [
+    { heading: "Why dimensions matter more than many teams expect", paragraphs: ["A 3200px image shown at 900px carries unnecessary pixel data.", "That extra data increases transfer size and often forces harsher compression settings later."] },
+    { heading: "Clear signs you should resize first", paragraphs: ["Use resizing first when source dimensions are much larger than layout width or when quality drops quickly under compression."], bullets: ["Hero image rendered far smaller than source.", "Blog inline image looks tiny in layout but file is large.", "Text in screenshots becomes blurry at lower quality settings."] },
+    { heading: "Simple resize-then-compress workflow", paragraphs: ["Set width close to maximum display width, then run compression with moderate settings.", "This sequence usually preserves detail better than aggressive compression on oversized files."] },
+    { heading: "How to decide target dimensions", paragraphs: ["Check your page layout and pick practical widths for each image slot.", "Keep a few standard sizes for thumbnails, inline visuals, and hero images to reduce guesswork."] },
+    { heading: "Final quality check before upload", paragraphs: ["Preview the resized and compressed image in the actual page draft.", "If details still look clear on mobile and desktop, your workflow is ready to reuse."] }
+  ]
+};
+
+const resizeImageBeforeCompressingContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: resizeImageBeforeCompressingEn,
+  ko: { ...resizeImageBeforeCompressingEn, title: "압축 전에 이미지를 먼저 리사이즈해야 하는 경우", description: "압축만 할 때보다 리사이즈를 먼저 해야 더 좋은 품질과 작은 용량을 얻는 상황을 설명합니다.", intro: "용량 문제의 시작은 압축이 아니라 과한 해상도인 경우가 많습니다. 표시 크기에 맞춰 줄인 뒤 압축하면 결과가 훨씬 안정적입니다." },
+  ja: { ...resizeImageBeforeCompressingEn, title: "圧縮前に画像をリサイズすべきタイミング", description: "圧縮だけでなく先にリサイズした方が良いケースをわかりやすく解説します。", intro: "容量の原因は圧縮不足より、サイズ過剰であることが少なくありません。表示幅に合わせてから圧縮する方が品質を守りやすいです。" },
+  es: { ...resizeImageBeforeCompressingEn, title: "Cuándo redimensionar una imagen antes de comprimirla", description: "Identifica cuándo conviene redimensionar primero para lograr mejor calidad y menor peso.", intro: "Muchos archivos pesados no necesitan más compresión, sino menos dimensiones. Ajustar tamaño al layout suele dar mejores resultados." },
+  fr: { ...resizeImageBeforeCompressingEn, title: "Quand redimensionner une image avant de la compresser", description: "Comprenez quand le redimensionnement préalable donne un meilleur rendu et un poids plus faible.", intro: "Les problèmes de poids viennent souvent d'images trop grandes pour l'affichage réel. Redimensionner d'abord améliore souvent le résultat final." },
+  de: { ...resizeImageBeforeCompressingEn, title: "Wann du ein Bild vor der Komprimierung skalieren solltest", description: "Erkenne, wann Skalieren vor dem Komprimieren bessere Qualität und kleinere Dateien bringt.", intro: "Dateigröße-Probleme entstehen oft durch übergroße Abmessungen. Erst auf reale Anzeigegröße skalieren, dann moderat komprimieren, liefert meist das beste Ergebnis." }
+};
+
 const unixTimestampSecondsVsMillisecondsEn: GuideLocalizedContent = {
   title: "Unix Timestamp in Seconds vs Milliseconds Explained",
   description: "Understand the difference between second and millisecond timestamps so date conversions stop breaking.",
@@ -3445,6 +3532,33 @@ const guideDefinitions: Array<Omit<GuideItem, "content"> & { content: Record<Loc
     publishedAt: "2026-04-05",
     updatedAt: "2026-04-05",
     content: imageCompressionMistakesThatHurtQualityContent
+  },
+  {
+    slug: "compress-images-without-making-them-look-bad",
+    category: "color-image",
+    relatedToolSlug: "image-compressor",
+    relatedGuideSlugs: ["compress-images-for-page-speed", "image-compression-mistakes-that-hurt-quality"],
+    publishedAt: "2026-04-08",
+    updatedAt: "2026-04-08",
+    content: compressImagesWithoutMakingThemLookBadContent
+  },
+  {
+    slug: "best-image-compression-settings-for-web",
+    category: "color-image",
+    relatedToolSlug: "image-compressor",
+    relatedGuideSlugs: ["best-image-file-size-for-websites", "optimize-blog-images-before-uploading"],
+    publishedAt: "2026-04-08",
+    updatedAt: "2026-04-08",
+    content: bestImageCompressionSettingsForWebContent
+  },
+  {
+    slug: "resize-image-before-compressing",
+    category: "color-image",
+    relatedToolSlug: "image-compressor",
+    relatedGuideSlugs: ["best-image-file-size-for-websites", "compress-images-for-page-speed"],
+    publishedAt: "2026-04-08",
+    updatedAt: "2026-04-08",
+    content: resizeImageBeforeCompressingContent
   },
   {
     slug: "json-parse-error-examples",
