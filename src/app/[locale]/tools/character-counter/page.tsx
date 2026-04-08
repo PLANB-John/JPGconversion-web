@@ -33,8 +33,6 @@ export default async function CharacterCounterPage({ params }: CharacterCounterP
     "meta-description-length-for-ctr",
     "check-character-count-before-publishing",
     "blog-title-length-for-readability",
-    "why-shorter-titles-perform-better",
-    "trim-meta-descriptions-without-losing-meaning",
     "write-shorter-titles-without-being-vague",
     "character-count-for-social-captions",
     "shorten-blog-title-keep-main-keyword"

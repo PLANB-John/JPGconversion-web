@@ -3668,7 +3668,7 @@ const guideDefinitions: Array<Omit<GuideItem, "content"> & { content: Record<Loc
     slug: "write-shorter-titles-without-being-vague",
     category: "web-marketing",
     relatedToolSlug: "character-counter",
-    relatedGuideSlugs: ["why-shorter-titles-perform-better", "meta-title-length-guide"],
+    relatedGuideSlugs: ["blog-title-length-for-readability", "meta-title-length-guide"],
     publishedAt: "2026-04-08",
     updatedAt: "2026-04-08",
     content: writeShorterTitlesWithoutBeingVagueContent
