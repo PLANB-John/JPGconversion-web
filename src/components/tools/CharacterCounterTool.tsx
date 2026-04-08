@@ -1,10 +1,14 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import Link from "next/link";
 import type { CharacterCounterMessages } from "@/data/characterCounterMessages";
+import type { LocaleCode } from "@/data/locales";
 
 type Props = {
   messages: CharacterCounterMessages;
+  locale: LocaleCode;
+  relatedGuides: Array<{ slug: string; title: string }>;
 };
 
 const sampleText = `The quick brown fox jumps over the lazy dog.
@@ -15,7 +19,7 @@ function getByteCount(text: string): number {
   return new TextEncoder().encode(text).length;
 }
 
-export function CharacterCounterTool({ messages }: Props) {
+export function CharacterCounterTool({ messages, locale, relatedGuides }: Props) {
   const [inputValue, setInputValue] = useState("");
 
   const stats = useMemo(() => {
@@ -39,6 +43,15 @@ export function CharacterCounterTool({ messages }: Props) {
       <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
         <h1 className="text-2xl font-bold text-slate-900 sm:text-3xl">{messages.title}</h1>
         <p className="mt-3 text-sm text-slate-600 sm:text-base">{messages.description}</p>
+
+        <div className="mt-5 rounded-xl bg-slate-50 p-4">
+          <h2 className="text-sm font-semibold text-slate-900">{messages.whenToUseTitle}</h2>
+          <ul className="mt-2 list-disc space-y-1 pl-5 text-sm text-slate-600">
+            {messages.whenToUseItems.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        </div>
 
         <div className="mt-5 rounded-xl bg-slate-50 p-4">
           <h2 className="text-sm font-semibold text-slate-900">{messages.howToUseTitle}</h2>
@@ -103,6 +116,29 @@ export function CharacterCounterTool({ messages }: Props) {
           <p className="text-xs font-medium text-slate-500">{messages.byteCountLabel}</p>
           <p className="mt-2 text-2xl font-bold text-slate-900">{stats.bytes}</p>
         </article>
+      </section>
+
+      <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+        <h2 className="text-base font-semibold text-slate-900">{messages.mistakesTitle}</h2>
+        <ul className="mt-2 list-disc space-y-1 pl-5 text-sm text-slate-600">
+          {messages.mistakes.map((mistake) => (
+            <li key={mistake}>{mistake}</li>
+          ))}
+        </ul>
+
+        <div className="mt-5 rounded-xl bg-slate-50 p-4">
+          <h3 className="text-sm font-semibold text-slate-900">{messages.relatedGuidesTitle}</h3>
+          <p className="mt-1 text-sm text-slate-600">{messages.relatedGuidesDescription}</p>
+          <ul className="mt-3 space-y-2">
+            {relatedGuides.map((guide) => (
+              <li key={guide.slug}>
+                <Link className="text-sm font-medium text-slate-700 underline-offset-2 hover:text-slate-900 hover:underline" href={`/${locale}/guides/${guide.slug}`}>
+                  {guide.title}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
       </section>
     </div>
   );
