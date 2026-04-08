@@ -34,6 +34,11 @@ export type GuideSlug =
   | "json-parse-error-examples"
   | "validate-json-before-api-requests"
   | "reduce-image-size-without-losing-too-much-quality"
+  | "best-webp-quality-settings"
+  | "jpg-to-webp-vs-png-to-webp"
+  | "common-webp-conversion-mistakes"
+  | "why-webp-image-looks-blurry"
+  | "lossy-vs-lossless-webp"
   | "minified-vs-pretty-json"
   | "unix-timestamp-seconds-vs-milliseconds"
   | "convert-api-timestamps-to-readable-dates"
@@ -2816,6 +2821,139 @@ const mistakesWhenExtractingColorsFromImagesContent: Record<LocaleCode, GuideLoc
   de: { ...mistakesWhenExtractingColorsFromImagesEn, title: "Häufige Fehler beim Extrahieren von Farben aus Bildern", description: "Fehler vermeiden, die zu unruhigen Paletten und inkonsistenten Entscheidungen führen.", intro: "Farbextraktion ist schnell, aber schlechte Vorlagen und unsaubere Auswahl schaden der Qualität." }
 };
 
+
+const bestWebpQualitySettingsEn: GuideLocalizedContent = {
+  title: "Best WebP Quality Settings for Real-World Use",
+  description: "Use practical WebP quality ranges for photos, blog images, and UI assets without guesswork.",
+  intro: "The best WebP setting depends on the image type and where it will be used. Instead of chasing one perfect number, use a small set of quality ranges and compare results quickly.",
+  categoryLabel: "WebP workflow",
+  useCasesTitle: "Where this helps most",
+  useCases: ["Optimizing blog post images.", "Reducing hero image weight.", "Exporting UI screenshots.", "Building a repeatable team workflow."],
+  closingTitle: "Use ranges, then verify",
+  closingText: "Start with a practical range, check visual quality, and keep the smallest acceptable file.",
+  relatedToolLabel: "Open the WebP Converter",
+  sections: [
+    { heading: "Start with practical quality ranges", paragraphs: ["For many photo-style web images, quality around 70–82 is a strong starting point. For UI screenshots or text-heavy images, test higher quality first to protect sharp edges.", "If quality is too low, artifacts become obvious around text, gradients, and faces."] },
+    { heading: "Choose by image type", paragraphs: ["Photos usually handle lossy compression well, but graphics with text and flat colors may need higher quality or lossless mode.", "Treat product photos, UI captures, and logos as separate cases instead of using one global export preset."] },
+    { heading: "Compare size and clarity side by side", paragraphs: ["Run two or three exports, then compare actual file size and visible quality at real display size.", "Tiny quality gains are not worth large file size increases."], bullets: ["Test around 65, 75, and 85 for photos.", "Zoom to 100% when checking edges and text.", "Prefer the smallest version that still looks clean."] },
+    { heading: "Save your default workflow", paragraphs: ["Once you find ranges that work, document them for your team.", "A simple rule set prevents random quality choices and keeps image output consistent."] }
+  ]
+};
+
+const bestWebpQualitySettingsContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: bestWebpQualitySettingsEn,
+  ko: { ...bestWebpQualitySettingsEn, title: "실무에서 쓰기 좋은 WebP 품질 설정", description: "사진, 블로그 이미지, UI 자산에 맞는 WebP 품질 범위를 실무 기준으로 정리합니다.", intro: "WebP 품질의 정답은 하나가 아니라 이미지 유형과 사용 위치에 따라 달라집니다. 작은 범위를 정해 비교하면 훨씬 빠르게 결정할 수 있습니다." },
+  ja: { ...bestWebpQualitySettingsEn, title: "実務で使えるWebP品質設定の目安", description: "写真・記事画像・UI素材に合わせた実用的なWebP品質レンジを紹介します。", intro: "WebPの最適値は1つではなく、画像の種類と用途で変わります。少数のレンジで比較すると判断が速くなります。" },
+  es: { ...bestWebpQualitySettingsEn, title: "Mejores ajustes de calidad WebP para uso real", description: "Aplica rangos prácticos de calidad WebP para fotos, imágenes de blog y recursos UI.", intro: "No existe un único valor perfecto de WebP. Lo más útil es trabajar con rangos y comparar resultados rápidamente." },
+  fr: { ...bestWebpQualitySettingsEn, title: "Meilleurs réglages de qualité WebP en pratique", description: "Utilisez des plages de qualité WebP adaptées aux photos, images d'article et éléments UI.", intro: "Il n'existe pas une valeur WebP parfaite pour tout. Des plages simples et des comparaisons rapides donnent de meilleurs résultats." },
+  de: { ...bestWebpQualitySettingsEn, title: "Die besten WebP-Qualitätseinstellungen für die Praxis", description: "Praktische WebP-Qualitätsbereiche für Fotos, Blogbilder und UI-Assets nutzen.", intro: "Es gibt nicht den einen perfekten WebP-Wert. Mit kleinen Qualitätsbereichen und schnellen Vergleichen triffst du bessere Entscheidungen." }
+};
+
+const jpgToWebpVsPngToWebpEn: GuideLocalizedContent = {
+  title: "JPG to WebP vs PNG to WebP: What Changes?",
+  description: "Understand why JPG-to-WebP and PNG-to-WebP conversions behave differently in quality and file size.",
+  intro: "Many people expect identical results when converting JPG and PNG to WebP, but the source format strongly affects output quality and compression gains.",
+  categoryLabel: "WebP workflow",
+  useCasesTitle: "Useful when",
+  useCases: ["Planning bulk conversion jobs.", "Comparing before/after image weight.", "Choosing export rules by asset type."],
+  closingTitle: "Start from the source format",
+  closingText: "If you separate JPG and PNG workflows, your WebP results become more predictable and easier to control.",
+  relatedToolLabel: "Open the WebP Converter",
+  sections: [
+    { heading: "JPG and PNG start from different data", paragraphs: ["JPG is already lossy, so converting it to WebP usually gives incremental savings rather than dramatic quality improvements.", "PNG is often lossless or transparency-heavy, so converting to WebP can reduce size a lot, but settings must be chosen carefully."] },
+    { heading: "What to expect from JPG to WebP", paragraphs: ["For photo content, WebP often cuts size further while keeping acceptable quality.", "If the original JPG is already heavily compressed, pushing quality too low can quickly look worse."] },
+    { heading: "What to expect from PNG to WebP", paragraphs: ["UI graphics and transparent assets can shrink significantly with WebP.", "But text edges and logos need closer review, especially with lossy settings."], bullets: ["Keep transparency checks in your QA step.", "Use higher quality for text-heavy graphics.", "Use lossless mode for critical brand assets."] },
+    { heading: "Build two simple conversion rules", paragraphs: ["Use one default for photos (usually lossy) and another for graphics/transparency (often lossless or higher quality).", "This keeps automation simple and avoids quality surprises."] }
+  ]
+};
+
+const jpgToWebpVsPngToWebpContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: jpgToWebpVsPngToWebpEn,
+  ko: { ...jpgToWebpVsPngToWebpEn, title: "JPG→WebP와 PNG→WebP 변환은 무엇이 다를까?", description: "JPG와 PNG를 WebP로 바꿀 때 품질과 용량 결과가 왜 다른지 이해합니다.", intro: "JPG와 PNG를 같은 방식으로 WebP로 변환해도 결과는 다르게 나옵니다. 원본 형식이 결과를 크게 좌우하기 때문입니다." },
+  ja: { ...jpgToWebpVsPngToWebpEn, title: "JPG→WebPとPNG→WebPの違い", description: "JPG変換とPNG変換でWebPの画質・サイズ結果が変わる理由を整理します。", intro: "JPGとPNGは元データの性質が異なるため、WebP変換後の結果も同じにはなりません。" },
+  es: { ...jpgToWebpVsPngToWebpEn, title: "JPG a WebP vs PNG a WebP: ¿qué cambia?", description: "Comprende por qué convertir JPG y PNG a WebP da resultados distintos de tamaño y calidad.", intro: "No esperes resultados idénticos al convertir JPG y PNG a WebP. El formato de origen influye mucho." },
+  fr: { ...jpgToWebpVsPngToWebpEn, title: "JPG vers WebP vs PNG vers WebP : quelles différences ?", description: "Comprenez pourquoi les conversions JPG→WebP et PNG→WebP ne donnent pas les mêmes résultats.", intro: "Le format source influence fortement le rendu final. JPG et PNG ne réagissent pas de la même façon en WebP." },
+  de: { ...jpgToWebpVsPngToWebpEn, title: "JPG zu WebP vs PNG zu WebP: Was ist anders?", description: "Warum JPG-zu-WebP und PNG-zu-WebP bei Qualität und Dateigröße unterschiedlich ausfallen.", intro: "Bei der WebP-Konvertierung bestimmt das Ausgangsformat stark das Ergebnis. JPG und PNG verhalten sich unterschiedlich." }
+};
+
+const commonWebpConversionMistakesContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: {
+    title: "Common WebP Conversion Mistakes to Avoid",
+    description: "Avoid the most common WebP conversion errors that hurt image quality, workflow speed, and consistency.",
+    intro: "WebP conversion is simple, but small workflow mistakes can produce blurry images, oversized files, or inconsistent results across pages.",
+    categoryLabel: "WebP workflow",
+    useCasesTitle: "When this guide helps",
+    useCases: ["Converting large image batches.", "Setting team image export rules.", "Fixing inconsistent quality on a live site."],
+    closingTitle: "Small fixes, better output",
+    closingText: "Most WebP problems come from process issues, not from WebP itself. A short checklist solves most of them.",
+    relatedToolLabel: "Open the WebP Converter",
+    sections: [
+      { heading: "Using one quality value for every image", paragraphs: ["Photos, UI screenshots, and logos need different settings. One global number creates unnecessary quality loss or larger files than needed.", "Start with format-specific defaults and adjust only when needed."] },
+      { heading: "Skipping visual checks after conversion", paragraphs: ["A small file is not useful if text edges, faces, or gradients look damaged.", "Always review converted files at realistic display size before publishing."], bullets: ["Check text and logo edges.", "Check gradients and shadow areas.", "Compare original and converted side by side."] },
+      { heading: "Converting already-overcompressed sources", paragraphs: ["If the original JPG is heavily compressed, converting again can amplify artifacts.", "When possible, start from a cleaner source file or a less compressed master."] },
+      { heading: "Ignoring transparency and use context", paragraphs: ["Transparent graphics and UI elements can require different WebP settings than photos.", "Test images in real UI context, not only in isolated previews."] },
+      { heading: "Not documenting your workflow", paragraphs: ["Without team rules, everyone exports differently and results become inconsistent.", "Write a small conversion guide with default ranges and review steps."] }
+    ]
+  },
+  ko: { title: "자주 하는 WebP 변환 실수와 예방법", description: "화질 저하, 용량 비효율, 결과 불일치를 만드는 WebP 변환 실수를 피하는 방법입니다.", intro: "WebP 변환 자체는 쉽지만, 작업 방식이 잘못되면 흐림, 과도한 압축, 일관성 부족이 생기기 쉽습니다.", categoryLabel: "WebP 워크플로", useCasesTitle: "이럴 때 도움됩니다", useCases: ["대량 이미지 변환", "팀 내 변환 기준 수립", "운영 중 사이트 화질 문제 해결"], closingTitle: "작은 개선이 큰 차이", closingText: "대부분의 문제는 포맷이 아니라 프로세스에서 생깁니다. 짧은 체크리스트만으로도 품질이 안정됩니다.", relatedToolLabel: "WebP 변환기 열기", sections: [{ heading: "모든 이미지에 같은 품질값 사용", paragraphs: ["사진, UI 캡처, 로고는 필요한 설정이 다릅니다.", "자산 유형별 기본값을 먼저 정하세요."] }, { heading: "변환 후 시각 검수 생략", paragraphs: ["용량이 줄어도 글자 가장자리나 그라디언트가 깨지면 의미가 없습니다.", "실제 표시 크기에서 최종 확인하세요."], bullets: ["텍스트/로고 가장자리 확인", "그라디언트/그림자 확인", "원본과 나란히 비교"] }, { heading: "이미 과압축된 원본 재변환", paragraphs: ["원본 JPG가 이미 손상된 상태면 WebP 재변환에서 아티팩트가 더 도드라집니다.", "가능하면 더 깨끗한 원본으로 시작하세요."] }, { heading: "투명도와 사용 맥락 무시", paragraphs: ["투명 배경 그래픽은 사진과 다른 설정이 필요할 수 있습니다.", "단독 미리보기뿐 아니라 실제 UI에 넣어 확인하세요."] }, { heading: "워크플로 문서화 부족", paragraphs: ["기준이 없으면 팀마다 결과가 달라집니다.", "기본 품질 범위와 검수 단계를 짧게 문서화하세요."] }] },
+  ja: { title: "WebP変換でよくある失敗と回避方法", description: "画質低下やサイズ不安定を招くWebP変換ミスを実務的に防ぐためのガイド。", intro: "WebP変換は簡単ですが、運用ルールがないとぼやけ・劣化・ばらつきが起こりやすくなります。", categoryLabel: "WebPワークフロー", useCasesTitle: "役立つ場面", useCases: ["画像の一括変換", "チームルール整備", "公開済みページの品質改善"], closingTitle: "小さな運用改善が効く", closingText: "多くの問題はWebP自体ではなく運用手順で発生します。短いチェックリストで防げます。", relatedToolLabel: "WebP Converterを開く", sections: [{ heading: "全画像に同じ品質値を使う", paragraphs: ["写真、UI、ロゴでは最適値が異なります。", "素材タイプごとに初期設定を分けましょう。"] }, { heading: "変換後の目視確認をしない", paragraphs: ["軽量化できても文字や輪郭が崩れていたら逆効果です。", "実表示サイズで確認する習慣を入れてください。"], bullets: ["文字とロゴの縁を確認", "グラデーションや影を確認", "原本と並べて比較"] }, { heading: "劣化した元画像を再圧縮", paragraphs: ["すでに強圧縮されたJPGを再変換すると劣化が目立ちます。", "可能なら元の高品質データから変換します。"] }, { heading: "透過と表示文脈を無視", paragraphs: ["透過付き画像は写真と同じ設定では不十分な場合があります。", "単体プレビューだけでなくUI上で確認しましょう。"] }, { heading: "手順の文書化がない", paragraphs: ["基準がないと担当者ごとに品質がぶれます。", "品質レンジと確認項目を短く共有しましょう。"] }] },
+  es: { ...bestWebpQualitySettingsEn, title: "Errores comunes al convertir a WebP (y cómo evitarlos)", description: "Evita errores frecuentes de conversión WebP que afectan calidad, peso y consistencia.", intro: "Convertir a WebP es fácil, pero pequeños fallos de proceso pueden generar imágenes borrosas o resultados desiguales.", useCasesTitle: "Cuándo ayuda esta guía", useCases: ["Conversión por lotes.", "Estandarizar flujo del equipo.", "Corregir calidad inconsistente."], closingTitle: "Mejor proceso, mejor resultado", closingText: "La mayoría de problemas vienen del flujo, no del formato.", sections: [{ heading: "Usar la misma calidad para todo", paragraphs: ["Fotos, capturas y logos requieren ajustes distintos.", "Define valores base por tipo de recurso."] }, { heading: "No revisar después de convertir", paragraphs: ["Un archivo pequeño no sirve si se ve mal.", "Revisa a tamaño real antes de publicar."], bullets: ["Bordes de texto y logo", "Gradientes y sombras", "Comparación lado a lado"] }, { heading: "Reconvertir archivos ya muy comprimidos", paragraphs: ["Si el JPG original ya está degradado, reconvertir empeora artefactos.", "Cuando puedas, parte de una fuente más limpia."] }, { heading: "Ignorar transparencia y contexto", paragraphs: ["Los recursos con transparencia no se comportan igual que una foto.", "Valida dentro del diseño real."] }, { heading: "No documentar el flujo", paragraphs: ["Sin reglas, cada persona exporta distinto.", "Guarda un mini checklist de calidad y revisión."] }] },
+  fr: { ...bestWebpQualitySettingsEn, title: "Erreurs courantes à éviter lors d'une conversion WebP", description: "Évitez les erreurs de conversion WebP qui nuisent à la qualité et à la cohérence.", intro: "La conversion WebP est simple, mais des habitudes imprécises peuvent produire des images floues ou trop lourdes.", useCasesTitle: "Utile quand", useCases: ["Conversion en lot.", "Règles d'équipe.", "Correction de qualité en production."], closingTitle: "Petit cadre, grands gains", closingText: "Les problèmes viennent souvent du process, pas du format.", sections: [{ heading: "Une seule qualité pour tous les visuels", paragraphs: ["Photos, captures UI et logos n'ont pas les mêmes besoins.", "Créez des réglages de base par type d'image."] }, { heading: "Aucun contrôle visuel après export", paragraphs: ["Un fichier léger mais abîmé reste un mauvais résultat.", "Vérifiez toujours à taille d'affichage réelle."], bullets: ["Contours de texte/logo", "Dégradés et zones d'ombre", "Comparaison avant/après"] }, { heading: "Reconvertir des sources déjà dégradées", paragraphs: ["Un JPG déjà trop compressé se détériore davantage.", "Repartez d'une source plus propre quand possible."] }, { heading: "Ignorer la transparence et le contexte", paragraphs: ["Les assets transparents demandent souvent d'autres réglages.", "Testez l'image dans l'interface réelle."] }, { heading: "Absence de documentation interne", paragraphs: ["Sans règles partagées, les exports varient selon la personne.", "Documentez une checklist courte."] }] },
+  de: { ...bestWebpQualitySettingsEn, title: "Häufige WebP-Konvertierungsfehler vermeiden", description: "Vermeide typische WebP-Fehler, die Qualität, Dateigröße und Konsistenz verschlechtern.", intro: "Die WebP-Konvertierung ist einfach, aber kleine Prozessfehler führen schnell zu unscharfen oder uneinheitlichen Ergebnissen.", useCasesTitle: "Hilfreich bei", useCases: ["Batch-Konvertierung.", "Team-Standards.", "Qualitätsproblemen auf Live-Seiten."], closingTitle: "Kleine Korrekturen, bessere Ergebnisse", closingText: "Die meisten Probleme sind Workflow-Themen, nicht WebP-Probleme.", sections: [{ heading: "Ein Qualitätswert für alle Bilder", paragraphs: ["Fotos, UI-Screenshots und Logos brauchen unterschiedliche Einstellungen.", "Lege Startwerte je Asset-Typ fest."] }, { heading: "Keine Sichtprüfung nach der Konvertierung", paragraphs: ["Eine kleine Datei hilft nicht, wenn Kanten unsauber sind.", "Vor Veröffentlichung immer in realer Anzeigegröße prüfen."], bullets: ["Text- und Logokanten prüfen", "Verläufe und Schatten prüfen", "Vorher/Nachher vergleichen"] }, { heading: "Bereits stark komprimierte Quellen erneut konvertieren", paragraphs: ["Wenn das Ausgangs-JPG schon stark komprimiert ist, verstärken sich Artefakte.", "Wenn möglich von einer saubereren Quelle starten."] }, { heading: "Transparenz und Einsatzkontext ignorieren", paragraphs: ["Transparente Assets reagieren anders als Fotos.", "Im echten UI-Kontext testen, nicht nur isoliert."] }, { heading: "Workflow nicht dokumentieren", paragraphs: ["Ohne Regeln exportiert jede Person anders.", "Kurze Qualitäts- und Prüfregeln dokumentieren."] }] }
+};
+
+const whyWebpImageLooksBlurryContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: {
+    title: "Why Your WebP Image Looks Blurry",
+    description: "Diagnose blurry WebP images with a practical checklist and fix quality issues fast.",
+    intro: "Blurry WebP output is usually caused by compression settings, poor source files, or resizing mistakes—not by WebP alone.",
+    categoryLabel: "WebP troubleshooting",
+    useCasesTitle: "Most useful when",
+    useCases: ["A converted image looks soft compared to the original.", "Text inside WebP assets becomes hard to read.", "Quality issues appear on mobile or retina screens."],
+    closingTitle: "Check source, settings, and display size",
+    closingText: "Most blur issues can be fixed quickly once you review those three areas in order.",
+    relatedToolLabel: "Open the WebP Converter",
+    sections: [
+      { heading: "Quality value is too low", paragraphs: ["Very low quality settings can smear details and soften edges, especially around text and faces.", "Raise quality in small steps and compare results."] },
+      { heading: "Source image is already degraded", paragraphs: ["WebP cannot restore detail that is already missing in the original file.", "Start from a higher-quality source whenever possible."] },
+      { heading: "Image is being resized incorrectly", paragraphs: ["Upscaling small images or forcing wrong dimensions can make WebP appear blurry.", "Serve images close to their real display size."], bullets: ["Avoid enlarging small originals.", "Check CSS width/height rules.", "Use higher-resolution assets for high-density screens."] },
+      { heading: "Wrong mode for the asset", paragraphs: ["Text-heavy graphics may need higher quality or lossless mode.", "Photos and UI graphics should not always share the same conversion preset."] },
+      { heading: "No side-by-side QA", paragraphs: ["Without a direct comparison, subtle blur can slip into production.", "Always compare original and WebP at 100% zoom before shipping."] }
+    ]
+  },
+  ko: { ...bestWebpQualitySettingsEn, title: "WebP 이미지가 흐릿하게 보이는 이유", description: "체크리스트로 WebP 흐림 원인을 빠르게 찾고 수정하는 방법을 안내합니다.", intro: "대부분의 흐림 문제는 WebP 자체보다 품질 설정, 원본 상태, 리사이즈 방식에서 발생합니다.", categoryLabel: "WebP 문제 해결", useCasesTitle: "이럴 때 유용", useCases: ["변환 후 이미지가 원본보다 뿌옇게 보일 때", "텍스트가 뭉개져 읽기 어려울 때", "모바일/레티나에서만 품질이 떨어질 때"], closingTitle: "원본-설정-표시 크기 순서로 점검", closingText: "세 가지를 순서대로 보면 대부분 빠르게 해결됩니다.", sections: [{ heading: "품질 값이 너무 낮음", paragraphs: ["품질이 너무 낮으면 윤곽과 디테일이 쉽게 무너집니다.", "작은 단계로 올려 비교하세요."] }, { heading: "원본 이미지가 이미 손상됨", paragraphs: ["원본 디테일이 없으면 WebP로 바꿔도 복원되지 않습니다.", "가능하면 더 고품질 원본을 사용하세요."] }, { heading: "리사이즈 방식 문제", paragraphs: ["작은 이미지를 억지로 키우면 흐릿해집니다.", "실제 노출 크기에 맞춘 자산을 사용하세요."], bullets: ["작은 원본 확대 피하기", "CSS width/height 확인", "고해상도 화면용 자산 준비"] }, { heading: "자산 유형에 맞지 않는 모드", paragraphs: ["텍스트 중심 그래픽은 높은 품질 또는 무손실이 필요할 수 있습니다.", "사진과 UI를 같은 프리셋으로 처리하지 마세요."] }, { heading: "나란히 비교 검수 부재", paragraphs: ["직접 비교하지 않으면 미세한 흐림을 놓치기 쉽습니다.", "배포 전 100% 배율로 비교하세요."] }] },
+  ja: { ...bestWebpQualitySettingsEn, title: "WebP画像がぼやけて見える理由", description: "WebPがぼやける原因をチェックリストで特定し、短時間で改善する方法。", intro: "多くの場合、原因はWebPそのものではなく設定値・元画像・リサイズ方法です。", categoryLabel: "WebPトラブル対応", useCasesTitle: "役立つ場面", useCases: ["変換後に画像が甘く見える", "文字入り画像が読みにくい", "モバイルだけ画質が悪い"], closingTitle: "元画像・設定・表示サイズを順に確認", closingText: "この順序で確認すると、ぼやけ問題は多くが解決できます。", sections: [{ heading: "品質値が低すぎる", paragraphs: ["品質を下げすぎると輪郭や細部が崩れます。", "少しずつ上げて比較してください."] }, { heading: "元画像がすでに劣化", paragraphs: ["元画像の情報が不足しているとWebPでも改善できません。", "可能なら高品質な元データから変換しましょう。"] }, { heading: "リサイズ設定の問題", paragraphs: ["小さい画像の拡大表示はぼやけの原因です。", "実表示サイズに近い解像度を用意しましょう。"], bullets: ["小さな元画像の拡大を避ける", "CSSの幅・高さ指定を確認", "高密度画面向け画像を用意"] }, { heading: "素材に合わないモード", paragraphs: ["文字中心素材は高品質または可逆が必要な場合があります。", "写真とUI素材で同じプリセットを使い回さないでください。"] }, { heading: "比較チェック不足", paragraphs: ["並べて比較しないと微妙なぼけを見落とします。", "公開前に100%表示で原本比較しましょう。"] }] },
+  es: { ...bestWebpQualitySettingsEn, title: "Por qué tu imagen WebP se ve borrosa", description: "Detecta rápidamente por qué un WebP se ve borroso y cómo corregirlo.", intro: "El problema suele venir de la configuración, la fuente o el reescalado, no del formato WebP en sí.", categoryLabel: "Solución WebP", useCasesTitle: "Útil cuando", useCases: ["El WebP se ve más suave que el original.", "El texto dentro de la imagen pierde nitidez.", "La calidad cae en móvil."], closingTitle: "Revisa fuente, ajustes y tamaño real", closingText: "Con ese orden puedes resolver la mayoría de casos en minutos.", sections: [{ heading: "Calidad demasiado baja", paragraphs: ["Una calidad muy baja borra bordes y detalles.", "Sube el valor poco a poco y compara."] }, { heading: "Fuente ya degradada", paragraphs: ["WebP no puede recuperar detalle perdido en el original.", "Empieza desde un archivo más limpio cuando puedas."] }, { heading: "Escalado incorrecto", paragraphs: ["Ampliar imágenes pequeñas genera borrosidad.", "Sirve imágenes cercanas al tamaño de visualización."], bullets: ["Evita ampliar originales pequeños", "Revisa width/height en CSS", "Usa recursos más grandes para pantallas densas"] }, { heading: "Modo no adecuado", paragraphs: ["Imágenes con texto pueden necesitar más calidad o modo sin pérdida.", "No uses el mismo preset para todo."] }, { heading: "Falta de comparación", paragraphs: ["Sin comparar lado a lado, el problema pasa desapercibido.", "Valida a zoom 100% antes de publicar."] }] },
+  fr: { ...bestWebpQualitySettingsEn, title: "Pourquoi votre image WebP paraît floue", description: "Diagnostiquez vite les causes d'un WebP flou et corrigez-les avec une méthode simple.", intro: "Le flou vient souvent des réglages, de la source ou du redimensionnement, pas du format lui-même.", categoryLabel: "Dépannage WebP", useCasesTitle: "Utile quand", useCases: ["Le WebP est moins net que l'original.", "Le texte devient difficile à lire.", "Le rendu se dégrade sur mobile."], closingTitle: "Vérifiez source, réglages, taille", closingText: "Cet ordre suffit dans la plupart des cas pour corriger rapidement.", sections: [{ heading: "Qualité trop basse", paragraphs: ["Un niveau trop bas lisse les détails et les contours.", "Montez progressivement puis comparez."] }, { heading: "Source déjà dégradée", paragraphs: ["WebP ne recrée pas les détails perdus dans l'image d'origine.", "Utilisez une source plus propre dès que possible."] }, { heading: "Redimensionnement inadapté", paragraphs: ["Agrandir une petite image la rend floue.", "Servez une image proche de la taille réelle d'affichage."], bullets: ["Éviter les agrandissements excessifs", "Contrôler width/height CSS", "Prévoir des ressources haute densité"] }, { heading: "Mauvais mode pour le visuel", paragraphs: ["Les visuels avec texte demandent parfois plus de qualité ou du sans perte.", "Évitez un preset unique pour tous les assets."] }, { heading: "Absence de comparaison directe", paragraphs: ["Sans comparaison côte à côte, le flou subtil passe inaperçu.", "Vérifiez à 100% avant publication."] }] },
+  de: { ...bestWebpQualitySettingsEn, title: "Warum dein WebP-Bild unscharf aussieht", description: "Finde mit einer kurzen Checkliste heraus, warum WebP unscharf wirkt, und behebe es schnell.", intro: "Unscharfes WebP liegt meist an Einstellungen, Quellqualität oder falscher Skalierung, nicht am Format selbst.", categoryLabel: "WebP-Fehleranalyse", useCasesTitle: "Hilfreich wenn", useCases: ["Das WebP wirkt weicher als das Original.", "Text im Bild ist schwer lesbar.", "Mobil wirkt die Qualität schlechter."], closingTitle: "Quelle, Einstellungen, Anzeigegröße prüfen", closingText: "Mit dieser Reihenfolge lassen sich die meisten Fälle schnell lösen.", sections: [{ heading: "Qualität zu niedrig", paragraphs: ["Zu niedrige Qualität verwischt Details und Kanten.", "In kleinen Schritten erhöhen und vergleichen."] }, { heading: "Quelle bereits schlecht", paragraphs: ["Fehlende Details im Original lassen sich nicht zurückholen.", "Wenn möglich mit besserer Quelle starten."] }, { heading: "Falsche Skalierung", paragraphs: ["Kleine Bilder hochzuskalieren macht sie unscharf.", "Nahe an realer Darstellungsgröße ausliefern."], bullets: ["Keine kleinen Bilder aufblasen", "CSS width/height prüfen", "Für Retina größere Assets nutzen"] }, { heading: "Unpassender Modus", paragraphs: ["Textlastige Grafiken brauchen oft höhere Qualität oder verlustfrei.", "Fotos und UI-Grafiken nicht identisch behandeln."] }, { heading: "Keine Side-by-Side-Prüfung", paragraphs: ["Ohne Direktvergleich bleiben subtile Probleme unentdeckt.", "Vor Release bei 100% Zoom vergleichen."] }] }
+};
+
+const lossyVsLosslessWebpContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: {
+    title: "How to Choose Between Lossy and Lossless WebP",
+    description: "Pick the right WebP mode for each image type with simple rules you can use in daily workflows.",
+    intro: "Lossy WebP usually gives smaller files, while lossless WebP keeps exact pixel detail. The right choice depends on asset type and quality tolerance.",
+    categoryLabel: "WebP workflow",
+    useCasesTitle: "Useful for",
+    useCases: ["Preparing blog and product images.", "Exporting logos and UI assets.", "Defining image standards for a team."],
+    closingTitle: "Use mode by purpose",
+    closingText: "Pick lossy for efficient delivery and lossless for precision assets. Mixing both gives the best overall results.",
+    relatedToolLabel: "Open the WebP Converter",
+    sections: [
+      { heading: "What lossy and lossless mean", paragraphs: ["Lossy WebP removes some detail to shrink file size more aggressively.", "Lossless WebP preserves pixel data more faithfully but usually creates larger files."] },
+      { heading: "When lossy WebP is the better choice", paragraphs: ["Use lossy mode for photos and large content images where slight detail loss is acceptable.", "It is often best for page speed and bandwidth savings."] },
+      { heading: "When lossless WebP is the better choice", paragraphs: ["Use lossless mode for logos, icons, UI graphics, and text-heavy assets.", "It helps preserve sharp edges and brand details."], bullets: ["Logos and symbols", "Screenshots with text", "Assets reused across many pages"] },
+      { heading: "A simple decision workflow", paragraphs: ["Start by classifying the asset: photo or graphic. Then test one lossy and one lossless export if unsure.", "Choose the smallest version that still matches your visual quality bar."] },
+      { heading: "Keep both options in your process", paragraphs: ["Teams often get better consistency by documenting when to use each mode.", "This avoids over-compressing important assets or shipping unnecessarily large files."] }
+    ]
+  },
+  ko: { ...bestWebpQualitySettingsEn, title: "손실 WebP와 무손실 WebP, 어떻게 고를까?", description: "이미지 유형에 따라 손실/무손실 WebP를 고르는 실무 기준을 소개합니다.", intro: "손실 WebP는 용량 절감에 유리하고, 무손실 WebP는 픽셀 디테일 보존에 유리합니다. 핵심은 자산 목적에 맞춰 고르는 것입니다.", categoryLabel: "WebP 워크플로", useCasesTitle: "유용한 상황", useCases: ["블로그/상품 이미지 준비", "로고·UI 자산 내보내기", "팀 공통 이미지 기준 수립"], closingTitle: "용도별로 모드를 분리", closingText: "사진은 손실, 정밀 그래픽은 무손실 중심으로 운영하면 품질과 성능을 함께 잡기 쉽습니다.", sections: [{ heading: "손실과 무손실의 차이", paragraphs: ["손실 WebP는 일부 정보를 줄여 파일을 더 작게 만듭니다.", "무손실 WebP는 원본 픽셀 보존이 좋아 대신 파일이 커질 수 있습니다."] }, { heading: "손실 WebP가 좋은 경우", paragraphs: ["사진이나 큰 본문 이미지는 손실 WebP가 효율적입니다.", "페이지 속도와 전송량 개선에 유리합니다."] }, { heading: "무손실 WebP가 좋은 경우", paragraphs: ["로고, 아이콘, 텍스트 중심 UI 그래픽에는 무손실이 안전합니다.", "경계선과 브랜드 디테일 보존에 도움이 됩니다."], bullets: ["로고/심볼", "텍스트 포함 스크린샷", "여러 페이지에서 재사용되는 자산"] }, { heading: "빠른 결정 흐름", paragraphs: ["먼저 사진인지 그래픽인지 분류한 뒤, 애매하면 손실·무손실을 각각 1개씩 테스트하세요.", "품질 기준을 만족하는 가장 작은 파일을 선택합니다."] }, { heading: "프로세스에 둘 다 포함", paragraphs: ["모드별 사용 기준을 문서화하면 팀 일관성이 높아집니다.", "중요 자산의 과압축이나 불필요한 대용량 배포를 줄일 수 있습니다."] }] },
+  ja: { ...bestWebpQualitySettingsEn, title: "Lossy WebPとLossless WebPの選び方", description: "画像タイプ別にLossy/Lossless WebPを使い分ける実践ルール。", intro: "Lossyは軽量化に強く、Losslessは画素保持に強い方式です。素材の用途で選ぶのが最短です。", categoryLabel: "WebPワークフロー", useCasesTitle: "役立つ場面", useCases: ["記事画像の最適化", "ロゴ・UI素材の書き出し", "チーム運用ルール作成"], closingTitle: "用途でモードを分ける", closingText: "写真はLossy、精密素材はLosslessを基本にすると安定します。", sections: [{ heading: "LossyとLosslessの違い", paragraphs: ["Lossyは情報を一部減らして大きく軽量化します。", "Losslessは画素を忠実に保つ分、サイズが大きくなりやすいです."] }, { heading: "Lossyを選ぶ場面", paragraphs: ["写真や記事用の大型画像で軽量化を優先したいときに向きます。", "表示品質を保ちつつ配信効率を高めやすいです。"] }, { heading: "Losslessを選ぶ場面", paragraphs: ["ロゴ、アイコン、文字入りUI画像ではLosslessが有効です。", "輪郭や細部を守りたい素材で効果的です。"], bullets: ["ロゴ・シンボル", "文字入りスクリーンショット", "繰り返し使う重要素材"] }, { heading: "簡単な判断手順", paragraphs: ["まず写真かグラフィックか分類し、迷う場合は両方を1枚ずつ比較します。", "品質基準を満たす最小サイズを選びましょう。"] }, { heading: "両モードを運用に組み込む", paragraphs: ["使い分けルールを文書化すると品質のばらつきを防げます。", "重要素材の過圧縮や不要な大容量配信を減らせます。"] }] },
+  es: { ...bestWebpQualitySettingsEn, title: "Cómo elegir entre WebP con pérdida y sin pérdida", description: "Elige el modo WebP adecuado según el tipo de imagen con reglas simples.", intro: "WebP con pérdida suele ser más liviano; WebP sin pérdida conserva mejor los píxeles. La mejor opción depende del recurso.", categoryLabel: "Flujo WebP", useCasesTitle: "Útil para", useCases: ["Optimizar imágenes de artículos", "Exportar logos y UI", "Definir estándares de equipo"], closingTitle: "Modo según objetivo", closingText: "Usa con pérdida para eficiencia y sin pérdida para precisión visual.", sections: [{ heading: "Qué significa cada modo", paragraphs: ["Con pérdida elimina parte de la información para reducir más el peso.", "Sin pérdida mantiene mejor el detalle de píxel, pero pesa más."] }, { heading: "Cuándo usar con pérdida", paragraphs: ["Ideal para fotos y contenido visual grande.", "Suele dar mejor rendimiento de carga."] }, { heading: "Cuándo usar sin pérdida", paragraphs: ["Mejor para logos, iconos y gráficos con texto.", "Ayuda a mantener bordes limpios y detalle de marca."], bullets: ["Logos", "Capturas con texto", "Recursos clave reutilizados"] }, { heading: "Flujo rápido de decisión", paragraphs: ["Clasifica primero: foto o gráfico. Si dudas, prueba ambas opciones.", "Quédate con la versión más ligera que siga viéndose bien."] }, { heading: "Incluye ambos modos en tu proceso", paragraphs: ["Documentar cuándo usar cada modo mejora consistencia.", "Evitas comprimir en exceso o enviar archivos innecesariamente grandes."] }] },
+  fr: { ...bestWebpQualitySettingsEn, title: "Comment choisir entre WebP avec et sans perte", description: "Choisissez le bon mode WebP selon le type d'image avec des règles simples.", intro: "Le WebP avec perte est souvent plus léger, le sans perte conserve mieux les détails. Le bon choix dépend du visuel.", categoryLabel: "Workflow WebP", useCasesTitle: "Utile pour", useCases: ["Optimiser images d'articles", "Exporter logos/UI", "Définir des standards équipe"], closingTitle: "Choisir selon l'usage", closingText: "Avec perte pour l'efficacité, sans perte pour la précision visuelle.", sections: [{ heading: "Différence entre les modes", paragraphs: ["Le mode avec perte réduit davantage le poids en supprimant une partie des données.", "Le mode sans perte garde mieux les pixels, mais génère souvent des fichiers plus lourds."] }, { heading: "Quand préférer le mode avec perte", paragraphs: ["Adapté aux photos et grandes images de contenu.", "Souvent meilleur pour la vitesse de chargement."] }, { heading: "Quand préférer le mode sans perte", paragraphs: ["Plus sûr pour logos, icônes et visuels avec texte.", "Permet de préserver des contours nets."], bullets: ["Logos", "Captures avec texte", "Assets critiques réutilisés"] }, { heading: "Méthode de décision rapide", paragraphs: ["Commencez par classer le visuel : photo ou graphique. En cas de doute, testez les deux.", "Gardez la version la plus légère qui reste propre visuellement."] }, { heading: "Intégrer les deux modes au process", paragraphs: ["Documenter les règles d'usage améliore la cohérence.", "Vous évitez la surcompression comme les fichiers inutilement lourds."] }] },
+  de: { ...bestWebpQualitySettingsEn, title: "So wählst du zwischen verlustbehaftetem und verlustfreiem WebP", description: "Wähle den passenden WebP-Modus je Bildtyp mit einfachen Praxisregeln.", intro: "Verlustbehaftetes WebP ist meist kleiner, verlustfreies WebP erhält Details besser. Entscheidend ist der Einsatzzweck.", categoryLabel: "WebP-Workflow", useCasesTitle: "Hilfreich für", useCases: ["Blog- und Produktbilder", "Logos und UI-Assets", "Teamweite Exportregeln"], closingTitle: "Modus nach Zweck wählen", closingText: "Verlustbehaftet für Effizienz, verlustfrei für präzise Assets.", sections: [{ heading: "Was die Modi bedeuten", paragraphs: ["Verlustbehaftet entfernt einen Teil der Details für kleinere Dateien.", "Verlustfrei erhält Pixel genauer, ist aber meist größer."] }, { heading: "Wann verlustbehaftet besser ist", paragraphs: ["Für Fotos und große Content-Bilder ist dieser Modus oft ideal.", "Er verbessert häufig Ladezeit und Bandbreite."] }, { heading: "Wann verlustfrei besser ist", paragraphs: ["Für Logos, Icons und textlastige Grafiken meist die bessere Wahl.", "Hilft, scharfe Kanten und Markendetails zu behalten."], bullets: ["Logos und Symbole", "Screenshots mit Text", "Wichtige wiederverwendete Assets"] }, { heading: "Einfache Entscheidungsroutine", paragraphs: ["Zuerst Bildtyp bestimmen: Foto oder Grafik. Bei Unsicherheit beide Varianten testen.", "Die kleinste Version wählen, die visuell noch sauber ist."] }, { heading: "Beide Modi im Prozess verankern", paragraphs: ["Dokumentierte Regeln erhöhen Teamkonsistenz.", "So vermeidest du Überkomprimierung und unnötig große Dateien."] }] }
+};
+
 const guideDefinitions: Array<Omit<GuideItem, "content"> & { content: Record<LocaleCode, GuideLocalizedContent> }> = [
   {
     slug: "how-to-use-html-color-picker",
@@ -3216,6 +3354,51 @@ const guideDefinitions: Array<Omit<GuideItem, "content"> & { content: Record<Loc
     publishedAt: "2026-04-03",
     updatedAt: "2026-04-03",
     content: whenNotToUseWebpContent
+  },
+  {
+    slug: "best-webp-quality-settings",
+    category: "color-image",
+    relatedToolSlug: "webp-converter",
+    relatedGuideSlugs: ["how-to-convert-images-to-webp", "lossy-vs-lossless-webp"],
+    publishedAt: "2026-04-08",
+    updatedAt: "2026-04-08",
+    content: bestWebpQualitySettingsContent
+  },
+  {
+    slug: "jpg-to-webp-vs-png-to-webp",
+    category: "color-image",
+    relatedToolSlug: "webp-converter",
+    relatedGuideSlugs: ["png-vs-jpg-vs-webp", "best-webp-quality-settings"],
+    publishedAt: "2026-04-08",
+    updatedAt: "2026-04-08",
+    content: jpgToWebpVsPngToWebpContent
+  },
+  {
+    slug: "common-webp-conversion-mistakes",
+    category: "color-image",
+    relatedToolSlug: "webp-converter",
+    relatedGuideSlugs: ["how-to-convert-images-to-webp", "when-not-to-use-webp"],
+    publishedAt: "2026-04-08",
+    updatedAt: "2026-04-08",
+    content: commonWebpConversionMistakesContent
+  },
+  {
+    slug: "why-webp-image-looks-blurry",
+    category: "color-image",
+    relatedToolSlug: "webp-converter",
+    relatedGuideSlugs: ["best-webp-quality-settings", "reduce-image-size-without-losing-too-much-quality"],
+    publishedAt: "2026-04-08",
+    updatedAt: "2026-04-08",
+    content: whyWebpImageLooksBlurryContent
+  },
+  {
+    slug: "lossy-vs-lossless-webp",
+    category: "color-image",
+    relatedToolSlug: "webp-converter",
+    relatedGuideSlugs: ["jpg-to-webp-vs-png-to-webp", "best-webp-quality-settings"],
+    publishedAt: "2026-04-08",
+    updatedAt: "2026-04-08",
+    content: lossyVsLosslessWebpContent
   },
 
   {
