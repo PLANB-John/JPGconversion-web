@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import Link from "next/link";
+import { ToolHubSupportSection } from "@/components/tools/ToolHubSupportSection";
 import type { CharacterCounterMessages } from "@/data/characterCounterMessages";
 import type { LocaleCode } from "@/data/locales";
 
@@ -44,23 +44,6 @@ export function CharacterCounterTool({ messages, locale, relatedGuides }: Props)
         <h1 className="text-2xl font-bold text-slate-900 sm:text-3xl">{messages.title}</h1>
         <p className="mt-3 text-sm text-slate-600 sm:text-base">{messages.description}</p>
 
-        <div className="mt-5 rounded-xl bg-slate-50 p-4">
-          <h2 className="text-sm font-semibold text-slate-900">{messages.whenToUseTitle}</h2>
-          <ul className="mt-2 list-disc space-y-1 pl-5 text-sm text-slate-600">
-            {messages.whenToUseItems.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
-        </div>
-
-        <div className="mt-5 rounded-xl bg-slate-50 p-4">
-          <h2 className="text-sm font-semibold text-slate-900">{messages.howToUseTitle}</h2>
-          <ol className="mt-2 list-decimal space-y-1 pl-5 text-sm text-slate-600">
-            {messages.howToUseSteps.map((step) => (
-              <li key={step}>{step}</li>
-            ))}
-          </ol>
-        </div>
       </section>
 
       <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
@@ -118,28 +101,18 @@ export function CharacterCounterTool({ messages, locale, relatedGuides }: Props)
         </article>
       </section>
 
-      <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
-        <h2 className="text-base font-semibold text-slate-900">{messages.mistakesTitle}</h2>
-        <ul className="mt-2 list-disc space-y-1 pl-5 text-sm text-slate-600">
-          {messages.mistakes.map((mistake) => (
-            <li key={mistake}>{mistake}</li>
-          ))}
-        </ul>
-
-        <div className="mt-5 rounded-xl bg-slate-50 p-4">
-          <h3 className="text-sm font-semibold text-slate-900">{messages.relatedGuidesTitle}</h3>
-          <p className="mt-1 text-sm text-slate-600">{messages.relatedGuidesDescription}</p>
-          <ul className="mt-3 space-y-2">
-            {relatedGuides.map((guide) => (
-              <li key={guide.slug}>
-                <Link className="text-sm font-medium text-slate-700 underline-offset-2 hover:text-slate-900 hover:underline" href={`/${locale}/guides/${guide.slug}`}>
-                  {guide.title}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
+      <ToolHubSupportSection
+        whenToUseTitle={messages.whenToUseTitle}
+        whenToUseItems={messages.whenToUseItems}
+        quickStepsTitle={messages.howToUseTitle}
+        quickSteps={messages.howToUseSteps}
+        commonMistakesTitle={messages.mistakesTitle}
+        commonMistakes={messages.mistakes}
+        relatedGuidesTitle={messages.relatedGuidesTitle}
+        relatedGuidesDescription={messages.relatedGuidesDescription}
+        relatedGuides={relatedGuides}
+        locale={locale}
+      />
     </div>
   );
 }
