@@ -43,6 +43,9 @@ export type GuideSlug =
   | "why-webp-image-looks-blurry"
   | "lossy-vs-lossless-webp"
   | "minified-vs-pretty-json"
+  | "why-json-breaks-after-copy-paste"
+  | "read-json-errors-more-quickly"
+  | "when-to-use-minified-vs-pretty-json"
   | "unix-timestamp-seconds-vs-milliseconds"
   | "convert-api-timestamps-to-readable-dates"
   | "why-your-timestamp-looks-wrong-in-javascript"
@@ -2954,6 +2957,90 @@ const unixTimestampSecondsVsMillisecondsEn: GuideLocalizedContent = {
   ]
 };
 
+const whyJsonBreaksAfterCopyPasteEn: GuideLocalizedContent = {
+  title: "Why JSON Breaks After Copy and Paste",
+  description: "Learn the most common copy-paste JSON break points and fix them quickly before they block your API or app workflow.",
+  intro: "Copy and paste is often where valid JSON becomes invalid JSON. Hidden characters, smart quotes, and tiny punctuation mistakes can silently break payloads.",
+  categoryLabel: "Developer workflow",
+  useCasesTitle: "When this guide helps",
+  useCases: ["Debugging API payloads copied from docs or chat.", "Cleaning JSON from spreadsheets or notes.", "Validating config snippets before commit."],
+  closingTitle: "Treat paste as a validation step",
+  closingText: "Every paste can introduce syntax problems. A quick format-and-validate pass prevents bigger debugging loops later.",
+  relatedToolLabel: "Open JSON Formatter",
+  sections: [
+    { heading: "Smart quotes are not JSON quotes", paragraphs: ["JSON only accepts straight double quotes. Many editors and messaging apps replace them with curly quotes.", "If keys or values use curly quotes, parsing fails immediately."] },
+    { heading: "Invisible characters can break parsing", paragraphs: ["Copied text can include non-printing characters like non-breaking spaces.", "The text may look normal, but the parser can still reject it."], bullets: ["Paste once in plain text mode when possible.", "Format immediately to expose suspicious lines.", "Remove extra characters around braces and brackets."] },
+    { heading: "Comma and bracket drift after manual edits", paragraphs: ["After pasting, one quick line edit can remove a comma or bracket.", "Formatting tools make structure problems visible faster than scanning a one-line payload."] },
+    { heading: "JavaScript object syntax is not always JSON", paragraphs: ["Copied snippets may include single quotes, comments, or trailing commas.", "Those patterns can work in JavaScript objects but fail in strict JSON validators."] },
+    { heading: "Use a short cleanup routine", paragraphs: ["Paste, run Format, check validation status, then copy the corrected result.", "This routine is faster than debugging failed requests later."] }
+  ]
+};
+
+const whyJsonBreaksAfterCopyPasteContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: whyJsonBreaksAfterCopyPasteEn,
+  ko: whyJsonBreaksAfterCopyPasteEn,
+  ja: whyJsonBreaksAfterCopyPasteEn,
+  es: whyJsonBreaksAfterCopyPasteEn,
+  fr: whyJsonBreaksAfterCopyPasteEn,
+  de: whyJsonBreaksAfterCopyPasteEn
+};
+
+const readJsonErrorsMoreQuicklyEn: GuideLocalizedContent = {
+  title: "How to Read JSON Errors More Quickly",
+  description: "Use a simple process to locate JSON parse errors faster and fix the right line first.",
+  intro: "JSON error messages often look short and vague. With a repeatable reading order, you can move from error text to exact fix much faster.",
+  categoryLabel: "Developer workflow",
+  useCasesTitle: "When this is useful",
+  useCases: ["Fixing broken request bodies under deadline.", "Debugging long nested JSON payloads.", "Reviewing teammate payload errors quickly."],
+  closingTitle: "Read errors in sequence, not by guess",
+  closingText: "Start with line position, confirm structure, then fix one issue at a time to avoid chasing secondary errors.",
+  relatedToolLabel: "Open JSON Formatter",
+  sections: [
+    { heading: "Start with line and column first", paragraphs: ["Most parsers return a line and column reference. Use that as your starting point.", "The actual mistake is often one token earlier, such as a missing comma."] },
+    { heading: "Format before deep inspection", paragraphs: ["If JSON is minified, format it first so nesting and punctuation are visible.", "A structured view makes unmatched braces, brackets, and quotes easier to spot."] },
+    { heading: "Classify the error type quickly", paragraphs: ["Many JSON errors fall into repeated patterns."], bullets: ["Unexpected token: often bad quote, comma, or stray character.", "Unexpected end: usually missing closing brace or bracket.", "Unexpected string/value: often a missing comma between fields."] },
+    { heading: "Fix one error, then re-validate", paragraphs: ["Do not edit multiple suspicious lines at once.", "Resolve the first parser error and validate again to reveal the next blocker."] },
+    { heading: "Keep a small personal checklist", paragraphs: ["A short checklist reduces repeat mistakes and speeds up review.", "Over time, parse patterns become much easier to recognize."] }
+  ]
+};
+
+const readJsonErrorsMoreQuicklyContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: readJsonErrorsMoreQuicklyEn,
+  ko: readJsonErrorsMoreQuicklyEn,
+  ja: readJsonErrorsMoreQuicklyEn,
+  es: readJsonErrorsMoreQuicklyEn,
+  fr: readJsonErrorsMoreQuicklyEn,
+  de: readJsonErrorsMoreQuicklyEn
+};
+
+const whenToUseMinifiedVsPrettyJsonEn: GuideLocalizedContent = {
+  title: "When to Use Minified JSON vs Pretty JSON",
+  description: "Choose the right JSON format for debugging, storage, and API workflows without overthinking.",
+  intro: "Minified and pretty JSON are both useful, but for different moments. Picking the right one saves time in both debugging and delivery.",
+  categoryLabel: "Developer workflow",
+  useCasesTitle: "What this helps with",
+  useCases: ["Deciding what to send in API requests.", "Choosing readable output for code reviews.", "Keeping logs compact without losing traceability."],
+  closingTitle: "Use both on purpose",
+  closingText: "Pretty JSON helps humans. Minified JSON helps transport and storage. Switching intentionally between both formats keeps workflows fast.",
+  relatedToolLabel: "Open JSON Formatter",
+  sections: [
+    { heading: "Pretty JSON is for reading and debugging", paragraphs: ["Indentation and line breaks make nested structures easier to scan.", "Use pretty output when reviewing payload shape, key names, and missing fields."] },
+    { heading: "Minified JSON is for compact transfer", paragraphs: ["Minified JSON removes spaces and line breaks to reduce payload size.", "This is practical for network transfer, log limits, and embedded contexts."] },
+    { heading: "Do not debug complex payloads in minified view", paragraphs: ["One-line JSON hides structure and slows error detection.", "Format first when investigating parse or mapping issues."] },
+    { heading: "Pick one format per workflow step", paragraphs: ["Use pretty format during build and QA, then minify for final transport when needed."], bullets: ["Draft and debug: pretty JSON", "Pre-send validation: pretty JSON", "Final send or compact storage: minified JSON"] },
+    { heading: "Keep conversion reversible", paragraphs: ["A formatter lets you switch between both views quickly without manual edits.", "That reduces accidental syntax mistakes and keeps payloads reliable."] }
+  ]
+};
+
+const whenToUseMinifiedVsPrettyJsonContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: whenToUseMinifiedVsPrettyJsonEn,
+  ko: whenToUseMinifiedVsPrettyJsonEn,
+  ja: whenToUseMinifiedVsPrettyJsonEn,
+  es: whenToUseMinifiedVsPrettyJsonEn,
+  fr: whenToUseMinifiedVsPrettyJsonEn,
+  de: whenToUseMinifiedVsPrettyJsonEn
+};
+
 const unixTimestampSecondsVsMillisecondsContent: Record<LocaleCode, GuideLocalizedContent> = {
   en: unixTimestampSecondsVsMillisecondsEn,
   ko: { ...unixTimestampSecondsVsMillisecondsEn, title: "유닉스 타임스탬프 초 vs 밀리초 쉽게 이해하기", description: "초 단위와 밀리초 단위를 구분해 날짜 변환 오류를 줄이는 방법입니다.", intro: "타임스탬프 오류의 대부분은 단위 혼동에서 시작됩니다. 자릿수만 확인해도 빠르게 해결할 수 있습니다." },
@@ -4341,6 +4428,33 @@ const guideDefinitions: Array<Omit<GuideItem, "content"> & { content: Record<Loc
     publishedAt: "2026-04-04",
     updatedAt: "2026-04-04",
     content: minifiedVsPrettyJsonContent
+  },
+  {
+    slug: "why-json-breaks-after-copy-paste",
+    category: "developer",
+    relatedToolSlug: "json-formatter",
+    relatedGuideSlugs: ["json-parse-error-examples", "validate-json-before-api-requests"],
+    publishedAt: "2026-04-09",
+    updatedAt: "2026-04-09",
+    content: whyJsonBreaksAfterCopyPasteContent
+  },
+  {
+    slug: "read-json-errors-more-quickly",
+    category: "developer",
+    relatedToolSlug: "json-formatter",
+    relatedGuideSlugs: ["how-to-use-a-json-formatter-for-debugging", "json-parse-error-examples"],
+    publishedAt: "2026-04-09",
+    updatedAt: "2026-04-09",
+    content: readJsonErrorsMoreQuicklyContent
+  },
+  {
+    slug: "when-to-use-minified-vs-pretty-json",
+    category: "developer",
+    relatedToolSlug: "json-formatter",
+    relatedGuideSlugs: ["json-formatting-basics", "minified-vs-pretty-json"],
+    publishedAt: "2026-04-09",
+    updatedAt: "2026-04-09",
+    content: whenToUseMinifiedVsPrettyJsonContent
   },
   {
     slug: "track-social-campaigns-with-utm-links",

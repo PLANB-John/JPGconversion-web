@@ -1,10 +1,14 @@
 "use client";
 
 import { useState } from "react";
+import { ToolHubSupportSection } from "@/components/tools/ToolHubSupportSection";
 import type { JsonFormatterMessages } from "@/data/jsonFormatterMessages";
+import type { LocaleCode } from "@/data/locales";
 
 type Props = {
   messages: JsonFormatterMessages;
+  locale: LocaleCode;
+  relatedGuides: Array<{ slug: string; title: string }>;
 };
 
 type ValidationStatus = "idle" | "valid" | "invalid";
@@ -17,7 +21,7 @@ const sampleJson = `{
   "version": 1
 }`;
 
-export function JsonFormatterTool({ messages }: Props) {
+export function JsonFormatterTool({ messages, locale, relatedGuides }: Props) {
   const [inputValue, setInputValue] = useState("");
   const [outputValue, setOutputValue] = useState("");
   const [validationStatus, setValidationStatus] = useState<ValidationStatus>("idle");
@@ -159,6 +163,21 @@ export function JsonFormatterTool({ messages }: Props) {
           </div>
         </article>
       </section>
+
+      <ToolHubSupportSection
+        sectionTitle={messages.supportSectionTitle}
+        sectionDescription={messages.supportSectionDescription}
+        whenToUseTitle={messages.whenToUseTitle}
+        whenToUseItems={messages.whenToUseItems}
+        quickStepsTitle={messages.quickStepsTitle}
+        quickSteps={messages.quickSteps}
+        commonMistakesTitle={messages.commonMistakesTitle}
+        commonMistakes={messages.commonMistakes}
+        relatedGuidesTitle={messages.relatedGuidesTitle}
+        relatedGuidesDescription={messages.relatedGuidesDescription}
+        relatedGuides={relatedGuides}
+        locale={locale}
+      />
     </div>
   );
 }
