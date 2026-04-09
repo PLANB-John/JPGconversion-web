@@ -80,7 +80,15 @@ export type GuideSlug =
   | "utm-source-vs-medium-vs-campaign"
   | "use-utm-links-without-breaking-reporting"
   | "best-utm-naming-rules-for-small-teams"
-  | "check-tagged-url-before-sharing";
+  | "check-tagged-url-before-sharing"
+  | "contrast-checker-guide"
+  | "check-text-contrast-for-accessibility"
+  | "low-contrast-text-hurts-readability"
+  | "wcag-contrast-ratio-basics"
+  | "accessibility-color-contrast-mistakes"
+  | "fix-low-contrast-text-on-website"
+  | "best-contrast-practices-for-ui-text"
+  | "check-brand-colors-without-hurting-accessibility";
 
 type GuideSection = {
   heading: string;
@@ -3872,6 +3880,224 @@ const checkTaggedUrlBeforeSharingContent: Record<LocaleCode, GuideLocalizedConte
   fr: { title: "Comment vérifier une URL taguée avant de la partager", description: "Une checklist rapide pour éviter les erreurs UTM avant diffusion.", intro: "Une simple faute dans une URL taguée peut fragmenter toute votre donnée de campagne. Un dernier contrôle rapide protège vos rapports.", categoryLabel: "Mesure marketing", useCasesTitle: "À faire avant", useCases: ["L'envoi d'une campagne e-mail.", "La publication social organique ou payante.", "Le partage de liens à des partenaires ou équipes commerciales."], closingTitle: "Vérifier puis diffuser", closingText: "60 secondes de contrôle préservent la qualité des données et évitent du nettoyage ensuite.", relatedToolLabel: "Ouvrir UTM Builder", sections: [{ heading: "Valider l'URL de base", paragraphs: ["Vérifiez la bonne page de destination et l'usage de https.", "Supprimez les liens de preview, redirections inutiles ou domaines de staging."] }, { heading: "Contrôler chaque champ UTM", paragraphs: ["Repérez fautes, variantes et valeurs vides.", "Assurez-vous que source, medium et campaign suivent vos règles."], bullets: ["Pas de variantes en majuscules.", "Pas d'espaces en fin de valeur.", "Pas d'inversion source/medium."] }, { heading: "Tester l'URL finale", paragraphs: ["Ouvrez l'URL complète pour confirmer la bonne destination.", "Vérifiez aussi que les paramètres existants n'ont pas été cassés."] }, { heading: "Enregistrer la version validée", paragraphs: ["Copiez l'URL validée dans votre document de campagne.", "Partagez uniquement cette version approuvée."] }] },
   de: { title: "Getaggte URL vor dem Teilen prüfen", description: "Kurze Checkliste, um UTM-Fehler vor der Veröffentlichung zu erkennen.", intro: "Schon ein Tippfehler in einer getaggten URL kann Kampagnendaten aufsplitten. Eine schnelle Endkontrolle hält Tracking sauber.", categoryLabel: "Marketing-Tracking", useCasesTitle: "Vor diesen Schritten nutzen", useCases: ["E-Mail-Kampagnenversand.", "Veröffentlichung von Social-Posts (paid/organisch).", "Weitergabe an Partner oder Vertrieb."], closingTitle: "Erst prüfen, dann teilen", closingText: "Ein 60-Sekunden-Check schützt die Datenqualität und spart spätere Korrekturarbeit.", relatedToolLabel: "UTM Builder öffnen", sections: [{ heading: "Basis-URL validieren", paragraphs: ["Prüfe, ob die Zielseite korrekt ist und https nutzt.", "Entferne Preview-Links, unnötige Redirects oder Staging-Domains."] }, { heading: "Jedes UTM-Feld prüfen", paragraphs: ["Suche nach Tippfehlern und leeren Werten.", "Bestätige, dass source, medium und campaign euren Regeln folgen."], bullets: ["Keine unbeabsichtigten Großbuchstaben.", "Keine Leerzeichen am Ende.", "Source und Medium nicht vertauschen."] }, { heading: "Finale URL testen", paragraphs: ["Öffne die komplette URL und prüfe die Zielseite.", "Stelle sicher, dass bestehende Query-Parameter nicht beschädigt wurden."] }, { heading: "Freigegebene Version speichern", paragraphs: ["Speichere die geprüfte URL im Kampagnen-Sheet.", "Teile nur diese freigegebene Version."] }] }
 };
+const contrastCheckerGuideEn: GuideLocalizedContent = {
+  title: "Contrast Checker Guide for Everyday Website Work",
+  description: "Learn a practical workflow to test text contrast quickly and improve readability before publishing.",
+  intro: "The fastest way to improve readability is to check text and background color pairs before they go live. This guide gives you a lightweight routine you can apply to pages, components, and design updates.",
+  categoryLabel: "Color accessibility",
+  useCasesTitle: "When this guide helps",
+  useCases: ["Preparing a new page design.", "Reviewing button and link styles.", "Validating brand colors in UI components."],
+  closingTitle: "Use contrast checks early",
+  closingText: "If you run a quick contrast check during design and QA, accessibility issues are easier to fix and less likely to reach production.",
+  relatedToolLabel: "Open Contrast Checker",
+  sections: [
+    { heading: "Start with real text combinations", paragraphs: ["Check actual text/background pairs used in your UI, not only palette swatches.", "Prioritize body text, buttons, links, and captions because users depend on them most."] },
+    { heading: "Read ratio and pass/fail together", paragraphs: ["The ratio shows measurable contrast strength.", "WCAG pass/fail tells you whether the combination is acceptable for normal and large text."] },
+    { heading: "Adjust color in small steps", paragraphs: ["Move one color at a time and retest quickly.", "Small shifts in lightness often fix contrast without changing the overall brand feel."] },
+    { heading: "Check states and context", paragraphs: ["A color pair that passes in one place may fail in hover, disabled, or dark-mode states.", "Verify combinations inside real components before final approval."] }
+  ]
+};
+
+const contrastCheckerGuideContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: contrastCheckerGuideEn,
+  ko: { ...contrastCheckerGuideEn, title: "실무에서 바로 쓰는 Contrast Checker 가이드", description: "배포 전에 텍스트 대비를 빠르게 점검해 가독성을 높이는 실전 흐름을 소개합니다.", intro: "텍스트와 배경 색 조합을 미리 점검하면 접근성 문제를 훨씬 쉽게 줄일 수 있습니다. 이 가이드는 디자인/QA 단계에서 바로 쓰는 간단한 루틴입니다." },
+  ja: { ...contrastCheckerGuideEn, title: "日常のWeb作業向け Contrast Checker ガイド", description: "公開前に文字コントラストを素早く確認し、可読性を改善する実践フローです。", intro: "公開前に文字色と背景色を確認するだけで、読みづらさを大きく減らせます。設計とQAで使えるシンプルな手順をまとめました。" },
+  es: { ...contrastCheckerGuideEn, title: "Guía práctica de Contrast Checker para sitios web", description: "Aprende un flujo rápido para validar contraste de texto y mejorar legibilidad antes de publicar.", intro: "Revisar combinaciones reales de texto y fondo antes de publicar reduce errores de accesibilidad. Aquí tienes una rutina ligera para diseño y QA." },
+  fr: { ...contrastCheckerGuideEn, title: "Guide pratique Contrast Checker pour le web", description: "Adoptez un flux rapide pour vérifier le contraste du texte et améliorer la lisibilité avant publication.", intro: "Vérifier les paires texte/fond avant mise en ligne évite beaucoup de problèmes de lisibilité. Ce guide propose une routine simple pour design et QA." },
+  de: { ...contrastCheckerGuideEn, title: "Praktischer Contrast-Checker-Guide für Websites", description: "Mit einem kurzen Workflow Textkontraste vor dem Veröffentlichen prüfen und Lesbarkeit verbessern.", intro: "Wenn du Text- und Hintergrundfarben früh prüfst, lassen sich Barrierefreiheitsprobleme deutlich leichter beheben. Dieser Guide zeigt eine einfache Routine für Design und QA." }
+};
+
+const checkTextContrastForAccessibilityEn: GuideLocalizedContent = {
+  title: "How to Check Text Contrast for Accessibility",
+  description: "Use a simple repeatable method to test text contrast against WCAG targets.",
+  intro: "Accessible text contrast is one of the fastest wins in UI quality. You do not need a complex audit to start. A short, repeatable check catches most common issues.",
+  categoryLabel: "Color accessibility",
+  useCasesTitle: "Where to apply this",
+  useCases: ["Landing page updates.", "Product UI reviews.", "Design handoff QA."],
+  closingTitle: "Make contrast part of QA",
+  closingText: "Treat contrast checks as a standard release step, just like spelling or layout checks.",
+  relatedToolLabel: "Open Contrast Checker",
+  sections: [
+    { heading: "Identify text types first", paragraphs: ["List body text, helper text, button labels, and links.", "Smaller text needs stronger contrast than large headings."] },
+    { heading: "Test each pair with a checker", paragraphs: ["Enter foreground and background colors and read both ratio and WCAG results.", "Document combinations that fail so fixes stay organized."] },
+    { heading: "Fix by changing lightness first", paragraphs: ["Try lightness adjustments before replacing the full hue.", "This usually preserves your visual identity while improving readability."] },
+    { heading: "Retest interactive states", paragraphs: ["Validate default, hover, focus, active, and disabled states.", "Accessibility failures often hide in non-default states."] }
+  ]
+};
+
+const checkTextContrastForAccessibilityContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: checkTextContrastForAccessibilityEn,
+  ko: { ...checkTextContrastForAccessibilityEn, title: "접근성을 위한 텍스트 대비 확인 방법", description: "WCAG 기준에 맞춰 텍스트 대비를 빠르게 점검하는 반복 가능한 방법을 소개합니다.", intro: "텍스트 대비 점검은 UI 품질을 빠르게 높이는 가장 쉬운 접근성 개선입니다. 짧은 체크 루틴만으로도 대부분의 문제를 미리 찾을 수 있습니다." },
+  ja: { ...checkTextContrastForAccessibilityEn, title: "アクセシビリティのために文字コントラストを確認する方法", description: "WCAGを基準に、文字コントラストを実務で反復チェックする方法を解説します。", intro: "文字コントラストの確認は、UI品質をすぐ改善できる施策です。短い手順を繰り返すだけで多くの問題を早期に防げます。" },
+  es: { ...checkTextContrastForAccessibilityEn, title: "Cómo revisar contraste de texto para accesibilidad", description: "Aplica un método simple y repetible para validar contraste de texto según WCAG.", intro: "El contraste de texto es una mejora rápida y de alto impacto en calidad de UI. Con una revisión breve puedes detectar la mayoría de problemas comunes." },
+  fr: { ...checkTextContrastForAccessibilityEn, title: "Comment vérifier le contraste du texte pour l'accessibilité", description: "Utilisez une méthode simple et répétable pour tester le contraste du texte selon WCAG.", intro: "Le contraste du texte est un gain rapide pour la qualité UI. Une vérification courte permet d'attraper la plupart des problèmes courants." },
+  de: { ...checkTextContrastForAccessibilityEn, title: "Textkontrast für Barrierefreiheit prüfen", description: "Mit einer einfachen, wiederholbaren Methode Textkontrast gegen WCAG-Ziele testen.", intro: "Textkontrast ist einer der schnellsten Hebel für bessere UI-Qualität. Mit einem kurzen Check lassen sich die meisten Probleme früh erkennen." }
+};
+
+const lowContrastTextHurtsReadabilityEn: GuideLocalizedContent = {
+  title: "Why Low-Contrast Text Hurts Readability",
+  description: "Understand how low contrast affects scanning speed, comprehension, and trust.",
+  intro: "Low-contrast text may look subtle in mockups, but it slows real users. People read less comfortably, skip content sooner, and make more mistakes.",
+  categoryLabel: "Color accessibility",
+  useCasesTitle: "Useful for",
+  useCases: ["Content-heavy pages.", "Form and checkout flows.", "Dashboard UI cleanup."],
+  closingTitle: "Readable text is a product decision",
+  closingText: "Improving contrast is not just compliance. It directly improves how quickly users understand your interface.",
+  relatedToolLabel: "Open Contrast Checker",
+  sections: [
+    { heading: "Low contrast increases reading effort", paragraphs: ["Users need more focus to separate letters from the background.", "This is worse on small screens, low brightness, or bright environments."] },
+    { heading: "It affects more than users with disabilities", paragraphs: ["Anyone can struggle with low-contrast text when tired, distracted, or in glare.", "Better contrast improves readability for everyone."] },
+    { heading: "Hard-to-read text lowers task completion", paragraphs: ["If instructions or labels are unclear, users miss steps or abandon tasks.", "Contrast issues can reduce conversion and increase support questions."] },
+    { heading: "Quick fixes often solve most cases", paragraphs: ["Slightly darkening text or lightening backgrounds can produce immediate gains.", "Validate fixes with a checker and keep a documented color system."] }
+  ]
+};
+
+const lowContrastTextHurtsReadabilityContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: lowContrastTextHurtsReadabilityEn,
+  ko: { ...lowContrastTextHurtsReadabilityEn, title: "낮은 대비 텍스트가 가독성을 해치는 이유", description: "낮은 대비가 읽기 속도와 이해도, 사용자 신뢰에 주는 영향을 실무 관점에서 설명합니다.", intro: "시안에서 은은해 보이는 텍스트도 실제 사용에서는 읽기 부담을 크게 높입니다. 그 결과 사용자 이탈과 실수가 늘어날 수 있습니다." },
+  ja: { ...lowContrastTextHurtsReadabilityEn, title: "低コントラスト文字が読みやすさを下げる理由", description: "低コントラストが読解速度・理解・信頼に与える影響を実務向けに解説します。", intro: "モックでは上品に見える低コントラスト文字も、実際の利用では読みにくさを生みます。結果として離脱や入力ミスが増えます。" },
+  es: { ...lowContrastTextHurtsReadabilityEn, title: "Por qué el texto con bajo contraste reduce la legibilidad", description: "Comprende cómo el bajo contraste afecta velocidad de lectura, comprensión y confianza.", intro: "Un texto de bajo contraste puede verse elegante en diseño, pero en uso real dificulta la lectura y aumenta errores." },
+  fr: { ...lowContrastTextHurtsReadabilityEn, title: "Pourquoi un texte à faible contraste nuit à la lisibilité", description: "Comprenez l'impact d'un faible contraste sur la lecture, la compréhension et la confiance.", intro: "Un faible contraste peut sembler esthétique dans une maquette, mais il ralentit la lecture en situation réelle." },
+  de: { ...lowContrastTextHurtsReadabilityEn, title: "Warum kontrastarmer Text die Lesbarkeit verschlechtert", description: "So wirkt sich zu geringer Kontrast auf Lesegeschwindigkeit, Verständnis und Vertrauen aus.", intro: "Kontrastarmer Text wirkt im Mockup oft dezent, bremst aber reale Nutzer beim Lesen und erhöht Fehler." }
+};
+
+const wcagContrastRatioBasicsEn: GuideLocalizedContent = {
+  title: "WCAG Contrast Ratio Basics (Without the Jargon)",
+  description: "Learn what contrast ratios mean and how to apply AA/AAA targets in practical UI work.",
+  intro: "Contrast ratio numbers can feel abstract at first. This guide explains what they mean in plain language and how to use them when reviewing text colors.",
+  categoryLabel: "Color accessibility",
+  useCasesTitle: "When to read this",
+  useCases: ["Starting accessibility reviews.", "Training designers and developers.", "Creating color QA checklists."],
+  closingTitle: "Use ratios as a decision tool",
+  closingText: "You do not need to memorize every rule. Use a checker and know which threshold applies to your text size.",
+  relatedToolLabel: "Open Contrast Checker",
+  sections: [
+    { heading: "What a contrast ratio represents", paragraphs: ["It compares how different a text color is from its background.", "Higher ratios generally mean easier reading."] },
+    { heading: "AA and AAA in simple terms", paragraphs: ["AA is the common practical baseline for most web interfaces.", "AAA is stricter and useful where maximum readability is needed."] },
+    { heading: "Normal text vs large text", paragraphs: ["Large text can pass at lower ratios than normal body text.", "Always classify text size correctly before deciding pass/fail."] },
+    { heading: "How to apply this in a workflow", paragraphs: ["Check planned color pairs before development.", "Retest final UI states after implementation."] }
+  ]
+};
+
+const wcagContrastRatioBasicsContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: wcagContrastRatioBasicsEn,
+  ko: { ...wcagContrastRatioBasicsEn, title: "WCAG 대비 비율 기초 (어려운 용어 없이)", description: "대비 비율 숫자의 의미와 AA/AAA 기준을 실무 UI 점검에 적용하는 방법을 설명합니다.", intro: "대비 비율 숫자는 처음엔 추상적으로 느껴질 수 있습니다. 이 가이드는 개념을 쉬운 언어로 풀어 실제 작업에 연결해 줍니다." },
+  ja: { ...wcagContrastRatioBasicsEn, title: "WCAGコントラスト比の基本（難しい用語なし）", description: "コントラスト比の意味とAA/AAA基準を実務UIで使う方法をわかりやすく解説します。", intro: "コントラスト比は数字だけだと分かりにくいものです。このガイドでは実務で使える形に整理します。" },
+  es: { ...wcagContrastRatioBasicsEn, title: "Conceptos básicos de ratio WCAG (sin tecnicismos)", description: "Entiende qué significan los ratios de contraste y cómo usar AA/AAA en trabajo real de UI.", intro: "Los números de contraste pueden parecer abstractos al inicio. Aquí los traducimos a decisiones prácticas." },
+  fr: { ...wcagContrastRatioBasicsEn, title: "Bases du ratio de contraste WCAG (sans jargon)", description: "Comprenez les ratios de contraste et appliquez AA/AAA dans un workflow UI concret.", intro: "Les ratios de contraste paraissent abstraits au début. Ce guide les transforme en règles pratiques de décision." },
+  de: { ...wcagContrastRatioBasicsEn, title: "WCAG-Kontrastverhältnis einfach erklärt", description: "Was Kontrastverhältnisse bedeuten und wie du AA/AAA-Ziele praktisch in UI-Workflows anwendest.", intro: "Kontrastzahlen wirken anfangs abstrakt. Dieser Guide erklärt sie ohne Fachjargon und mit klarem Praxisbezug." }
+};
+
+const accessibilityColorContrastMistakesEn: GuideLocalizedContent = {
+  title: "Accessibility Color Contrast Mistakes to Avoid",
+  description: "Spot the most common contrast errors teams repeat in design and frontend workflows.",
+  intro: "Many contrast issues are predictable. Teams often repeat the same mistakes: testing too late, checking only one state, and trusting visual preference over measured ratios.",
+  categoryLabel: "Color accessibility",
+  useCasesTitle: "Useful for",
+  useCases: ["Design QA checklists.", "Frontend accessibility reviews.", "Component library updates."],
+  closingTitle: "Prevent mistakes upstream",
+  closingText: "Catch contrast problems in design tokens and component specs, and you will fix fewer issues later in QA.",
+  relatedToolLabel: "Open Contrast Checker",
+  sections: [
+    { heading: "Mistake: checking only default state", paragraphs: ["Hover, focus, disabled, and active states often fail while default passes.", "Always test full component state sets."] },
+    { heading: "Mistake: treating brand colors as untouchable", paragraphs: ["Brand identity can stay intact while adjusting lightness for readability.", "Document accessible alternates for text and interactive UI use."] },
+    { heading: "Mistake: testing large text only", paragraphs: ["Body copy and helper text require stricter contrast thresholds.", "Include small text in every accessibility review."] },
+    { heading: "Mistake: skipping real-background testing", paragraphs: ["A color can pass on white but fail on cards, banners, and gradients.", "Validate color pairs in real layouts."] }
+  ]
+};
+
+const accessibilityColorContrastMistakesContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: accessibilityColorContrastMistakesEn,
+  ko: { ...accessibilityColorContrastMistakesEn, title: "피해야 할 접근성 대비 실수", description: "디자인/프론트엔드 작업에서 반복되는 대표적인 대비 실수를 빠르게 점검합니다.", intro: "대비 문제는 대부분 예측 가능합니다. 늦은 점검, 단일 상태만 확인, 감각 중심 판단이 반복되는 핵심 원인입니다." },
+  ja: { ...accessibilityColorContrastMistakesEn, title: "避けたいアクセシビリティ配色コントラストのミス", description: "デザインと実装で繰り返される代表的なコントラストの失敗を整理します。", intro: "コントラスト問題の多くは同じパターンです。チェック時期が遅い、状態を網羅しない、比率を見ないことが主因です。" },
+  es: { ...accessibilityColorContrastMistakesEn, title: "Errores de contraste de color en accesibilidad que debes evitar", description: "Identifica fallos comunes de contraste que se repiten en diseño y frontend.", intro: "Muchos problemas de contraste son previsibles: revisar tarde, validar un solo estado y decidir por apariencia." },
+  fr: { ...accessibilityColorContrastMistakesEn, title: "Erreurs fréquentes de contraste couleur à éviter", description: "Repérez les erreurs de contraste les plus courantes en design et en frontend.", intro: "Les problèmes de contraste se répètent souvent: tests trop tardifs, un seul état vérifié, et décisions visuelles sans mesure." },
+  de: { ...accessibilityColorContrastMistakesEn, title: "Häufige Accessibility-Fehler beim Farbkontrast", description: "Typische Kontrastfehler aus Design- und Frontend-Workflows früh erkennen.", intro: "Viele Kontrastprobleme sind vorhersehbar: zu spätes Testen, nur ein Zustand, und Entscheidungen nach Gefühl statt Ratio." }
+};
+
+const fixLowContrastTextOnWebsiteEn: GuideLocalizedContent = {
+  title: "How to Fix Low Contrast Text on a Website",
+  description: "Follow a practical step-by-step process to identify and fix low-contrast text quickly.",
+  intro: "If users say text is hard to read, you can usually fix it quickly without redesigning everything. This workflow helps you find failing combinations, update colors safely, and validate results before release.",
+  categoryLabel: "Color accessibility",
+  useCasesTitle: "When this guide helps",
+  useCases: ["Fixing readability complaints from users.", "Improving old pages before relaunch.", "Cleaning up inconsistent legacy color styles."],
+  closingTitle: "Fix contrast in controlled iterations",
+  closingText: "Work through the highest-impact text first, test each change, and lock improved values into your design tokens.",
+  relatedToolLabel: "Open Contrast Checker",
+  sections: [
+    { heading: "Audit the worst readability problems first", paragraphs: ["Start with body text, form labels, buttons, and links on high-traffic pages.", "Collect failing pairs in a short list so your fixes stay focused."], bullets: ["Homepage hero text", "Primary/secondary buttons", "Form helper and error text"] },
+    { heading: "Measure each text/background pair", paragraphs: ["Run each pair in a contrast checker and note failed AA/AAA targets.", "Keep one table with current value, target, and proposed fix."] },
+    { heading: "Adjust color without breaking brand style", paragraphs: ["Change lightness first before changing hue.", "Small shifts can improve readability while keeping your visual identity recognizable."] },
+    { heading: "Retest UI states and responsive layouts", paragraphs: ["Check hover, focus, disabled, and visited states.", "Confirm results on mobile where smaller text magnifies contrast problems."] },
+    { heading: "Ship and document new color tokens", paragraphs: ["After fixes pass, update your design system tokens and component docs.", "This prevents the same low-contrast values from returning later."] }
+  ]
+};
+
+const fixLowContrastTextOnWebsiteContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: fixLowContrastTextOnWebsiteEn,
+  ko: { ...fixLowContrastTextOnWebsiteEn, title: "웹사이트의 낮은 대비 텍스트를 수정하는 방법", description: "가독성이 낮은 텍스트를 빠르게 찾아 실무적으로 개선하는 단계별 방법입니다.", intro: "사용자가 텍스트가 잘 안 읽힌다고 말할 때, 전체 리디자인 없이도 대부분 빠르게 개선할 수 있습니다. 실패 조합을 찾고 안전하게 색을 조정하는 흐름을 소개합니다." },
+  ja: { ...fixLowContrastTextOnWebsiteEn, title: "Webサイトの低コントラスト文字を修正する方法", description: "読みにくいテキストを見つけて修正する実践的な手順を解説します。", intro: "『文字が読みづらい』という指摘は、全面改修なしでも改善できることがほとんどです。失敗箇所を特定し、安全に色を調整する流れを紹介します。" },
+  es: { ...fixLowContrastTextOnWebsiteEn, title: "Cómo corregir texto con bajo contraste en un sitio web", description: "Sigue un proceso práctico para detectar y corregir texto con bajo contraste rápidamente.", intro: "Si los usuarios dicen que el texto cuesta leer, normalmente puedes corregirlo sin rediseñar todo el sitio. Esta guía te da un flujo claro y rápido." },
+  fr: { ...fixLowContrastTextOnWebsiteEn, title: "Comment corriger un texte à faible contraste sur un site web", description: "Suivez un processus concret pour identifier et corriger rapidement les textes peu lisibles.", intro: "Quand les utilisateurs signalent un texte difficile à lire, il est souvent possible de corriger vite sans tout refondre. Ce guide propose une méthode pas à pas." },
+  de: { ...fixLowContrastTextOnWebsiteEn, title: "Niedrigen Textkontrast auf einer Website beheben", description: "Ein praktischer Ablauf, um kontrastarme Texte schnell zu finden und zu korrigieren.", intro: "Wenn Nutzer Text schlecht lesen können, lassen sich die meisten Probleme ohne komplettes Redesign beheben. Dieser Guide zeigt einen klaren Schritt-für-Schritt-Prozess." }
+};
+
+const bestContrastPracticesForUiTextEn: GuideLocalizedContent = {
+  title: "Best Contrast Practices for Buttons, Links, and UI Text",
+  description: "Use practical contrast rules for interactive elements and small UI copy.",
+  intro: "Buttons, links, and helper text are where contrast mistakes hurt the most. These elements drive actions. If users cannot read them quickly, task completion drops.",
+  categoryLabel: "Color accessibility",
+  useCasesTitle: "Great for",
+  useCases: ["Design system standards.", "Component library QA.", "Product interface refresh projects."],
+  closingTitle: "Make contrast a component requirement",
+  closingText: "Define contrast expectations inside component specs so teams do not need to re-decide rules in every sprint.",
+  relatedToolLabel: "Open Contrast Checker",
+  sections: [
+    { heading: "Set minimum contrast targets by component type", paragraphs: ["Define baseline targets for body text, link text, button labels, and meta text.", "Shared targets reduce debates and speed up reviews."] },
+    { heading: "Design interactive states as complete sets", paragraphs: ["Plan default, hover, focus, active, and disabled states together.", "A complete state system prevents hidden accessibility failures."] },
+    { heading: "Prioritize link readability in content blocks", paragraphs: ["Links should remain clear without relying only on color differences.", "Use underline or stronger weight where needed for clarity."] },
+    { heading: "Protect small text in dense interfaces", paragraphs: ["Captions, form hints, and secondary labels often fail first.", "Give small UI text extra contrast margin instead of aiming for the bare minimum."] },
+    { heading: "Review with real backgrounds and themes", paragraphs: ["Test components on cards, tables, banners, and dark/light themes.", "One passing pair on white does not guarantee full UI accessibility."] }
+  ]
+};
+
+const bestContrastPracticesForUiTextContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: bestContrastPracticesForUiTextEn,
+  ko: { ...bestContrastPracticesForUiTextEn, title: "버튼, 링크, UI 텍스트를 위한 대비 모범 사례", description: "인터랙티브 요소와 작은 UI 텍스트에서 바로 적용할 수 있는 실전 대비 규칙입니다.", intro: "버튼·링크·보조 텍스트는 행동 전환에 직접 영향을 줍니다. 여기서 대비가 약하면 사용자는 쉽게 놓치고 이탈합니다." },
+  ja: { ...bestContrastPracticesForUiTextEn, title: "ボタン・リンク・UIテキストのコントラスト実践ベストプラクティス", description: "操作要素と小さなUI文字に使える実務向けコントラスト指針を紹介します。", intro: "ボタンやリンク、補助テキストは行動につながる重要要素です。読みにくいと完了率が下がります。" },
+  es: { ...bestContrastPracticesForUiTextEn, title: "Mejores prácticas de contraste para botones, enlaces y texto UI", description: "Aplica reglas prácticas de contraste en elementos interactivos y texto pequeño de interfaz.", intro: "Botones, enlaces y texto auxiliar concentran errores de contraste críticos. Si no se leen rápido, las tareas se abandonan." },
+  fr: { ...bestContrastPracticesForUiTextEn, title: "Bonnes pratiques de contraste pour boutons, liens et texte UI", description: "Règles pratiques de contraste pour les éléments interactifs et les petits textes d'interface.", intro: "Les boutons, liens et textes d'aide sont les zones où un faible contraste impacte le plus l'action utilisateur." },
+  de: { ...bestContrastPracticesForUiTextEn, title: "Beste Kontrast-Praktiken für Buttons, Links und UI-Text", description: "Praktische Kontrastregeln für interaktive Elemente und kleine UI-Texte.", intro: "Buttons, Links und Hilfetexte sind besonders kritisch. Wenn sie schwer lesbar sind, sinkt die Abschlussrate von Aufgaben." }
+};
+
+const checkBrandColorsWithoutHurtingAccessibilityEn: GuideLocalizedContent = {
+  title: "How to Check Brand Colors Without Hurting Accessibility",
+  description: "Keep your brand palette recognizable while making text and UI combinations accessible.",
+  intro: "Brand teams and accessibility goals do not need to conflict. You can preserve brand identity and still meet contrast needs by testing usage contexts, not just standalone color swatches.",
+  categoryLabel: "Color accessibility",
+  useCasesTitle: "Best for",
+  useCases: ["Brand refreshes.", "Marketing site redesigns.", "Design token migration projects."],
+  closingTitle: "Brand and accessibility can work together",
+  closingText: "By defining accessible usage variants, your team can move faster without repeating color debates on every project.",
+  relatedToolLabel: "Open Contrast Checker",
+  sections: [
+    { heading: "Separate brand core colors from UI usage colors", paragraphs: ["Keep master brand colors for identity references.", "Create accessible UI variants for text, buttons, and links where needed."] },
+    { heading: "Test combinations, not single swatches", paragraphs: ["A single color cannot pass or fail by itself.", "Always test foreground and background pairs in realistic contexts."] },
+    { heading: "Create approved contrast-safe pair sets", paragraphs: ["Document which brand pairings are safe for normal text and which are only for large decorative text.", "This helps non-design teams choose colors correctly."] },
+    { heading: "Handle gradients and overlays carefully", paragraphs: ["Text over images or gradients can pass in one area and fail in another.", "Add overlays or solid backing when contrast fluctuates."] },
+    { heading: "Document final rules in your design system", paragraphs: ["Publish do/don't examples and token guidance.", "Clear rules reduce accessibility regressions in future campaigns."] }
+  ]
+};
+
+const checkBrandColorsWithoutHurtingAccessibilityContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: checkBrandColorsWithoutHurtingAccessibilityEn,
+  ko: { ...checkBrandColorsWithoutHurtingAccessibilityEn, title: "접근성을 해치지 않고 브랜드 색상을 점검하는 방법", description: "브랜드 정체성은 유지하면서 텍스트/UI 대비 기준을 함께 만족시키는 방법입니다.", intro: "브랜드팀 목표와 접근성 목표는 충돌하지 않습니다. 핵심은 단색 스와치가 아니라 실제 사용 맥락에서 조합을 검증하는 것입니다." },
+  ja: { ...checkBrandColorsWithoutHurtingAccessibilityEn, title: "アクセシビリティを損なわずにブランドカラーを確認する方法", description: "ブランドらしさを保ちながら、文字とUIの可読性を確保する実践手順です。", intro: "ブランド表現とアクセシビリティは両立できます。単色ではなく使用コンテキストで組み合わせを検証することが重要です。" },
+  es: { ...checkBrandColorsWithoutHurtingAccessibilityEn, title: "Cómo revisar colores de marca sin dañar la accesibilidad", description: "Mantén tu identidad visual mientras garantizas combinaciones de texto y UI accesibles.", intro: "Marca y accesibilidad no tienen por qué chocar. La clave es validar combinaciones en contexto real, no solo muestras aisladas." },
+  fr: { ...checkBrandColorsWithoutHurtingAccessibilityEn, title: "Comment vérifier les couleurs de marque sans nuire à l'accessibilité", description: "Conservez l'identité de marque tout en rendant les combinaisons texte/UI accessibles.", intro: "Les objectifs de marque et d'accessibilité peuvent coexister. Il faut tester les usages réels, pas seulement des échantillons isolés." },
+  de: { ...checkBrandColorsWithoutHurtingAccessibilityEn, title: "Markenfarben prüfen, ohne die Barrierefreiheit zu verschlechtern", description: "Markenidentität bewahren und trotzdem zugängliche Text-/UI-Farbkombinationen sichern.", intro: "Branding und Accessibility müssen kein Widerspruch sein. Entscheidend ist das Testen realer Farbkombinationen im Nutzungskontext." }
+};
 
 const guideDefinitions: Array<Omit<GuideItem, "content"> & { content: Record<LocaleCode, GuideLocalizedContent> }> = [
   {
@@ -4900,6 +5126,78 @@ const guideDefinitions: Array<Omit<GuideItem, "content"> & { content: Record<Loc
     publishedAt: "2026-04-05",
     updatedAt: "2026-04-05",
     content: mistakesWhenExtractingColorsFromImagesContent
+  },
+  {
+    slug: "contrast-checker-guide",
+    category: "color-image",
+    relatedToolSlug: "contrast-checker",
+    relatedGuideSlugs: ["check-text-contrast-for-accessibility", "wcag-contrast-ratio-basics"],
+    publishedAt: "2026-04-09",
+    updatedAt: "2026-04-09",
+    content: contrastCheckerGuideContent
+  },
+  {
+    slug: "check-text-contrast-for-accessibility",
+    category: "color-image",
+    relatedToolSlug: "contrast-checker",
+    relatedGuideSlugs: ["contrast-checker-guide", "low-contrast-text-hurts-readability"],
+    publishedAt: "2026-04-09",
+    updatedAt: "2026-04-09",
+    content: checkTextContrastForAccessibilityContent
+  },
+  {
+    slug: "low-contrast-text-hurts-readability",
+    category: "color-image",
+    relatedToolSlug: "contrast-checker",
+    relatedGuideSlugs: ["check-text-contrast-for-accessibility", "accessibility-color-contrast-mistakes"],
+    publishedAt: "2026-04-09",
+    updatedAt: "2026-04-09",
+    content: lowContrastTextHurtsReadabilityContent
+  },
+  {
+    slug: "wcag-contrast-ratio-basics",
+    category: "color-image",
+    relatedToolSlug: "contrast-checker",
+    relatedGuideSlugs: ["contrast-checker-guide", "accessibility-color-contrast-mistakes"],
+    publishedAt: "2026-04-09",
+    updatedAt: "2026-04-09",
+    content: wcagContrastRatioBasicsContent
+  },
+  {
+    slug: "accessibility-color-contrast-mistakes",
+    category: "color-image",
+    relatedToolSlug: "contrast-checker",
+    relatedGuideSlugs: ["wcag-contrast-ratio-basics", "low-contrast-text-hurts-readability"],
+    publishedAt: "2026-04-09",
+    updatedAt: "2026-04-09",
+    content: accessibilityColorContrastMistakesContent
+  },
+  {
+    slug: "fix-low-contrast-text-on-website",
+    category: "color-image",
+    relatedToolSlug: "contrast-checker",
+    relatedGuideSlugs: ["check-text-contrast-for-accessibility", "low-contrast-text-hurts-readability"],
+    publishedAt: "2026-04-09",
+    updatedAt: "2026-04-09",
+    content: fixLowContrastTextOnWebsiteContent
+  },
+  {
+    slug: "best-contrast-practices-for-ui-text",
+    category: "color-image",
+    relatedToolSlug: "contrast-checker",
+    relatedGuideSlugs: ["wcag-contrast-ratio-basics", "accessibility-color-contrast-mistakes"],
+    publishedAt: "2026-04-09",
+    updatedAt: "2026-04-09",
+    content: bestContrastPracticesForUiTextContent
+  },
+  {
+    slug: "check-brand-colors-without-hurting-accessibility",
+    category: "color-image",
+    relatedToolSlug: "contrast-checker",
+    relatedGuideSlugs: ["check-text-contrast-for-accessibility", "common-color-picker-mistakes"],
+    publishedAt: "2026-04-09",
+    updatedAt: "2026-04-09",
+    content: checkBrandColorsWithoutHurtingAccessibilityContent
   }
 
 
