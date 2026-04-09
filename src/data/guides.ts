@@ -60,6 +60,11 @@ export type GuideSlug =
   | "shorten-blog-title-keep-main-keyword"
   | "why-open-graph-images-look-wrong"
   | "preview-shared-links-before-posting"
+  | "why-link-preview-title-looks-wrong"
+  | "update-open-graph-after-page-edits"
+  | "why-link-preview-description-looks-wrong"
+  | "test-open-graph-changes-before-sharing"
+  | "common-open-graph-tag-mistakes"
   | "hex-vs-rgb-vs-hsl"
   | "match-website-colors-consistently"
   | "copy-web-color-from-screen"
@@ -1510,6 +1515,561 @@ const fixMissingSocialPreviewImagesContent: Record<LocaleCode, GuideLocalizedCon
       { heading: "Format und Größe kontrollieren", paragraphs: ["Zu kleine Bilder oder ungewöhnliche Formate führen oft zu fehlender Vorschau.", "1200×630 in JPG oder PNG ist ein verlässlicher Ausgangspunkt."] },
       { heading: "Cache aktualisieren", paragraphs: ["Plattformen cachen Vorschauen. Deshalb kann nach Änderungen noch alter Stand erscheinen.", "Per Debugger/Checker einen neuen Scrape anstoßen."] },
       { heading: "Schnelle Checkliste", paragraphs: ["Vor dem Teilen kurz abhaken:"], bullets: ["og:image im HTML vorhanden.", "Absolute HTTPS-URL und öffentlich erreichbar.", "Keine Blockade via Robots/Header.", "Bildmaße social-tauglich.", "Neuabruf angefordert."] }
+    ]
+  }
+};
+
+const whyLinkPreviewTitleLooksWrongContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: {
+    title: "Why Your Link Preview Title Looks Wrong",
+    description: "Fix mismatched, outdated, or cut-off social preview titles with a quick Open Graph workflow.",
+    intro: "If the title shown in a link preview does not match your page, the issue is usually tag priority, cache delay, or duplicate metadata. A short check sequence helps you fix this fast.",
+    categoryLabel: "Social preview",
+    useCasesTitle: "When this guide helps",
+    useCases: ["New pages show the wrong headline.", "Old title still appears after edits.", "Different apps show different titles.", "You need a repeatable QA checklist for publishing."],
+    closingTitle: "Check source, then cache",
+    closingText: "Validate the actual tags in page source first, then force recrawl where needed. That avoids guesswork and speeds up fixes.",
+    relatedToolLabel: "Open OG Preview",
+    sections: [
+      { heading: "Know which tag usually wins", paragraphs: ["Most platforms prefer og:title first, then may fall back to twitter:title or the HTML title tag.", "If you update only one tag, previews can still show older or unexpected text."] },
+      { heading: "Inspect the fetched metadata directly", paragraphs: ["Run the page URL in OG Preview and compare og:title, twitter:title, and title values side by side.", "This quickly reveals conflicts, missing values, and fallback behavior."] },
+      { heading: "Watch for title rewriting mistakes", paragraphs: ["Common issues include generic template titles, duplicated brand names, and titles that are too long for preview cards."], bullets: ["Keep key meaning in the first part of the title.", "Avoid keyword stuffing or repeated separators.", "Make social title and page intent match exactly."] },
+      { heading: "Handle cache after fixing tags", paragraphs: ["Social crawlers cache metadata. Even correct tags may not appear immediately.", "Use the platform debugger or re-scrape tools after deployment to refresh previews."] },
+      { heading: "Final pre-share check", paragraphs: ["Before distribution, test the final URL once more and confirm title, description, and image alignment."] }
+    ]
+  },
+  ko: {
+    title: "링크 미리보기 제목이 이상하게 보이는 이유",
+    description: "소셜 미리보기 제목이 다르거나 오래된 경우를 OG 태그 우선순위와 캐시 기준으로 빠르게 점검합니다.",
+    intro: "링크 미리보기 제목 오류는 보통 태그 우선순위 충돌, 캐시 지연, 중복 메타데이터 때문에 발생합니다. 순서대로 확인하면 빠르게 해결할 수 있습니다.",
+    categoryLabel: "소셜 미리보기",
+    useCasesTitle: "이럴 때 유용합니다",
+    useCases: ["새 페이지 제목이 다르게 노출될 때", "수정 후에도 이전 제목이 남을 때", "앱마다 제목이 다르게 보일 때", "게시 전 점검 절차를 만들고 싶을 때"],
+    closingTitle: "소스 확인 후 캐시 갱신",
+    closingText: "페이지 소스의 실제 태그 값을 먼저 확인하고, 이후 재수집을 요청하면 대부분의 문제를 줄일 수 있습니다.",
+    relatedToolLabel: "OG Preview 열기",
+    sections: [
+      { heading: "어떤 태그가 우선되는지 이해", paragraphs: ["대부분 플랫폼은 og:title을 우선하고, 없으면 twitter:title 또는 title로 대체합니다.", "한 태그만 수정하면 예상과 다른 제목이 계속 나올 수 있습니다."] },
+      { heading: "실제로 읽힌 메타데이터를 확인", paragraphs: ["OG Preview에서 og:title, twitter:title, title 값을 나란히 비교하세요.", "누락, 충돌, fallback 원인을 빠르게 찾을 수 있습니다."] },
+      { heading: "제목 작성 실수 점검", paragraphs: ["템플릿 문구 과다, 브랜드명 중복, 너무 긴 제목은 미리보기 품질을 떨어뜨립니다."], bullets: ["핵심 의미를 제목 앞부분에 배치", "중복 구분자/키워드 반복 줄이기", "페이지 의도와 소셜 제목 일치"] },
+      { heading: "태그 수정 후 캐시 처리", paragraphs: ["태그를 고쳐도 캐시 때문에 이전 값이 남을 수 있습니다.", "배포 후 디버거나 재수집 도구로 갱신을 요청하세요."] },
+      { heading: "공유 전 최종 확인", paragraphs: ["최종 URL을 다시 테스트해 제목·설명·이미지가 서로 맞는지 확인하세요."] }
+    ]
+  },
+  ja: {
+    title: "リンクプレビューのタイトルが正しく表示されない理由",
+    description: "リンクプレビューのタイトルずれを、OGタグ優先順位とキャッシュの観点で実務的に修正します。",
+    intro: "プレビュータイトルの不一致は、タグの競合やキャッシュが原因で起きることが多いです。短い確認手順で原因を切り分けできます。",
+    categoryLabel: "ソーシャルプレビュー",
+    useCasesTitle: "役立つ場面",
+    useCases: ["新規ページで想定外のタイトルが出る", "編集後も古いタイトルが残る", "SNSごとに表示が違う", "公開前チェックを標準化したい"],
+    closingTitle: "まずタグ値、次にキャッシュ",
+    closingText: "ページソースの実値を確認してから再クロールを行うと、無駄な手戻りを減らせます。",
+    relatedToolLabel: "OG Previewを開く",
+    sections: [
+      { heading: "優先されるタグを理解する", paragraphs: ["多くのプラットフォームは og:title を優先し、なければ twitter:title や title にフォールバックします.", "一部のタグだけ更新すると表示差分が残りやすくなります。"] },
+      { heading: "取得された値を直接確認する", paragraphs: ["OG Previewで og:title / twitter:title / title を並べて確認します。", "欠落や競合がすぐ見つかります。"] },
+      { heading: "タイトル設計のよくあるミス", paragraphs: ["テンプレート過多、ブランド名重複、長すぎる見出しはプレビュー品質を下げます。"], bullets: ["重要語を前半に置く", "区切り記号やキーワード重複を減らす", "ページ内容とタイトルを一致させる"] },
+      { heading: "修正後はキャッシュ更新", paragraphs: ["タグ修正後もしばらく旧タイトルが表示される場合があります。", "デバッガーや再取得で更新を反映してください。"] },
+      { heading: "共有前の最終確認", paragraphs: ["配布前に最終URLを再テストし、タイトル・説明・画像の整合を確認します。"] }
+    ]
+  },
+  es: {
+    title: "Por qué el título de tu vista previa de enlace se ve mal",
+    description: "Corrige títulos de preview incorrectos o desactualizados revisando prioridad de etiquetas OG y caché.",
+    intro: "Cuando el título de la vista previa no coincide con tu página, normalmente hay conflicto entre etiquetas o caché antigua. Este flujo corto te ayuda a resolverlo rápido.",
+    categoryLabel: "Vista previa social",
+    useCasesTitle: "Cuándo ayuda esta guía",
+    useCases: ["Una página nueva muestra un título equivocado.", "Sigue saliendo el título anterior tras editar.", "Cada app muestra un título distinto.", "Quieres una revisión repetible antes de publicar."],
+    closingTitle: "Primero etiquetas, luego caché",
+    closingText: "Verifica los valores reales en el HTML y después solicita recrawl. Así evitas ajustes al azar.",
+    relatedToolLabel: "Abrir OG Preview",
+    sections: [
+      { heading: "Entiende qué etiqueta gana", paragraphs: ["La mayoría de plataformas priorizan og:title y luego usan twitter:title o title como respaldo.", "Si solo cambias una etiqueta, el preview puede seguir mal."] },
+      { heading: "Inspecciona metadatos reales", paragraphs: ["Comprueba en OG Preview los valores de og:title, twitter:title y title.", "Verás rápido conflictos y faltantes."] },
+      { heading: "Evita errores comunes de copy", paragraphs: ["Plantillas genéricas, marca duplicada y títulos muy largos reducen calidad."], bullets: ["Pon la idea principal al inicio.", "Evita repetir separadores o keywords.", "Alinea título social con intención de la página."] },
+      { heading: "Refresca caché tras corregir", paragraphs: ["Aunque el código esté bien, el crawler puede mantener datos viejos.", "Usa herramientas de depuración para forzar nueva lectura."] },
+      { heading: "Revisión final antes de compartir", paragraphs: ["Haz una última prueba de URL y confirma coherencia entre título, descripción e imagen."] }
+    ]
+  },
+  fr: {
+    title: "Pourquoi le titre de votre aperçu de lien est incorrect",
+    description: "Corrigez les titres d'aperçu erronés en vérifiant priorité OG, balises en conflit et cache social.",
+    intro: "Un titre d'aperçu incohérent vient souvent d'une collision de balises ou d'un cache non rafraîchi. Ce workflow court permet de corriger rapidement.",
+    categoryLabel: "Aperçu social",
+    useCasesTitle: "Quand ce guide est utile",
+    useCases: ["Nouvelle page avec mauvais titre en aperçu.", "Ancien titre toujours affiché après modification.", "Différences entre plateformes.", "Besoin d'un contrôle qualité réutilisable."],
+    closingTitle: "Vérifier les balises puis le cache",
+    closingText: "Commencez par les valeurs réellement lues, puis forcez un nouveau crawl si nécessaire.",
+    relatedToolLabel: "Ouvrir OG Preview",
+    sections: [
+      { heading: "Comprendre la priorité des tags", paragraphs: ["La plupart des plateformes lisent d'abord og:title, puis twitter:title ou title en secours.", "Mettre à jour une seule balise peut laisser un aperçu incohérent."] },
+      { heading: "Contrôler les valeurs extraites", paragraphs: ["Comparez og:title, twitter:title et title dans OG Preview.", "Vous repérez vite les conflits ou absences."] },
+      { heading: "Corriger les erreurs de formulation", paragraphs: ["Titres génériques, marque répétée ou longueur excessive nuisent à la lisibilité."], bullets: ["Placez l'idée clé au début.", "Évitez répétitions et séparateurs inutiles.", "Alignez le titre social avec le contenu réel."] },
+      { heading: "Rafraîchir le cache après correction", paragraphs: ["Un cache ancien peut continuer à afficher l'ancienne version.", "Lancez un nouveau scrape via les outils de debug."] },
+      { heading: "Validation finale avant partage", paragraphs: ["Refaites un test complet de l'URL avant diffusion."] }
+    ]
+  },
+  de: {
+    title: "Warum der Titel deiner Link-Vorschau falsch aussieht",
+    description: "Behebe falsche oder alte Vorschau-Titel mit einem kurzen OG-Check zu Tag-Priorität und Cache.",
+    intro: "Wenn der Vorschau-Titel nicht zur Seite passt, sind oft konkurrierende Tags oder veralteter Cache die Ursache. Mit einem klaren Ablauf findest du den Fehler schnell.",
+    categoryLabel: "Social Preview",
+    useCasesTitle: "Wann dieser Guide hilft",
+    useCases: ["Neue Seite zeigt falschen Titel.", "Alter Titel bleibt nach Änderungen sichtbar.", "Unterschiedliche Darstellung je Plattform.", "Team braucht reproduzierbaren QA-Ablauf."],
+    closingTitle: "Erst Tags, dann Cache",
+    closingText: "Prüfe zuerst die tatsächlich ausgelesenen Werte und löse danach bei Bedarf einen Neuabruf aus.",
+    relatedToolLabel: "OG Preview öffnen",
+    sections: [
+      { heading: "Tag-Priorität verstehen", paragraphs: ["Meist wird og:title bevorzugt, danach twitter:title oder title.", "Wenn nur ein Tag aktualisiert wird, bleibt die Vorschau oft inkonsistent."] },
+      { heading: "Ausgelesene Metadaten prüfen", paragraphs: ["Vergleiche in OG Preview og:title, twitter:title und title direkt.", "So erkennst du Konflikte oder fehlende Werte sofort."] },
+      { heading: "Typische Copy-Fehler vermeiden", paragraphs: ["Generische Titel, doppelte Markennennung und zu lange Headlines schwächen die Vorschau."], bullets: ["Kernaussage früh platzieren.", "Wiederholte Keywords/Separatoren reduzieren.", "Titel mit Seiteninhalt abgleichen."] },
+      { heading: "Nach Korrekturen Cache erneuern", paragraphs: ["Trotz korrekter Tags kann zunächst alter Inhalt angezeigt werden.", "Über Debug-Tools einen neuen Crawl anstoßen."] },
+      { heading: "Finaler Check vor dem Teilen", paragraphs: ["URL erneut testen und Titel, Beschreibung sowie Bild auf Konsistenz prüfen."] }
+    ]
+  }
+};
+
+const updateOpenGraphAfterPageEditsContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: {
+    title: "Update Open Graph Metadata After Page Edits",
+    description: "Use a simple post-edit checklist so title, description, and image previews stay in sync after page updates.",
+    intro: "When you edit a live page, social previews often lag behind. This guide gives you a practical sequence to update OG tags and confirm that platforms fetch the latest version.",
+    categoryLabel: "Social preview",
+    useCasesTitle: "Best times to use it",
+    useCases: ["You changed a headline or article angle.", "You replaced the hero image.", "You updated campaign landing page messaging.", "A previously shared link needs refreshed previews."],
+    closingTitle: "Treat OG updates as a release step",
+    closingText: "A 2-minute metadata check after edits helps prevent outdated previews and mixed messaging.",
+    relatedToolLabel: "Open OG Preview",
+    sections: [
+      { heading: "Update the right tags together", paragraphs: ["When content changes, revise og:title, og:description, and og:image as one set.", "Partial updates create mixed previews that confuse readers."] },
+      { heading: "Verify rendered source, not just CMS fields", paragraphs: ["Always check the final page output to ensure metadata was actually published.", "Template overrides and caching layers can keep old values active."] },
+      { heading: "Recheck image accessibility", paragraphs: ["If a new image was uploaded, confirm the og:image URL is public HTTPS and loads without login.", "Broken image delivery is a frequent post-edit issue."] },
+      { heading: "Request recrawl where needed", paragraphs: ["After deployment, trigger recrawl in platform debuggers when previews remain stale.", "Then retest in OG Preview to confirm fetched values."] },
+      { heading: "Keep a lightweight publish checklist", paragraphs: ["A short team checklist reduces misses."], bullets: ["Edit OG title/description/image together.", "Validate output HTML values.", "Confirm image URL accessibility.", "Run preview test before sharing."] }
+    ]
+  },
+  ko: {
+    title: "페이지 수정 후 Open Graph 메타데이터 업데이트 방법",
+    description: "페이지 편집 뒤 OG 제목·설명·이미지를 함께 점검해 미리보기 불일치를 줄이는 실무 체크리스트입니다.",
+    intro: "라이브 페이지를 수정하면 소셜 미리보기가 늦게 반영되는 경우가 많습니다. 이 가이드는 수정 후 점검 순서를 간단히 정리합니다.",
+    categoryLabel: "소셜 미리보기",
+    useCasesTitle: "이럴 때 사용하세요",
+    useCases: ["헤드라인/메시지를 수정했을 때", "대표 이미지를 교체했을 때", "캠페인 랜딩 문구를 변경했을 때", "이미 공유된 링크를 최신 상태로 맞출 때"],
+    closingTitle: "OG 업데이트를 배포 단계로 포함",
+    closingText: "수정 후 2분 점검만 추가해도 오래된 미리보기 노출을 크게 줄일 수 있습니다.",
+    relatedToolLabel: "OG Preview 열기",
+    sections: [
+      { heading: "관련 태그를 한 번에 수정", paragraphs: ["콘텐츠가 바뀌면 og:title, og:description, og:image를 함께 업데이트하세요.", "일부만 바꾸면 메시지가 섞인 미리보기가 생깁니다."] },
+      { heading: "CMS 입력값이 아닌 최종 소스 확인", paragraphs: ["실제 렌더링된 HTML에서 값이 반영됐는지 확인해야 합니다.", "템플릿/캐시 계층 때문에 이전 값이 남을 수 있습니다."] },
+      { heading: "새 이미지 접근성 재확인", paragraphs: ["새 og:image URL이 HTTPS 절대경로이며 로그인 없이 열리는지 확인하세요.", "이미지 접근 제한은 수정 후 자주 발생하는 문제입니다."] },
+      { heading: "필요 시 재수집 요청", paragraphs: ["배포 후에도 미리보기가 오래된 경우 플랫폼 디버거에서 재수집을 요청하세요.", "이후 OG Preview로 다시 확인합니다."] },
+      { heading: "짧은 게시 체크리스트 유지", paragraphs: ["팀 공통 체크리스트 예시:"], bullets: ["제목·설명·이미지 동시 수정", "HTML 출력값 확인", "이미지 URL 공개 접근 확인", "공유 전 미리보기 테스트"] }
+    ]
+  },
+  ja: {
+    title: "ページ編集後にOpen Graphを更新する方法",
+    description: "ページ更新後にOGタイトル・説明・画像をそろえて見直し、古いプレビュー表示を防ぎます。",
+    intro: "公開中ページを編集すると、プレビュー表示が古いまま残ることがあります。更新後の確認手順を短く整理しました。",
+    categoryLabel: "ソーシャルプレビュー",
+    useCasesTitle: "使うタイミング",
+    useCases: ["見出しや訴求を変更したとき", "メイン画像を差し替えたとき", "LP文言を更新したとき", "既存共有リンクを最新化したいとき"],
+    closingTitle: "OG更新を公開フローに含める",
+    closingText: "編集後に短い確認を入れるだけで、古いプレビューの表示ミスを減らせます。",
+    relatedToolLabel: "OG Previewを開く",
+    sections: [
+      { heading: "関連タグをセットで更新", paragraphs: ["内容変更時は og:title / og:description / og:image をまとめて更新します。", "一部だけ変更すると表示メッセージが不整合になります。"] },
+      { heading: "CMS入力ではなく最終HTMLを確認", paragraphs: ["公開後の実際のソースで値が反映されているか確認してください。", "テンプレートやキャッシュで旧値が残る場合があります。"] },
+      { heading: "画像URLの公開可否を再確認", paragraphs: ["新しい og:image は HTTPS の絶対URLで、認証なしで開ける必要があります。", "画像アクセス不可は更新後によく起きる問題です。"] },
+      { heading: "必要に応じて再クロール", paragraphs: ["反映が遅い場合はプラットフォームのデバッガーで再取得を実行します。", "その後 OG Preview で再確認します。"] },
+      { heading: "公開チェックを簡略化", paragraphs: ["チームで次を確認:"], bullets: ["タイトル・説明・画像を同時更新", "最終HTMLを確認", "画像URLの公開アクセス確認", "共有前プレビュー確認"] }
+    ]
+  },
+  es: {
+    title: "Cómo actualizar Open Graph después de editar una página",
+    description: "Aplica un checklist corto tras cada edición para mantener alineados título, descripción e imagen de vista previa.",
+    intro: "Al editar una página publicada, las vistas previas sociales pueden quedar desactualizadas. Este flujo te ayuda a actualizar OG y validar la versión correcta.",
+    categoryLabel: "Vista previa social",
+    useCasesTitle: "Cuándo usarlo",
+    useCases: ["Cambiaste titular o enfoque del contenido.", "Reemplazaste la imagen principal.", "Actualizaste una landing de campaña.", "Necesitas refrescar enlaces ya compartidos."],
+    closingTitle: "Incluye OG en tu proceso de publicación",
+    closingText: "Un chequeo breve después de editar evita mensajes mixtos y previews viejas.",
+    relatedToolLabel: "Abrir OG Preview",
+    sections: [
+      { heading: "Actualiza las etiquetas en conjunto", paragraphs: ["Si cambia el contenido, ajusta og:title, og:description y og:image al mismo tiempo.", "Cambios parciales generan previews inconsistentes."] },
+      { heading: "Valida HTML renderizado", paragraphs: ["No basta revisar el CMS: confirma el resultado final en la página publicada.", "Capas de plantilla o caché pueden mantener datos antiguos."] },
+      { heading: "Revisa acceso de la nueva imagen", paragraphs: ["Comprueba que la nueva URL de og:image sea HTTPS absoluta y pública.", "La inaccesibilidad de imagen es común tras ediciones."] },
+      { heading: "Solicita recrawl si hace falta", paragraphs: ["Si ves datos viejos, fuerza nueva lectura en debuggers de plataforma.", "Luego verifica otra vez con OG Preview."] },
+      { heading: "Checklist rápida del equipo", paragraphs: ["Incluye estos puntos:"], bullets: ["Editar título/descr./imagen juntos.", "Comprobar valores en HTML.", "Validar URL de imagen pública.", "Probar preview antes de compartir."] }
+    ]
+  },
+  fr: {
+    title: "Mettre à jour Open Graph après modification d'une page",
+    description: "Suivez une checklist courte après chaque édition pour garder titre, description et image OG cohérents.",
+    intro: "Après une modification de page, les aperçus sociaux peuvent rester anciens. Ce guide vous aide à republier des métadonnées OG cohérentes.",
+    categoryLabel: "Aperçu social",
+    useCasesTitle: "Quand l'utiliser",
+    useCases: ["Changement de titre ou d'angle éditorial.", "Remplacement de l'image principale.", "Mise à jour d'une landing campagne.", "Rafraîchissement d'un lien déjà partagé."],
+    closingTitle: "Intégrez OG à votre routine de publication",
+    closingText: "Deux minutes de contrôle après édition évitent la majorité des aperçus obsolètes.",
+    relatedToolLabel: "Ouvrir OG Preview",
+    sections: [
+      { heading: "Mettre à jour les balises ensemble", paragraphs: ["Quand la page change, ajustez og:title, og:description et og:image en bloc.", "Les mises à jour partielles créent des aperçus incohérents."] },
+      { heading: "Vérifier la sortie HTML finale", paragraphs: ["Contrôlez les balises sur la page rendue, pas seulement dans le CMS.", "Template et cache peuvent conserver d'anciennes valeurs."] },
+      { heading: "Confirmer l'accès à la nouvelle image", paragraphs: ["L'URL og:image doit être absolue, HTTPS et accessible sans authentification.", "C'est un point de casse fréquent après modification."] },
+      { heading: "Forcer un nouveau crawl si nécessaire", paragraphs: ["Si l'aperçu reste ancien, lancez un re-scrape via les outils de debug.", "Revalidez ensuite dans OG Preview."] },
+      { heading: "Checklist de publication", paragraphs: ["Points minimum :"], bullets: ["Mettre à jour titre/description/image ensemble.", "Contrôler les valeurs dans le HTML.", "Tester l'accès public de l'image.", "Vérifier l'aperçu avant diffusion."] }
+    ]
+  },
+  de: {
+    title: "Open Graph nach Seiten-Änderungen aktualisieren",
+    description: "Nutze eine kurze Checkliste nach Edits, damit OG-Titel, Beschreibung und Bild weiterhin zusammenpassen.",
+    intro: "Nach Änderungen an Live-Seiten bleiben Vorschauen oft veraltet. Mit diesem Ablauf aktualisierst du OG-Daten zuverlässig.",
+    categoryLabel: "Social Preview",
+    useCasesTitle: "Wann das sinnvoll ist",
+    useCases: ["Headline oder Inhaltsschwerpunkt geändert.", "Hero-Bild ausgetauscht.", "Kampagnen-Landingpage überarbeitet.", "Bereits geteilten Link aktualisieren."],
+    closingTitle: "OG als festen Release-Schritt behandeln",
+    closingText: "Ein kurzer Metadaten-Check nach Edits verhindert viele veraltete Vorschauen.",
+    relatedToolLabel: "OG Preview öffnen",
+    sections: [
+      { heading: "Relevante Tags gemeinsam aktualisieren", paragraphs: ["Bei Inhaltsänderungen og:title, og:description und og:image zusammen anpassen.", "Teilupdates führen oft zu widersprüchlichen Vorschauen."] },
+      { heading: "Gerenderten HTML-Output prüfen", paragraphs: ["Nicht nur CMS-Felder prüfen, sondern die veröffentlichte Seite.", "Template-Logik oder Cache kann alte Werte ausspielen."] },
+      { heading: "Bild-URL erneut validieren", paragraphs: ["Neue og:image-URL muss absolut, HTTPS und öffentlich erreichbar sein.", "Bildzugriff ist nach Updates eine häufige Fehlerquelle."] },
+      { heading: "Bei Bedarf Neuabruf anstoßen", paragraphs: ["Bleibt der alte Stand sichtbar, in Debug-Tools Re-Crawl auslösen.", "Danach erneut mit OG Preview prüfen."] },
+      { heading: "Leichte Publish-Checkliste", paragraphs: ["Empfohlene Mindestpunkte:"], bullets: ["Titel/Beschreibung/Bild gemeinsam aktualisieren.", "HTML-Werte kontrollieren.", "Öffentlichen Bildzugriff prüfen.", "Vorschau vor Teilen testen."] }
+    ]
+  }
+};
+
+const whyLinkPreviewDescriptionLooksWrongContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: {
+    title: "Why Your Link Preview Description Looks Wrong",
+    description: "Fix link preview descriptions that look outdated, truncated, or unrelated to your current page content.",
+    intro: "A wrong description usually means one of three things: competing tags, old cached data, or description text that is too vague for social cards. This guide gives you a quick practical fix path.",
+    categoryLabel: "Social preview",
+    useCasesTitle: "Common situations",
+    useCases: ["Preview text does not match updated page copy.", "Only some platforms show the right description.", "Snippet looks too generic to earn clicks.", "You need faster QA before campaign launch."],
+    closingTitle: "Write clearly, then verify",
+    closingText: "A concise description plus one metadata test before sharing prevents most preview-description issues.",
+    relatedToolLabel: "Open OG Preview",
+    sections: [
+      { heading: "Check which description tag is being used", paragraphs: ["Platforms often prefer og:description, then twitter:description, then the standard meta description.", "If these differ, preview text may look random or inconsistent."] },
+      { heading: "Compare extracted values quickly", paragraphs: ["Use OG Preview to inspect all description-related tags at once.", "You can immediately see whether the wrong text is in the source or coming from cache."] },
+      { heading: "Keep the description practical and specific", paragraphs: ["Descriptions perform better when they explain what users get, not just broad keywords."], bullets: ["Start with the page outcome or benefit.", "Remove filler phrases and repeated terms.", "Keep the first sentence meaningful on its own."] },
+      { heading: "Avoid stale snippet issues", paragraphs: ["After edits, some platforms still show older descriptions for a while.", "Trigger recrawl and retest if the source is correct but preview is outdated."] },
+      { heading: "Use a pre-share quality pass", paragraphs: ["Before posting, confirm title, description, and image tell the same story."] }
+    ]
+  },
+  ko: {
+    title: "링크 미리보기 설명이 이상하게 보이는 이유",
+    description: "링크 미리보기 설명이 오래됐거나 잘못 보일 때 태그 우선순위와 캐시를 기준으로 빠르게 수정합니다.",
+    intro: "설명 문구 오류는 대개 태그 충돌, 캐시 지연, 모호한 문장 때문에 발생합니다. 이 가이드는 실무에서 바로 쓰는 점검 순서를 제공합니다.",
+    categoryLabel: "소셜 미리보기",
+    useCasesTitle: "자주 발생하는 상황",
+    useCases: ["수정한 본문과 미리보기 설명이 다를 때", "플랫폼별로 설명 노출이 다를 때", "설명이 너무 일반적이라 클릭이 약할 때", "캠페인 전 빠른 QA가 필요할 때"],
+    closingTitle: "명확하게 쓰고 테스트하세요",
+    closingText: "짧고 구체적인 설명 + 공유 전 1회 점검만으로 대부분의 문제를 예방할 수 있습니다.",
+    relatedToolLabel: "OG Preview 열기",
+    sections: [
+      { heading: "어떤 설명 태그가 사용되는지 확인", paragraphs: ["보통 og:description이 우선이고, 없으면 twitter:description 또는 meta description으로 대체됩니다.", "태그 값이 다르면 미리보기 설명이 불안정해집니다."] },
+      { heading: "추출된 값을 한 번에 비교", paragraphs: ["OG Preview에서 설명 관련 태그를 동시에 확인하세요.", "소스 문제인지 캐시 문제인지 빠르게 구분할 수 있습니다."] },
+      { heading: "설명 문구를 실무형으로 정리", paragraphs: ["설명은 키워드 나열보다 사용자가 얻는 결과를 먼저 전달해야 합니다."], bullets: ["첫 문장에 핵심 효익 배치", "불필요한 수식어 제거", "반복 표현 최소화"] },
+      { heading: "오래된 스니펫 처리", paragraphs: ["수정 후에도 일부 플랫폼은 이전 설명을 유지할 수 있습니다.", "소스가 맞다면 재수집을 요청하고 다시 확인하세요."] },
+      { heading: "공유 전 품질 점검", paragraphs: ["제목·설명·이미지 메시지가 같은 방향인지 마지막으로 확인하세요."] }
+    ]
+  },
+  ja: {
+    title: "リンクプレビューの説明文が正しくない理由",
+    description: "古い・不一致・曖昧なプレビュー説明文を、OGタグ確認とキャッシュ更新で改善します。",
+    intro: "説明文の不一致は、タグ競合・キャッシュ残り・文面の曖昧さが主な原因です。実務で使える短い修正フローを紹介します。",
+    categoryLabel: "ソーシャルプレビュー",
+    useCasesTitle: "よくある場面",
+    useCases: ["更新した内容と説明文が合わない", "サービスごとに説明が違う", "説明が抽象的でクリックされにくい", "公開前確認を短時間で済ませたい"],
+    closingTitle: "明確に書いて検証する",
+    closingText: "短く具体的な説明文を用意し、共有前に1回確認するだけで多くの問題を防げます。",
+    relatedToolLabel: "OG Previewを開く",
+    sections: [
+      { heading: "どの説明タグが使われるか確認", paragraphs: ["一般的に og:description が優先され、次に twitter:description や meta description が使われます。", "値がそろっていないと表示が不安定になります。"] },
+      { heading: "抽出値をまとめて比較", paragraphs: ["OG Previewで説明系タグを同時に確認します。", "ソース誤りかキャッシュ遅延かをすぐ切り分けできます。"] },
+      { heading: "説明文は具体的に書く", paragraphs: ["キーワード羅列より、ページで得られる結果を伝える説明が有効です。"], bullets: ["冒頭に価値を置く", "冗長な語句を削る", "1文目だけでも意味が通るようにする"] },
+      { heading: "古いキャッシュに対応", paragraphs: ["修正後もしばらく旧説明が残る場合があります。", "必要に応じて再クロールを依頼してください。"] },
+      { heading: "共有前の最終確認", paragraphs: ["タイトル・説明・画像の整合を最終チェックします。"] }
+    ]
+  },
+  es: {
+    title: "Por qué la descripción de tu vista previa de enlace se ve mal",
+    description: "Arregla descripciones de preview desactualizadas o incorrectas revisando etiquetas OG y caché social.",
+    intro: "Si la descripción no coincide con tu página, suele deberse a etiquetas en conflicto, caché antigua o texto demasiado genérico. Esta guía te da un flujo rápido para corregirlo.",
+    categoryLabel: "Vista previa social",
+    useCasesTitle: "Situaciones comunes",
+    useCases: ["El texto no refleja cambios recientes.", "Solo algunas plataformas muestran bien la descripción.", "El snippet es poco claro para el usuario.", "Necesitas QA rápida antes de compartir."],
+    closingTitle: "Redacta claro y valida",
+    closingText: "Una descripción concreta y una prueba previa evitan la mayoría de fallos.",
+    relatedToolLabel: "Abrir OG Preview",
+    sections: [
+      { heading: "Revisa qué etiqueta de descripción manda", paragraphs: ["Normalmente se usa og:description y luego twitter:description o meta description.", "Si no coinciden, la vista previa puede variar."] },
+      { heading: "Compara valores extraídos", paragraphs: ["Con OG Preview puedes revisar todas las etiquetas de descripción juntas.", "Así detectas si el problema está en código o en caché."] },
+      { heading: "Haz la descripción específica", paragraphs: ["Funciona mejor cuando explica el resultado que obtiene el usuario."], bullets: ["Empieza con beneficio o resultado.", "Elimina frases de relleno.", "Haz que la primera frase tenga sentido por sí sola."] },
+      { heading: "Gestiona caché antigua", paragraphs: ["Tras editar, algunas plataformas siguen mostrando texto viejo.", "Solicita recrawl y vuelve a probar."] },
+      { heading: "Chequeo final antes de publicar", paragraphs: ["Confirma coherencia entre título, descripción e imagen."] }
+    ]
+  },
+  fr: {
+    title: "Pourquoi la description de votre aperçu de lien est incorrecte",
+    description: "Corrigez une description d'aperçu obsolète ou incohérente en vérifiant tags OG et cache social.",
+    intro: "Une mauvaise description vient souvent de balises concurrentes, de cache ancien ou d'un texte trop vague. Ce guide propose un chemin de correction rapide.",
+    categoryLabel: "Aperçu social",
+    useCasesTitle: "Cas fréquents",
+    useCases: ["Le texte ne reflète pas vos dernières modifications.", "Certaines plateformes affichent une autre description.", "Le snippet est trop générique.", "Vous voulez une QA rapide avant diffusion."],
+    closingTitle: "Rédiger clairement puis vérifier",
+    closingText: "Une description concise + un test de métadonnées avant partage couvrent l'essentiel.",
+    relatedToolLabel: "Ouvrir OG Preview",
+    sections: [
+      { heading: "Identifier la balise réellement utilisée", paragraphs: ["Souvent og:description est prioritaire, sinon twitter:description ou meta description.", "Des valeurs différentes provoquent des aperçus incohérents."] },
+      { heading: "Comparer les valeurs extraites", paragraphs: ["OG Preview affiche rapidement toutes les descriptions disponibles.", "Vous distinguez immédiatement erreur de source et problème de cache."] },
+      { heading: "Rendre la description plus utile", paragraphs: ["Une bonne description explique la valeur de la page, pas seulement des mots-clés."], bullets: ["Commencer par le bénéfice utilisateur.", "Supprimer les formulations vagues.", "Soigner la première phrase."] },
+      { heading: "Traiter le cache ancien", paragraphs: ["Après modification, l'ancienne description peut rester visible temporairement.", "Lancez un nouveau crawl puis retestez."] },
+      { heading: "Validation avant partage", paragraphs: ["Vérifiez l'alignement titre/description/image avant publication."] }
+    ]
+  },
+  de: {
+    title: "Warum die Beschreibung deiner Link-Vorschau falsch aussieht",
+    description: "Korrigiere veraltete oder unpassende Vorschau-Beschreibungen durch OG-Tag-Check und Cache-Refresh.",
+    intro: "Falsche Beschreibungen entstehen meist durch Tag-Konflikte, alten Cache oder zu allgemeine Texte. Dieser Guide zeigt einen schnellen Praxisablauf.",
+    categoryLabel: "Social Preview",
+    useCasesTitle: "Typische Situationen",
+    useCases: ["Beschreibung passt nicht zu aktuellen Seiteninhalten.", "Je Plattform unterschiedliche Texte.", "Snippet ist zu allgemein und schwach.", "Schneller QA-Check vor Kampagnenstart."],
+    closingTitle: "Klar formulieren, dann prüfen",
+    closingText: "Mit klarer Beschreibung und kurzem Vorschau-Test vermeidest du die meisten Fehler.",
+    relatedToolLabel: "OG Preview öffnen",
+    sections: [
+      { heading: "Prüfen, welche Description greift", paragraphs: ["Häufig wird og:description genutzt, sonst twitter:description oder meta description.", "Unterschiedliche Werte führen zu inkonsistenten Vorschauen."] },
+      { heading: "Extrahierte Werte vergleichen", paragraphs: ["In OG Preview siehst du alle Description-Felder direkt nebeneinander.", "So erkennst du Quelltext- vs. Cache-Probleme sofort."] },
+      { heading: "Beschreibung konkret halten", paragraphs: ["Statt Keyword-Listen sollte die Beschreibung den Nutzen der Seite klar nennen."], bullets: ["Mit Ergebnis/Nutzen starten.", "Füllwörter streichen.", "Ersten Satz eigenständig verständlich machen."] },
+      { heading: "Alten Cache aktualisieren", paragraphs: ["Nach Änderungen kann weiterhin alter Text angezeigt werden.", "Neuabruf anstoßen und erneut testen."] },
+      { heading: "Finaler Pre-Share-Check", paragraphs: ["Titel, Beschreibung und Bild vor dem Teilen auf Konsistenz prüfen."] }
+    ]
+  }
+};
+
+const testOpenGraphChangesBeforeSharingContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: {
+    title: "How to Test Open Graph Changes Before Sharing a Link",
+    description: "Use a short pre-share validation workflow so social previews are correct before links go live.",
+    intro: "Publishing first and fixing previews later wastes campaign momentum. A quick OG testing routine helps you catch metadata problems before anyone sees a broken card.",
+    categoryLabel: "Social preview",
+    useCasesTitle: "When this matters most",
+    useCases: ["Launching campaign pages on a deadline.", "Handing pages from dev to marketing.", "Updating metadata right before distribution.", "Checking multilingual versions of a page."],
+    closingTitle: "Test once, share confidently",
+    closingText: "A short pre-share check is faster than post-share damage control.",
+    relatedToolLabel: "Open OG Preview",
+    sections: [
+      { heading: "Start with the final production URL", paragraphs: ["Always test the exact URL you plan to share, including locale path and final slug.", "Draft or staging URLs often hide production issues."] },
+      { heading: "Validate core social fields", paragraphs: ["Confirm og:title, og:description, and og:image first, then review Twitter fallbacks.", "Make sure no field is empty, duplicated, or unrelated to the current page."] },
+      { heading: "Run a visual card sanity check", paragraphs: ["The preview should look clear at a glance."], bullets: ["Readable title with no awkward cut-off.", "Description that matches page intent.", "Image not cropped in a confusing way.", "URL and brand context look trustworthy."] },
+      { heading: "Repeat test after deployment changes", paragraphs: ["If you edit metadata again, rerun the test. Small last-minute edits often break consistency.", "Do not assume previous checks still apply."] },
+      { heading: "Keep a lightweight sharing checklist", paragraphs: ["A simple team checklist helps avoid rushed mistakes right before launch."] }
+    ]
+  },
+  ko: {
+    title: "링크 공유 전에 Open Graph 변경사항 테스트하는 방법",
+    description: "공유 전 짧은 OG 점검 루틴으로 제목·설명·이미지 오류를 미리 잡는 방법을 안내합니다.",
+    intro: "먼저 공유하고 나중에 고치는 방식은 캠페인 효율을 떨어뜨립니다. 공유 직전 1회 테스트만으로 대부분의 메타데이터 문제를 예방할 수 있습니다.",
+    categoryLabel: "소셜 미리보기",
+    useCasesTitle: "특히 중요한 상황",
+    useCases: ["런칭 일정이 촉박한 캠페인 페이지", "개발에서 마케팅으로 전달된 페이지", "배포 직전 메타데이터 수정", "다국어 페이지별 최종 점검"],
+    closingTitle: "한 번 테스트하고 안심 공유",
+    closingText: "사전 점검 1~2분이 사후 수정보다 훨씬 효율적입니다.",
+    relatedToolLabel: "OG Preview 열기",
+    sections: [
+      { heading: "최종 운영 URL부터 테스트", paragraphs: ["실제로 공유할 URL(로케일 경로 포함)을 그대로 테스트하세요.", "스테이징 주소만 확인하면 운영 환경 문제를 놓치기 쉽습니다."] },
+      { heading: "핵심 필드 우선 확인", paragraphs: ["og:title, og:description, og:image를 먼저 보고 Twitter fallback을 확인하세요.", "빈 값, 중복, 페이지와 불일치한 문구를 점검합니다."] },
+      { heading: "카드 형태 빠른 시각 점검", paragraphs: ["한눈에 이해되는 카드인지 확인하세요."], bullets: ["제목이 어색하게 잘리지 않는지", "설명이 페이지 의도와 맞는지", "이미지가 과하게 잘리지 않는지", "URL/브랜드 맥락이 신뢰감 있는지"] },
+      { heading: "수정 후 재테스트", paragraphs: ["메타데이터를 다시 고쳤다면 반드시 재검증하세요.", "이전 테스트 결과를 그대로 믿지 마세요."] },
+      { heading: "공유 체크리스트 유지", paragraphs: ["팀용 간단 체크리스트가 런칭 직전 실수를 줄여줍니다."] }
+    ]
+  },
+  ja: {
+    title: "リンク共有前にOpen Graph変更をテストする方法",
+    description: "共有前の短い検証フローで、タイトル・説明・画像のOG不具合を先に見つけます。",
+    intro: "先に共有してから修正すると機会損失が大きくなります。共有前の短いOGチェックでプレビュー崩れを防ぎましょう。",
+    categoryLabel: "ソーシャルプレビュー",
+    useCasesTitle: "特に有効な場面",
+    useCases: ["公開期限が近いキャンペーンページ", "開発から運用への引き渡し時", "配信直前にメタデータを更新した時", "多言語ページを一括確認したい時"],
+    closingTitle: "事前テストで安心して共有",
+    closingText: "共有前の1回確認は、共有後の修正対応よりはるかに効率的です。",
+    relatedToolLabel: "OG Previewを開く",
+    sections: [
+      { heading: "本番で使う最終URLを検証", paragraphs: ["実際に配布するURL（ロケール付き）をそのままテストします。", "ステージングだけでは本番特有の問題を見逃します。"] },
+      { heading: "主要フィールドを優先確認", paragraphs: ["og:title・og:description・og:image を先に確認し、次にTwitter系のフォールバックを見る。", "空欄、重複、内容不一致をチェックします。"] },
+      { heading: "カードの見た目を短時間で確認", paragraphs: ["視認性を簡単にチェックします。"], bullets: ["タイトルが不自然に切れていない", "説明がページ内容に合っている", "画像トリミングが不自然でない", "URLとブランド表示が信頼できる"] },
+      { heading: "再編集後は再テスト", paragraphs: ["メタデータを再編集したら、必ず再検証します。", "前回の結果を流用しないことが重要です。"] },
+      { heading: "共有前チェックを定着", paragraphs: ["軽いチームチェックリストで直前ミスを減らせます。"] }
+    ]
+  },
+  es: {
+    title: "Cómo probar cambios de Open Graph antes de compartir un enlace",
+    description: "Sigue un flujo corto de validación previa para asegurar previews correctas antes de publicar enlaces.",
+    intro: "Compartir primero y corregir después consume tiempo y alcance. Una rutina OG rápida te ayuda a detectar errores antes de la publicación.",
+    categoryLabel: "Vista previa social",
+    useCasesTitle: "Cuándo importa más",
+    useCases: ["Lanzamientos con poco margen.", "Entrega de páginas entre equipos.", "Cambios de metadatos de última hora.", "Revisión de versiones multilingües."],
+    closingTitle: "Prueba una vez y comparte con confianza",
+    closingText: "La validación previa es más rápida que corregir después de difundir.",
+    relatedToolLabel: "Abrir OG Preview",
+    sections: [
+      { heading: "Empieza con la URL final", paragraphs: ["Prueba exactamente la URL que vas a compartir, incluyendo locale y slug final.", "URLs de staging no reemplazan una prueba real."] },
+      { heading: "Valida campos sociales clave", paragraphs: ["Comprueba og:title, og:description y og:image, luego revisa fallback de Twitter.", "Evita campos vacíos o desconectados del contenido actual."] },
+      { heading: "Haz una revisión visual rápida", paragraphs: ["La tarjeta debe entenderse al instante."], bullets: ["Título legible sin corte raro.", "Descripción coherente con la página.", "Imagen sin recorte confuso.", "URL y marca con contexto claro."] },
+      { heading: "Repite tras cambios de última hora", paragraphs: ["Si vuelves a editar metadatos, repite la prueba completa.", "No asumas que el test anterior sigue válido."] },
+      { heading: "Usa checklist ligera de publicación", paragraphs: ["Una checklist corta reduce errores antes del lanzamiento."] }
+    ]
+  },
+  fr: {
+    title: "Comment tester les changements Open Graph avant de partager un lien",
+    description: "Validez rapidement vos balises OG avant diffusion pour éviter des aperçus sociaux erronés.",
+    intro: "Partager d'abord puis corriger fait perdre du temps et de la portée. Une vérification OG rapide permet d'éviter ces erreurs.",
+    categoryLabel: "Aperçu social",
+    useCasesTitle: "Quand c'est le plus utile",
+    useCases: ["Lancement de campagne avec deadline.", "Passage d'une page entre équipes.", "Modification de balises juste avant diffusion.", "Validation de versions multilingues."],
+    closingTitle: "Tester une fois, partager sereinement",
+    closingText: "Une vérification courte avant partage évite la majorité des corrections urgentes.",
+    relatedToolLabel: "Ouvrir OG Preview",
+    sections: [
+      { heading: "Tester l'URL finale de production", paragraphs: ["Utilisez exactement l'URL qui sera partagée, locale comprise.", "Les tests en staging ne suffisent pas toujours."] },
+      { heading: "Contrôler les champs clés", paragraphs: ["Vérifiez d'abord og:title, og:description et og:image, puis les fallback Twitter.", "Évitez valeurs vides, doublons ou hors sujet."] },
+      { heading: "Faire un contrôle visuel rapide", paragraphs: ["L'aperçu doit être compréhensible immédiatement."], bullets: ["Titre lisible sans coupure gênante.", "Description alignée avec la page.", "Image non recadrée de façon confuse.", "URL et marque crédibles."] },
+      { heading: "Retester après chaque modification", paragraphs: ["Si vous modifiez encore les balises, refaites le test.", "Ne supposez pas que l'ancien contrôle reste valide."] },
+      { heading: "Conserver une checklist simple", paragraphs: ["Une mini-checklist équipe réduit les erreurs de dernière minute."] }
+    ]
+  },
+  de: {
+    title: "Open-Graph-Änderungen vor dem Teilen testen",
+    description: "Prüfe OG-Metadaten vor dem Teilen mit einem kurzen Ablauf, damit Vorschauen von Anfang an korrekt sind.",
+    intro: "Erst teilen und später korrigieren kostet Reichweite. Mit einem schnellen OG-Check findest du Probleme vor dem Go-live.",
+    categoryLabel: "Social Preview",
+    useCasesTitle: "Wann das besonders wichtig ist",
+    useCases: ["Kampagnen-Launch unter Zeitdruck.", "Übergabe von Seiten zwischen Teams.", "Letzte Metadaten-Änderungen vor Verteilung.", "Prüfung mehrsprachiger Seitenversionen."],
+    closingTitle: "Einmal testen, sicher teilen",
+    closingText: "Ein kurzer Vorab-Check spart aufwendige Nacharbeit nach dem Teilen.",
+    relatedToolLabel: "OG Preview öffnen",
+    sections: [
+      { heading: "Mit der finalen Live-URL starten", paragraphs: ["Teste exakt die URL, die geteilt werden soll – inklusive Locale-Pfad.", "Staging-Tests ersetzen den Live-Check nicht."] },
+      { heading: "Kernfelder validieren", paragraphs: ["Prüfe zuerst og:title, og:description und og:image, danach Twitter-Fallbacks.", "Achte auf leere, doppelte oder unpassende Werte."] },
+      { heading: "Visuellen Schnellcheck durchführen", paragraphs: ["Die Vorschau sollte sofort verständlich sein."], bullets: ["Titel gut lesbar ohne harte Kürzung.", "Beschreibung passt zum Seitenziel.", "Bildzuschnitt wirkt nicht irritierend.", "URL und Marke erscheinen vertrauenswürdig."] },
+      { heading: "Nach Änderungen erneut testen", paragraphs: ["Bei erneuten Tag-Änderungen den gesamten Check wiederholen.", "Nicht davon ausgehen, dass ein alter Test weiter gilt."] },
+      { heading: "Leichte Share-Checkliste nutzen", paragraphs: ["Eine kurze Team-Checkliste verhindert Hektikfehler vor dem Launch."] }
+    ]
+  }
+};
+
+const commonOpenGraphTagMistakesContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: {
+    title: "Common Open Graph Tag Mistakes on Website Pages",
+    description: "Avoid the most frequent Open Graph implementation mistakes that cause broken or weak social previews.",
+    intro: "Many OG problems are not complex bugs. They are simple implementation mistakes repeated across templates and pages. Fixing these basics improves preview reliability immediately.",
+    categoryLabel: "Social preview",
+    useCasesTitle: "Where this guide is useful",
+    useCases: ["Auditing existing page templates.", "QA before major content releases.", "Training new team members on metadata basics.", "Improving consistency across multilingual pages."],
+    closingTitle: "Small fixes create reliable previews",
+    closingText: "When OG tags are complete, consistent, and testable, social sharing gets easier for every new page.",
+    relatedToolLabel: "Open OG Preview",
+    sections: [
+      { heading: "Mistake 1: Missing or incomplete core tags", paragraphs: ["Some pages include og:title but skip og:description or og:image.", "Treat these fields as a required set, not optional extras."] },
+      { heading: "Mistake 2: Relative or blocked image URLs", paragraphs: ["og:image should use a full HTTPS URL that crawlers can access.", "Login-protected or blocked assets often produce blank previews."] },
+      { heading: "Mistake 3: Duplicate or conflicting metadata", paragraphs: ["Multiple versions of the same tag can make crawler behavior unpredictable.", "Keep one clear value per field whenever possible."] },
+      { heading: "Mistake 4: Metadata not aligned with page content", paragraphs: ["A mismatch between page headline, OG title, and image lowers trust and click quality.", "Update metadata whenever the page angle changes."] },
+      { heading: "Quick audit checklist", paragraphs: ["Use this list during review."], bullets: ["Core OG fields exist on every important page.", "Image URL is absolute, HTTPS, and public.", "No duplicate conflicting tag values.", "Preview tested before sharing."] }
+    ]
+  },
+  ko: {
+    title: "웹페이지에서 자주 발생하는 Open Graph 태그 실수",
+    description: "소셜 미리보기를 망치는 대표적인 Open Graph 구현 실수를 실무 관점에서 정리합니다.",
+    intro: "OG 문제의 상당수는 복잡한 버그가 아니라 기본 설정 실수입니다. 템플릿 수준에서 바로잡으면 미리보기 품질이 빠르게 안정됩니다.",
+    categoryLabel: "소셜 미리보기",
+    useCasesTitle: "유용한 활용 상황",
+    useCases: ["기존 페이지 템플릿 점검", "대량 발행 전 QA", "신규 팀원 온보딩", "다국어 페이지 메타데이터 일관성 개선"],
+    closingTitle: "작은 수정이 큰 안정성을 만듭니다",
+    closingText: "OG 태그를 완전하고 일관되게 관리하면 새 페이지 공유 품질도 함께 좋아집니다.",
+    relatedToolLabel: "OG Preview 열기",
+    sections: [
+      { heading: "실수 1: 핵심 태그 누락", paragraphs: ["og:title만 있고 og:description 또는 og:image가 빠진 경우가 많습니다.", "핵심 태그는 세트로 관리하세요."] },
+      { heading: "실수 2: 상대경로/차단된 이미지 URL", paragraphs: ["og:image는 크롤러가 접근 가능한 HTTPS 절대 URL이어야 합니다.", "로그인 필요 또는 차단된 파일은 빈 미리보기를 유발합니다."] },
+      { heading: "실수 3: 중복·충돌 메타데이터", paragraphs: ["같은 태그가 여러 값으로 출력되면 플랫폼별 결과가 달라질 수 있습니다.", "필드별 단일 명확한 값을 유지하세요."] },
+      { heading: "실수 4: 페이지 내용과 메타데이터 불일치", paragraphs: ["본문/제목/이미지 메시지가 다르면 신뢰와 클릭 품질이 떨어집니다.", "페이지 방향이 바뀌면 OG도 함께 수정해야 합니다."] },
+      { heading: "빠른 점검 체크리스트", paragraphs: ["검수 시 아래를 확인하세요."], bullets: ["핵심 OG 필드 존재", "이미지 URL 공개 HTTPS 절대경로", "중복 충돌 태그 없음", "공유 전 미리보기 테스트"] }
+    ]
+  },
+  ja: {
+    title: "WebページでよくあるOpen Graphタグのミス",
+    description: "ソーシャルプレビュー崩れにつながる代表的なOG実装ミスと改善ポイントを整理します。",
+    intro: "OGの問題は複雑な不具合より、基本設定の不足で起きることが多いです。テンプレート段階で直すと全体の品質が安定します。",
+    categoryLabel: "ソーシャルプレビュー",
+    useCasesTitle: "役立つ場面",
+    useCases: ["既存テンプレート監査", "大量公開前のQA", "新メンバー向け運用ルール共有", "多言語ページ整備"],
+    closingTitle: "基本をそろえるだけで改善",
+    closingText: "OGタグを揃えて検証する習慣が、安定した共有プレビューにつながります。",
+    relatedToolLabel: "OG Previewを開く",
+    sections: [
+      { heading: "ミス1: コアタグ不足", paragraphs: ["og:titleだけあり、og:descriptionやog:imageが欠けるケースが多いです。", "コアタグはセットで管理しましょう。"] },
+      { heading: "ミス2: 相対URLや非公開画像", paragraphs: ["og:imageはHTTPSの絶対URLで公開アクセス可能である必要があります。", "認証必須画像はプレビュー取得に失敗します。"] },
+      { heading: "ミス3: 重複・競合タグ", paragraphs: ["同じタグが複数あると取得結果が不安定になります。", "各フィールドは1つの明確な値に整理します。"] },
+      { heading: "ミス4: ページ内容との不一致", paragraphs: ["ページ見出し、OGタイトル、画像の内容がずれると信頼性が下がります。", "ページ更新時はOGも同時に見直しましょう。"] },
+      { heading: "簡易監査チェック", paragraphs: ["確認ポイント:"], bullets: ["主要OGタグが揃っている", "画像URLが絶対HTTPSで公開", "重複競合タグがない", "共有前にプレビュー確認"] }
+    ]
+  },
+  es: {
+    title: "Errores comunes de etiquetas Open Graph en páginas web",
+    description: "Evita fallos típicos de implementación OG que generan vistas previas rotas o poco claras.",
+    intro: "Muchos problemas OG no son bugs complejos, sino errores básicos repetidos en plantillas. Corregirlos mejora la consistencia de inmediato.",
+    categoryLabel: "Vista previa social",
+    useCasesTitle: "Dónde resulta útil",
+    useCases: ["Auditoría de plantillas existentes.", "QA antes de lanzamientos.", "Formación de nuevos miembros.", "Consistencia en páginas multilingües."],
+    closingTitle: "Pequeños ajustes, previews más estables",
+    closingText: "Con etiquetas OG completas y coherentes, compartir enlaces se vuelve más predecible.",
+    relatedToolLabel: "Abrir OG Preview",
+    sections: [
+      { heading: "Error 1: faltan etiquetas clave", paragraphs: ["Algunas páginas solo tienen og:title y omiten og:description u og:image.", "Trata estas etiquetas como un conjunto obligatorio."] },
+      { heading: "Error 2: URL de imagen relativa o bloqueada", paragraphs: ["og:image debe ser URL completa HTTPS accesible para bots.", "Imágenes privadas o bloqueadas causan previews vacías."] },
+      { heading: "Error 3: metadatos duplicados o en conflicto", paragraphs: ["Varias versiones del mismo tag vuelven impredecible la lectura.", "Mantén un único valor claro por campo."] },
+      { heading: "Error 4: OG no alineado con la página", paragraphs: ["Si título, descripción e imagen cuentan cosas distintas, baja la confianza del usuario.", "Actualiza OG cuando cambie el enfoque de la página."] },
+      { heading: "Checklist rápida", paragraphs: ["Revisa:"], bullets: ["Campos OG clave presentes.", "Imagen con URL absoluta HTTPS pública.", "Sin tags duplicados conflictivos.", "Preview probada antes de compartir."] }
+    ]
+  },
+  fr: {
+    title: "Erreurs courantes de balises Open Graph sur les pages web",
+    description: "Évitez les erreurs OG les plus fréquentes qui cassent ou affaiblissent les aperçus sociaux.",
+    intro: "La plupart des problèmes OG viennent d'erreurs simples répétées dans les templates. Corriger ces bases améliore immédiatement la fiabilité des aperçus.",
+    categoryLabel: "Aperçu social",
+    useCasesTitle: "Quand ce guide aide",
+    useCases: ["Audit des templates existants.", "QA avant publication importante.", "Formation des nouveaux membres.", "Harmonisation multilingue."],
+    closingTitle: "Des bases solides suffisent souvent",
+    closingText: "Des balises complètes, cohérentes et testées rendent le partage social beaucoup plus fiable.",
+    relatedToolLabel: "Ouvrir OG Preview",
+    sections: [
+      { heading: "Erreur 1 : balises clés manquantes", paragraphs: ["Certaines pages ont og:title mais pas og:description ou og:image.", "Considérez ces champs comme un minimum obligatoire."] },
+      { heading: "Erreur 2 : image relative ou inaccessible", paragraphs: ["og:image doit être une URL HTTPS absolue accessible aux crawlers.", "Les images protégées provoquent des aperçus vides."] },
+      { heading: "Erreur 3 : balises en double ou en conflit", paragraphs: ["Plusieurs valeurs pour un même tag rendent le résultat instable.", "Conservez une valeur claire par champ."] },
+      { heading: "Erreur 4 : décalage avec le contenu de page", paragraphs: ["Quand titre, description et image ne racontent pas la même chose, la confiance baisse.", "Mettez à jour OG dès qu'un angle éditorial change."] },
+      { heading: "Checklist d'audit rapide", paragraphs: ["Vérifiez :"], bullets: ["Présence des champs OG essentiels.", "Image HTTPS absolue et publique.", "Absence de conflits de tags.", "Test de preview avant partage."] }
+    ]
+  },
+  de: {
+    title: "Häufige Open-Graph-Tag-Fehler auf Webseiten",
+    description: "Vermeide typische OG-Implementierungsfehler, die zu kaputten oder schwachen Social-Vorschauen führen.",
+    intro: "Viele OG-Probleme sind keine komplexen Bugs, sondern einfache Grundlagenfehler in Templates. Wer diese beseitigt, verbessert Vorschauen sofort.",
+    categoryLabel: "Social Preview",
+    useCasesTitle: "Wo dieser Guide hilft",
+    useCases: ["Vorhandene Templates auditieren.", "QA vor großen Releases.", "Neue Teammitglieder einarbeiten.", "Mehrsprachige Seiten vereinheitlichen."],
+    closingTitle: "Kleine Korrekturen, stabile Vorschauen",
+    closingText: "Vollständige und konsistente OG-Tags machen Link-Preview-Ergebnisse deutlich verlässlicher.",
+    relatedToolLabel: "OG Preview öffnen",
+    sections: [
+      { heading: "Fehler 1: Kern-Tags fehlen", paragraphs: ["Häufig ist nur og:title gesetzt, aber og:description oder og:image fehlen.", "Behandle diese Tags als Pflichtpaket."] },
+      { heading: "Fehler 2: Relative oder gesperrte Bild-URL", paragraphs: ["og:image sollte eine vollständige HTTPS-URL sein, die Crawler abrufen können.", "Geschützte Assets führen oft zu leeren Vorschauen."] },
+      { heading: "Fehler 3: Doppelte oder widersprüchliche Tags", paragraphs: ["Mehrere Werte für denselben Tag machen das Verhalten unvorhersehbar.", "Pro Feld möglichst nur einen klaren Wert ausgeben."] },
+      { heading: "Fehler 4: Metadaten passen nicht zur Seite", paragraphs: ["Wenn Titel, Beschreibung und Bild unterschiedliche Botschaften senden, sinken Vertrauen und Klickqualität.", "Bei Inhaltsänderungen OG-Daten mit aktualisieren."] },
+      { heading: "Schnelle Audit-Checkliste", paragraphs: ["Kurz prüfen:"], bullets: ["Kern-OG-Felder vorhanden.", "Bild als absolute öffentliche HTTPS-URL.", "Keine konfliktreichen Duplikate.", "Preview vor dem Teilen getestet."] }
     ]
   }
 };
@@ -3907,6 +4467,51 @@ const guideDefinitions: Array<Omit<GuideItem, "content"> & { content: Record<Loc
     publishedAt: "2026-04-04",
     updatedAt: "2026-04-04",
     content: previewSharedLinksBeforePostingContent
+  },
+  {
+    slug: "why-link-preview-title-looks-wrong",
+    category: "web-marketing",
+    relatedToolSlug: "og-preview",
+    relatedGuideSlugs: ["how-to-check-open-graph-metadata", "open-graph-image-size-guide"],
+    publishedAt: "2026-04-09",
+    updatedAt: "2026-04-09",
+    content: whyLinkPreviewTitleLooksWrongContent
+  },
+  {
+    slug: "update-open-graph-after-page-edits",
+    category: "web-marketing",
+    relatedToolSlug: "og-preview",
+    relatedGuideSlugs: ["test-open-graph-changes-before-sharing", "fix-missing-social-preview-images"],
+    publishedAt: "2026-04-09",
+    updatedAt: "2026-04-09",
+    content: updateOpenGraphAfterPageEditsContent
+  },
+  {
+    slug: "why-link-preview-description-looks-wrong",
+    category: "web-marketing",
+    relatedToolSlug: "og-preview",
+    relatedGuideSlugs: ["why-link-preview-title-looks-wrong", "how-to-check-open-graph-metadata"],
+    publishedAt: "2026-04-09",
+    updatedAt: "2026-04-09",
+    content: whyLinkPreviewDescriptionLooksWrongContent
+  },
+  {
+    slug: "test-open-graph-changes-before-sharing",
+    category: "web-marketing",
+    relatedToolSlug: "og-preview",
+    relatedGuideSlugs: ["update-open-graph-after-page-edits", "fix-missing-social-preview-images"],
+    publishedAt: "2026-04-09",
+    updatedAt: "2026-04-09",
+    content: testOpenGraphChangesBeforeSharingContent
+  },
+  {
+    slug: "common-open-graph-tag-mistakes",
+    category: "web-marketing",
+    relatedToolSlug: "og-preview",
+    relatedGuideSlugs: ["how-to-check-open-graph-metadata", "open-graph-image-size-guide"],
+    publishedAt: "2026-04-09",
+    updatedAt: "2026-04-09",
+    content: commonOpenGraphTagMistakesContent
   },
 
   {

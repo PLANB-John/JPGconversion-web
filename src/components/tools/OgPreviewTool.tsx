@@ -1,10 +1,14 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { ToolHubSupportSection } from "@/components/tools/ToolHubSupportSection";
 import type { OgPreviewFieldKey, OgPreviewMessages } from "@/data/ogPreviewMessages";
+import type { LocaleCode } from "@/data/locales";
 
 type Props = {
   messages: OgPreviewMessages;
+  locale: LocaleCode;
+  relatedGuides: Array<{ slug: string; title: string }>;
 };
 
 type OgPreviewMetadata = Record<OgPreviewFieldKey, string | null>;
@@ -56,7 +60,7 @@ const metadataFieldOrder: OgPreviewFieldKey[] = [
   "metaDescription"
 ];
 
-export function OgPreviewTool({ messages }: Props) {
+export function OgPreviewTool({ messages, locale, relatedGuides }: Props) {
   const [inputValue, setInputValue] = useState("");
   const [result, setResult] = useState<OgPreviewResponse | null>(null);
   const [errorMessage, setErrorMessage] = useState("");
@@ -248,6 +252,21 @@ export function OgPreviewTool({ messages }: Props) {
           )}
         </section>
       </div>
+
+      <ToolHubSupportSection
+        sectionTitle={messages.supportSectionTitle}
+        sectionDescription={messages.supportSectionDescription}
+        whenToUseTitle={messages.whenToUseTitle}
+        whenToUseItems={messages.whenToUseItems}
+        quickStepsTitle={messages.howToUseTitle}
+        quickSteps={messages.howToUseSteps}
+        commonMistakesTitle={messages.mistakesTitle}
+        commonMistakes={messages.mistakes}
+        relatedGuidesTitle={messages.relatedGuidesTitle}
+        relatedGuidesDescription={messages.relatedGuidesDescription}
+        relatedGuides={relatedGuides}
+        locale={locale}
+      />
     </div>
   );
 }
