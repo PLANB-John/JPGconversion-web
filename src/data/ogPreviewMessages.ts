@@ -18,8 +18,16 @@ type OgPreviewMessages = {
   metadataDescription: string;
   title: string;
   description: string;
+  supportSectionTitle: string;
+  supportSectionDescription: string;
+  whenToUseTitle: string;
+  whenToUseItems: string[];
   howToUseTitle: string;
   howToUseSteps: string[];
+  mistakesTitle: string;
+  mistakes: string[];
+  relatedGuidesTitle: string;
+  relatedGuidesDescription: string;
   inputLabel: string;
   inputPlaceholder: string;
   previewButton: string;
@@ -47,12 +55,28 @@ const ogPreviewMessages: Partial<Record<LocaleCode, OgPreviewMessages>> = {
     metadataDescription: "Preview Open Graph and Twitter card metadata from any webpage URL.",
     title: "OG Preview",
     description: "Paste a webpage URL to fetch its Open Graph, Twitter card, and basic SEO metadata, then preview how the shared card may appear.",
+    supportSectionTitle: "Use this before you share important links",
+    supportSectionDescription: "This page is a quick practical bridge: validate tags, spot issues, and jump to focused guides when something looks wrong.",
+    whenToUseTitle: "When to use this tool",
+    whenToUseItems: [
+      "Before posting a new URL on social channels or chat apps.",
+      "After changing page titles, descriptions, or preview images.",
+      "When previews look different across platforms."
+    ],
     howToUseTitle: "How to use",
     howToUseSteps: [
       "Paste a full webpage URL into the field below.",
       "Click Preview metadata to fetch the page through this app and read its social tags.",
       "Review the visual preview card and the raw metadata values side by side."
     ],
+    mistakesTitle: "Common mistakes",
+    mistakes: [
+      "Testing only once after publishing and assuming every platform updated.",
+      "Using relative or blocked image URLs in og:image.",
+      "Updating tags but forgetting platforms may still show cached previews."
+    ],
+    relatedGuidesTitle: "Related Open Graph guides",
+    relatedGuidesDescription: "Need a deeper fix? Start with one short guide below.",
     inputLabel: "Website URL",
     inputPlaceholder: "https://example.com/article",
     previewButton: "Preview metadata",
@@ -90,12 +114,28 @@ const ogPreviewMessages: Partial<Record<LocaleCode, OgPreviewMessages>> = {
     metadataDescription: "웹페이지 URL에서 Open Graph와 Twitter 카드 메타데이터를 미리 확인합니다.",
     title: "OG Preview",
     description: "웹페이지 URL을 입력하면 Open Graph, Twitter 카드, 기본 SEO 메타데이터를 불러와 공유 카드가 어떻게 보일지 빠르게 확인할 수 있습니다.",
+    supportSectionTitle: "중요한 링크를 공유하기 전에 확인하세요",
+    supportSectionDescription: "이 섹션은 가볍게 점검하고 바로 가이드로 이어지도록 구성했습니다. 태그 확인, 문제 파악, 후속 해결까지 빠르게 진행할 수 있습니다.",
+    whenToUseTitle: "이 도구가 필요한 상황",
+    whenToUseItems: [
+      "새 URL을 소셜/메신저에 공유하기 직전",
+      "제목·설명·썸네일 이미지를 수정한 직후",
+      "플랫폼마다 미리보기 결과가 다르게 보일 때"
+    ],
     howToUseTitle: "사용 방법",
     howToUseSteps: [
       "아래 입력칸에 전체 웹페이지 URL을 붙여넣으세요.",
       "메타데이터 미리보기 버튼을 눌러 앱 서버를 통해 페이지를 가져오고 소셜 태그를 읽어오세요.",
       "시각적 미리보기 카드와 원본 메타데이터 값을 함께 확인하세요."
     ],
+    mistakesTitle: "자주 하는 실수",
+    mistakes: [
+      "게시 후 한 번만 확인하고 모든 플랫폼이 갱신됐다고 가정하는 것",
+      "og:image에 상대경로나 접근 불가 URL을 사용하는 것",
+      "태그는 수정했지만 캐시 재수집을 확인하지 않는 것"
+    ],
+    relatedGuidesTitle: "관련 Open Graph 가이드",
+    relatedGuidesDescription: "문제가 있으면 아래 짧은 가이드부터 확인해 보세요.",
     inputLabel: "웹사이트 URL",
     inputPlaceholder: "https://example.com/article",
     previewButton: "메타데이터 미리보기",
@@ -133,12 +173,28 @@ const ogPreviewMessages: Partial<Record<LocaleCode, OgPreviewMessages>> = {
     metadataDescription: "WebページURLからOpen GraphとTwitterカードのメタデータを確認できます。",
     title: "OG Preview",
     description: "WebページURLを入力すると、Open Graph、Twitterカード、基本SEOメタデータを取得し、共有カードの見え方をすばやく確認できます。",
+    supportSectionTitle: "大事なリンクを共有する前に確認",
+    supportSectionDescription: "タグ確認から原因切り分け、関連ガイドへの移動までを短時間で行える導線です。",
+    whenToUseTitle: "このツールを使う場面",
+    whenToUseItems: [
+      "新しいURLをSNSやチャットで共有する前",
+      "タイトル・説明・画像を更新した後",
+      "プラットフォームごとに表示が違うとき"
+    ],
     howToUseTitle: "使い方",
     howToUseSteps: [
       "下の入力欄に完全なWebページURLを貼り付けます。",
       "メタデータをプレビューを押して、このアプリ経由でページを取得し、SNSタグを読み取ります。",
       "ビジュアルプレビューカードと生のメタデータ値を並べて確認します。"
     ],
+    mistakesTitle: "よくあるミス",
+    mistakes: [
+      "公開後に1回だけ確認して更新完了と判断すること",
+      "og:imageに相対URLや非公開URLを使うこと",
+      "タグ更新後にキャッシュ再取得を行わないこと"
+    ],
+    relatedGuidesTitle: "関連Open Graphガイド",
+    relatedGuidesDescription: "詳しく直したい場合は、以下の短いガイドから進めてください。",
     inputLabel: "WebサイトURL",
     inputPlaceholder: "https://example.com/article",
     previewButton: "メタデータをプレビュー",
@@ -176,12 +232,28 @@ const ogPreviewMessages: Partial<Record<LocaleCode, OgPreviewMessages>> = {
     metadataDescription: "Previsualiza metadatos Open Graph y Twitter Card desde cualquier URL de página web.",
     title: "OG Preview",
     description: "Pega la URL de una página para obtener sus metadatos Open Graph, Twitter Card y SEO básico, y ver cómo podría aparecer al compartirse.",
+    supportSectionTitle: "Úsalo antes de compartir enlaces importantes",
+    supportSectionDescription: "Esta sección mantiene un formato ligero: validar etiquetas, detectar fallos rápidos y saltar a guías prácticas relacionadas.",
+    whenToUseTitle: "Cuándo usar esta herramienta",
+    whenToUseItems: [
+      "Antes de publicar una URL en redes o mensajería.",
+      "Después de cambiar título, descripción o imagen social.",
+      "Cuando cada plataforma muestra una vista previa distinta."
+    ],
     howToUseTitle: "Cómo usarlo",
     howToUseSteps: [
       "Pega una URL completa de página web en el campo de abajo.",
       "Haz clic en Previsualizar metadatos para cargar la página a través de esta app y leer sus etiquetas sociales.",
       "Revisa la tarjeta visual y los valores sin procesar de los metadatos lado a lado."
     ],
+    mistakesTitle: "Errores comunes",
+    mistakes: [
+      "Probar una sola vez y asumir que todas las plataformas ya actualizaron.",
+      "Usar URLs relativas o bloqueadas en og:image.",
+      "Cambiar etiquetas sin forzar recrawl cuando hay caché antigua."
+    ],
+    relatedGuidesTitle: "Guías relacionadas de Open Graph",
+    relatedGuidesDescription: "Si necesitas más contexto, abre una de estas guías breves.",
     inputLabel: "URL del sitio web",
     inputPlaceholder: "https://example.com/article",
     previewButton: "Previsualizar metadatos",
@@ -219,12 +291,28 @@ const ogPreviewMessages: Partial<Record<LocaleCode, OgPreviewMessages>> = {
     metadataDescription: "Prévisualisez les métadonnées Open Graph et Twitter Card depuis n'importe quelle URL de page web.",
     title: "OG Preview",
     description: "Collez l'URL d'une page web pour récupérer ses métadonnées Open Graph, Twitter Card et SEO de base, puis voir à quoi pourrait ressembler la carte de partage.",
+    supportSectionTitle: "À utiliser avant de partager un lien important",
+    supportSectionDescription: "Section courte et pratique : vérifier les tags, repérer les erreurs courantes et continuer vers les guides ciblés.",
+    whenToUseTitle: "Quand utiliser cet outil",
+    whenToUseItems: [
+      "Avant de publier une URL sur social ou messagerie.",
+      "Après avoir modifié titre, description ou image de prévisualisation.",
+      "Quand les aperçus diffèrent selon les plateformes."
+    ],
     howToUseTitle: "Mode d'emploi",
     howToUseSteps: [
       "Collez une URL complète de page web dans le champ ci-dessous.",
       "Cliquez sur Prévisualiser les métadonnées pour charger la page via cette application et lire ses balises sociales.",
       "Consultez la carte visuelle et les valeurs brutes des métadonnées côte à côte."
     ],
+    mistakesTitle: "Erreurs fréquentes",
+    mistakes: [
+      "Tester une seule fois et supposer que tout est mis à jour partout.",
+      "Mettre une URL relative ou non accessible dans og:image.",
+      "Oublier que le cache social peut conserver une ancienne version."
+    ],
+    relatedGuidesTitle: "Guides Open Graph associés",
+    relatedGuidesDescription: "Besoin d'aller plus loin ? Commencez par un guide court.",
     inputLabel: "URL du site web",
     inputPlaceholder: "https://example.com/article",
     previewButton: "Prévisualiser les métadonnées",
@@ -262,12 +350,28 @@ const ogPreviewMessages: Partial<Record<LocaleCode, OgPreviewMessages>> = {
     metadataDescription: "Sieh dir Open-Graph- und Twitter-Card-Metadaten für eine beliebige Webseiten-URL an.",
     title: "OG Preview",
     description: "Füge eine Webseiten-URL ein, um Open-Graph-, Twitter-Card- und grundlegende SEO-Metadaten abzurufen und die mögliche Social-Card-Vorschau zu sehen.",
+    supportSectionTitle: "Vor dem Teilen wichtiger Links nutzen",
+    supportSectionDescription: "Kurz gehaltene Hilfe: Tags prüfen, typische Fehler erkennen und direkt zu passenden OG-Guides wechseln.",
+    whenToUseTitle: "Wann du dieses Tool nutzt",
+    whenToUseItems: [
+      "Bevor du eine neue URL in Social oder Messenger teilst.",
+      "Nachdem Titel, Beschreibung oder Vorschaubild geändert wurden.",
+      "Wenn Vorschauen je Plattform unterschiedlich aussehen."
+    ],
     howToUseTitle: "So funktioniert's",
     howToUseSteps: [
       "Füge unten eine vollständige Webseiten-URL ein.",
       "Klicke auf Metadaten vorschauen, um die Seite über diese App abzurufen und ihre Social-Tags zu lesen.",
       "Prüfe die visuelle Vorschaukarte und die rohen Metadatenwerte nebeneinander."
     ],
+    mistakesTitle: "Häufige Fehler",
+    mistakes: [
+      "Nur einmal testen und davon ausgehen, dass alles überall aktualisiert ist.",
+      "Relative oder gesperrte Bild-URLs in og:image nutzen.",
+      "Tag-Updates ohne erneuten Abruf bei gecachten Vorschauen."
+    ],
+    relatedGuidesTitle: "Passende Open-Graph-Guides",
+    relatedGuidesDescription: "Für gezielte Lösungen starte mit einem der kurzen Guides.",
     inputLabel: "Webseiten-URL",
     inputPlaceholder: "https://example.com/article",
     previewButton: "Metadaten vorschauen",
