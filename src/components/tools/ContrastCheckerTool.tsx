@@ -1,11 +1,15 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { ToolHubSupportSection } from "@/components/tools/ToolHubSupportSection";
 import type { ContrastCheckerMessages } from "@/data/contrastCheckerMessages";
+import type { LocaleCode } from "@/data/locales";
 import { getContrastRatio, isValidHexColor, normalizeHex } from "@/lib/color";
 
 type Props = {
   messages: ContrastCheckerMessages;
+  locale: LocaleCode;
+  relatedGuides: Array<{ slug: string; title: string }>;
 };
 
 type WcagResult = {
@@ -60,7 +64,7 @@ function ColorInput({
   );
 }
 
-export function ContrastCheckerTool({ messages }: Props) {
+export function ContrastCheckerTool({ messages, locale, relatedGuides }: Props) {
   const [foregroundInput, setForegroundInput] = useState(defaultForeground);
   const [backgroundInput, setBackgroundInput] = useState(defaultBackground);
 
@@ -180,6 +184,21 @@ export function ContrastCheckerTool({ messages }: Props) {
           </div>
         </aside>
       </section>
+
+      <ToolHubSupportSection
+        sectionTitle={messages.supportSectionTitle}
+        sectionDescription={messages.supportSectionDescription}
+        whenToUseTitle={messages.whenToUseTitle}
+        whenToUseItems={messages.whenToUseItems}
+        quickStepsTitle={messages.quickStepsTitle}
+        quickSteps={messages.quickSteps}
+        commonMistakesTitle={messages.commonMistakesTitle}
+        commonMistakes={messages.commonMistakes}
+        relatedGuidesTitle={messages.relatedGuidesTitle}
+        relatedGuidesDescription={messages.relatedGuidesDescription}
+        relatedGuides={relatedGuides}
+        locale={locale}
+      />
     </div>
   );
 }
