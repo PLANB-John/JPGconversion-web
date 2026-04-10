@@ -71,6 +71,9 @@ export type GuideSlug =
   | "why-base64-strings-get-so-long"
   | "tell-whether-string-is-base64"
   | "when-base64-makes-debugging-harder"
+  | "md5-vs-sha256"
+  | "compare-hashes-to-check-data-changes"
+  | "why-two-hashes-are-different"
   | "track-social-campaigns-with-utm-links"
   | "track-email-clicks-with-utm-parameters"
   | "check-character-count-before-publishing"
@@ -5234,6 +5237,90 @@ const testGradientBeforeUsingInProductionContent: Record<LocaleCode, GuideLocali
   de: { ...gradientGeneratorGuideEn, title: "So testest du einen Verlauf vor dem Produktionseinsatz", description: "Führe vor dem Release kurze Checks durch, damit Lesbarkeit und Konsistenz stabil bleiben.", intro: "Ein Verlauf kann im Mockup gut aussehen und im echten UI dennoch Probleme machen." }
 };
 
+const md5VsSha256En: GuideLocalizedContent = {
+    title: "MD5 vs SHA-256: What’s the Difference?",
+    description: "Understand the practical differences between MD5 and SHA-256 so you can choose the right hash for your workflow.",
+    intro: "MD5 and SHA-256 both convert input text into a fixed-length hash, but they are used for different reasons. In daily workflows, the biggest question is whether you only need quick change detection or stronger integrity checks.",
+    categoryLabel: "Hash basics",
+    useCasesTitle: "Useful for",
+    useCases: ["Choosing a hash algorithm for file verification.", "Explaining why older systems still output MD5.", "Documenting team rules for checksum workflows.", "Avoiding weak defaults in new projects."],
+    closingTitle: "Use MD5 for compatibility, SHA-256 for stronger integrity",
+    closingText: "If you are designing a new workflow, SHA-256 is usually the safer default. Keep MD5 only when legacy compatibility is required.",
+    relatedToolLabel: "Open Hash Generator",
+    sections: [
+      { heading: "Quick definition of each algorithm", paragraphs: ["MD5 outputs a 128-bit hash, usually shown as 32 hex characters.", "SHA-256 outputs a 256-bit hash, usually shown as 64 hex characters."] },
+      { heading: "Why SHA-256 is generally preferred now", paragraphs: ["MD5 is considered cryptographically weak because collisions are practical.", "SHA-256 is much harder to break, so it is preferred for modern integrity and security-sensitive workflows."] },
+      { heading: "When teams still use MD5", paragraphs: ["MD5 can still appear in old systems, mirrors, or compatibility scripts.", "It is often used as a quick fingerprint where security is not the primary goal."], bullets: ["Legacy checksum fields in old tools.", "Fast duplicate detection in internal scripts.", "Backwards compatibility with existing APIs."] },
+      { heading: "Practical rule of thumb", paragraphs: ["For new projects, pick SHA-256 unless you have a clear compatibility reason not to.", "If another system forces MD5, document that decision and treat it as a legacy constraint."] },
+      { heading: "How to compare outputs correctly", paragraphs: ["Hashes are exact-match values. One character difference means the inputs were different.", "Make sure encoding and whitespace are consistent before deciding data changed."] }
+    ]
+};
+
+const md5VsSha256Content: Record<LocaleCode, GuideLocalizedContent> = {
+  en: md5VsSha256En,
+  ko: { ...md5VsSha256En, title: "MD5 vs SHA-256: 무엇이 다를까?", description: "MD5와 SHA-256의 실무 차이를 빠르게 이해하고 상황에 맞게 선택하세요.", intro: "두 알고리즘 모두 텍스트를 고정 길이 해시로 바꾸지만, 사용 목적은 다릅니다. 실무에서는 빠른 변경 감지인지, 더 강한 무결성 검증인지가 핵심입니다.", categoryLabel: "해시 기본", useCasesTitle: "이럴 때 유용합니다", closingTitle: "호환성은 MD5, 기본 선택은 SHA-256", closingText: "새 워크플로를 설계한다면 SHA-256을 기본으로 두는 편이 안전합니다. MD5는 레거시 호환이 필요할 때만 유지하세요.", relatedToolLabel: "Hash Generator 열기" },
+  ja: { ...md5VsSha256En, title: "MD5とSHA-256の違いは？", description: "MD5とSHA-256の実務上の違いを理解し、適切なハッシュを選ぶためのガイドです。", intro: "どちらも入力を固定長ハッシュに変換しますが、用途は同じではありません。実務では、単純な変更検知か、より強い完全性確認かを切り分けることが重要です。", categoryLabel: "ハッシュ基礎", useCasesTitle: "こんなときに便利", closingTitle: "互換性ならMD5、基本はSHA-256", closingText: "新規ワークフローではSHA-256を標準にするのが無難です。MD5はレガシー互換が必要な場合に限定しましょう。", relatedToolLabel: "Hash Generatorを開く" },
+  es: { ...md5VsSha256En, title: "MD5 vs SHA-256: ¿Cuál es la diferencia?", description: "Comprende la diferencia práctica entre MD5 y SHA-256 para elegir el hash correcto.", intro: "Ambos convierten texto en un hash de longitud fija, pero no se usan para lo mismo. En la práctica, decide si solo necesitas detectar cambios o validar integridad con más seguridad.", categoryLabel: "Fundamentos de hash", useCasesTitle: "Útil para", closingTitle: "MD5 por compatibilidad, SHA-256 como base", closingText: "Para flujos nuevos, SHA-256 suele ser la opción recomendada. Deja MD5 para requisitos heredados.", relatedToolLabel: "Abrir Hash Generator" },
+  fr: { ...md5VsSha256En, title: "MD5 vs SHA-256 : quelle différence ?", description: "Comprenez la différence pratique entre MD5 et SHA-256 pour choisir le bon hash.", intro: "Les deux transforment une entrée en hash de longueur fixe, mais leurs usages diffèrent. En pratique, il faut distinguer détection rapide de changement et contrôle d’intégrité plus robuste.", categoryLabel: "Bases du hash", useCasesTitle: "Utile pour", closingTitle: "MD5 pour la compatibilité, SHA-256 par défaut", closingText: "Pour un nouveau workflow, SHA-256 est généralement le meilleur choix. Gardez MD5 uniquement pour des contraintes legacy.", relatedToolLabel: "Ouvrir Hash Generator" },
+  de: { ...md5VsSha256En, title: "MD5 vs. SHA-256: Was ist der Unterschied?", description: "Verstehe die praktischen Unterschiede zwischen MD5 und SHA-256 für die richtige Auswahl im Workflow.", intro: "Beide erzeugen einen Hash fester Länge, werden aber nicht für denselben Zweck genutzt. In der Praxis geht es um schnellen Änderungscheck vs. stärkere Integritätsprüfung.", categoryLabel: "Hash-Grundlagen", useCasesTitle: "Hilfreich für", closingTitle: "MD5 für Kompatibilität, SHA-256 als Standard", closingText: "Für neue Workflows ist SHA-256 meist die bessere Standardwahl. MD5 sollte nur aus Legacy-Gründen genutzt werden.", relatedToolLabel: "Hash Generator öffnen" }
+};
+
+const compareHashesToCheckDataChangesEn: GuideLocalizedContent = {
+    title: "How to Compare Hashes to Check Whether Data Changed",
+    description: "Use a simple hash comparison workflow to confirm if text or file content changed between versions.",
+    intro: "Hash comparison is one of the fastest ways to verify whether content changed. Instead of manually scanning long text, you can compare two hash strings and confirm equality in seconds.",
+    categoryLabel: "Hash workflow",
+    useCasesTitle: "Useful for",
+    useCases: ["Checking whether a config file changed after deployment.", "Verifying copied payloads before API tests.", "Comparing backup exports across environments.", "Confirming data integrity in handoff workflows."],
+    closingTitle: "Compare values, then investigate differences",
+    closingText: "A hash mismatch does not tell you where the change happened, but it tells you quickly that a change exists. Use that as your first integrity checkpoint.",
+    relatedToolLabel: "Open Hash Generator",
+    sections: [
+      { heading: "Basic comparison flow", paragraphs: ["Generate a hash from the original data and one from the new data.", "If the two hashes are identical, the input content matched exactly."] },
+      { heading: "Normalize inputs before hashing", paragraphs: ["Whitespace, line endings, and hidden characters can change the hash.", "Use a consistent copy/paste process before concluding that the actual business data changed."], bullets: ["Keep the same text encoding.", "Watch for extra spaces at line ends.", "Avoid editor auto-formatting between comparisons."] },
+      { heading: "Use the same algorithm on both sides", paragraphs: ["Comparing MD5 to SHA-256 is invalid because they are different algorithms.", "Always hash both values with the same algorithm before comparison."] },
+      { heading: "Where this helps in real workflows", paragraphs: ["During incident response, hash checks quickly confirm whether a payload drifted.", "In QA, hashes help verify copied fixtures without manual line-by-line review."] },
+      { heading: "What to do after a mismatch", paragraphs: ["When hashes differ, move to structured diff tools to locate exact changes.", "Treat the hash check as the fast gate before deeper debugging."] }
+    ]
+};
+
+const compareHashesToCheckDataChangesContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: compareHashesToCheckDataChangesEn,
+  ko: { ...compareHashesToCheckDataChangesEn, title: "해시 비교로 데이터 변경 여부 확인하는 방법", description: "해시 비교로 텍스트나 파일 내용이 바뀌었는지 빠르게 확인하는 실무 흐름입니다.", intro: "긴 데이터를 눈으로 비교하지 않아도, 해시 문자열 두 개만 비교하면 변경 여부를 빠르게 판단할 수 있습니다.", categoryLabel: "해시 워크플로", useCasesTitle: "이럴 때 유용합니다", closingTitle: "먼저 해시로 확인하고, 이후 원인 분석", closingText: "해시 불일치는 어디가 달라졌는지 알려주진 않지만 변경이 있다는 사실은 즉시 알려줍니다. 무결성 점검의 첫 단계로 활용하세요.", relatedToolLabel: "Hash Generator 열기" },
+  ja: { ...compareHashesToCheckDataChangesEn, title: "ハッシュ比較でデータ変更を確認する方法", description: "テキストやファイル内容の変更有無を、シンプルなハッシュ比較で素早く確認する方法です。", intro: "長文を目視で比較する代わりに、ハッシュ値を比較すれば一致・不一致を短時間で判断できます。", categoryLabel: "ハッシュ運用", useCasesTitle: "活用シーン", closingTitle: "まず一致確認、その後に差分調査", closingText: "ハッシュ不一致だけでは変更箇所は分かりませんが、変更がある事実をすぐに確認できます。最初の整合性チェックとして有効です。", relatedToolLabel: "Hash Generatorを開く" },
+  es: { ...compareHashesToCheckDataChangesEn, title: "Cómo comparar hashes para verificar si los datos cambiaron", description: "Aplica un flujo simple de comparación de hashes para confirmar cambios en texto o archivos.", intro: "Comparar hashes es una forma rápida de saber si cambió el contenido. En lugar de revisar líneas manualmente, comparas dos valores y validas en segundos.", categoryLabel: "Flujo de hash", useCasesTitle: "Útil para", closingTitle: "Compara primero, investiga después", closingText: "Una diferencia de hash no explica dónde cambió el contenido, pero sí confirma rápidamente que hubo cambio.", relatedToolLabel: "Abrir Hash Generator" },
+  fr: { ...compareHashesToCheckDataChangesEn, title: "Comment comparer des hash pour vérifier si des données ont changé", description: "Suivez un workflow simple de comparaison de hash pour confirmer un changement de contenu.", intro: "La comparaison de hash est l’un des moyens les plus rapides pour savoir si un contenu a changé. Deux valeurs suffisent pour valider l’égalité.", categoryLabel: "Workflow hash", useCasesTitle: "Utile pour", closingTitle: "Comparer d’abord, analyser ensuite", closingText: "Un hash différent n’indique pas l’emplacement du changement, mais confirme immédiatement qu’un changement existe.", relatedToolLabel: "Ouvrir Hash Generator" },
+  de: { ...compareHashesToCheckDataChangesEn, title: "Hashes vergleichen, um Datenänderungen zu prüfen", description: "Mit einem einfachen Hash-Vergleich schnell erkennen, ob sich Inhalte geändert haben.", intro: "Ein Hash-Vergleich ist einer der schnellsten Wege, Änderungen zu erkennen. Statt langer Texte manuell zu prüfen, vergleichst du zwei Hash-Werte.", categoryLabel: "Hash-Workflow", useCasesTitle: "Hilfreich für", closingTitle: "Erst vergleichen, dann analysieren", closingText: "Ein Unterschied zeigt nicht die genaue Stelle, aber sofort, dass eine Änderung vorliegt. Nutze das als ersten Integritätscheck.", relatedToolLabel: "Hash Generator öffnen" }
+};
+
+const whyTwoHashesAreDifferentEn: GuideLocalizedContent = {
+    title: "Why Two Hashes Are Different Even When Text Looks Similar",
+    description: "Learn the most common reasons hash outputs differ even when two inputs look almost identical.",
+    intro: "If two strings look the same but produce different hashes, hidden differences are usually the cause. Small formatting details can completely change the final hash output.",
+    categoryLabel: "Hash debugging",
+    useCasesTitle: "Useful for",
+    useCases: ["Debugging mismatched signatures in API tests.", "Explaining hash differences in QA reviews.", "Checking copy/paste issues from docs and chat tools.", "Reducing false alarms in integrity checks."],
+    closingTitle: "Trust exact bytes, not visual similarity",
+    closingText: "Hashes operate on exact input bytes. If hashes differ, something in the raw input differs too—even if it is hard to see.",
+    relatedToolLabel: "Open Hash Generator",
+    sections: [
+      { heading: "Whitespace is enough to change a hash", paragraphs: ["A trailing space or an extra blank line changes the final value.", "Always check beginning and end whitespace when debugging mismatches."] },
+      { heading: "Line ending differences matter", paragraphs: ["Windows and Unix line endings are different byte sequences.", "The same visible text can hash differently across environments if line endings change."], bullets: ["CRLF vs LF differences", "Automatic editor normalization", "Copied text from terminals or spreadsheets"] },
+      { heading: "Encoding mismatches can break comparisons", paragraphs: ["UTF-8 and other encodings can represent characters differently.", "Be consistent about encoding between systems before comparing hashes."] },
+      { heading: "Look for invisible characters", paragraphs: ["Zero-width spaces, non-breaking spaces, and smart punctuation are common causes.", "These characters often appear after copy/paste from rich text sources."] },
+      { heading: "Use a quick isolate-and-test workflow", paragraphs: ["Start with a short known string, hash it on both sides, and expand gradually.", "This step-by-step approach helps isolate exactly where the mismatch begins."] }
+    ]
+};
+
+const whyTwoHashesAreDifferentContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: whyTwoHashesAreDifferentEn,
+  ko: { ...whyTwoHashesAreDifferentEn, title: "텍스트가 비슷한데 해시가 다른 이유", description: "겉보기에는 비슷한 입력인데 해시가 달라지는 대표 원인을 정리했습니다.", intro: "문자열이 비슷해 보여도 해시가 다르면 보이지 않는 차이가 있는 경우가 많습니다. 아주 작은 포맷 차이도 결과를 완전히 바꿉니다.", categoryLabel: "해시 디버깅", useCasesTitle: "이럴 때 유용합니다", closingTitle: "겉모습보다 원본 바이트를 기준으로 보기", closingText: "해시는 정확한 입력 바이트를 기준으로 계산됩니다. 해시가 다르면 눈에 안 보여도 입력 어딘가가 다릅니다.", relatedToolLabel: "Hash Generator 열기" },
+  ja: { ...whyTwoHashesAreDifferentEn, title: "見た目が似た文字列なのにハッシュが違う理由", description: "ほぼ同じに見える入力でハッシュが変わる主な原因を実務目線で解説します。", intro: "見た目が同じでも、隠れた差分があるとハッシュは変わります。小さな書式差でも結果は完全に変わります。", categoryLabel: "ハッシュデバッグ", useCasesTitle: "こんなときに便利", closingTitle: "見た目ではなく生データを信頼する", closingText: "ハッシュは入力バイト列そのものに対して計算されます。違う結果なら、必ず入力差分があります。", relatedToolLabel: "Hash Generatorを開く" },
+  es: { ...whyTwoHashesAreDifferentEn, title: "Por qué dos hashes son diferentes aunque el texto parezca similar", description: "Conoce las causas más comunes de diferencias de hash en entradas aparentemente iguales.", intro: "Cuando dos textos parecen iguales y el hash no coincide, casi siempre hay diferencias ocultas. Pequeños detalles de formato cambian por completo el resultado.", categoryLabel: "Depuración de hash", useCasesTitle: "Útil para", closingTitle: "Confía en los bytes exactos, no en la apariencia", closingText: "El hash se calcula sobre bytes exactos. Si cambia el hash, cambió algo en la entrada real.", relatedToolLabel: "Abrir Hash Generator" },
+  fr: { ...whyTwoHashesAreDifferentEn, title: "Pourquoi deux hash diffèrent même quand le texte semble similaire", description: "Découvrez les causes fréquentes d’écarts de hash sur des textes apparemment identiques.", intro: "Si deux chaînes paraissent identiques mais donnent des hash différents, des différences invisibles sont souvent en cause.", categoryLabel: "Débogage hash", useCasesTitle: "Utile pour", closingTitle: "Se fier aux octets exacts, pas au visuel", closingText: "Un hash est calculé sur les octets exacts en entrée. Si le hash diffère, l’entrée diffère aussi.", relatedToolLabel: "Ouvrir Hash Generator" },
+  de: { ...whyTwoHashesAreDifferentEn, title: "Warum zwei Hashes unterschiedlich sind, obwohl der Text ähnlich aussieht", description: "Die häufigsten Gründe für unterschiedliche Hash-Werte bei scheinbar gleichen Eingaben.", intro: "Wenn zwei Texte gleich aussehen, aber unterschiedliche Hashes liefern, gibt es meist unsichtbare Unterschiede.", categoryLabel: "Hash-Debugging", useCasesTitle: "Hilfreich für", closingTitle: "Vertraue exakten Bytes, nicht dem Aussehen", closingText: "Hashes basieren auf exakten Eingabebytes. Unterschiedliche Hashes bedeuten immer eine echte Eingabedifferenz.", relatedToolLabel: "Hash Generator öffnen" }
+};
+
 const guideDefinitions: Array<Omit<GuideItem, "content"> & { content: Record<LocaleCode, GuideLocalizedContent> }> = [
   {
     slug: "how-to-use-html-color-picker",
@@ -6136,6 +6223,33 @@ const guideDefinitions: Array<Omit<GuideItem, "content"> & { content: Record<Loc
     publishedAt: "2026-04-10",
     updatedAt: "2026-04-10",
     content: whenBase64MakesDebuggingHarderContent
+  },
+  {
+    slug: "md5-vs-sha256",
+    category: "developer",
+    relatedToolSlug: "hash-generator",
+    relatedGuideSlugs: ["when-to-use-base64-encoding", "why-base64-strings-get-so-long"],
+    publishedAt: "2026-04-10",
+    updatedAt: "2026-04-10",
+    content: md5VsSha256Content
+  },
+  {
+    slug: "compare-hashes-to-check-data-changes",
+    category: "developer",
+    relatedToolSlug: "hash-generator",
+    relatedGuideSlugs: ["validate-json-before-api-requests", "read-json-errors-more-quickly"],
+    publishedAt: "2026-04-10",
+    updatedAt: "2026-04-10",
+    content: compareHashesToCheckDataChangesContent
+  },
+  {
+    slug: "why-two-hashes-are-different",
+    category: "developer",
+    relatedToolSlug: "hash-generator",
+    relatedGuideSlugs: ["why-json-breaks-after-copy-paste", "tell-whether-string-is-base64"],
+    publishedAt: "2026-04-10",
+    updatedAt: "2026-04-10",
+    content: whyTwoHashesAreDifferentContent
   },
   {
     slug: "how-to-check-open-graph-metadata",
