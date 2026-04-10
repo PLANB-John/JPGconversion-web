@@ -1,10 +1,14 @@
 "use client";
 
 import { useState } from "react";
+import { ToolHubSupportSection } from "@/components/tools/ToolHubSupportSection";
+import type { GuideSlug } from "@/data/guides";
 import type { Base64EncodeDecodeMessages } from "@/data/base64EncodeDecodeMessages";
 
 type Props = {
   messages: Base64EncodeDecodeMessages;
+  locale: string;
+  relatedGuides: Array<{ slug: GuideSlug; title: string }>;
 };
 
 const sampleText = "Hello 안녕하세요 こんにちは ¡Hola! Bonjour Grüß Gott 👋";
@@ -28,7 +32,7 @@ function decodeBase64Utf8(base64Text: string): string {
   return new TextDecoder("utf-8", { fatal: true }).decode(bytes);
 }
 
-export function Base64EncodeDecodeTool({ messages }: Props) {
+export function Base64EncodeDecodeTool({ messages, locale, relatedGuides }: Props) {
   const [inputValue, setInputValue] = useState("");
   const [outputValue, setOutputValue] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -177,6 +181,21 @@ export function Base64EncodeDecodeTool({ messages }: Props) {
           />
         </div>
       </section>
+
+      <ToolHubSupportSection
+        sectionTitle={messages.supportSectionTitle}
+        sectionDescription={messages.supportSectionDescription}
+        whenToUseTitle={messages.whenToUseTitle}
+        whenToUseItems={messages.whenToUseItems}
+        quickStepsTitle={messages.quickStepsTitle}
+        quickSteps={messages.quickSteps}
+        commonMistakesTitle={messages.commonMistakesTitle}
+        commonMistakes={messages.commonMistakes}
+        relatedGuidesTitle={messages.relatedGuidesTitle}
+        relatedGuidesDescription={messages.relatedGuidesDescription}
+        relatedGuides={relatedGuides}
+        locale={locale}
+      />
     </div>
   );
 }
