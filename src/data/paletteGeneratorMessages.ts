@@ -23,6 +23,16 @@ type PaletteGeneratorMessages = {
   copied: string;
   errorInvalidHex: string;
   copyNotSupported: string;
+  supportTitle: string;
+  supportDescription: string;
+  whenToUseTitle: string;
+  whenToUseItems: string[];
+  quickStepsTitle: string;
+  quickSteps: string[];
+  commonMistakesTitle: string;
+  commonMistakes: string[];
+  relatedGuidesTitle: string;
+  relatedGuidesDescription: string;
 };
 
 const paletteMessages: Partial<Record<LocaleCode, PaletteGeneratorMessages>> = {
@@ -52,7 +62,29 @@ const paletteMessages: Partial<Record<LocaleCode, PaletteGeneratorMessages>> = {
     copyHex: "Copy HEX",
     copied: "Copied!",
     errorInvalidHex: "Please enter a valid 6-digit HEX color (example: #1F2937).",
-    copyNotSupported: "Clipboard is not available in this browser."
+    copyNotSupported: "Clipboard is not available in this browser.",
+    supportTitle: "Build a usable palette faster",
+    supportDescription: "Use this tool as a lightweight starting point, then validate your palette in real UI components.",
+    whenToUseTitle: "When to use this tool",
+    whenToUseItems: [
+      "You need a quick first palette from one base brand color.",
+      "You want lighter, darker, and complementary options before design handoff.",
+      "You are testing color direction for a landing page or mini redesign."
+    ],
+    quickStepsTitle: "Quick steps",
+    quickSteps: [
+      "Enter a base HEX color and generate the palette.",
+      "Copy 4-6 colors you actually need for your page.",
+      "Apply them to a small mockup and adjust before rollout."
+    ],
+    commonMistakesTitle: "Common mistakes",
+    commonMistakes: [
+      "Using too many generated colors at once.",
+      "Skipping text/background contrast checks.",
+      "Picking accents without testing hover and active states."
+    ],
+    relatedGuidesTitle: "Related Palette Generator guides",
+    relatedGuidesDescription: "Continue with short practical guides for palette planning, accent choices, and pre-launch testing."
   },
   ko: {
     metadataTitle: "Palette Generator",
@@ -80,7 +112,17 @@ const paletteMessages: Partial<Record<LocaleCode, PaletteGeneratorMessages>> = {
     copyHex: "HEX 복사",
     copied: "복사됨!",
     errorInvalidHex: "올바른 6자리 HEX 색상을 입력해 주세요. (예: #1F2937)",
-    copyNotSupported: "이 브라우저에서는 클립보드를 사용할 수 없습니다."
+    copyNotSupported: "이 브라우저에서는 클립보드를 사용할 수 없습니다.",
+    supportTitle: "실무형 팔레트 시작점",
+    supportDescription: "이 도구로 빠르게 초안을 만든 뒤, 실제 UI에 적용해 가볍게 검증하세요.",
+    whenToUseTitle: "이 도구를 쓰면 좋은 때",
+    whenToUseItems: ["브랜드 기준 색상 하나로 빠르게 팔레트를 시작할 때.", "밝은/어두운/보색 후보를 먼저 보고 방향을 정할 때.", "랜딩 페이지나 소규모 리디자인의 색상 초안을 만들 때."],
+    quickStepsTitle: "빠른 사용 순서",
+    quickSteps: ["기준 HEX를 입력하고 팔레트를 생성합니다.", "실제로 쓸 4~6개 색만 선택해 복사합니다.", "간단한 목업에 적용해 본 뒤 최종 확정합니다."],
+    commonMistakesTitle: "자주 하는 실수",
+    commonMistakes: ["생성된 색을 너무 많이 동시에 사용하는 것.", "텍스트/배경 대비 확인을 생략하는 것.", "hover/active 상태 확인 없이 강조색을 확정하는 것."],
+    relatedGuidesTitle: "관련 Palette Generator 가이드",
+    relatedGuidesDescription: "팔레트 구성, 액센트 선택, 적용 전 테스트 흐름을 짧은 가이드로 이어서 확인하세요."
   },
   ja: {
     metadataTitle: "Palette Generator",
@@ -108,7 +150,17 @@ const paletteMessages: Partial<Record<LocaleCode, PaletteGeneratorMessages>> = {
     copyHex: "HEX をコピー",
     copied: "コピーしました！",
     errorInvalidHex: "有効な 6 桁 HEX カラーを入力してください（例: #1F2937）。",
-    copyNotSupported: "このブラウザではクリップボードが利用できません。"
+    copyNotSupported: "このブラウザではクリップボードが利用できません。",
+    supportTitle: "実務で使える配色の出発点",
+    supportDescription: "このツールで短時間に配色案を作り、実際のUIで軽く検証しましょう。",
+    whenToUseTitle: "このツールを使う場面",
+    whenToUseItems: ["ブランドの基準色から最初の配色を作りたいとき。", "明暗や補色の候補をすぐ比較したいとき。", "LPや小規模リデザインの方向性を決めたいとき。"],
+    quickStepsTitle: "クイックステップ",
+    quickSteps: ["ベースHEXを入力してパレット生成。", "実際に使う4〜6色だけ選んでコピー。", "簡単なモックで確認してから本番へ適用。"],
+    commonMistakesTitle: "よくある失敗",
+    commonMistakes: ["生成色を多く使いすぎる。", "文字と背景のコントラスト確認をしない。", "ホバーやアクティブ状態を試さずに決める。"],
+    relatedGuidesTitle: "関連Palette Generatorガイド",
+    relatedGuidesDescription: "配色設計、アクセント選定、公開前テストを短い実践ガイドで確認できます。"
   },
   es: {
     metadataTitle: "Palette Generator",
@@ -136,7 +188,17 @@ const paletteMessages: Partial<Record<LocaleCode, PaletteGeneratorMessages>> = {
     copyHex: "Copiar HEX",
     copied: "¡Copiado!",
     errorInvalidHex: "Ingresa un color HEX válido de 6 dígitos (ejemplo: #1F2937).",
-    copyNotSupported: "El portapapeles no está disponible en este navegador."
+    copyNotSupported: "El portapapeles no está disponible en este navegador.",
+    supportTitle: "Punto de partida práctico para tu paleta",
+    supportDescription: "Genera una base rápida aquí y valida los colores en componentes reales antes de publicarlos.",
+    whenToUseTitle: "Cuándo usar esta herramienta",
+    whenToUseItems: ["Necesitas una primera paleta desde un color de marca.", "Quieres comparar opciones claras, oscuras y complementarias.", "Estás definiendo color para una landing o rediseño ligero."],
+    quickStepsTitle: "Pasos rápidos",
+    quickSteps: ["Ingresa un HEX base y genera la paleta.", "Copia solo 4-6 colores realmente útiles.", "Prueba en una maqueta rápida y ajusta antes de aplicar en todo el sitio."],
+    commonMistakesTitle: "Errores comunes",
+    commonMistakes: ["Usar demasiados colores generados a la vez.", "Omitir revisión de contraste texto/fondo.", "Elegir acentos sin revisar estados hover y active."],
+    relatedGuidesTitle: "Guías relacionadas de Palette Generator",
+    relatedGuidesDescription: "Sigue con guías cortas sobre estructura de paleta, colores de acento y pruebas antes de lanzar."
   },
   fr: {
     metadataTitle: "Palette Generator",
@@ -164,7 +226,17 @@ const paletteMessages: Partial<Record<LocaleCode, PaletteGeneratorMessages>> = {
     copyHex: "Copier HEX",
     copied: "Copié !",
     errorInvalidHex: "Veuillez saisir une couleur HEX valide à 6 caractères (exemple : #1F2937).",
-    copyNotSupported: "Le presse-papiers n'est pas disponible dans ce navigateur."
+    copyNotSupported: "Le presse-papiers n'est pas disponible dans ce navigateur.",
+    supportTitle: "Base pratique pour construire votre palette",
+    supportDescription: "Générez rapidement une palette ici, puis vérifiez-la dans de vrais composants UI.",
+    whenToUseTitle: "Quand utiliser cet outil",
+    whenToUseItems: ["Vous voulez une première palette depuis une couleur de marque.", "Vous devez comparer vite tons clairs, foncés et complémentaires.", "Vous préparez une landing page ou un petit redesign."],
+    quickStepsTitle: "Étapes rapides",
+    quickSteps: ["Saisissez une couleur HEX de base et générez la palette.", "Gardez seulement 4 à 6 couleurs utiles.", "Testez dans une maquette simple avant déploiement global."],
+    commonMistakesTitle: "Erreurs fréquentes",
+    commonMistakes: ["Utiliser trop de couleurs générées en même temps.", "Oublier de vérifier le contraste texte/fond.", "Choisir un accent sans tester hover et active."],
+    relatedGuidesTitle: "Guides Palette Generator associés",
+    relatedGuidesDescription: "Poursuivez avec des guides courts sur la cohérence des palettes, les accents et les tests avant mise en ligne."
   },
   de: {
     metadataTitle: "Palette Generator",
@@ -192,7 +264,17 @@ const paletteMessages: Partial<Record<LocaleCode, PaletteGeneratorMessages>> = {
     copyHex: "HEX kopieren",
     copied: "Kopiert!",
     errorInvalidHex: "Bitte gib eine gültige 6-stellige HEX-Farbe ein (z. B. #1F2937).",
-    copyNotSupported: "Die Zwischenablage ist in diesem Browser nicht verfügbar."
+    copyNotSupported: "Die Zwischenablage ist in diesem Browser nicht verfügbar.",
+    supportTitle: "Praktischer Start für deine Farbpalette",
+    supportDescription: "Erzeuge hier schnell eine Basis und prüfe sie anschließend in echten UI-Komponenten.",
+    whenToUseTitle: "Wann du dieses Tool nutzen solltest",
+    whenToUseItems: ["Du brauchst schnell eine erste Palette aus einer Markenfarbe.", "Du möchtest helle, dunkle und komplementäre Varianten vergleichen.", "Du planst Farboptionen für Landingpage oder kleines Redesign."],
+    quickStepsTitle: "Schnelle Schritte",
+    quickSteps: ["Basis-HEX eingeben und Palette erzeugen.", "Nur 4-6 wirklich nötige Farben übernehmen.", "In einem kurzen Mockup testen und dann ausrollen."],
+    commonMistakesTitle: "Häufige Fehler",
+    commonMistakes: ["Zu viele generierte Farben gleichzeitig einsetzen.", "Text-/Hintergrundkontrast nicht prüfen.", "Akzentfarben ohne Hover-/Active-Test festlegen."],
+    relatedGuidesTitle: "Verwandte Palette-Generator-Guides",
+    relatedGuidesDescription: "Lies kurze Guides zu Palettenaufbau, Akzentfarben und Tests vor dem Livegang."
   }
 };
 
