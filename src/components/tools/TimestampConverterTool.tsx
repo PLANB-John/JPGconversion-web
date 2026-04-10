@@ -1,10 +1,14 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { ToolHubSupportSection } from "@/components/tools/ToolHubSupportSection";
+import type { LocaleCode } from "@/data/locales";
 import type { TimestampConverterMessages } from "@/data/timestampConverterMessages";
 
 type Props = {
   messages: TimestampConverterMessages;
+  locale: LocaleCode;
+  relatedGuides: Array<{ slug: string; title: string }>;
 };
 
 type ResultField = {
@@ -104,7 +108,7 @@ function isValidDate(date: Date): boolean {
   return Number.isFinite(date.getTime());
 }
 
-export function TimestampConverterTool({ messages }: Props) {
+export function TimestampConverterTool({ messages, locale, relatedGuides }: Props) {
   const [timestampInput, setTimestampInput] = useState("");
   const [dateTimeInput, setDateTimeInput] = useState("");
   const [results, setResults] = useState<ConversionResults>(emptyResults);
@@ -341,6 +345,21 @@ export function TimestampConverterTool({ messages }: Props) {
           </div>
         )}
       </section>
+
+      <ToolHubSupportSection
+        sectionTitle={messages.supportSectionTitle}
+        sectionDescription={messages.supportSectionDescription}
+        whenToUseTitle={messages.whenToUseTitle}
+        whenToUseItems={messages.whenToUseItems}
+        quickStepsTitle={messages.quickStepsTitle}
+        quickSteps={messages.quickSteps}
+        commonMistakesTitle={messages.commonMistakesTitle}
+        commonMistakes={messages.commonMistakes}
+        relatedGuidesTitle={messages.relatedGuidesTitle}
+        relatedGuidesDescription={messages.relatedGuidesDescription}
+        relatedGuides={relatedGuides}
+        locale={locale}
+      />
     </div>
   );
 }

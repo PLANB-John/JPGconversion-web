@@ -61,6 +61,9 @@ export type GuideSlug =
   | "convert-api-timestamps-to-readable-dates"
   | "why-your-timestamp-looks-wrong-in-javascript"
   | "debug-timezone-confusion-in-timestamps"
+  | "api-dates-vs-unix-timestamps"
+  | "spot-seconds-vs-milliseconds-bug"
+  | "timestamp-looks-right-but-timezone-is-wrong"
   | "base64-vs-url-encoding"
   | "when-to-encode-url-and-when-not-to"
   | "fix-broken-links-caused-by-url-encoding"
@@ -3369,6 +3372,90 @@ const debugTimezoneConfusionInTimestampsContent: Record<LocaleCode, GuideLocaliz
   de: { ...debugTimezoneConfusionInTimestampsEn, title: "Zeitzonen-Verwirrung bei Timestamps debuggen", description: "Schritt-für-Schritt-Prozess, um Zeitzonenverschiebungen zwischen Systemen zu finden.", intro: "Zeitzonenfehler entstehen oft zwischen Speicherung, API-Transport und Darstellung. Jede Umwandlung einzeln prüfen." }
 };
 
+const apiDatesVsUnixTimestampsEn: GuideLocalizedContent = {
+  title: "Why API Dates and Unix Timestamps Don’t Always Match",
+  description: "Learn a fast workflow to explain why API date strings and Unix timestamps can represent different moments.",
+  intro: "An API can return a readable date field and a Unix timestamp field that look related but still disagree. Most mismatches come from timezone conversion rules, rounding, or different source fields.",
+  categoryLabel: "Developer workflow",
+  useCasesTitle: "Use this guide when",
+  useCases: ["Two date fields in one API response disagree.", "Backend logs and dashboard time labels do not align.", "You need to explain a time mismatch to teammates quickly.", "A timestamp seems correct but the rendered date looks shifted."],
+  closingTitle: "Compare source, unit, and timezone together",
+  closingText: "Treat each date field as separate data until you confirm origin, unit, and timezone assumptions.",
+  relatedToolLabel: "Open Timestamp Converter",
+  sections: [
+    { heading: "Understand that fields may have different origins", paragraphs: ["APIs often include both an event timestamp and a display-ready date.", "Those values can be generated at different pipeline steps and are not always exact mirrors."] },
+    { heading: "Check whether the Unix value is seconds or milliseconds", paragraphs: ["Unit mismatch is still the fastest way to create a fake disagreement.", "Confirm digit length before comparing with readable date output."] },
+    { heading: "Verify timezone handling on both fields", paragraphs: ["A date string may include offset information while a Unix timestamp is timezone-neutral.", "If one field was formatted in local server time, differences can appear immediately."], bullets: ["Look for Z, +09:00, -05:00 style suffixes.", "Confirm whether backend formatting uses UTC or local timezone.", "Test conversion in UTC and local views."] },
+    { heading: "Watch for rounding and truncation behavior", paragraphs: ["Some APIs round to seconds while others preserve milliseconds.", "Small truncation differences can become visible in sorted tables and incident timelines."] },
+    { heading: "Use one known sample to validate assumptions", paragraphs: ["Pick a record with a known real event time and compare every field from storage to UI.", "This quickly shows whether mismatch comes from API generation or frontend rendering."] }
+  ]
+};
+
+const apiDatesVsUnixTimestampsContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: apiDatesVsUnixTimestampsEn,
+  ko: { ...apiDatesVsUnixTimestampsEn, title: "API 날짜와 유닉스 타임스탬프가 항상 일치하지 않는 이유", description: "API 날짜 문자열과 Unix timestamp가 어긋나는 원인을 빠르게 확인하는 실무 가이드입니다.", intro: "한 API 응답 안의 날짜 문자열과 timestamp가 비슷해 보여도 실제로는 다를 수 있습니다. 보통 시간대 처리, 반올림, 필드 생성 시점 차이가 원인입니다." },
+  ja: { ...apiDatesVsUnixTimestampsEn, title: "APIの日付とUnixタイムスタンプが一致しない理由", description: "APIの日付文字列とUnix timestampの不一致を素早く切り分ける実践ガイドです。", intro: "同じレスポンス内でも日付文字列とtimestampが一致しないことがあります。多くはタイムゾーン処理や丸め、生成元フィールドの違いが原因です。" },
+  es: { ...apiDatesVsUnixTimestampsEn, title: "Por qué las fechas de API y los timestamps Unix no siempre coinciden", description: "Flujo rápido para detectar por qué una fecha de API y un timestamp Unix difieren.", intro: "Una API puede devolver una fecha legible y un timestamp Unix que parecen equivalentes pero no lo son. Suele deberse a zona horaria, redondeo o campos de origen distintos." },
+  fr: { ...apiDatesVsUnixTimestampsEn, title: "Pourquoi les dates API et les timestamps Unix ne correspondent pas toujours", description: "Méthode rapide pour expliquer les écarts entre date API lisible et timestamp Unix.", intro: "Une API peut renvoyer une date lisible et un timestamp Unix qui semblent liés mais diffèrent. Les causes sont souvent le fuseau, l'arrondi ou la source du champ." },
+  de: { ...apiDatesVsUnixTimestampsEn, title: "Warum API-Daten und Unix-Timestamps nicht immer übereinstimmen", description: "Praktischer Ablauf, um Abweichungen zwischen API-Datum und Unix-Timestamp schnell zu erklären.", intro: "Eine API kann ein lesbares Datum und einen Unix-Timestamp liefern, die ähnlich wirken, aber nicht gleich sind. Häufige Ursachen sind Zeitzonenlogik, Rundung oder unterschiedliche Quellfelder." }
+};
+
+const spotSecondsVsMillisecondsBugEn: GuideLocalizedContent = {
+  title: "How to Spot a Seconds vs Milliseconds Timestamp Bug Quickly",
+  description: "Use a short checklist to identify seconds-vs-milliseconds bugs before they spread through logs and UI output.",
+  intro: "Timestamp bugs are often obvious once you know what to inspect first. A two-minute unit check can prevent long debugging loops.",
+  categoryLabel: "Developer workflow",
+  useCasesTitle: "Great for",
+  useCases: ["Dates unexpectedly near 1970.", "Future dates far beyond expected range.", "APIs and frontend showing different event times.", "Reviewing suspicious timestamps in incident logs."],
+  closingTitle: "Digit length check saves time",
+  closingText: "Start with digit length, then confirm one known value in UTC and local time.",
+  relatedToolLabel: "Open Timestamp Converter",
+  sections: [
+    { heading: "Start with the visual digit test", paragraphs: ["Most seconds timestamps are 10 digits and milliseconds are 13 digits.", "This quick check solves many issues before deeper debugging."] },
+    { heading: "Use one expected real-world timestamp", paragraphs: ["Convert one value where you already know the event time.", "If result year or hour is absurd, unit is likely wrong."] },
+    { heading: "Check both conversion directions", paragraphs: ["Convert timestamp to date and date back to timestamp.", "Round-trip checks expose hidden assumptions in parsing logic."], bullets: ["Run test in UTC view.", "Run same value in local view.", "Compare with backend log output."] },
+    { heading: "Inspect JavaScript and backend defaults", paragraphs: ["JavaScript Date constructors often expect milliseconds.", "Many backend stores and APIs use seconds by default, so integration points need explicit conversion."] },
+    { heading: "Add a guardrail for future payloads", paragraphs: ["Document expected unit in schema and enforce it with validation checks.", "A small validator can stop repeated bugs across services."] }
+  ]
+};
+
+const spotSecondsVsMillisecondsBugContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: spotSecondsVsMillisecondsBugEn,
+  ko: { ...spotSecondsVsMillisecondsBugEn, title: "초 vs 밀리초 타임스탬프 버그를 빠르게 찾는 방법", description: "seconds/milliseconds 혼동 버그를 짧은 체크리스트로 빠르게 찾는 방법입니다.", intro: "타임스탬프 버그는 먼저 볼 포인트만 알면 금방 찾을 수 있습니다. 2분 단위 점검으로 긴 디버깅을 줄일 수 있습니다." },
+  ja: { ...spotSecondsVsMillisecondsBugEn, title: "秒とミリ秒のタイムスタンプ不具合を素早く見つける方法", description: "seconds/milliseconds混在バグを短い手順で切り分けるガイドです。", intro: "タイムスタンプ不具合は最初の確認順が大切です。短い単位チェックだけで長い調査を避けられます。" },
+  es: { ...spotSecondsVsMillisecondsBugEn, title: "Cómo detectar rápido un bug de segundos vs milisegundos", description: "Checklist breve para identificar errores de unidad en timestamps.", intro: "Muchos bugs de timestamp se detectan en minutos si revisas primero la unidad. Así evitas ciclos largos de depuración." },
+  fr: { ...spotSecondsVsMillisecondsBugEn, title: "Comment repérer vite un bug secondes vs millisecondes", description: "Checklist courte pour identifier rapidement une erreur d'unité timestamp.", intro: "Les bugs de timestamp se détectent souvent très vite avec le bon ordre de vérification. Un contrôle d'unité évite de longues investigations." },
+  de: { ...spotSecondsVsMillisecondsBugEn, title: "Sekunden-vs-Millisekunden-Bug schnell erkennen", description: "Kurze Checkliste, um Einheitenfehler bei Timestamps zügig zu finden.", intro: "Viele Timestamp-Bugs lassen sich in Minuten finden, wenn du zuerst die Einheit prüfst. So sparst du lange Debug-Schleifen." }
+};
+
+const timestampLooksRightButTimezoneIsWrongEn: GuideLocalizedContent = {
+  title: "When a Timestamp Looks Right but the Timezone Is Wrong",
+  description: "Learn how a correct numeric timestamp can still produce wrong business time when timezone context is missing.",
+  intro: "A timestamp value can be technically valid while the displayed hour is still wrong for users. The issue is usually timezone interpretation, not the raw number.",
+  categoryLabel: "Developer workflow",
+  useCasesTitle: "Common situations",
+  useCases: ["Event time is off by a fixed number of hours.", "Server logs look correct but UI schedule is wrong.", "Support tickets mention wrong local appointment time.", "DST transitions cause one-hour surprises."],
+  closingTitle: "A valid timestamp still needs timezone context",
+  closingText: "Confirm where the time was created, how it was transported, and how it is finally rendered.",
+  relatedToolLabel: "Open Timestamp Converter",
+  sections: [
+    { heading: "Know what a Unix timestamp does and does not include", paragraphs: ["Unix timestamps represent elapsed time from epoch and do not contain timezone labels.", "Timezone is applied later when formatting for humans."] },
+    { heading: "Map each layer in the time pipeline", paragraphs: ["List storage timezone, API serialization format, and frontend display timezone.", "Many bugs come from one implicit local conversion in the middle."] },
+    { heading: "Compare UTC output with user-local output", paragraphs: ["Seeing both views side by side reveals where the shift appears.", "If UTC matches expected event but local output does not, formatting rules need review."], bullets: ["Check locale formatting settings.", "Verify timezone passed to formatter utilities.", "Test with users in another region."] },
+    { heading: "Watch daylight saving boundaries", paragraphs: ["DST changes can create repeated or missing local hours.", "Run test timestamps around transition dates to catch hidden edge cases."] },
+    { heading: "Write timezone rules in product docs", paragraphs: ["State whether each feature shows UTC, account timezone, or viewer-local time.", "Clear display rules reduce support confusion and repeat bug reports."] }
+  ]
+};
+
+const timestampLooksRightButTimezoneIsWrongContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: timestampLooksRightButTimezoneIsWrongEn,
+  ko: { ...timestampLooksRightButTimezoneIsWrongEn, title: "타임스탬프는 맞는데 시간대가 틀릴 때", description: "숫자 timestamp가 맞아도 표시 시간이 틀리는 원인을 시간대 관점에서 점검하는 가이드입니다.", intro: "타임스탬프 값 자체는 유효해도 사용자에게 보이는 시간은 틀릴 수 있습니다. 보통 원인은 숫자가 아니라 시간대 해석입니다." },
+  ja: { ...timestampLooksRightButTimezoneIsWrongEn, title: "タイムスタンプは正しいのにタイムゾーンが間違っているとき", description: "値は正しいのに表示時刻がずれる原因をタイムゾーン視点で確認するガイドです。", intro: "timestamp値が正しくても、ユーザー表示時刻が間違うことがあります。多くは数値ではなくタイムゾーン解釈の問題です。" },
+  es: { ...timestampLooksRightButTimezoneIsWrongEn, title: "Cuando el timestamp parece correcto pero la zona horaria está mal", description: "Cómo detectar casos donde el número es válido pero la hora mostrada no coincide.", intro: "Un timestamp puede ser técnicamente correcto y aun así mostrar una hora incorrecta para el usuario. El problema suele ser de interpretación de zona horaria." },
+  fr: { ...timestampLooksRightButTimezoneIsWrongEn, title: "Quand un timestamp semble correct mais que le fuseau est faux", description: "Repérez les cas où la valeur est valide mais l'heure métier affichée est erronée.", intro: "Un timestamp peut être juste, mais l'heure affichée rester fausse pour l'utilisateur. La cause vient souvent de l'interprétation du fuseau." },
+  de: { ...timestampLooksRightButTimezoneIsWrongEn, title: "Wenn der Timestamp richtig aussieht, aber die Zeitzone falsch ist", description: "So erkennst du Fälle, in denen der Wert stimmt, aber die angezeigte Uhrzeit falsch ist.", intro: "Ein Timestamp kann technisch korrekt sein und trotzdem eine falsche Uhrzeit anzeigen. Meist liegt das an der Zeitzonen-Interpretation, nicht an der Zahl selbst." }
+};
+
 const base64VsUrlEncodingEn: GuideLocalizedContent = {
   title: "Base64 vs URL Encoding: What’s the Difference?",
   description: "Understand when to use Base64 and when URL encoding is the correct choice in web workflows.",
@@ -6348,6 +6435,33 @@ const guideDefinitions: Array<Omit<GuideItem, "content"> & { content: Record<Loc
     publishedAt: "2026-04-05",
     updatedAt: "2026-04-05",
     content: debugTimezoneConfusionInTimestampsContent
+  },
+  {
+    slug: "api-dates-vs-unix-timestamps",
+    category: "developer",
+    relatedToolSlug: "timestamp-converter",
+    relatedGuideSlugs: ["convert-api-timestamps-to-readable-dates", "unix-timestamp-seconds-vs-milliseconds"],
+    publishedAt: "2026-04-10",
+    updatedAt: "2026-04-10",
+    content: apiDatesVsUnixTimestampsContent
+  },
+  {
+    slug: "spot-seconds-vs-milliseconds-bug",
+    category: "developer",
+    relatedToolSlug: "timestamp-converter",
+    relatedGuideSlugs: ["unix-timestamp-seconds-vs-milliseconds", "why-your-timestamp-looks-wrong-in-javascript"],
+    publishedAt: "2026-04-10",
+    updatedAt: "2026-04-10",
+    content: spotSecondsVsMillisecondsBugContent
+  },
+  {
+    slug: "timestamp-looks-right-but-timezone-is-wrong",
+    category: "developer",
+    relatedToolSlug: "timestamp-converter",
+    relatedGuideSlugs: ["debug-timezone-confusion-in-timestamps", "convert-api-timestamps-to-readable-dates"],
+    publishedAt: "2026-04-10",
+    updatedAt: "2026-04-10",
+    content: timestampLooksRightButTimezoneIsWrongContent
   },
   {
     slug: "download-youtube-thumbnail-by-url",
