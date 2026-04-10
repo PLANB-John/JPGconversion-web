@@ -42,6 +42,9 @@ export type GuideSlug =
   | "compress-images-without-making-them-look-bad"
   | "best-image-compression-settings-for-web"
   | "resize-image-before-compressing"
+  | "resize-images-for-social-media-without-bad-cropping"
+  | "best-image-dimensions-for-blog-headers-and-thumbnails"
+  | "resize-image-without-stretching"
   | "json-parse-error-examples"
   | "validate-json-before-api-requests"
   | "reduce-image-size-without-losing-too-much-quality"
@@ -2978,6 +2981,192 @@ const resizeImageBeforeCompressingContent: Record<LocaleCode, GuideLocalizedCont
   de: { ...resizeImageBeforeCompressingEn, title: "Wann du ein Bild vor der Komprimierung skalieren solltest", description: "Erkenne, wann Skalieren vor dem Komprimieren bessere Qualität und kleinere Dateien bringt.", intro: "Dateigröße-Probleme entstehen oft durch übergroße Abmessungen. Erst auf reale Anzeigegröße skalieren, dann moderat komprimieren, liefert meist das beste Ergebnis." }
 };
 
+const resizeImagesForSocialMediaWithoutBadCroppingEn: GuideLocalizedContent = {
+  title: "How to Resize Images for Social Media Without Cropping Them Wrong",
+  description: "Resize social images with fewer framing mistakes so important text and faces stay visible on every platform.",
+  intro: "A social image can look perfect in one preview and broken in another. The safest workflow is to resize from a clear focal point, leave edge-safe space, and export each platform size intentionally.",
+  categoryLabel: "Image resizing",
+  useCasesTitle: "Use this when",
+  useCases: [
+    "Creating one campaign image for multiple social channels.",
+    "Avoiding cut-off faces, logos, or CTA text in previews.",
+    "Preparing feed and link preview images quickly.",
+    "Building a repeatable social publishing checklist."
+  ],
+  closingTitle: "Design once, resize with safe margins",
+  closingText: "Start from a flexible source image, keep key content centered, and export per-platform sizes to avoid last-minute cropping surprises.",
+  relatedToolLabel: "Open Image Resizer",
+  sections: [
+    {
+      heading: "Start from a master image with extra edge space",
+      paragraphs: [
+        "If text or logos sit too close to the border, auto-cropping can cut them off.",
+        "Keep important elements away from edges before you make size variants."
+      ]
+    },
+    {
+      heading: "Use target dimensions by placement, not one-size-for-all",
+      paragraphs: [
+        "Feed posts, stories, and link previews often use different aspect ratios.",
+        "Resize separately for each placement instead of forcing one export everywhere."
+      ],
+      bullets: [
+        "Square or vertical for feed variants.",
+        "Wide format for Open Graph/link previews.",
+        "Story format for full-screen social placements."
+      ]
+    },
+    {
+      heading: "Keep the focal point visible after resizing",
+      paragraphs: [
+        "Check faces, product shots, and CTA text first.",
+        "If content feels too tight, reduce text size or increase safe margins before final export."
+      ]
+    },
+    {
+      heading: "Do a quick cross-platform preview check",
+      paragraphs: [
+        "Before posting, preview how the image appears in at least one feed and one link preview context.",
+        "A 30-second check prevents most cropping mistakes."
+      ]
+    },
+    {
+      heading: "Save platform-ready versions clearly",
+      paragraphs: [
+        "Use consistent file naming so you always upload the correct version.",
+        "Simple labels like -feed, -story, and -og reduce mix-ups under publishing pressure."
+      ]
+    }
+  ]
+};
+
+const resizeImagesForSocialMediaWithoutBadCroppingContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: resizeImagesForSocialMediaWithoutBadCroppingEn,
+  ko: { ...resizeImagesForSocialMediaWithoutBadCroppingEn, title: "소셜 미디어 이미지, 잘못된 크롭 없이 리사이즈하는 방법", description: "얼굴·텍스트가 잘리지 않도록 소셜 이미지 크기를 안전하게 맞추는 실전 가이드입니다.", intro: "한 플랫폼에서는 괜찮아 보여도 다른 미리보기에서는 잘리는 경우가 많습니다. 핵심 요소를 중심에 두고 플랫폼별 크기로 따로 내보내면 실수를 크게 줄일 수 있습니다." },
+  ja: { ...resizeImagesForSocialMediaWithoutBadCroppingEn, title: "SNS画像を不自然にトリミングせずにリサイズする方法", description: "顔やテキストを切らずにSNS用画像を安全に調整する実践ガイドです。", intro: "あるSNSでは問題なく見えても、別のプレビューで欠けることがあります。重要要素を中央寄せにし、用途別サイズで書き出すのが安全です。" },
+  es: { ...resizeImagesForSocialMediaWithoutBadCroppingEn, title: "Cómo redimensionar imágenes para redes sociales sin recortarlas mal", description: "Ajusta imágenes para redes sin cortar texto, caras o elementos clave.", intro: "Una imagen puede verse bien en una plataforma y mal recortada en otra. Trabaja con márgenes de seguridad y exporta tamaños por canal." },
+  fr: { ...resizeImagesForSocialMediaWithoutBadCroppingEn, title: "Comment redimensionner des images pour les réseaux sociaux sans mauvais recadrage", description: "Évitez de couper visages et textes importants en adaptant correctement vos formats sociaux.", intro: "Une image peut sembler correcte sur une plateforme et mal cadrée ailleurs. Gardez les éléments clés au centre et exportez par format." },
+  de: { ...resizeImagesForSocialMediaWithoutBadCroppingEn, title: "So skalierst du Social-Media-Bilder ohne falsches Zuschneiden", description: "Passe Social-Bilder so an, dass Gesichter, Logos und Text nicht abgeschnitten werden.", intro: "Ein Bild kann auf einer Plattform gut aussehen und auf einer anderen falsch gecroppt werden. Mit Safe-Zonen und formatbezogenen Exporten vermeidest du das." }
+};
+
+const bestImageDimensionsForBlogHeadersAndThumbnailsEn: GuideLocalizedContent = {
+  title: "Best Image Dimensions for Blog Headers and Thumbnails",
+  description: "Pick practical blog header and thumbnail dimensions so posts look consistent and load faster across devices.",
+  intro: "Inconsistent image sizing makes blogs look messy and can slow pages down. A small set of standard dimensions for headers and thumbnails keeps publishing faster and cleaner.",
+  categoryLabel: "Image resizing",
+  useCasesTitle: "Use this when",
+  useCases: ["Setting image size rules for a blog template.", "Preparing featured images for new posts.", "Cleaning up inconsistent thumbnail layouts.", "Improving mobile readability and page speed."],
+  closingTitle: "Set standards and reuse them",
+  closingText: "Define a few reliable sizes, apply them consistently, and your blog visuals will look cleaner with less editing time.",
+  relatedToolLabel: "Open Image Resizer",
+  sections: [
+    {
+      heading: "Set one default size for blog headers",
+      paragraphs: [
+        "Choose a clear header width that matches your content area.",
+        "Using one repeatable header size keeps page rhythm and reduces manual tweaking."
+      ]
+    },
+    {
+      heading: "Use smaller, consistent thumbnail ratios",
+      paragraphs: [
+        "Thumbnails should stay visually aligned in cards and sidebars.",
+        "Pick one ratio and keep it across category pages and home feeds."
+      ],
+      bullets: ["Use one shared thumbnail aspect ratio.", "Keep text overlays short and centered.", "Avoid mixing portrait and landscape thumbnails in one grid."]
+    },
+    {
+      heading: "Resize for display width, then optimize file weight",
+      paragraphs: [
+        "Large source files do not improve quality if the rendered slot is smaller.",
+        "Resize first, then compress for faster loading and clearer workflow decisions."
+      ]
+    },
+    {
+      heading: "Check desktop and mobile crop behavior",
+      paragraphs: [
+        "Header and thumbnail framing can shift on small screens.",
+        "Always preview your selected dimensions in both layouts before publishing."
+      ]
+    },
+    {
+      heading: "Keep a mini size guide for your team",
+      paragraphs: [
+        "A simple shared document avoids repeated guessing.",
+        "Include approved widths, ratios, and file naming rules for faster uploads."
+      ]
+    }
+  ]
+};
+
+const bestImageDimensionsForBlogHeadersAndThumbnailsContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: bestImageDimensionsForBlogHeadersAndThumbnailsEn,
+  ko: { ...bestImageDimensionsForBlogHeadersAndThumbnailsEn, title: "블로그 헤더와 썸네일에 가장 좋은 이미지 크기", description: "헤더와 썸네일 크기를 표준화해 블로그를 더 깔끔하고 빠르게 운영하는 방법입니다.", intro: "이미지 크기가 들쑥날쑥하면 블로그 완성도가 떨어지고 로딩도 느려집니다. 헤더/썸네일 기본 규격을 정하면 게시 속도와 품질이 함께 좋아집니다." },
+  ja: { ...bestImageDimensionsForBlogHeadersAndThumbnailsEn, title: "ブログのヘッダー画像とサムネイルに最適なサイズ", description: "ヘッダーとサムネイルの寸法を揃えて、見た目と表示速度を両立する実践ガイドです。", intro: "画像サイズがバラバラだと記事一覧が乱れて見えます。標準サイズを決めると更新作業が速くなり品質も安定します。" },
+  es: { ...bestImageDimensionsForBlogHeadersAndThumbnailsEn, title: "Mejores dimensiones de imagen para encabezados y miniaturas de blog", description: "Define tamaños consistentes para encabezados y miniaturas y mejora apariencia y velocidad.", intro: "Cuando cada imagen tiene medidas distintas, el blog se ve desordenado. Con tamaños base claros publicas más rápido y con mejor consistencia visual." },
+  fr: { ...bestImageDimensionsForBlogHeadersAndThumbnailsEn, title: "Meilleures dimensions d'image pour les en-têtes et miniatures de blog", description: "Choisissez des dimensions cohérentes pour des articles plus propres et plus rapides à charger.", intro: "Des tailles d'image incohérentes donnent un rendu brouillon. Des formats standards simplifient la publication et améliorent la lisibilité." },
+  de: { ...bestImageDimensionsForBlogHeadersAndThumbnailsEn, title: "Beste Bildmaße für Blog-Header und Thumbnails", description: "Lege klare Größen für Header und Thumbnails fest, damit dein Blog einheitlich und schneller wirkt.", intro: "Uneinheitliche Bildgrößen lassen Blogs unruhig wirken. Mit festen Standardmaßen veröffentlichst du schneller und mit konsistenter Qualität." }
+};
+
+const resizeImageWithoutStretchingEn: GuideLocalizedContent = {
+  title: "How to Resize an Image Without Stretching It",
+  description: "Keep image proportions correct while resizing so photos, screenshots, and graphics stay natural and readable.",
+  intro: "Stretched images usually come from changing width and height independently without preserving aspect ratio. A simple ratio-first workflow prevents distortion and saves rework.",
+  categoryLabel: "Image resizing",
+  useCasesTitle: "Use this when",
+  useCases: ["Your resized images look squashed or widened.", "Screenshot text becomes oddly stretched after editing.", "You need clean visuals for blog or product pages.", "You want a repeatable beginner-friendly resizing process."],
+  closingTitle: "Protect aspect ratio first",
+  closingText: "If you keep proportions locked and resize to real display width, most stretching problems disappear immediately.",
+  relatedToolLabel: "Open Image Resizer",
+  sections: [
+    {
+      heading: "Understand what causes stretching",
+      paragraphs: [
+        "Every image has a native width-to-height ratio.",
+        "When you force both dimensions to unrelated numbers, the picture distorts."
+      ]
+    },
+    {
+      heading: "Keep aspect ratio lock enabled by default",
+      paragraphs: [
+        "Set either width or height first and let the other value auto-adjust.",
+        "This preserves natural shape for people, products, UI screenshots, and logos."
+      ]
+    },
+    {
+      heading: "Resize to real layout targets",
+      paragraphs: [
+        "Pick dimensions based on where the image will actually appear.",
+        "Matching layout width reduces guesswork and prevents unnecessary edits."
+      ],
+      bullets: ["Check the image slot width in your page builder.", "Use one standard width per placement type.", "Export a second size only when layout truly differs."]
+    },
+    {
+      heading: "Use crop only when composition needs it",
+      paragraphs: [
+        "Cropping can improve framing, but it should be intentional.",
+        "Do not use random cropping as a fix for stretched outputs."
+      ]
+    },
+    {
+      heading: "Do a final visual check before upload",
+      paragraphs: [
+        "Preview at normal zoom on desktop and mobile.",
+        "If circles, faces, or text look natural, your resize settings are safe to reuse."
+      ]
+    }
+  ]
+};
+
+const resizeImageWithoutStretchingContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: resizeImageWithoutStretchingEn,
+  ko: { ...resizeImageWithoutStretchingEn, title: "이미지를 늘어짐 없이 리사이즈하는 방법", description: "가로세로 비율을 유지해 사진·스크린샷을 자연스럽게 리사이즈하는 실무 가이드입니다.", intro: "이미지가 찌그러지는 가장 큰 이유는 비율을 유지하지 않고 가로·세로를 따로 바꾸기 때문입니다. 비율 우선 방식만 지켜도 대부분의 왜곡을 막을 수 있습니다." },
+  ja: { ...resizeImageWithoutStretchingEn, title: "画像を引き伸ばさずにリサイズする方法", description: "縦横比を崩さずに、写真やスクリーンショットを自然にリサイズする方法を解説します。", intro: "画像の伸びは、縦横比を無視して幅と高さを個別に変更すると起こります。比率固定を基本にすると失敗を防げます。" },
+  es: { ...resizeImageWithoutStretchingEn, title: "Cómo redimensionar una imagen sin estirarla", description: "Mantén la proporción correcta al cambiar tamaño para evitar deformaciones.", intro: "Las imágenes estiradas suelen venir de cambiar ancho y alto sin respetar la proporción. Un flujo simple con proporción bloqueada evita ese problema." },
+  fr: { ...resizeImageWithoutStretchingEn, title: "Comment redimensionner une image sans l'étirer", description: "Conservez les bonnes proportions lors du redimensionnement pour éviter toute déformation.", intro: "Les images étirées viennent souvent d'une largeur et d'une hauteur modifiées séparément. Garder le ratio verrouillé évite ce défaut." },
+  de: { ...resizeImageWithoutStretchingEn, title: "So änderst du die Bildgröße ohne Verzerrung", description: "Halte das Seitenverhältnis korrekt, damit Fotos und Screenshots natürlich aussehen.", intro: "Verzerrte Bilder entstehen meist, wenn Breite und Höhe unabhängig gesetzt werden. Mit festem Seitenverhältnis vermeidest du das zuverlässig." }
+};
+
 const unixTimestampSecondsVsMillisecondsEn: GuideLocalizedContent = {
   title: "Unix Timestamp in Seconds vs Milliseconds Explained",
   description: "Understand the difference between second and millisecond timestamps so date conversions stop breaking.",
@@ -5394,6 +5583,33 @@ const guideDefinitions: Array<Omit<GuideItem, "content"> & { content: Record<Loc
     publishedAt: "2026-04-08",
     updatedAt: "2026-04-08",
     content: resizeImageBeforeCompressingContent
+  },
+  {
+    slug: "resize-images-for-social-media-without-bad-cropping",
+    category: "color-image",
+    relatedToolSlug: "image-resizer",
+    relatedGuideSlugs: ["open-graph-image-size-guide", "copy-web-color-from-screen"],
+    publishedAt: "2026-04-10",
+    updatedAt: "2026-04-10",
+    content: resizeImagesForSocialMediaWithoutBadCroppingContent
+  },
+  {
+    slug: "best-image-dimensions-for-blog-headers-and-thumbnails",
+    category: "color-image",
+    relatedToolSlug: "image-resizer",
+    relatedGuideSlugs: ["best-image-file-size-for-websites", "optimize-blog-images-before-uploading"],
+    publishedAt: "2026-04-10",
+    updatedAt: "2026-04-10",
+    content: bestImageDimensionsForBlogHeadersAndThumbnailsContent
+  },
+  {
+    slug: "resize-image-without-stretching",
+    category: "color-image",
+    relatedToolSlug: "image-resizer",
+    relatedGuideSlugs: ["compress-images-without-making-them-look-bad", "resize-image-before-compressing"],
+    publishedAt: "2026-04-10",
+    updatedAt: "2026-04-10",
+    content: resizeImageWithoutStretchingContent
   },
   {
     slug: "json-parse-error-examples",

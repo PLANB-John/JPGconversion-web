@@ -29,6 +29,16 @@ type ImageResizerMessages = {
   errorProcessing: string;
   jpegOption: string;
   pngOption: string;
+  supportTitle: string;
+  supportDescription: string;
+  whenToUseTitle: string;
+  whenToUseItems: string[];
+  quickStepsTitle: string;
+  quickSteps: string[];
+  commonMistakesTitle: string;
+  commonMistakes: string[];
+  relatedGuidesTitle: string;
+  relatedGuidesDescription: string;
 };
 
 const imageResizerMessages: Partial<Record<LocaleCode, ImageResizerMessages>> = {
@@ -65,7 +75,25 @@ const imageResizerMessages: Partial<Record<LocaleCode, ImageResizerMessages>> = 
     errorInvalidDimensions: "Please enter valid width and height values greater than 0.",
     errorProcessing: "Something went wrong while resizing the image. Please try another file.",
     jpegOption: "JPG / JPEG",
-    pngOption: "PNG"
+    pngOption: "PNG",
+    supportTitle: "Quick image resizing workflow",
+    supportDescription: "Use this tool to set practical image dimensions fast, avoid stretched outputs, and match common web layout slots.",
+    whenToUseTitle: "When to use this tool",
+    whenToUseItems: [
+      "You need exact dimensions before uploading to a website, blog, or CMS.",
+      "You want to prepare one image in multiple sizes for social, thumbnails, and headers.",
+      "You need a quick resize without opening desktop design software."
+    ],
+    quickStepsTitle: "Fast step-by-step",
+    quickSteps: ["Upload your image.", "Enter width and height, and keep aspect ratio locked when needed.", "Choose PNG or JPG output.", "Resize, check the preview, and download."],
+    commonMistakesTitle: "Common mistakes",
+    commonMistakes: [
+      "Turning off aspect ratio lock and unintentionally stretching the image.",
+      "Using random dimensions instead of the real layout or platform size.",
+      "Resizing first but skipping a quick quality check before publishing."
+    ],
+    relatedGuidesTitle: "Related Image Resizer guides",
+    relatedGuidesDescription: "Read short guides for practical resize workflows, social media dimensions, and quality-safe resizing."
   },
   ko: {
     metadataTitle: "이미지 리사이저",
@@ -100,7 +128,21 @@ const imageResizerMessages: Partial<Record<LocaleCode, ImageResizerMessages>> = 
     errorInvalidDimensions: "0보다 큰 올바른 가로/세로 값을 입력해 주세요.",
     errorProcessing: "이미지 리사이즈 중 문제가 발생했습니다. 다른 파일로 다시 시도해 주세요.",
     jpegOption: "JPG / JPEG",
-    pngOption: "PNG"
+    pngOption: "PNG",
+    supportTitle: "빠른 이미지 리사이즈 워크플로",
+    supportDescription: "웹 레이아웃에 맞는 크기를 빠르게 맞추고, 늘어짐 없는 결과로 업로드 준비를 할 때 활용하세요.",
+    whenToUseTitle: "이 도구를 쓰면 좋은 때",
+    whenToUseItems: [
+      "웹사이트·블로그·CMS 업로드 전에 정확한 픽셀 크기가 필요할 때.",
+      "소셜, 썸네일, 헤더용으로 한 이미지를 여러 크기로 만들 때.",
+      "데스크톱 디자인 툴 없이 빠르게 리사이즈하고 싶을 때."
+    ],
+    quickStepsTitle: "빠른 사용 순서",
+    quickSteps: ["이미지를 업로드합니다.", "가로·세로를 입력하고 필요하면 비율 잠금을 유지합니다.", "PNG 또는 JPG를 선택합니다.", "리사이즈 후 미리보기를 확인하고 다운로드합니다."],
+    commonMistakesTitle: "자주 하는 실수",
+    commonMistakes: ["비율 잠금을 끄고 이미지가 의도치 않게 늘어지는 것.", "플랫폼 규격 대신 임의 크기를 입력하는 것.", "리사이즈 후 최종 품질 확인 없이 바로 게시하는 것."],
+    relatedGuidesTitle: "관련 이미지 리사이저 가이드",
+    relatedGuidesDescription: "소셜 규격, 블로그 크기, 왜곡 없는 리사이즈를 위한 짧은 실무 가이드를 확인하세요."
   },
   ja: {
     metadataTitle: "画像リサイザー",
@@ -135,7 +177,21 @@ const imageResizerMessages: Partial<Record<LocaleCode, ImageResizerMessages>> = 
     errorInvalidDimensions: "0 より大きい有効な幅と高さを入力してください。",
     errorProcessing: "リサイズ中にエラーが発生しました。別の画像でお試しください。",
     jpegOption: "JPG / JPEG",
-    pngOption: "PNG"
+    pngOption: "PNG",
+    supportTitle: "画像リサイズのクイックワークフロー",
+    supportDescription: "実用的な寸法をすばやく設定し、縦横比の崩れを防ぎながらWeb用画像を準備できます。",
+    whenToUseTitle: "このツールを使う場面",
+    whenToUseItems: [
+      "サイト・ブログ・CMSに合わせて正確なサイズが必要なとき。",
+      "SNS用、サムネイル用、ヘッダー用に同じ画像を複数サイズで用意したいとき。",
+      "デスクトップソフトを開かずに手早くリサイズしたいとき。"
+    ],
+    quickStepsTitle: "最短ステップ",
+    quickSteps: ["画像をアップロード。", "幅と高さを入力し、必要なら比率ロックを維持。", "PNGまたはJPGを選択。", "リサイズしてプレビュー確認後に保存。"],
+    commonMistakesTitle: "よくある失敗",
+    commonMistakes: ["比率ロックを外して意図せず画像を引き伸ばす。", "実際の掲載枠ではなく適当なサイズを入力する。", "リサイズ後の見え方を確認せず公開する。"],
+    relatedGuidesTitle: "関連Image Resizerガイド",
+    relatedGuidesDescription: "SNSサイズ、ブログ画像寸法、劣化を防ぐリサイズ手順を短いガイドで確認できます。"
   },
   es: {
     metadataTitle: "Redimensionador de imágenes",
@@ -170,7 +226,21 @@ const imageResizerMessages: Partial<Record<LocaleCode, ImageResizerMessages>> = 
     errorInvalidDimensions: "Ingresa valores de ancho y alto válidos y mayores que 0.",
     errorProcessing: "Ocurrió un error al redimensionar la imagen. Prueba con otro archivo.",
     jpegOption: "JPG / JPEG",
-    pngOption: "PNG"
+    pngOption: "PNG",
+    supportTitle: "Flujo rápido de redimensionado",
+    supportDescription: "Úsalo para definir dimensiones prácticas, evitar imágenes estiradas y preparar tamaños correctos para web.",
+    whenToUseTitle: "Cuándo usar esta herramienta",
+    whenToUseItems: [
+      "Necesitas dimensiones exactas antes de subir a un sitio, blog o CMS.",
+      "Quieres crear varias versiones para redes, miniaturas y encabezados.",
+      "Buscas un redimensionado rápido sin abrir software de diseño."
+    ],
+    quickStepsTitle: "Paso a paso rápido",
+    quickSteps: ["Sube tu imagen.", "Define ancho y alto y mantén la proporción cuando convenga.", "Elige salida PNG o JPG.", "Redimensiona, revisa vista previa y descarga."],
+    commonMistakesTitle: "Errores comunes",
+    commonMistakes: ["Desactivar mantener proporción y estirar la imagen sin querer.", "Usar medidas aleatorias en lugar de tamaños reales del layout o plataforma.", "Redimensionar y publicar sin revisión visual final."],
+    relatedGuidesTitle: "Guías relacionadas de Image Resizer",
+    relatedGuidesDescription: "Lee guías cortas con flujos prácticos para redes sociales, blog y redimensionado sin deformaciones."
   },
   fr: {
     metadataTitle: "Redimensionneur d'images",
@@ -205,7 +275,21 @@ const imageResizerMessages: Partial<Record<LocaleCode, ImageResizerMessages>> = 
     errorInvalidDimensions: "Veuillez saisir une largeur et une hauteur valides, supérieures à 0.",
     errorProcessing: "Une erreur est survenue pendant le redimensionnement. Essayez un autre fichier.",
     jpegOption: "JPG / JPEG",
-    pngOption: "PNG"
+    pngOption: "PNG",
+    supportTitle: "Workflow rapide de redimensionnement",
+    supportDescription: "Servez-vous de cet outil pour fixer des dimensions utiles, éviter les images étirées et préparer vos visuels web plus vite.",
+    whenToUseTitle: "Quand utiliser cet outil",
+    whenToUseItems: [
+      "Vous avez besoin de dimensions exactes avant upload sur site, blog ou CMS.",
+      "Vous souhaitez décliner une image en plusieurs formats (social, miniature, bannière).",
+      "Vous voulez redimensionner rapidement sans logiciel desktop."
+    ],
+    quickStepsTitle: "Étapes rapides",
+    quickSteps: ["Importez l'image.", "Définissez largeur/hauteur et gardez le ratio si nécessaire.", "Choisissez PNG ou JPG.", "Redimensionnez, vérifiez l'aperçu puis téléchargez."],
+    commonMistakesTitle: "Erreurs fréquentes",
+    commonMistakes: ["Désactiver le ratio et déformer l'image sans le vouloir.", "Utiliser des dimensions au hasard au lieu des tailles réelles de mise en page.", "Publier sans vérification visuelle après redimensionnement."],
+    relatedGuidesTitle: "Guides Image Resizer associés",
+    relatedGuidesDescription: "Consultez des guides courts sur les dimensions social media, les tailles de blog et le redimensionnement sans déformation."
   },
   de: {
     metadataTitle: "Bildgrößenänderer",
@@ -240,7 +324,21 @@ const imageResizerMessages: Partial<Record<LocaleCode, ImageResizerMessages>> = 
     errorInvalidDimensions: "Bitte gib gültige Breiten- und Höhenwerte größer als 0 ein.",
     errorProcessing: "Beim Skalieren ist ein Fehler aufgetreten. Bitte versuche eine andere Datei.",
     jpegOption: "JPG / JPEG",
-    pngOption: "PNG"
+    pngOption: "PNG",
+    supportTitle: "Schneller Resize-Workflow",
+    supportDescription: "Nutze das Tool, um sinnvolle Bildmaße festzulegen, Verzerrungen zu vermeiden und Webbilder zügig vorzubereiten.",
+    whenToUseTitle: "Wann du dieses Tool nutzen solltest",
+    whenToUseItems: [
+      "Du brauchst exakte Maße vor dem Upload auf Website, Blog oder CMS.",
+      "Du willst ein Bild in mehreren Größen für Social, Thumbnails und Header erstellen.",
+      "Du möchtest schnell skalieren, ohne Desktop-Designsoftware zu öffnen."
+    ],
+    quickStepsTitle: "Schnelle Schrittfolge",
+    quickSteps: ["Bild hochladen.", "Breite und Höhe eingeben, Seitenverhältnis bei Bedarf aktiv lassen.", "PNG oder JPG wählen.", "Skalieren, Vorschau prüfen und herunterladen."],
+    commonMistakesTitle: "Häufige Fehler",
+    commonMistakes: ["Seitenverhältnis deaktivieren und das Bild ungewollt strecken.", "Zufällige Maße statt realer Plattform- oder Layoutgrößen verwenden.", "Nach dem Skalieren ohne Sichtprüfung direkt veröffentlichen."],
+    relatedGuidesTitle: "Passende Image-Resizer-Guides",
+    relatedGuidesDescription: "Lies kurze Guides zu Social-Media-Maßen, Blog-Bildgrößen und verzerrungsfreiem Skalieren."
   }
 };
 
