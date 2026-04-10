@@ -1,18 +1,23 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { ToolHubSupportSection } from "@/components/tools/ToolHubSupportSection";
 import type { HtmlColorPickerMessages } from "@/data/htmlColorPickerMessages";
+import type { GuideSlug } from "@/data/guides";
+import type { LocaleCode } from "@/data/locales";
 import { hexToRgb, isValidHexColor, normalizeHex, rgbToHsl } from "@/lib/color";
 
 type Props = {
   messages: HtmlColorPickerMessages;
+  locale: LocaleCode;
+  relatedGuides: Array<{ slug: GuideSlug; title: string }>;
 };
 
 const defaultHex = "#3B82F6";
 
 type ColorFormat = "hex" | "rgb" | "hsl";
 
-export function HtmlColorPickerTool({ messages }: Props) {
+export function HtmlColorPickerTool({ messages, locale, relatedGuides }: Props) {
   const [hexInput, setHexInput] = useState(defaultHex);
   const [copiedFormat, setCopiedFormat] = useState<ColorFormat | null>(null);
 
@@ -118,6 +123,21 @@ export function HtmlColorPickerTool({ messages }: Props) {
           />
         </div>
       </section>
+
+      <ToolHubSupportSection
+        sectionTitle={messages.supportSectionTitle}
+        sectionDescription={messages.supportSectionDescription}
+        whenToUseTitle={messages.whenToUseTitle}
+        whenToUseItems={messages.whenToUseItems}
+        quickStepsTitle={messages.quickStepsTitle}
+        quickSteps={messages.quickSteps}
+        commonMistakesTitle={messages.commonMistakesTitle}
+        commonMistakes={messages.commonMistakes}
+        relatedGuidesTitle={messages.relatedGuidesTitle}
+        relatedGuidesDescription={messages.relatedGuidesDescription}
+        relatedGuides={relatedGuides}
+        locale={locale}
+      />
     </div>
   );
 }
