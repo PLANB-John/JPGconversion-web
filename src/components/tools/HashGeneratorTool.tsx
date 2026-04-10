@@ -1,10 +1,14 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import type { GuideSlug } from "@/data/guides";
 import type { HashGeneratorMessages } from "@/data/hashGeneratorMessages";
+import { ToolHubSupportSection } from "@/components/tools/ToolHubSupportSection";
 
 type Props = {
   messages: HashGeneratorMessages;
+  locale: string;
+  relatedGuides: Array<{ slug: GuideSlug; title: string }>;
 };
 
 type HashKey = "md5" | "sha1" | "sha256" | "sha512";
@@ -196,7 +200,7 @@ function md5Hash(text: string): string {
   return (wordToHex(a) + wordToHex(b) + wordToHex(c) + wordToHex(d)).toLowerCase();
 }
 
-export function HashGeneratorTool({ messages }: Props) {
+export function HashGeneratorTool({ messages, locale, relatedGuides }: Props) {
   const [inputValue, setInputValue] = useState("");
   const [results, setResults] = useState<HashResult>(emptyResults);
   const [copiedKey, setCopiedKey] = useState<HashKey | null>(null);
@@ -332,6 +336,21 @@ export function HashGeneratorTool({ messages }: Props) {
           </div>
         </div>
       </section>
+
+      <ToolHubSupportSection
+        sectionTitle={messages.supportSectionTitle}
+        sectionDescription={messages.supportSectionDescription}
+        whenToUseTitle={messages.whenToUseTitle}
+        whenToUseItems={messages.whenToUseItems}
+        quickStepsTitle={messages.quickStepsTitle}
+        quickSteps={messages.quickSteps}
+        commonMistakesTitle={messages.commonMistakesTitle}
+        commonMistakes={messages.commonMistakes}
+        relatedGuidesTitle={messages.relatedGuidesTitle}
+        relatedGuidesDescription={messages.relatedGuidesDescription}
+        relatedGuides={relatedGuides}
+        locale={locale}
+      />
     </div>
   );
 }
