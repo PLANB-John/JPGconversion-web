@@ -94,6 +94,9 @@ export type GuideSlug =
   | "build-color-palette-from-photo"
   | "when-image-color-sampling-helps"
   | "mistakes-when-extracting-colors-from-images"
+  | "find-main-colors-in-image-quickly"
+  | "use-extracted-colors-in-website-palette"
+  | "avoid-bad-color-picks-from-busy-images"
   | "name-utm-campaigns-consistently"
   | "utm-source-vs-medium-vs-campaign"
   | "use-utm-links-without-breaking-reporting"
@@ -3782,6 +3785,90 @@ const mistakesWhenExtractingColorsFromImagesContent: Record<LocaleCode, GuideLoc
   de: { ...mistakesWhenExtractingColorsFromImagesEn, title: "Häufige Fehler beim Extrahieren von Farben aus Bildern", description: "Fehler vermeiden, die zu unruhigen Paletten und inkonsistenten Entscheidungen führen.", intro: "Farbextraktion ist schnell, aber schlechte Vorlagen und unsaubere Auswahl schaden der Qualität." }
 };
 
+const findMainColorsInImageQuicklyEn: GuideLocalizedContent = {
+  title: "How to Find the Main Colors in an Image Quickly",
+  description: "Use a fast, repeatable workflow to identify the most useful dominant colors in any image.",
+  intro: "You do not need advanced design tools to get useful dominant colors. A quick extraction pass plus a short cleanup step is enough for most web and content tasks.",
+  categoryLabel: "Color workflow",
+  useCasesTitle: "Useful for",
+  useCases: ["Quick campaign styling.", "Landing page mood checks.", "Preparing starter palettes for teams."],
+  closingTitle: "Extract fast, then simplify",
+  closingText: "Focus on a few dominant colors you can actually apply instead of keeping every sampled value.",
+  relatedToolLabel: "Open Image Color Extractor",
+  sections: [
+    { heading: "Start with one clear reference image", paragraphs: ["Pick a clean image with a visible main subject and strong color areas.", "Busy collages make dominant color detection slower and less reliable."] },
+    { heading: "Sample multiple points in large color regions", paragraphs: ["Click several points across big areas like backgrounds, product surfaces, or clothing.", "This helps you avoid accidental one-pixel outliers."] },
+    { heading: "Keep only your top 3-5 colors", paragraphs: ["After sampling, remove near-duplicates and keep a small practical set.", "Most workflows move faster with a focused shortlist."], bullets: ["1-2 base/background colors.", "1 primary action or brand color.", "1-2 supporting accents."] },
+    { heading: "Label colors by usage, not by shade name", paragraphs: ["Names like Primary, Surface, and Accent are easier for handoff than names like Blue 1.", "Role-based labels reduce confusion during implementation."] },
+    { heading: "Check readability before final use", paragraphs: ["Test text and button contrast against your selected colors.", "A dominant color is not always usable for UI text or CTAs."] }
+  ]
+};
+
+const findMainColorsInImageQuicklyContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: findMainColorsInImageQuicklyEn,
+  ko: { ...findMainColorsInImageQuicklyEn, title: "이미지의 주요 색상을 빠르게 찾는 방법", description: "이미지에서 핵심 색상을 빠르게 추려내는 반복 가능한 실무 흐름입니다.", intro: "복잡한 디자인 도구 없이도 주요 색상은 충분히 빠르게 찾을 수 있습니다. 짧은 추출과 정리 단계면 대부분의 작업에 충분합니다." },
+  ja: { ...findMainColorsInImageQuicklyEn, title: "画像の主要カラーをすばやく見つける方法", description: "画像の支配的な色を実務向けに素早く抽出する手順です。", intro: "高度なデザインツールがなくても、短い抽出と整理で実用的な主要色を取得できます。" },
+  es: { ...findMainColorsInImageQuicklyEn, title: "Cómo encontrar rápidamente los colores principales de una imagen", description: "Flujo rápido y repetible para detectar colores dominantes útiles en cualquier imagen.", intro: "No necesitas herramientas complejas: una extracción rápida y una limpieza corta bastan para la mayoría de tareas web." },
+  fr: { ...findMainColorsInImageQuicklyEn, title: "Comment trouver rapidement les couleurs principales d'une image", description: "Méthode rapide et reproductible pour identifier les couleurs dominantes utiles.", intro: "Pas besoin d'outil complexe : une extraction rapide puis un tri court suffisent souvent pour les usages web." },
+  de: { ...findMainColorsInImageQuicklyEn, title: "Die Hauptfarben in einem Bild schnell finden", description: "Schneller, wiederholbarer Ablauf, um dominante und nutzbare Farben zu erkennen.", intro: "Für brauchbare Hauptfarben brauchst du kein komplexes Design-Setup. Eine kurze Extraktion plus Bereinigung reicht meist aus." }
+};
+
+const useExtractedColorsInWebsitePaletteEn: GuideLocalizedContent = {
+  title: "Best Ways to Use Extracted Colors in a Website Palette",
+  description: "Turn raw extracted colors into a clean website palette that is easier to apply consistently.",
+  intro: "Extracted colors are a great starting point, but they are rarely ready for direct use. A small structuring step helps you build a palette that works across real UI screens.",
+  categoryLabel: "Color workflow",
+  useCasesTitle: "Great for",
+  useCases: ["Converting moodboards into UI palettes.", "Rapid site redesign planning.", "Aligning image-led campaigns with website colors."],
+  closingTitle: "Structure first, then scale",
+  closingText: "When each extracted color has a clear role, applying your palette across pages becomes much easier.",
+  relatedToolLabel: "Open Image Color Extractor",
+  sections: [
+    { heading: "Group extracted colors by role", paragraphs: ["Place colors into simple groups: neutral surfaces, primary brand, and accents.", "This prevents random color usage across components."] },
+    { heading: "Create one primary action color", paragraphs: ["Choose one extracted color for important buttons and key links.", "Keeping one clear action color improves scanability and consistency."] },
+    { heading: "Add supporting neutrals around sampled tones", paragraphs: ["Image colors can be vivid, so pair them with neutral backgrounds and text colors.", "Neutrals make accent colors feel intentional."], bullets: ["Light neutral for page backgrounds.", "Dark neutral for body text.", "Soft border color for cards and sections."] },
+    { heading: "Test palette on a small UI kit first", paragraphs: ["Preview your colors on headings, body text, buttons, cards, and alerts.", "Small kit testing catches imbalance early."] },
+    { heading: "Save final choices as reusable tokens", paragraphs: ["After testing, move final HEX values into your variables or token file.", "This keeps implementation stable as pages grow."] }
+  ]
+};
+
+const useExtractedColorsInWebsitePaletteContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: useExtractedColorsInWebsitePaletteEn,
+  ko: { ...useExtractedColorsInWebsitePaletteEn, title: "추출한 색상을 웹사이트 팔레트에 잘 쓰는 방법", description: "이미지에서 뽑은 색을 실무용 웹 팔레트로 정리하는 방법입니다.", intro: "추출 색상은 시작점으로 좋지만 바로 쓰기엔 불안정할 수 있습니다. 짧은 구조화 단계로 실제 UI에 맞는 팔레트를 만들 수 있습니다." },
+  ja: { ...useExtractedColorsInWebsitePaletteEn, title: "抽出した色をWebサイトのパレットに活かす方法", description: "抽出色を実用的なWeb配色に整理して再利用しやすくする手順です。", intro: "抽出色は出発点として優秀ですが、そのままでは使いにくいことがあります。短い整理でUI向けに整えましょう。" },
+  es: { ...useExtractedColorsInWebsitePaletteEn, title: "Mejores formas de usar colores extraídos en una paleta web", description: "Convierte colores extraídos en una paleta web clara y fácil de aplicar.", intro: "Los colores extraídos son una buena base, pero rara vez están listos para uso directo. Un paso de estructura mejora su uso en UI real." },
+  fr: { ...useExtractedColorsInWebsitePaletteEn, title: "Meilleures façons d'utiliser des couleurs extraites dans une palette web", description: "Transformez des couleurs extraites en palette web claire et cohérente.", intro: "Les couleurs extraites sont un bon point de départ, mais demandent souvent une étape de structuration avant usage réel." },
+  de: { ...useExtractedColorsInWebsitePaletteEn, title: "Extrahierte Farben sinnvoll in einer Website-Palette nutzen", description: "So machst du aus extrahierten Farben eine saubere, konsistente Web-Palette.", intro: "Extrahierte Farben sind ein guter Start, aber selten sofort einsatzbereit. Mit kurzer Strukturierung werden sie UI-tauglich." }
+};
+
+const avoidBadColorPicksFromBusyImagesEn: GuideLocalizedContent = {
+  title: "How to Avoid Bad Color Picks from Busy Images",
+  description: "Avoid noisy color samples from complex images with a few simple selection rules.",
+  intro: "Busy images often create messy palettes because they contain shadows, highlights, and tiny color noise. With a cleaner sampling approach, you can keep only colors that are actually useful.",
+  categoryLabel: "Color workflow",
+  useCasesTitle: "Most helpful when",
+  useCases: ["Sampling from lifestyle photos.", "Working with detailed product scenes.", "Cleaning up over-large extracted palettes."],
+  closingTitle: "Sample intentionally, not randomly",
+  closingText: "A few careful picks from stable regions give better results than dozens of random clicks.",
+  relatedToolLabel: "Open Image Color Extractor",
+  sections: [
+    { heading: "Skip tiny details and reflective spots", paragraphs: ["Do not sample from glare, sharp highlights, or tiny patterned areas.", "These spots rarely represent usable interface colors."] },
+    { heading: "Prioritize broad, stable color zones", paragraphs: ["Pick from larger areas with consistent color values.", "Backgrounds, large objects, and flat surfaces are usually safer."] },
+    { heading: "Avoid edge pixels between two colors", paragraphs: ["Borders and anti-aliased edges often create mixed values.", "Click slightly inside a color area instead of directly on edges."], bullets: ["Zoom in before sampling small elements.", "Take 2-3 samples in the same region.", "Keep the median-looking value."] },
+    { heading: "Filter palette noise immediately", paragraphs: ["After extraction, remove colors that are too close to each other.", "A smaller cleaned palette is easier to use in web UI."] },
+    { heading: "Validate your final set in context", paragraphs: ["Apply selected colors to a quick mockup and review readability.", "If one color feels unstable, replace it before rollout."] }
+  ]
+};
+
+const avoidBadColorPicksFromBusyImagesContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: avoidBadColorPicksFromBusyImagesEn,
+  ko: { ...avoidBadColorPicksFromBusyImagesEn, title: "복잡한 이미지에서 잘못된 색상 선택을 피하는 방법", description: "복잡한 이미지에서 노이즈 색상을 줄이고 실사용 색상만 고르는 방법입니다.", intro: "복잡한 이미지는 그림자·하이라이트·미세 노이즈 때문에 팔레트가 쉽게 지저분해집니다. 샘플링 규칙을 정하면 훨씬 안정적입니다." },
+  ja: { ...avoidBadColorPicksFromBusyImagesEn, title: "情報量の多い画像で悪い色選びを避ける方法", description: "複雑な画像からノイズ色を避けて実用色だけを抽出するコツです。", intro: "情報量の多い画像は影やハイライトで配色が乱れやすくなります。抽出ルールを決めると安定します。" },
+  es: { ...avoidBadColorPicksFromBusyImagesEn, title: "Cómo evitar malas selecciones de color en imágenes recargadas", description: "Evita colores ruidosos de imágenes complejas con reglas simples de muestreo.", intro: "Las imágenes cargadas generan paletas confusas por sombras, brillos y ruido de color. Un muestreo más limpio mejora mucho el resultado." },
+  fr: { ...avoidBadColorPicksFromBusyImagesEn, title: "Comment éviter les mauvais choix de couleurs sur des images chargées", description: "Évitez les couleurs parasites des images complexes avec quelques règles simples.", intro: "Les images chargées produisent souvent des palettes confuses à cause des ombres, reflets et micro-variations." },
+  de: { ...avoidBadColorPicksFromBusyImagesEn, title: "Schlechte Farbauswahl bei unruhigen Bildern vermeiden", description: "So vermeidest du Farbrauschen aus komplexen Bildern mit einfachen Sampling-Regeln.", intro: "Unruhige Bilder liefern oft chaotische Paletten durch Schatten, Glanzlichter und kleine Farbabweichungen. Mit klaren Regeln wird es stabiler." }
+};
+
 
 const bestWebpQualitySettingsEn: GuideLocalizedContent = {
   title: "Best WebP Quality Settings for Real-World Use",
@@ -5712,6 +5799,33 @@ const guideDefinitions: Array<Omit<GuideItem, "content"> & { content: Record<Loc
     publishedAt: "2026-04-05",
     updatedAt: "2026-04-05",
     content: mistakesWhenExtractingColorsFromImagesContent
+  },
+  {
+    slug: "find-main-colors-in-image-quickly",
+    category: "color-image",
+    relatedToolSlug: "image-color-extractor",
+    relatedGuideSlugs: ["extract-brand-colors-from-image", "build-color-palette-from-photo"],
+    publishedAt: "2026-04-10",
+    updatedAt: "2026-04-10",
+    content: findMainColorsInImageQuicklyContent
+  },
+  {
+    slug: "use-extracted-colors-in-website-palette",
+    category: "color-image",
+    relatedToolSlug: "image-color-extractor",
+    relatedGuideSlugs: ["create-basic-website-color-palette", "build-consistent-color-palette"],
+    publishedAt: "2026-04-10",
+    updatedAt: "2026-04-10",
+    content: useExtractedColorsInWebsitePaletteContent
+  },
+  {
+    slug: "avoid-bad-color-picks-from-busy-images",
+    category: "color-image",
+    relatedToolSlug: "image-color-extractor",
+    relatedGuideSlugs: ["mistakes-when-extracting-colors-from-images", "when-image-color-sampling-helps"],
+    publishedAt: "2026-04-10",
+    updatedAt: "2026-04-10",
+    content: avoidBadColorPicksFromBusyImagesContent
   },
   {
     slug: "contrast-checker-guide",

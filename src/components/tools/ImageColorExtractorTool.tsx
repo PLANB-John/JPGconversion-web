@@ -1,6 +1,8 @@
 "use client";
 
 import { useMemo, useRef, useState, type ChangeEvent, type MouseEvent } from "react";
+import { ToolHubSupportSection } from "@/components/tools/ToolHubSupportSection";
+import type { GuideSlug } from "@/data/guides";
 import type { ExtractorMessages } from "@/data/imageColorExtractorMessages";
 
 type SelectedColor = {
@@ -10,6 +12,8 @@ type SelectedColor = {
 
 type Props = {
   messages: ExtractorMessages;
+  locale: string;
+  relatedGuides: Array<{ slug: GuideSlug; title: string }>;
 };
 
 const MAX_HISTORY = 5;
@@ -21,7 +25,7 @@ function rgbToHex(r: number, g: number, b: number) {
     .toUpperCase()}`;
 }
 
-export function ImageColorExtractorTool({ messages }: Props) {
+export function ImageColorExtractorTool({ messages, locale, relatedGuides }: Props) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const imageRef = useRef<HTMLImageElement | null>(null);
 
@@ -267,6 +271,21 @@ export function ImageColorExtractorTool({ messages }: Props) {
           {error && <p className="rounded-lg border border-rose-200 bg-rose-50 px-3 py-2 text-sm text-rose-700">{error}</p>}
         </aside>
       </section>
+
+      <ToolHubSupportSection
+        sectionTitle={messages.supportTitle}
+        sectionDescription={messages.supportDescription}
+        whenToUseTitle={messages.whenToUseTitle}
+        whenToUseItems={messages.whenToUseItems}
+        quickStepsTitle={messages.quickStepsTitle}
+        quickSteps={messages.quickSteps}
+        commonMistakesTitle={messages.commonMistakesTitle}
+        commonMistakes={messages.commonMistakes}
+        relatedGuidesTitle={messages.relatedGuidesTitle}
+        relatedGuidesDescription={messages.relatedGuidesDescription}
+        relatedGuides={relatedGuides}
+        locale={locale}
+      />
     </div>
   );
 }
