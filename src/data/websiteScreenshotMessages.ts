@@ -27,6 +27,16 @@ type WebsiteScreenshotMessages = {
   readyStateMessage: string;
   previewAlt: string;
   fallbackNote: string;
+  supportSectionTitle: string;
+  supportSectionDescription: string;
+  whenToUseTitle: string;
+  whenToUseItems: string[];
+  quickStepsTitle: string;
+  quickSteps: string[];
+  commonMistakesTitle: string;
+  commonMistakes: string[];
+  relatedGuidesTitle: string;
+  relatedGuidesDescription: string;
 };
 
 const websiteScreenshotMessages: Partial<Record<LocaleCode, WebsiteScreenshotMessages>> = {
@@ -60,7 +70,29 @@ const websiteScreenshotMessages: Partial<Record<LocaleCode, WebsiteScreenshotMes
     copiedLinkButton: "Copied!",
     readyStateMessage: "Enter a website URL above to generate a screenshot preview.",
     previewAlt: "Website screenshot preview",
-    fallbackNote: "Live capture uses a practical external preview service because Playwright/browser installation is not available in this environment yet."
+    fallbackNote: "Live capture uses a practical external preview service because Playwright/browser installation is not available in this environment yet.",
+    supportSectionTitle: "Practical screenshot workflow",
+    supportSectionDescription: "Use this tool as a quick checkpoint before sharing links, requesting feedback, or documenting page changes.",
+    whenToUseTitle: "When to use this tool",
+    whenToUseItems: [
+      "Before sharing a landing page update with teammates.",
+      "When collecting client feedback on a live page state.",
+      "When you need a lightweight visual reference for documentation."
+    ],
+    quickStepsTitle: "Quick steps",
+    quickSteps: [
+      "Paste the final page URL.",
+      "Generate the screenshot preview.",
+      "Open or copy the image URL and share it with context."
+    ],
+    commonMistakesTitle: "Common mistakes",
+    commonMistakes: [
+      "Capturing a draft or redirected URL instead of the final page.",
+      "Sharing the screenshot without stating what changed.",
+      "Using one screenshot for detailed review without enough context."
+    ],
+    relatedGuidesTitle: "Related guides",
+    relatedGuidesDescription: "Read short workflow guides to choose the right screenshot approach for sharing, reviews, and client feedback."
   },
   ko: {
     metadataTitle: "Website Screenshot",
@@ -92,7 +124,17 @@ const websiteScreenshotMessages: Partial<Record<LocaleCode, WebsiteScreenshotMes
     copiedLinkButton: "복사됨!",
     readyStateMessage: "위에 웹사이트 URL을 입력하면 스크린샷 미리보기를 생성할 수 있습니다.",
     previewAlt: "웹사이트 스크린샷 미리보기",
-    fallbackNote: "현재 환경에서는 Playwright/브라우저 설치를 사용할 수 없어, 실용적인 외부 미리보기 서비스를 통해 라이브 캡처를 제공합니다."
+    fallbackNote: "현재 환경에서는 Playwright/브라우저 설치를 사용할 수 없어, 실용적인 외부 미리보기 서비스를 통해 라이브 캡처를 제공합니다.",
+    supportSectionTitle: "실전 스크린샷 활용 가이드",
+    supportSectionDescription: "링크 공유 전 점검, 피드백 요청, 변경 이력 기록을 빠르게 처리할 때 활용하세요.",
+    whenToUseTitle: "이 도구를 쓰면 좋은 때",
+    whenToUseItems: ["팀에 랜딩 페이지 업데이트를 공유하기 전", "클라이언트에게 현재 페이지 상태 피드백을 받을 때", "문서에 넣을 가벼운 시각 근거가 필요할 때"],
+    quickStepsTitle: "빠른 사용 단계",
+    quickSteps: ["최종 페이지 URL을 입력하세요.", "스크린샷 미리보기를 생성하세요.", "이미지 URL을 열거나 복사해 맥락과 함께 공유하세요."],
+    commonMistakesTitle: "자주 하는 실수",
+    commonMistakes: ["최종 URL 대신 임시/리다이렉트 URL을 캡처함", "무엇이 바뀌었는지 설명 없이 이미지만 공유함", "세부 리뷰가 필요한데 맥락 없는 한 장만 전달함"],
+    relatedGuidesTitle: "관련 가이드",
+    relatedGuidesDescription: "공유, 리뷰, 클라이언트 피드백 상황에 맞는 스크린샷 활용법을 짧은 가이드로 확인하세요."
   },
   ja: {
     metadataTitle: "Website Screenshot",
@@ -124,7 +166,17 @@ const websiteScreenshotMessages: Partial<Record<LocaleCode, WebsiteScreenshotMes
     copiedLinkButton: "コピーしました！",
     readyStateMessage: "上にWebサイトURLを入力するとスクリーンショットプレビューを生成できます。",
     previewAlt: "Webサイトのスクリーンショットプレビュー",
-    fallbackNote: "この環境では Playwright / ブラウザインストールを利用できないため、実用的な外部プレビューサービスでライブキャプチャを提供しています。"
+    fallbackNote: "この環境では Playwright / ブラウザインストールを利用できないため、実用的な外部プレビューサービスでライブキャプチャを提供しています。",
+    supportSectionTitle: "実践的なスクリーンショット活用",
+    supportSectionDescription: "リンク共有前の確認、レビュー依頼、変更記録の入り口として軽く使える内容です。",
+    whenToUseTitle: "このツールを使う場面",
+    whenToUseItems: ["ランディングページ更新を共有する前", "クライアントに現状画面の確認を依頼する時", "ドキュメント用の簡易ビジュアルが必要な時"],
+    quickStepsTitle: "クイック手順",
+    quickSteps: ["最終URLを貼り付ける。", "スクリーンショットを生成する。", "画像URLを開く/コピーして意図と一緒に共有する。"],
+    commonMistakesTitle: "よくあるミス",
+    commonMistakes: ["最終URLではなく下書きURLを撮る", "変更点の説明なしで画像だけ送る", "詳細確認に必要な文脈がない切り取りだけを共有する"],
+    relatedGuidesTitle: "関連ガイド",
+    relatedGuidesDescription: "共有・レビュー・クライアント対応に合わせたスクリーンショット運用を短いガイドで確認できます。"
   },
   es: {
     metadataTitle: "Website Screenshot",
@@ -156,7 +208,17 @@ const websiteScreenshotMessages: Partial<Record<LocaleCode, WebsiteScreenshotMes
     copiedLinkButton: "¡Copiado!",
     readyStateMessage: "Ingresa arriba la URL de un sitio web para generar una vista previa de captura.",
     previewAlt: "Vista previa de captura del sitio web",
-    fallbackNote: "La captura en vivo usa un servicio externo de vista previa porque Playwright o la instalación del navegador no están disponibles en este entorno todavía."
+    fallbackNote: "La captura en vivo usa un servicio externo de vista previa porque Playwright o la instalación del navegador no están disponibles en este entorno todavía.",
+    supportSectionTitle: "Flujo práctico de capturas",
+    supportSectionDescription: "Úsalo como paso rápido antes de compartir enlaces, pedir revisión o documentar cambios visuales.",
+    whenToUseTitle: "Cuándo usar esta herramienta",
+    whenToUseItems: ["Antes de compartir una actualización de landing page", "Al recopilar feedback de cliente sobre una versión en vivo", "Cuando necesitas una referencia visual ligera en documentación"],
+    quickStepsTitle: "Pasos rápidos",
+    quickSteps: ["Pega la URL final de la página.", "Genera la vista previa de captura.", "Abre o copia la URL de imagen y compártela con contexto."],
+    commonMistakesTitle: "Errores comunes",
+    commonMistakes: ["Capturar una URL de borrador o redirección", "Compartir la imagen sin explicar qué cambió", "Usar una sola captura sin contexto para revisión detallada"],
+    relatedGuidesTitle: "Guías relacionadas",
+    relatedGuidesDescription: "Consulta guías breves para elegir el mejor enfoque de captura según compartición, revisión y feedback de clientes."
   },
   fr: {
     metadataTitle: "Website Screenshot",
@@ -188,7 +250,17 @@ const websiteScreenshotMessages: Partial<Record<LocaleCode, WebsiteScreenshotMes
     copiedLinkButton: "Copié !",
     readyStateMessage: "Saisissez l'URL d'un site ci-dessus pour générer un aperçu de capture.",
     previewAlt: "Aperçu de capture du site web",
-    fallbackNote: "La capture en direct utilise un service d'aperçu externe, car Playwright ou l'installation du navigateur n'est pas disponible dans cet environnement pour le moment."
+    fallbackNote: "La capture en direct utilise un service d'aperçu externe, car Playwright ou l'installation du navigateur n'est pas disponible dans cet environnement pour le moment.",
+    supportSectionTitle: "Workflow pratique de capture",
+    supportSectionDescription: "Servez-vous de cet outil comme étape rapide avant partage, demande d'avis ou documentation d'un changement.",
+    whenToUseTitle: "Quand utiliser cet outil",
+    whenToUseItems: ["Avant de partager une mise à jour de landing page", "Pour collecter des retours client sur un état de page", "Pour ajouter une référence visuelle légère à une documentation"],
+    quickStepsTitle: "Étapes rapides",
+    quickSteps: ["Collez l'URL finale de la page.", "Générez l'aperçu de capture.", "Ouvrez ou copiez l'URL de l'image et partagez-la avec contexte."],
+    commonMistakesTitle: "Erreurs courantes",
+    commonMistakes: ["Capturer une URL de brouillon ou de redirection", "Partager l'image sans préciser le changement", "Utiliser une seule capture sans contexte pour une revue détaillée"],
+    relatedGuidesTitle: "Guides associés",
+    relatedGuidesDescription: "Parcourez des guides courts pour choisir la bonne méthode de capture selon le partage, la revue et les retours client."
   },
   de: {
     metadataTitle: "Website Screenshot",
@@ -220,7 +292,17 @@ const websiteScreenshotMessages: Partial<Record<LocaleCode, WebsiteScreenshotMes
     copiedLinkButton: "Kopiert!",
     readyStateMessage: "Gib oben eine Website-URL ein, um eine Screenshot-Vorschau zu erzeugen.",
     previewAlt: "Website-Screenshot-Vorschau",
-    fallbackNote: "Die Live-Erfassung verwendet einen praktischen externen Vorschaudienst, weil Playwright bzw. die Browser-Installation in dieser Umgebung noch nicht verfügbar ist."
+    fallbackNote: "Die Live-Erfassung verwendet einen praktischen externen Vorschaudienst, weil Playwright bzw. die Browser-Installation in dieser Umgebung noch nicht verfügbar ist.",
+    supportSectionTitle: "Praktischer Screenshot-Workflow",
+    supportSectionDescription: "Nutze das Tool als schnellen Zwischenschritt vor dem Teilen von Links, Feedbackrunden oder Dokumentation.",
+    whenToUseTitle: "Wann du dieses Tool nutzen solltest",
+    whenToUseItems: ["Vor dem Teilen eines Landingpage-Updates", "Beim Sammeln von Kundenfeedback zu einer Live-Seite", "Wenn du eine leichte visuelle Referenz für Doku brauchst"],
+    quickStepsTitle: "Kurzanleitung",
+    quickSteps: ["Finale Seiten-URL einfügen.", "Screenshot-Vorschau erzeugen.", "Bild-URL öffnen oder kopieren und mit Kontext teilen."],
+    commonMistakesTitle: "Häufige Fehler",
+    commonMistakes: ["Entwurfs-/Redirect-URL statt finaler URL erfassen", "Screenshot ohne Hinweis auf die Änderung teilen", "Für Detailreview nur einen kontextlosen Screenshot senden"],
+    relatedGuidesTitle: "Passende Guides",
+    relatedGuidesDescription: "Lies kurze Workflow-Guides, um den richtigen Screenshot-Ansatz für Sharing, Review und Kundenfeedback zu wählen."
   }
 };
 
