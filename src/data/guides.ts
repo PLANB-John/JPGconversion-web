@@ -109,7 +109,15 @@ export type GuideSlug =
   | "accessibility-color-contrast-mistakes"
   | "fix-low-contrast-text-on-website"
   | "best-contrast-practices-for-ui-text"
-  | "check-brand-colors-without-hurting-accessibility";
+  | "check-brand-colors-without-hurting-accessibility"
+  | "gradient-generator-guide"
+  | "create-simple-css-gradient-background"
+  | "linear-vs-radial-gradient"
+  | "when-gradients-improve-ui"
+  | "common-gradient-mistakes-ui"
+  | "use-gradients-without-busy-ui"
+  | "best-places-to-use-gradients-on-website"
+  | "test-gradient-before-using-in-production";
 
 type GuideSection = {
   heading: string;
@@ -4655,6 +4663,132 @@ const checkColorCombinationBeforeUsingContent: Record<LocaleCode, GuideLocalized
   de: { ...checkColorCombinationBeforeUsingEn, title: "Farbkombination vor dem Einsatz in UI prüfen", description: "Prüfe Farbkombinationen vor der Umsetzung, damit deine UI lesbar und konsistent bleibt.", intro: "Eine Farbkombination kann isoliert gut wirken, im UI-Kontext aber scheitern. Ein kurzer Vorab-Check spart Nacharbeit." }
 };
 
+const gradientGeneratorGuideEn: GuideLocalizedContent = {
+  title: "Gradient Generator Guide for Fast CSS Background Decisions",
+  description: "Use a simple gradient workflow to move from idea to production-ready CSS without overdesigning.",
+  intro: "A gradient generator is most useful when you need a practical background choice quickly, not when you want endless experimentation.",
+  categoryLabel: "Gradient workflow",
+  useCasesTitle: "Practical use cases",
+  useCases: ["Landing page hero backgrounds.", "Section dividers with subtle depth.", "CTA blocks that need clearer visual focus."],
+  closingTitle: "Use gradients as support, not decoration",
+  closingText: "Start with clarity, test quickly, then ship a gradient that helps the layout instead of competing with it.",
+  relatedToolLabel: "Open Gradient Generator",
+  sections: [
+    { heading: "Start with one clear UI goal", paragraphs: ["Decide whether the gradient should separate sections, emphasize a block, or create depth.", "One goal makes direction, colors, and intensity easier to control."] },
+    { heading: "Choose two colors before adding complexity", paragraphs: ["Two stops are usually enough for clean interfaces.", "Only add a third color if it solves a specific visual problem."], bullets: ["Use nearby hues for subtle depth.", "Use stronger contrast only on focal sections.", "Check readability before locking colors."] },
+    { heading: "Pick linear or radial based on layout shape", paragraphs: ["Linear gradients fit headers, cards, and directional flow.", "Radial gradients fit spotlight-style emphasis behind one focal element."] },
+    { heading: "Always validate with real text and components", paragraphs: ["Test the gradient behind real heading sizes, buttons, and cards.", "If readability drops, reduce saturation or add a soft overlay."] }
+  ]
+};
+
+const gradientGeneratorGuideContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: gradientGeneratorGuideEn,
+  ko: { ...gradientGeneratorGuideEn, title: "빠른 CSS 배경 결정을 위한 Gradient Generator 가이드", description: "아이디어에서 실서비스 CSS까지, 과한 디자인 없이 그라디언트를 정하는 실전 흐름입니다.", intro: "그라디언트 생성기는 오래 고민할 때보다, 짧은 시간에 실용적인 배경 결정을 내릴 때 가장 유용합니다." },
+  ja: { ...gradientGeneratorGuideEn, title: "CSS背景を素早く決めるためのGradient Generatorガイド", description: "アイデアから本番向けCSSまで、迷いを減らして進める実践ワークフローです。", intro: "Gradient Generatorは、長く試行錯誤するより実用的な背景を短時間で決めたいときに役立ちます。" },
+  es: { ...gradientGeneratorGuideEn, title: "Guía de Gradient Generator para Decidir Fondos CSS Más Rápido", description: "Pasa de la idea al CSS listo para producción con un flujo simple y práctico de gradientes.", intro: "Un generador de gradientes funciona mejor cuando necesitas decidir rápido, no cuando quieres probar infinitas variaciones." },
+  fr: { ...gradientGeneratorGuideEn, title: "Guide Gradient Generator pour Décider Plus Vite un Fond CSS", description: "Passez d'une idée à un CSS prêt en production avec un workflow de dégradé simple et pratique.", intro: "Un générateur de dégradé est surtout utile quand vous devez trancher vite, pas explorer sans fin." },
+  de: { ...gradientGeneratorGuideEn, title: "Gradient-Generator-Guide für schnelle CSS-Hintergründe", description: "Mit einem einfachen Ablauf von der Idee zu produktionsreifem CSS-Verlauf ohne überladenes Design.", intro: "Ein Verlaufsgenerator ist am nützlichsten, wenn du schnell eine praktikable Hintergrundentscheidung treffen musst." }
+};
+
+const createSimpleCssGradientBackgroundEn: GuideLocalizedContent = {
+  title: "How to Create a Simple CSS Gradient Background",
+  description: "Build a clean two-color gradient background with quick checks for readability and balance.",
+  intro: "Simple gradients often perform better than complex ones because they support content instead of stealing attention.",
+  categoryLabel: "Gradient basics",
+  useCasesTitle: "Where this helps",
+  useCases: ["Hero sections for small websites.", "Promo cards and newsletter blocks.", "Page sections that need light visual separation."],
+  closingTitle: "Simple usually scales better",
+  closingText: "A calm two-color gradient is easier to maintain and more reusable across future pages.",
+  relatedToolLabel: "Open Gradient Generator",
+  sections: [
+    { heading: "Begin with two related colors", paragraphs: ["Pick colors from the same family or nearby hues.", "This keeps transitions smooth and avoids harsh banding."] },
+    { heading: "Use a neutral default angle", paragraphs: ["90° or 120° works well for many section backgrounds.", "Change the angle only when layout direction requires it."] },
+    { heading: "Test with real content early", paragraphs: ["Place heading text and a button over the gradient.", "If contrast is weak, darken one stop slightly or add a subtle overlay."] },
+    { heading: "Save the final CSS snippet", paragraphs: ["Copy the final gradient code into your stylesheet or token file.", "Documenting the decision prevents random variations later."] }
+  ]
+};
+
+const createSimpleCssGradientBackgroundContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: createSimpleCssGradientBackgroundEn,
+  ko: { ...createSimpleCssGradientBackgroundEn, title: "심플한 CSS 그라디언트 배경 만드는 방법", description: "가독성과 균형을 빠르게 점검하며 두 가지 색상으로 깔끔한 배경을 만드는 방법입니다.", intro: "단순한 그라디언트는 시선을 빼앗기보다 콘텐츠를 돕기 때문에 실제 UI에서 더 자주 유리합니다." },
+  ja: { ...createSimpleCssGradientBackgroundEn, title: "シンプルなCSSグラデーション背景の作り方", description: "読みやすさとバランスを確認しながら、2色で整った背景を作る方法です。", intro: "シンプルなグラデーションは主張しすぎず、コンテンツを支えるため実務で使いやすいです。" },
+  es: { ...createSimpleCssGradientBackgroundEn, title: "Cómo Crear un Fondo CSS con Degradado Simple", description: "Crea un fondo limpio de dos colores con revisiones rápidas de legibilidad y equilibrio.", intro: "Los gradientes simples suelen funcionar mejor porque apoyan el contenido en lugar de competir con él." },
+  fr: { ...createSimpleCssGradientBackgroundEn, title: "Comment Créer un Fond Dégradé CSS Simple", description: "Créez un dégradé propre à deux couleurs avec des vérifications rapides de lisibilité.", intro: "Les dégradés simples fonctionnent souvent mieux car ils soutiennent le contenu au lieu de le détourner." },
+  de: { ...createSimpleCssGradientBackgroundEn, title: "So erstellst du einen einfachen CSS-Verlaufshintergrund", description: "Erstelle einen klaren Zwei-Farben-Verlauf mit schnellen Checks für Lesbarkeit und Balance.", intro: "Einfache Verläufe funktionieren oft besser, weil sie Inhalte unterstützen statt Aufmerksamkeit zu stehlen." }
+};
+
+const linearVsRadialGradientEn: GuideLocalizedContent = {
+  title: "Linear vs Radial Gradient: Which One Should You Use?",
+  description: "Choose between linear and radial gradients based on layout direction, focal points, and readability.",
+  intro: "Most gradient decisions become easier when you match gradient shape to content layout instead of choosing by taste.",
+  categoryLabel: "Gradient decisions",
+  useCasesTitle: "Common decisions",
+  useCases: ["Choosing hero section direction.", "Highlighting one CTA area.", "Reducing visual noise in content-heavy pages."],
+  closingTitle: "Match gradient shape to content structure",
+  closingText: "Use linear for flow and radial for focal emphasis, then validate with real content.",
+  relatedToolLabel: "Open Gradient Generator",
+  sections: [
+    { heading: "Use linear for directional layouts", paragraphs: ["Linear gradients naturally follow horizontal or vertical content flow.", "They are easier to keep subtle across full-width sections."] },
+    { heading: "Use radial for single focal areas", paragraphs: ["Radial gradients pull attention toward a center area.", "Use them sparingly behind one message or one CTA block."] },
+    { heading: "Avoid mixing both in one small region", paragraphs: ["Layering linear and radial gradients too closely can feel busy.", "Choose one primary gradient behavior per component."] },
+    { heading: "Run a readability check before finalizing", paragraphs: ["Always test heading, body text, and button states on top of the gradient."], bullets: ["Normal text state", "Hover/focus state", "Mobile viewport"] }
+  ]
+};
+
+const linearVsRadialGradientContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: linearVsRadialGradientEn,
+  ko: { ...linearVsRadialGradientEn, title: "선형 vs 원형 그라디언트: 무엇을 써야 할까?", description: "레이아웃 방향, 시선 집중, 가독성을 기준으로 선형과 원형 그라디언트를 선택하세요.", intro: "취향보다 레이아웃 구조에 맞춰 고르면 대부분의 그라디언트 결정이 훨씬 쉬워집니다." },
+  ja: { ...linearVsRadialGradientEn, title: "線形と放射状グラデーションはどちらを使うべき？", description: "レイアウトの流れ・視線誘導・可読性で線形と放射状を選ぶための実践ガイドです。", intro: "好みよりも、コンテンツ構造に合う形を選ぶと判断が速くなります。" },
+  es: { ...linearVsRadialGradientEn, title: "Gradiente Lineal vs Radial: ¿Cuál Conviene Usar?", description: "Elige entre lineal y radial según dirección del layout, foco visual y legibilidad.", intro: "La decisión es más fácil cuando ajustas la forma del gradiente a la estructura del contenido." },
+  fr: { ...linearVsRadialGradientEn, title: "Dégradé Linéaire vs Radial : lequel choisir ?", description: "Choisissez entre linéaire et radial selon la direction du layout, le point focal et la lisibilité.", intro: "La décision devient plus simple quand la forme du dégradé suit la structure du contenu." },
+  de: { ...linearVsRadialGradientEn, title: "Linearer vs radialer Verlauf: Was ist sinnvoll?", description: "Wähle zwischen linear und radial nach Layout-Richtung, Fokuspunkt und Lesbarkeit.", intro: "Die Entscheidung wird leichter, wenn die Verlaufsform zur Inhaltsstruktur passt." }
+};
+
+const whenGradientsImproveUiContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: { ...gradientGeneratorGuideEn, title: "When Gradients Actually Improve UI", description: "Learn practical cases where gradients improve hierarchy and focus without making screens noisy.", intro: "Gradients help when they clarify structure or focus. They hurt when they are only decorative.", useCases: ["Separating hero and content sections.", "Adding depth to flat card areas.", "Drawing attention to one primary action."], closingTitle: "Use gradients with intent", closingText: "If a gradient improves hierarchy or focus, keep it. If not, simplify." },
+  ko: { ...gradientGeneratorGuideEn, title: "그라디언트가 UI를 실제로 개선하는 경우", description: "화면을 복잡하게 만들지 않고 계층과 집중도를 높이는 그라디언트 사용 상황을 정리했습니다.", intro: "그라디언트는 구조와 집중을 돕는 경우에만 효과적입니다." },
+  ja: { ...gradientGeneratorGuideEn, title: "グラデーションがUIを本当に改善する場面", description: "画面を騒がしくせずに階層と注目度を上げる実用ケースを紹介します。", intro: "グラデーションは構造や視線誘導に効くときだけ価値があります。" },
+  es: { ...gradientGeneratorGuideEn, title: "Cuándo los Gradientes Sí Mejoran una UI", description: "Casos prácticos donde un gradiente mejora jerarquía y foco sin recargar la interfaz.", intro: "Un gradiente ayuda cuando aclara estructura o foco; molesta cuando es solo decorativo." },
+  fr: { ...gradientGeneratorGuideEn, title: "Quand les Dégradés Améliorent Vraiment l'UI", description: "Des cas concrets où un dégradé améliore hiérarchie et focus sans surcharger l'interface.", intro: "Un dégradé aide s'il clarifie la structure ou l'attention." },
+  de: { ...gradientGeneratorGuideEn, title: "Wann Verläufe eine UI wirklich verbessern", description: "Praktische Fälle, in denen Verläufe Hierarchie und Fokus stärken, ohne unruhig zu wirken.", intro: "Verläufe helfen, wenn sie Struktur und Fokus klären – nicht als reine Deko." }
+};
+
+const commonGradientMistakesUiContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: { ...gradientGeneratorGuideEn, title: "Common Gradient Mistakes in UI Design", description: "Avoid the most common gradient mistakes that reduce readability and make interfaces feel busy.", intro: "Most gradient issues come from too much intensity, too many colors, or missing contrast checks.", closingTitle: "Reduce noise, keep purpose", closingText: "A restrained gradient usually looks more professional and stays easier to maintain." },
+  ko: { ...gradientGeneratorGuideEn, title: "UI 디자인에서 자주 하는 그라디언트 실수", description: "가독성을 떨어뜨리고 화면을 복잡하게 만드는 대표적인 실수를 피하는 방법입니다." },
+  ja: { ...gradientGeneratorGuideEn, title: "UIデザインでありがちなグラデーションの失敗", description: "可読性を下げて画面を騒がしくする代表的な失敗を避けるためのガイドです。" },
+  es: { ...gradientGeneratorGuideEn, title: "Errores Comunes de Gradientes en UI", description: "Evita errores típicos de gradiente que reducen legibilidad y recargan la interfaz." },
+  fr: { ...gradientGeneratorGuideEn, title: "Erreurs Courantes de Dégradé en UI", description: "Évitez les erreurs fréquentes qui nuisent à la lisibilité et surchargent l'interface." },
+  de: { ...gradientGeneratorGuideEn, title: "Häufige Verlaufsfehler im UI-Design", description: "Vermeide typische Fehler, die Lesbarkeit senken und Interfaces überladen wirken lassen." }
+};
+
+const useGradientsWithoutBusyUiContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: { ...gradientGeneratorGuideEn, title: "How to Use Gradients Without Making a UI Look Busy", description: "Apply gradients in a restrained way so your interface keeps focus, clarity, and readable hierarchy.", intro: "Gradients can add polish, but heavy gradients quickly make a screen feel crowded. A few constraints keep UI calm.", sections: [{ heading: "Treat gradients as a background layer", paragraphs: ["Use gradients to support structure, not to become the main visual object.", "If users notice the gradient before the content, reduce intensity."] }, { heading: "Keep contrast soft between color stops", paragraphs: ["Large jumps in hue or brightness create visual noise.", "Start with neighboring hues, then increase contrast only when hierarchy needs it."], bullets: ["Prefer two-color gradients for most UI surfaces.", "Avoid neon-like saturation for body-content areas.", "Reserve high-energy gradients for one focal section."] }, { heading: "Limit gradient usage per screen", paragraphs: ["Using gradients in every card, button, and banner makes interfaces feel inconsistent.", "Choose one or two strategic areas and keep other surfaces neutral."] }, { heading: "Check text readability in multiple spots", paragraphs: ["A gradient can be readable on one side and fail on another.", "Test titles, body text, and button labels across the full background area."] }, { heading: "Create a small reusable gradient set", paragraphs: ["Define a few approved gradient tokens and reuse them.", "This avoids random one-off gradients across new pages."] }], closingTitle: "Calm gradients create stronger UI", closingText: "If a gradient improves structure while content stays easy to read, you are using it correctly." },
+  ko: { ...gradientGeneratorGuideEn, title: "UI를 복잡하게 보이지 않게 그라디언트 쓰는 방법", description: "시선을 분산시키지 않으면서 그라디언트를 적용하는 실전 규칙을 정리했습니다.", intro: "그라디언트는 완성도를 높일 수 있지만 강도가 높으면 화면이 금방 복잡해집니다." },
+  ja: { ...gradientGeneratorGuideEn, title: "UIを騒がしく見せずにグラデーションを使う方法", description: "可読性と階層を保ちながら、控えめにグラデーションを使う実践ルールです。", intro: "グラデーションは便利ですが、強すぎると画面が散らかって見えます。" },
+  es: { ...gradientGeneratorGuideEn, title: "Cómo Usar Gradientes sin Recargar la UI", description: "Aplica gradientes con moderación para mantener foco, claridad y jerarquía legible.", intro: "Los gradientes suman acabado visual, pero un uso intenso puede saturar rápidamente la interfaz." },
+  fr: { ...gradientGeneratorGuideEn, title: "Comment Utiliser des Dégradés sans Surcharger l'UI", description: "Appliquez les dégradés avec retenue pour garder focus, clarté et hiérarchie lisible.", intro: "Les dégradés peuvent enrichir une interface, mais un excès la rend vite trop chargée." },
+  de: { ...gradientGeneratorGuideEn, title: "So nutzt du Verläufe, ohne die UI unruhig zu machen", description: "Setze Verläufe zurückhaltend ein, damit Fokus, Klarheit und Lesbarkeit erhalten bleiben.", intro: "Verläufe können ein UI aufwerten, wirken bei zu hoher Intensität aber schnell überladen." }
+};
+
+const bestPlacesToUseGradientsOnWebsiteContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: { ...gradientGeneratorGuideEn, title: "Best Places to Use a Gradient on a Website", description: "Choose high-impact website areas where gradients improve hierarchy and attention without hurting readability.", intro: "A gradient works best in strategic zones, not everywhere. Picking the right placement matters more than color complexity.", sections: [{ heading: "Hero backgrounds for first visual impact", paragraphs: ["Hero sections are ideal for controlled gradients because they introduce mood and hierarchy.", "Keep text areas calmer than decorative edges."] }, { heading: "Section transitions and separators", paragraphs: ["Subtle gradients can separate blocks without extra borders or heavy shadows.", "This helps long pages feel organized."], bullets: ["Feature section to pricing", "Content to CTA zone", "Footer pre-section highlights"] }, { heading: "CTA containers, not every button", paragraphs: ["Use gradients around the action area first.", "Applying strong gradients to every button often reduces consistency."] }, { heading: "Promotional cards with limited frequency", paragraphs: ["Gradients can help one featured card stand out in a grid.", "Avoid using unique gradients on all cards at once."] }, { heading: "Background accents behind illustrations", paragraphs: ["Soft radial gradients can frame an illustration or mockup.", "Keep opacity low so the visual remains readable."] }], closingTitle: "Placement drives quality", closingText: "A simple gradient in the right location performs better than a complex gradient used everywhere." },
+  ko: { ...gradientGeneratorGuideEn, title: "웹사이트에서 그라디언트를 쓰기 좋은 위치", description: "가독성을 해치지 않으면서 계층과 시선을 강화하는 그라디언트 배치 포인트를 정리했습니다.", intro: "그라디언트는 많이 쓰는 것보다 어디에 쓰는지가 더 중요합니다." },
+  ja: { ...gradientGeneratorGuideEn, title: "Webサイトでグラデーションを使うべき場所", description: "可読性を保ちながら階層と注目を高める、効果的な配置ポイントを紹介します。", intro: "グラデーションは数より配置が重要です。" },
+  es: { ...gradientGeneratorGuideEn, title: "Mejores Lugares para Usar un Gradiente en un Sitio Web", description: "Ubica gradientes en zonas de alto impacto para mejorar jerarquía y atención sin perder legibilidad.", intro: "Funciona mejor en áreas estratégicas, no en toda la página." },
+  fr: { ...gradientGeneratorGuideEn, title: "Meilleurs Emplacements pour un Dégradé sur un Site Web", description: "Placez les dégradés aux bons endroits pour renforcer hiérarchie et attention sans nuire à la lecture.", intro: "Un dégradé fonctionne mieux dans des zones ciblées, pas partout." },
+  de: { ...gradientGeneratorGuideEn, title: "Die besten Stellen für Verläufe auf einer Website", description: "Nutze Verläufe an wirkungsvollen Stellen, ohne Lesbarkeit und Ruhe zu verlieren.", intro: "Entscheidend ist der Einsatzort – nicht die Anzahl der Verläufe." }
+};
+
+const testGradientBeforeUsingInProductionContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: { ...gradientGeneratorGuideEn, title: "How to Test a Gradient Before Using It in Production", description: "Run a quick gradient QA checklist before release so readability, consistency, and performance stay stable.", intro: "A gradient that looks good in design drafts can still fail in real UI states. Short production checks prevent this.", sections: [{ heading: "Test in real component contexts", paragraphs: ["Preview the gradient behind actual headings, paragraphs, inputs, and buttons.", "Do not approve gradients using empty mock blocks only."] }, { heading: "Validate desktop and mobile separately", paragraphs: ["Gradient direction and contrast can feel different on narrow screens.", "Check at least one mobile breakpoint before final export."] }, { heading: "Check interaction states", paragraphs: ["Hover, focus, and disabled states can lose clarity against gradients.", "Verify contrast and focus indicators in each state."], bullets: ["Primary button text", "Secondary button borders", "Input focus rings"] }, { heading: "Compare with adjacent sections", paragraphs: ["A gradient can look fine alone but clash with nearby surfaces.", "Review transitions between sections to avoid abrupt color jumps."] }, { heading: "Lock and document the final CSS", paragraphs: ["Once approved, save exact values and usage notes for your team.", "Documentation helps future pages stay visually consistent."] }], closingTitle: "Test quickly, then ship with confidence", closingText: "A small pre-launch gradient check catches issues early and keeps production UI cleaner." },
+  ko: { ...gradientGeneratorGuideEn, title: "프로덕션 적용 전 그라디언트 테스트 방법", description: "배포 전에 짧은 QA 체크를 통해 가독성, 일관성, 상태별 안정성을 점검하세요.", intro: "시안에서 좋아 보인 그라디언트도 실제 UI 상태에서는 문제가 생길 수 있습니다." },
+  ja: { ...gradientGeneratorGuideEn, title: "本番導入前にグラデーションをテストする方法", description: "公開前に短いチェックを行い、可読性・一貫性・状態別の見え方を確認する手順です。", intro: "デザイン上で良く見えても、実装状態では崩れることがあります。" },
+  es: { ...gradientGeneratorGuideEn, title: "Cómo Probar un Gradiente Antes de Usarlo en Producción", description: "Aplica una revisión rápida antes de publicar para asegurar legibilidad, consistencia y estados estables.", intro: "Un gradiente puede verse bien en un mockup y fallar en estados reales de UI." },
+  fr: { ...gradientGeneratorGuideEn, title: "Comment Tester un Dégradé Avant la Mise en Production", description: "Faites une vérification rapide avant publication pour garder lisibilité, cohérence et stabilité visuelle.", intro: "Un dégradé validé en maquette peut échouer dans des états UI réels." },
+  de: { ...gradientGeneratorGuideEn, title: "So testest du einen Verlauf vor dem Produktionseinsatz", description: "Führe vor dem Release kurze Checks durch, damit Lesbarkeit und Konsistenz stabil bleiben.", intro: "Ein Verlauf kann im Mockup gut aussehen und im echten UI dennoch Probleme machen." }
+};
+
 const guideDefinitions: Array<Omit<GuideItem, "content"> & { content: Record<LocaleCode, GuideLocalizedContent> }> = [
   {
     slug: "how-to-use-html-color-picker",
@@ -5898,6 +6032,78 @@ const guideDefinitions: Array<Omit<GuideItem, "content"> & { content: Record<Loc
     publishedAt: "2026-04-09",
     updatedAt: "2026-04-09",
     content: checkBrandColorsWithoutHurtingAccessibilityContent
+  },
+  {
+    slug: "gradient-generator-guide",
+    category: "color-image",
+    relatedToolSlug: "gradient-generator",
+    relatedGuideSlugs: ["create-simple-css-gradient-background", "linear-vs-radial-gradient"],
+    publishedAt: "2026-04-10",
+    updatedAt: "2026-04-10",
+    content: gradientGeneratorGuideContent
+  },
+  {
+    slug: "create-simple-css-gradient-background",
+    category: "color-image",
+    relatedToolSlug: "gradient-generator",
+    relatedGuideSlugs: ["gradient-generator-guide", "linear-vs-radial-gradient"],
+    publishedAt: "2026-04-10",
+    updatedAt: "2026-04-10",
+    content: createSimpleCssGradientBackgroundContent
+  },
+  {
+    slug: "linear-vs-radial-gradient",
+    category: "color-image",
+    relatedToolSlug: "gradient-generator",
+    relatedGuideSlugs: ["gradient-generator-guide", "create-simple-css-gradient-background"],
+    publishedAt: "2026-04-10",
+    updatedAt: "2026-04-10",
+    content: linearVsRadialGradientContent
+  },
+  {
+    slug: "when-gradients-improve-ui",
+    category: "color-image",
+    relatedToolSlug: "gradient-generator",
+    relatedGuideSlugs: ["gradient-generator-guide", "common-gradient-mistakes-ui"],
+    publishedAt: "2026-04-10",
+    updatedAt: "2026-04-10",
+    content: whenGradientsImproveUiContent
+  },
+  {
+    slug: "common-gradient-mistakes-ui",
+    category: "color-image",
+    relatedToolSlug: "gradient-generator",
+    relatedGuideSlugs: ["gradient-generator-guide", "when-gradients-improve-ui"],
+    publishedAt: "2026-04-10",
+    updatedAt: "2026-04-10",
+    content: commonGradientMistakesUiContent
+  },
+  {
+    slug: "use-gradients-without-busy-ui",
+    category: "color-image",
+    relatedToolSlug: "gradient-generator",
+    relatedGuideSlugs: ["when-gradients-improve-ui", "common-gradient-mistakes-ui"],
+    publishedAt: "2026-04-10",
+    updatedAt: "2026-04-10",
+    content: useGradientsWithoutBusyUiContent
+  },
+  {
+    slug: "best-places-to-use-gradients-on-website",
+    category: "color-image",
+    relatedToolSlug: "gradient-generator",
+    relatedGuideSlugs: ["create-simple-css-gradient-background", "linear-vs-radial-gradient"],
+    publishedAt: "2026-04-10",
+    updatedAt: "2026-04-10",
+    content: bestPlacesToUseGradientsOnWebsiteContent
+  },
+  {
+    slug: "test-gradient-before-using-in-production",
+    category: "color-image",
+    relatedToolSlug: "gradient-generator",
+    relatedGuideSlugs: ["create-simple-css-gradient-background", "when-gradients-improve-ui"],
+    publishedAt: "2026-04-10",
+    updatedAt: "2026-04-10",
+    content: testGradientBeforeUsingInProductionContent
   }
 
 

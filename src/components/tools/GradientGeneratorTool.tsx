@@ -1,10 +1,14 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { ToolHubSupportSection } from "@/components/tools/ToolHubSupportSection";
+import type { GuideSlug } from "@/data/guides";
 import type { GradientGeneratorMessages } from "@/data/gradientGeneratorMessages";
 
 type Props = {
   messages: GradientGeneratorMessages;
+  locale: string;
+  relatedGuides: Array<{ slug: GuideSlug; title: string }>;
 };
 
 type GradientType = "linear" | "radial";
@@ -30,7 +34,7 @@ function buildGradient(type: GradientType, angle: number, colors: string[]) {
   return `linear-gradient(${angle}deg, ${colors.join(", ")})`;
 }
 
-export function GradientGeneratorTool({ messages }: Props) {
+export function GradientGeneratorTool({ messages, locale, relatedGuides }: Props) {
   const [gradientType, setGradientType] = useState<GradientType>("linear");
   const [angle, setAngle] = useState(90);
   const [color1, setColor1] = useState("#4f46e5");
@@ -194,6 +198,21 @@ export function GradientGeneratorTool({ messages }: Props) {
           })}
         </div>
       </section>
+
+      <ToolHubSupportSection
+        sectionTitle={messages.supportTitle}
+        sectionDescription={messages.supportDescription}
+        whenToUseTitle={messages.whenToUseTitle}
+        whenToUseItems={messages.whenToUseItems}
+        quickStepsTitle={messages.quickStepsTitle}
+        quickSteps={messages.quickSteps}
+        commonMistakesTitle={messages.commonMistakesTitle}
+        commonMistakes={messages.commonMistakes}
+        relatedGuidesTitle={messages.relatedGuidesTitle}
+        relatedGuidesDescription={messages.relatedGuidesDescription}
+        relatedGuides={relatedGuides}
+        locale={locale}
+      />
     </div>
   );
 }
