@@ -1,6 +1,8 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { ToolHubSupportSection } from "@/components/tools/ToolHubSupportSection";
+import type { GuideSlug } from "@/data/guides";
 import type { PaletteGeneratorMessages } from "@/data/paletteGeneratorMessages";
 import { darkenColor, isValidHexColor, lightenColor, normalizeHex, rotateHue } from "@/lib/color";
 
@@ -11,6 +13,8 @@ type PaletteSwatch = {
 
 type Props = {
   messages: PaletteGeneratorMessages;
+  locale: string;
+  relatedGuides: Array<{ slug: GuideSlug; title: string }>;
 };
 
 const defaultBaseColor = "#4F46E5";
@@ -44,7 +48,7 @@ function ColorCard({ swatch, onCopy, copyLabel, copiedLabel, hexLabel, activeCop
   );
 }
 
-export function PaletteGeneratorTool({ messages }: Props) {
+export function PaletteGeneratorTool({ messages, locale, relatedGuides }: Props) {
   const [hexInput, setHexInput] = useState(defaultBaseColor);
   const [baseColor, setBaseColor] = useState(defaultBaseColor);
   const [error, setError] = useState<string | null>(null);
@@ -179,6 +183,21 @@ export function PaletteGeneratorTool({ messages }: Props) {
           ))}
         </div>
       </section>
+
+      <ToolHubSupportSection
+        sectionTitle={messages.supportTitle}
+        sectionDescription={messages.supportDescription}
+        whenToUseTitle={messages.whenToUseTitle}
+        whenToUseItems={messages.whenToUseItems}
+        quickStepsTitle={messages.quickStepsTitle}
+        quickSteps={messages.quickSteps}
+        commonMistakesTitle={messages.commonMistakesTitle}
+        commonMistakes={messages.commonMistakes}
+        relatedGuidesTitle={messages.relatedGuidesTitle}
+        relatedGuidesDescription={messages.relatedGuidesDescription}
+        relatedGuides={relatedGuides}
+        locale={locale}
+      />
     </div>
   );
 }

@@ -78,6 +78,13 @@ export type GuideSlug =
   | "common-open-graph-tag-mistakes"
   | "hex-vs-rgb-vs-hsl"
   | "match-website-colors-consistently"
+  | "create-basic-website-color-palette"
+  | "how-many-colors-in-brand-palette"
+  | "choose-supporting-colors-around-brand-color"
+  | "website-palette-mistakes"
+  | "build-consistent-color-palette"
+  | "choose-accent-colors-for-website"
+  | "test-color-palette-before-using"
   | "copy-web-color-from-screen"
   | "common-color-picker-mistakes"
   | "extract-brand-colors-from-image"
@@ -3417,6 +3424,199 @@ const matchWebsiteColorsConsistentlyContent: Record<LocaleCode, GuideLocalizedCo
   de: { ...matchWebsiteColorsConsistentlyEn, title: "Website-Farben konsistenter abstimmen", description: "Ein einfacher Prozess für stimmige Farben über Seiten und Komponenten hinweg.", intro: "Uneinheitliche Farben wirken schnell unfertig. Mit einem kleinen Prüfablauf bleibt das UI konsistent." }
 };
 
+
+const createBasicWebsiteColorPaletteEn: GuideLocalizedContent = {
+  title: "How to Create a Basic Website Color Palette",
+  description: "Build a small website palette you can apply quickly across buttons, backgrounds, and text.",
+  intro: "Most websites do not need a complex color system on day one. A compact palette helps you move faster while keeping screens consistent.",
+  categoryLabel: "Color workflow",
+  useCasesTitle: "Good fit for",
+  useCases: ["Launching a new landing page.", "Refreshing a small business site.", "Creating a first design system draft."],
+  closingTitle: "Start simple, then expand",
+  closingText: "A small stable palette is easier to maintain than a large set of untested colors.",
+  relatedToolLabel: "Open Palette Generator",
+  sections: [
+    { heading: "Choose one reliable base color", paragraphs: ["Start from your brand color or the main tone used in your hero section.", "This color anchors buttons, links, and key highlights."] },
+    { heading: "Add two neutral colors", paragraphs: ["Use one light neutral for surfaces and one dark neutral for text.", "Neutrals keep layouts readable and reduce visual noise."] },
+    { heading: "Add one accent color", paragraphs: ["Pick one accent for actions, badges, or small highlights.", "Too many accents quickly make the page feel unstructured."], bullets: ["Primary color for key UI elements.", "Light neutral for backgrounds.", "Dark neutral for text.", "One accent for emphasis."] },
+    { heading: "Test on a real page", paragraphs: ["Apply the palette to one page before rolling it out broadly.", "If contrast or hierarchy feels weak, adjust now before scaling."] }
+  ]
+};
+
+const createBasicWebsiteColorPaletteContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: createBasicWebsiteColorPaletteEn,
+  ko: { ...createBasicWebsiteColorPaletteEn, title: "기본 웹사이트 컬러 팔레트를 만드는 방법", description: "버튼, 배경, 텍스트에 바로 적용할 수 있는 작은 팔레트를 만드는 실무 가이드입니다.", intro: "처음부터 복잡한 색상 체계가 필요하지는 않습니다. 작은 팔레트가 속도와 일관성을 함께 잡아줍니다." },
+  ja: { ...createBasicWebsiteColorPaletteEn, title: "基本的なWebサイト配色を作る方法", description: "ボタン・背景・文字にすぐ使える小さなパレットを作る手順です。", intro: "最初から複雑な配色は不要です。小さなパレットの方が運用しやすくなります。" },
+  es: { ...createBasicWebsiteColorPaletteEn, title: "Cómo crear una paleta de color básica para un sitio web", description: "Crea una paleta pequeña y práctica para botones, fondos y texto.", intro: "No necesitas un sistema complejo al inicio. Una paleta corta te ayuda a avanzar con consistencia." },
+  fr: { ...createBasicWebsiteColorPaletteEn, title: "Comment créer une palette de couleurs de base pour un site", description: "Construisez une palette courte à appliquer vite sur boutons, fonds et texte.", intro: "Inutile de démarrer avec un système complexe. Une petite palette rend le workflow plus fluide." },
+  de: { ...createBasicWebsiteColorPaletteEn, title: "So erstellst du eine einfache Website-Farbpalette", description: "Eine kleine, sofort nutzbare Palette für Buttons, Hintergründe und Text.", intro: "Für den Start brauchst du kein komplexes Farbsystem. Eine kompakte Palette sorgt schneller für Konsistenz." }
+};
+
+const howManyColorsInBrandPaletteEn: GuideLocalizedContent = {
+  title: "How Many Colors Should a Brand Palette Have?",
+  description: "Use a practical range for brand palettes so teams can design quickly without creating visual chaos.",
+  intro: "Too few colors can limit flexibility, and too many colors can confuse users. A practical range gives you structure and room to grow.",
+  categoryLabel: "Color workflow",
+  useCasesTitle: "Helpful for",
+  useCases: ["New brand setup.", "Website redesign planning.", "Design system cleanup."],
+  closingTitle: "Pick a usable range",
+  closingText: "Most teams work well with a small core set plus optional utility colors.",
+  relatedToolLabel: "Open Palette Generator",
+  sections: [
+    { heading: "Use a core set first", paragraphs: ["Start with 3 to 5 core colors: primary, secondary, and neutrals.", "This is enough for most interfaces and marketing pages."] },
+    { heading: "Separate core and utility colors", paragraphs: ["Keep status colors like success, warning, and error outside the core brand set.", "This keeps brand identity clear while supporting UI feedback states."] },
+    { heading: "Avoid adding colors too early", paragraphs: ["Add new colors only when a real use case appears.", "If a color has no clear role, leave it out."], bullets: ["Core brand colors: usually 3-5.", "Utility status colors: usually 2-4.", "Accents: 1-2 max for most websites."] },
+    { heading: "Document each color role", paragraphs: ["Label colors by function, not just by shade names.", "Role-based naming improves consistency in handoff and code."] }
+  ]
+};
+
+const howManyColorsInBrandPaletteContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: howManyColorsInBrandPaletteEn,
+  ko: { ...howManyColorsInBrandPaletteEn, title: "브랜드 팔레트에는 색상이 몇 개가 적당할까?", description: "너무 적거나 많은 팔레트를 피하고 실무에 맞는 범위를 정하는 방법입니다.", intro: "색상이 너무 적으면 확장성이 떨어지고, 너무 많으면 일관성이 무너집니다." },
+  ja: { ...howManyColorsInBrandPaletteEn, title: "ブランド配色は何色が適切？", description: "多すぎず少なすぎない実用的な色数の決め方を紹介します。", intro: "色数のバランスは運用のしやすさに直結します。" },
+  es: { ...howManyColorsInBrandPaletteEn, title: "¿Cuántos colores debe tener una paleta de marca?", description: "Define una cantidad práctica para diseñar con orden y sin ruido visual.", intro: "Muy pocos colores limitan, demasiados desordenan. El equilibrio importa." },
+  fr: { ...howManyColorsInBrandPaletteEn, title: "Combien de couleurs dans une palette de marque ?", description: "Choisissez une plage pratique pour garder cohérence et flexibilité.", intro: "Trop peu de couleurs limitent, trop de couleurs brouillent l'interface." },
+  de: { ...howManyColorsInBrandPaletteEn, title: "Wie viele Farben braucht eine Markenpalette?", description: "Finde eine praktikable Farbanzahl für konsistentes Design ohne Unruhe.", intro: "Zu wenige Farben begrenzen dich, zu viele machen das UI unübersichtlich." }
+};
+
+const chooseSupportingColorsAroundBrandColorEn: GuideLocalizedContent = {
+  title: "How to Choose Supporting Colors Around a Brand Color",
+  description: "Build secondary and neutral colors around your main brand tone without losing visual focus.",
+  intro: "A strong brand color works better when surrounding colors support it instead of competing with it.",
+  categoryLabel: "Color workflow",
+  useCasesTitle: "Useful for",
+  useCases: ["Designing marketing pages.", "Building UI tokens.", "Improving brand consistency across teams."],
+  closingTitle: "Support the main color, don't fight it",
+  closingText: "Secondary colors should make your brand tone clearer, not louder.",
+  relatedToolLabel: "Open Palette Generator",
+  sections: [
+    { heading: "Start with one brand anchor", paragraphs: ["Lock your primary brand color first.", "Treat it as the reference point for all nearby choices."] },
+    { heading: "Pick quieter supporting colors", paragraphs: ["Use softer saturation for secondary colors so the brand tone stays dominant.", "Neutrals should handle structure and readability."] },
+    { heading: "Assign clear roles", paragraphs: ["Decide which colors are for backgrounds, borders, and highlights.", "Role clarity prevents random color usage."], bullets: ["Secondary color for supporting UI blocks.", "Neutral ramp for surfaces and text.", "One accent for occasional emphasis."] },
+    { heading: "Check combinations in context", paragraphs: ["Preview button, card, and text combinations before finalizing.", "Adjust supporting colors if they overpower calls to action."] }
+  ]
+};
+
+const chooseSupportingColorsAroundBrandColorContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: chooseSupportingColorsAroundBrandColorEn,
+  ko: { ...chooseSupportingColorsAroundBrandColorEn, title: "브랜드 컬러를 중심으로 보조 색상을 고르는 방법", description: "메인 브랜드 톤을 해치지 않으면서 보조/중립 색을 구성하는 방법입니다.", intro: "좋은 보조 색상은 브랜드 색을 더 돋보이게 해야 합니다." },
+  ja: { ...chooseSupportingColorsAroundBrandColorEn, title: "ブランドカラーの周辺色を選ぶ方法", description: "主役カラーを活かしながら補助色とニュートラルを作る手順です。", intro: "補助色は主役を目立たせるために使います。" },
+  es: { ...chooseSupportingColorsAroundBrandColorEn, title: "Cómo elegir colores de apoyo alrededor del color de marca", description: "Crea colores secundarios y neutros sin quitar protagonismo al color principal.", intro: "Los colores de apoyo deben reforzar la marca, no competir con ella." },
+  fr: { ...chooseSupportingColorsAroundBrandColorEn, title: "Comment choisir des couleurs d'appui autour d'une couleur de marque", description: "Construisez des secondaires et neutres sans affaiblir la couleur principale.", intro: "Les couleurs d'appui doivent soutenir la couleur de marque, pas la concurrencer." },
+  de: { ...chooseSupportingColorsAroundBrandColorEn, title: "So wählst du unterstützende Farben rund um eine Markenfarbe", description: "Sekundär- und Neutralfarben aufbauen, ohne die Hauptfarbe zu verdrängen.", intro: "Unterstützende Farben sollen die Markenfarbe stärken, nicht mit ihr konkurrieren." }
+};
+
+const websitePaletteMistakesEn: GuideLocalizedContent = {
+  title: "Website Palette Mistakes That Make Designs Feel Inconsistent",
+  description: "Avoid common palette mistakes that make pages look fragmented and harder to maintain.",
+  intro: "Even good individual colors can fail when palette rules are missing. A few common mistakes create most of the inconsistency issues teams face.",
+  categoryLabel: "Color workflow",
+  useCasesTitle: "Common during",
+  useCases: ["Fast redesigns.", "Campaign page launches.", "Design-to-code handoff."],
+  closingTitle: "Set simple rules early",
+  closingText: "Clear color roles and light QA checks prevent most palette-related rework.",
+  relatedToolLabel: "Open Palette Generator",
+  sections: [
+    { heading: "Mistake: too many accents", paragraphs: ["Multiple bright accents compete for attention and weaken hierarchy.", "Choose one main accent and use it consistently."] },
+    { heading: "Mistake: weak neutral system", paragraphs: ["Without stable neutrals, spacing and typography feel noisy.", "Define neutral shades for text, borders, and surfaces."] },
+    { heading: "Mistake: no state planning", paragraphs: ["Colors may look fine in default state but fail in hover, active, or disabled states.", "Plan interaction states before shipping."], bullets: ["Test button states.", "Test links on light and dark backgrounds.", "Check form states and alerts."] },
+    { heading: "Mistake: skipping contrast checks", paragraphs: ["Palette decisions without contrast validation hurt readability.", "Verify text/background pairs before final rollout."] }
+  ]
+};
+
+const websitePaletteMistakesContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: websitePaletteMistakesEn,
+  ko: { ...websitePaletteMistakesEn, title: "웹사이트 팔레트에서 자주 하는 실수", description: "페이지를 산만하게 만드는 대표적인 팔레트 실수를 줄이는 방법입니다.", intro: "개별 색상이 좋아도 운영 규칙이 없으면 전체 UI는 쉽게 흔들립니다." },
+  ja: { ...websitePaletteMistakesEn, title: "サイト配色でよくある失敗", description: "デザインの一貫性を崩す典型的なミスを防ぐためのガイドです。", intro: "色自体が良くても運用ルールがないと全体は崩れます。" },
+  es: { ...websitePaletteMistakesEn, title: "Errores de paleta en sitios web que rompen la coherencia", description: "Evita errores comunes que hacen que el diseño se vea fragmentado.", intro: "Buenos colores sueltos no bastan si no hay reglas claras de uso." },
+  fr: { ...websitePaletteMistakesEn, title: "Erreurs de palette web qui nuisent à la cohérence", description: "Évitez les erreurs fréquentes qui rendent les pages visuellement incohérentes.", intro: "De bonnes couleurs isolées ne suffisent pas sans règles d'usage." },
+  de: { ...websitePaletteMistakesEn, title: "Häufige Website-Palettenfehler", description: "Vermeide typische Fehler, die Designs uneinheitlich wirken lassen.", intro: "Gute Einzelfarben reichen nicht, wenn klare Regeln für ihre Nutzung fehlen." }
+};
+
+const buildConsistentColorPaletteEn: GuideLocalizedContent = {
+  title: "How to Build a Color Palette That Feels Consistent",
+  description: "Create a practical palette structure so your website keeps the same visual tone across pages.",
+  intro: "Consistency does not come from picking perfect colors once. It comes from assigning clear roles and reusing them the same way.",
+  categoryLabel: "Color workflow",
+  useCasesTitle: "Useful when",
+  useCases: ["Starting a new website design.", "Cleaning up mixed UI colors.", "Documenting design tokens for handoff."],
+  closingTitle: "Consistency is a process",
+  closingText: "Define roles, test in context, and keep your palette small enough to apply reliably.",
+  relatedToolLabel: "Open Palette Generator",
+  sections: [
+    { heading: "Start with role-based color groups", paragraphs: ["Split your palette into primary, neutral, accent, and utility groups.", "Role-based grouping is easier to maintain than random shade collections."] },
+    { heading: "Build from one stable base color", paragraphs: ["Pick a base color that reflects your brand tone.", "Generate lighter and darker variations for states and section backgrounds."] },
+    { heading: "Limit your active palette", paragraphs: ["Too many active colors create inconsistency across components.", "Keep the working set small and intentional."], bullets: ["1 primary brand color.", "2-3 neutral shades for structure.", "1 accent color for emphasis.", "Optional utility colors for status messages."] },
+    { heading: "Test repeated UI patterns", paragraphs: ["Apply colors to buttons, cards, forms, and navigation.", "If the same pattern looks different across pages, tighten your palette rules."] },
+    { heading: "Document usage notes", paragraphs: ["Add short notes such as 'accent only for CTA and links'.", "These notes reduce guesswork when multiple people edit the site."] }
+  ]
+};
+
+const buildConsistentColorPaletteContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: buildConsistentColorPaletteEn,
+  ko: { ...buildConsistentColorPaletteEn, title: "일관된 느낌의 컬러 팔레트를 만드는 방법", description: "웹사이트 전반에서 톤을 안정적으로 유지하는 팔레트 구성 방법입니다.", intro: "일관성은 좋은 색 하나보다 역할 분리와 반복 사용에서 나옵니다." },
+  ja: { ...buildConsistentColorPaletteEn, title: "一貫性のあるカラーパレットを作る方法", description: "サイト全体のトーンを揃える実用的な配色設計手順です。", intro: "一貫性は色選びより運用ルールで作られます。" },
+  es: { ...buildConsistentColorPaletteEn, title: "Cómo crear una paleta de color con sensación consistente", description: "Estructura una paleta práctica para mantener coherencia entre páginas.", intro: "La consistencia viene de roles claros y uso repetible, no de elegir un color perfecto una vez." },
+  fr: { ...buildConsistentColorPaletteEn, title: "Comment créer une palette de couleurs vraiment cohérente", description: "Construisez une palette simple à appliquer de façon stable sur tout le site.", intro: "La cohérence vient des rôles de couleur et de leur réutilisation, pas d'un choix isolé." },
+  de: { ...buildConsistentColorPaletteEn, title: "So baust du eine konsistente Farbpalette auf", description: "Eine praktische Palettenstruktur für gleichbleibende Website-Gestaltung.", intro: "Konsistenz entsteht durch klare Rollen und wiederholbare Anwendung." }
+};
+
+const chooseAccentColorsForWebsiteEn: GuideLocalizedContent = {
+  title: "Best Ways to Choose Accent Colors for a Website",
+  description: "Choose accent colors that add focus without making your interface noisy or confusing.",
+  intro: "Accent colors guide attention. Used well, they improve hierarchy. Used too often, they dilute important actions.",
+  categoryLabel: "Color workflow",
+  useCasesTitle: "Helpful for",
+  useCases: ["CTA design decisions.", "Navigation and link styling.", "Updating outdated brand palettes."],
+  closingTitle: "Use accents with intent",
+  closingText: "A small number of well-placed accents is more effective than many loud colors.",
+  relatedToolLabel: "Open Palette Generator",
+  sections: [
+    { heading: "Define what needs emphasis", paragraphs: ["List the UI elements that truly need attention first.", "Your accent color should serve those elements, not every component."] },
+    { heading: "Contrast against your base and neutrals", paragraphs: ["An accent should stand out from base surfaces and text colors.", "If it blends in, users may miss key actions."] },
+    { heading: "Use one main accent, one optional backup", paragraphs: ["Most sites only need one primary accent and sometimes one secondary accent.", "More than that often weakens visual hierarchy."], bullets: ["Primary accent for CTAs and key links.", "Optional secondary accent for badges or secondary actions.", "Avoid using accents for long body text."] },
+    { heading: "Test in real interface states", paragraphs: ["Check hover, active, and focus states for accent elements.", "Make sure the accent remains clear on both light and dark sections."] },
+    { heading: "Review accessibility early", paragraphs: ["Run quick contrast checks for accent text and buttons.", "Small hue or lightness tweaks can improve readability without changing brand feel."] }
+  ]
+};
+
+const chooseAccentColorsForWebsiteContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: chooseAccentColorsForWebsiteEn,
+  ko: { ...chooseAccentColorsForWebsiteEn, title: "웹사이트 강조 색상을 고르는 가장 좋은 방법", description: "강조는 살리고 화면 혼잡은 줄이는 실용적인 액센트 선택 가이드입니다.", intro: "강조 색은 시선을 모으는 도구입니다. 많이 쓰기보다 정확히 써야 효과가 납니다." },
+  ja: { ...chooseAccentColorsForWebsiteEn, title: "Webサイトのアクセントカラーを選ぶベストな方法", description: "画面をうるさくせずに強調を作るアクセント設計の実践ガイドです。", intro: "アクセントは注意誘導のための色です。使いすぎると効果が下がります。" },
+  es: { ...chooseAccentColorsForWebsiteEn, title: "Mejores formas de elegir colores de acento para un sitio web", description: "Selecciona acentos que guíen la atención sin sobrecargar la interfaz.", intro: "Un buen acento mejora jerarquía; demasiados acentos la destruyen." },
+  fr: { ...chooseAccentColorsForWebsiteEn, title: "Meilleures façons de choisir des couleurs d'accent pour un site", description: "Choisissez des accents qui guident l'attention sans surcharger l'interface.", intro: "Les accents structurent l'attention, mais perdent leur force s'ils sont trop nombreux." },
+  de: { ...chooseAccentColorsForWebsiteEn, title: "Die besten Wege, Akzentfarben für eine Website zu wählen", description: "Akzentfarben so wählen, dass sie Fokus schaffen ohne visuelles Chaos.", intro: "Akzentfarben lenken Aufmerksamkeit. Zu viele Akzente schwächen die Hierarchie." }
+};
+
+const testColorPaletteBeforeUsingEn: GuideLocalizedContent = {
+  title: "How to Test a Color Palette Before Using It on a Site",
+  description: "Run a quick pre-launch palette test so colors work in real UI states, not just in swatches.",
+  intro: "A palette can look good in isolation but fail in actual components. Fast testing helps you catch those issues before launch.",
+  categoryLabel: "Color workflow",
+  useCasesTitle: "Use this when",
+  useCases: ["Finalizing a new website palette.", "Preparing a redesign rollout.", "QA testing design tokens."],
+  closingTitle: "Test in context, not in theory",
+  closingText: "A short checklist across real UI elements prevents expensive color cleanup later.",
+  relatedToolLabel: "Open Palette Generator",
+  sections: [
+    { heading: "Build a small UI test screen", paragraphs: ["Create one test layout with headings, body text, buttons, cards, and alerts.", "This reveals palette issues faster than checking color chips alone."] },
+    { heading: "Check interaction states", paragraphs: ["Test default, hover, active, disabled, and focus states.", "Many palette problems appear only in these state transitions."] },
+    { heading: "Validate readability and contrast", paragraphs: ["Review text/background pairs in all important sections.", "Use a contrast checker for quick accessibility validation."], bullets: ["Body text on primary and neutral backgrounds.", "Button text in all states.", "Link color against surrounding copy."] },
+    { heading: "Test on multiple displays", paragraphs: ["Compare on at least one desktop and one mobile display.", "Device differences are normal, so confirm the palette still feels balanced."] },
+    { heading: "Collect feedback before rollout", paragraphs: ["Ask one designer and one developer to review the test screen.", "A short cross-team review catches practical usage problems early."] }
+  ]
+};
+
+const testColorPaletteBeforeUsingContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: testColorPaletteBeforeUsingEn,
+  ko: { ...testColorPaletteBeforeUsingEn, title: "사이트 적용 전에 컬러 팔레트를 테스트하는 방법", description: "실제 UI 상태에서 색상 문제가 없는지 빠르게 점검하는 사전 테스트 가이드입니다.", intro: "칩에서는 좋아 보여도 실제 컴포넌트에서는 실패할 수 있습니다. 배포 전에 빠르게 확인하세요." },
+  ja: { ...testColorPaletteBeforeUsingEn, title: "サイト導入前にカラーパレットをテストする方法", description: "実際のUI状態で配色が機能するかを短時間で確認する手順です。", intro: "スウォッチで良く見える配色でも、実画面では問題が出ることがあります。" },
+  es: { ...testColorPaletteBeforeUsingEn, title: "Cómo probar una paleta de color antes de usarla en un sitio", description: "Haz una validación rápida para comprobar la paleta en estados reales de UI.", intro: "Una paleta puede verse bien sola y fallar en componentes reales. Prueba antes de publicar." },
+  fr: { ...testColorPaletteBeforeUsingEn, title: "Comment tester une palette de couleurs avant de l'utiliser sur un site", description: "Validez rapidement la palette dans de vrais états UI avant mise en ligne.", intro: "Une palette peut sembler bonne en nuancier mais échouer en interface réelle." },
+  de: { ...testColorPaletteBeforeUsingEn, title: "So testest du eine Farbpalette vor dem Einsatz auf einer Website", description: "Mit einem kurzen Vorabtest prüfen, ob Farben in echten UI-Zuständen funktionieren.", intro: "Eine Palette kann als Muster gut aussehen und im Interface trotzdem scheitern." }
+};
+
 const copyWebColorFromScreenEn: GuideLocalizedContent = {
   title: "How to Copy a Web Color from the Screen Quickly",
   description: "Quickly sample a color from your screen and paste it into your CSS workflow.",
@@ -5185,6 +5385,69 @@ const guideDefinitions: Array<Omit<GuideItem, "content"> & { content: Record<Loc
     publishedAt: "2026-04-05",
     updatedAt: "2026-04-05",
     content: matchWebsiteColorsConsistentlyContent
+  },
+  {
+    slug: "create-basic-website-color-palette",
+    category: "color-image",
+    relatedToolSlug: "palette-generator",
+    relatedGuideSlugs: ["how-many-colors-in-brand-palette", "choose-supporting-colors-around-brand-color"],
+    publishedAt: "2026-04-10",
+    updatedAt: "2026-04-10",
+    content: createBasicWebsiteColorPaletteContent
+  },
+  {
+    slug: "how-many-colors-in-brand-palette",
+    category: "color-image",
+    relatedToolSlug: "palette-generator",
+    relatedGuideSlugs: ["create-basic-website-color-palette", "website-palette-mistakes"],
+    publishedAt: "2026-04-10",
+    updatedAt: "2026-04-10",
+    content: howManyColorsInBrandPaletteContent
+  },
+  {
+    slug: "choose-supporting-colors-around-brand-color",
+    category: "color-image",
+    relatedToolSlug: "palette-generator",
+    relatedGuideSlugs: ["create-basic-website-color-palette", "how-many-colors-in-brand-palette"],
+    publishedAt: "2026-04-10",
+    updatedAt: "2026-04-10",
+    content: chooseSupportingColorsAroundBrandColorContent
+  },
+  {
+    slug: "website-palette-mistakes",
+    category: "color-image",
+    relatedToolSlug: "palette-generator",
+    relatedGuideSlugs: ["create-basic-website-color-palette", "choose-supporting-colors-around-brand-color"],
+    publishedAt: "2026-04-10",
+    updatedAt: "2026-04-10",
+    content: websitePaletteMistakesContent
+  },
+  {
+    slug: "build-consistent-color-palette",
+    category: "color-image",
+    relatedToolSlug: "palette-generator",
+    relatedGuideSlugs: ["create-basic-website-color-palette", "match-website-colors-consistently"],
+    publishedAt: "2026-04-10",
+    updatedAt: "2026-04-10",
+    content: buildConsistentColorPaletteContent
+  },
+  {
+    slug: "choose-accent-colors-for-website",
+    category: "color-image",
+    relatedToolSlug: "palette-generator",
+    relatedGuideSlugs: ["choose-supporting-colors-around-brand-color", "hex-vs-rgb-vs-hsl"],
+    publishedAt: "2026-04-10",
+    updatedAt: "2026-04-10",
+    content: chooseAccentColorsForWebsiteContent
+  },
+  {
+    slug: "test-color-palette-before-using",
+    category: "color-image",
+    relatedToolSlug: "palette-generator",
+    relatedGuideSlugs: ["create-basic-website-color-palette", "website-palette-mistakes"],
+    publishedAt: "2026-04-10",
+    updatedAt: "2026-04-10",
+    content: testColorPaletteBeforeUsingContent
   },
   {
     slug: "copy-web-color-from-screen",
