@@ -1,10 +1,14 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { ToolHubSupportSection } from "@/components/tools/ToolHubSupportSection";
+import type { GuideSlug } from "@/data/guides";
 import type { CssVariableGeneratorMessages } from "@/data/cssVariableGeneratorMessages";
 
 type Props = {
   messages: CssVariableGeneratorMessages;
+  locale: string;
+  relatedGuides: Array<{ slug: GuideSlug; title: string }>;
 };
 
 type VariableRow = {
@@ -27,7 +31,7 @@ function normalizeHex(value: string) {
   return value;
 }
 
-export function CssVariableGeneratorTool({ messages }: Props) {
+export function CssVariableGeneratorTool({ messages, locale, relatedGuides }: Props) {
   const [prefix, setPrefix] = useState("brand");
   const [rows, setRows] = useState<VariableRow[]>([
     { id: 1, name: "primary", hex: "#4f46e5" },
@@ -189,6 +193,21 @@ export function CssVariableGeneratorTool({ messages }: Props) {
           </button>
         </article>
       </section>
+
+      <ToolHubSupportSection
+        sectionTitle={messages.supportTitle}
+        sectionDescription={messages.supportDescription}
+        whenToUseTitle={messages.whenToUseTitle}
+        whenToUseItems={messages.whenToUseItems}
+        quickStepsTitle={messages.quickStepsTitle}
+        quickSteps={messages.quickSteps}
+        commonMistakesTitle={messages.commonMistakesTitle}
+        commonMistakes={messages.commonMistakes}
+        relatedGuidesTitle={messages.relatedGuidesTitle}
+        relatedGuidesDescription={messages.relatedGuidesDescription}
+        relatedGuides={relatedGuides}
+        locale={locale}
+      />
     </div>
   );
 }
