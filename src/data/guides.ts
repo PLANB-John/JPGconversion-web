@@ -87,6 +87,9 @@ export type GuideSlug =
   | "test-color-palette-before-using"
   | "copy-web-color-from-screen"
   | "common-color-picker-mistakes"
+  | "pick-website-colors-more-confidently"
+  | "when-to-use-hex-rgb-or-hsl"
+  | "check-color-combination-before-using"
   | "extract-brand-colors-from-image"
   | "build-color-palette-from-photo"
   | "when-image-color-sampling-helps"
@@ -4385,6 +4388,186 @@ const fullPageVsCroppedWebsiteScreenshotContent: Record<LocaleCode, GuideLocaliz
   de: { title: "Wann ein Full-Page-Screenshot besser ist als ein Zuschnitt", description: "Wähle Full-Page oder Crop-Screenshot je nach Ziel, Review-Kontext und Zielgruppe.", intro: "Beide Formate sind nützlich. Full-Page für Gesamtzusammenhang, Crop für punktgenaue Diskussion.", categoryLabel: "Screenshot-Entscheidungsworkflow", useCasesTitle: "Hilfreich bei der Formatwahl", useCases: ["Design-Reviews", "Kunden-Updates", "Bug-Triage und QA-Handover"], closingTitle: "Format nach Fragestellung wählen", closingText: "Für Seitenkontext: Full-Page. Für ein konkretes Problem: Crop.", relatedToolLabel: "Website Screenshot öffnen", sections: [{ heading: "Full-Page für Seitenfluss nutzen", paragraphs: ["Full-Page zeigt die Struktur von oben bis unten.", "Ideal für Abschnittsreihenfolge und lange Landingpages."] }, { heading: "Crop für konkrete Probleme nutzen", paragraphs: ["Crops reduzieren Rauschen und fokussieren auf ein Element.", "Gut für Copy-Änderungen, Button-Zustände und Spacing-Fixes."] }, { heading: "Format auf Stakeholder abstimmen", paragraphs: ["Entscheider brauchen oft Kontext, Umsetzende präzise Details.", "Wenn nötig beide Formate teilen."] }, { heading: "Typische Fehler vermeiden", paragraphs: ["Falsches Format verlangsamt Feedback."], bullets: ["Zu lange Full-Page ohne Hinweise", "Crop ohne Umgebungs-Kontext", "Keine Notiz, warum die Ansicht wichtig ist"] }, { heading: "Einfache Teamregel definieren", paragraphs: ["Legt fest, wann Full-Page, Crop oder beides genutzt wird.", "So bleibt Kommunikation projektübergreifend konsistent."] }] }
 };
 
+const pickWebsiteColorsMoreConfidentlyEn: GuideLocalizedContent = {
+  title: "How to Pick Website Colors More Confidently",
+  description: "Use a practical workflow to choose web colors with fewer second guesses and cleaner handoff to development.",
+  intro: "Picking colors feels hard when every option looks close enough. A simple workflow helps you stop random tweaking and make clearer decisions faster.",
+  categoryLabel: "Color workflow",
+  useCasesTitle: "When this guide helps most",
+  useCases: [
+    "Starting a new landing page or redesign.",
+    "Refining an existing brand color into usable UI tones.",
+    "Aligning designer and developer color handoff."
+  ],
+  closingTitle: "Confidence comes from a repeatable process",
+  closingText: "You do not need perfect color theory to work faster. You need clear checks and consistent decisions from first pick to final UI.",
+  relatedToolLabel: "Open HTML Color Picker",
+  sections: [
+    {
+      heading: "Start with one anchor color",
+      paragraphs: [
+        "Choose one primary color first instead of trying to solve your full palette at once.",
+        "This anchor becomes the reference for buttons, links, and emphasis styles."
+      ]
+    },
+    {
+      heading: "Test color on real interface surfaces",
+      paragraphs: [
+        "A color can look great as a swatch but fail in a real card, hero section, or form.",
+        "Preview your color on light and dark surfaces before deciding."
+      ]
+    },
+    {
+      heading: "Create two practical variants early",
+      paragraphs: ["Do not keep only one color value. Prepare a lighter and darker option for UI states."],
+      bullets: ["Default state color", "Hover/focus variant", "Muted or background-support variant"]
+    },
+    {
+      heading: "Compare formats only when needed",
+      paragraphs: [
+        "HEX is usually enough for quick picking and handoff.",
+        "Use RGB or HSL when your workflow needs numeric control or easier adjustments."
+      ]
+    },
+    {
+      heading: "Save decisions in a small color list",
+      paragraphs: [
+        "Document final values in one place so teammates do not re-pick similar colors every sprint.",
+        "A short shared color list improves consistency immediately."
+      ]
+    }
+  ]
+};
+
+const pickWebsiteColorsMoreConfidentlyContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: pickWebsiteColorsMoreConfidentlyEn,
+  ko: { ...pickWebsiteColorsMoreConfidentlyEn, title: "웹사이트 색상을 더 자신 있게 고르는 방법", description: "색상 선택에서 망설임을 줄이고 개발 전달까지 깔끔하게 이어지는 실전 워크플로입니다.", intro: "비슷한 색이 많아 보이면 결정이 어려워집니다. 간단한 순서를 정하면 불필요한 수정 없이 더 빠르게 선택할 수 있습니다." },
+  ja: { ...pickWebsiteColorsMoreConfidentlyEn, title: "Webサイト配色をもっと自信を持って選ぶ方法", description: "迷いを減らし、実装までスムーズにつなげる実践的な配色ワークフローです。", intro: "色選びが難しいのは選択肢が多いからです。手順を固定すると、不要な微調整を減らして判断が速くなります。" },
+  es: { ...pickWebsiteColorsMoreConfidentlyEn, title: "Cómo Elegir Colores Web con Más Confianza", description: "Aplica un flujo práctico para elegir colores con menos dudas y mejor consistencia entre diseño y desarrollo.", intro: "Elegir colores se vuelve difícil cuando todo parece casi igual. Un flujo simple te ayuda a decidir más rápido y con menos cambios." },
+  fr: { ...pickWebsiteColorsMoreConfidentlyEn, title: "Comment Choisir les Couleurs d'un Site avec Plus d'Assurance", description: "Suivez un workflow pratique pour choisir des couleurs web plus vite et avec moins d'hésitation.", intro: "Le choix des couleurs devient flou quand tout se ressemble. Un processus simple permet de décider plus clairement et plus vite." },
+  de: { ...pickWebsiteColorsMoreConfidentlyEn, title: "Website-Farben sicherer auswählen", description: "Ein praxisnaher Ablauf, um Webfarben mit weniger Unsicherheit und sauberem Dev-Handoff zu wählen.", intro: "Farbauswahl ist schwer, wenn viele Optionen ähnlich wirken. Mit einem klaren Ablauf triffst du schneller bessere Entscheidungen." }
+};
+
+const whenToUseHexRgbOrHslEn: GuideLocalizedContent = {
+  title: "When to Use HEX, RGB, or HSL in Real Design Work",
+  description: "Choose the right color format for the task so your design and development workflow stays faster and less error-prone.",
+  intro: "HEX, RGB, and HSL describe the same color in different ways. The best choice depends on your task, not on which format is 'better'.",
+  categoryLabel: "Color workflow",
+  useCasesTitle: "Where format choice matters",
+  useCases: [
+    "Writing CSS quickly during implementation.",
+    "Adjusting lightness and saturation in design iteration.",
+    "Copying values between design files and code."
+  ],
+  closingTitle: "Use the format that reduces friction",
+  closingText: "Most teams use multiple formats. What matters is choosing the one that makes each step clearer and easier to maintain.",
+  relatedToolLabel: "Open HTML Color Picker",
+  sections: [
+    {
+      heading: "Use HEX for fast copy-and-paste workflows",
+      paragraphs: [
+        "HEX is compact and common in UI handoff notes.",
+        "It works well when you mostly pick a fixed color and move on."
+      ]
+    },
+    {
+      heading: "Use RGB when channels matter",
+      paragraphs: [
+        "RGB is useful when you need clear red/green/blue channel values.",
+        "It is also convenient when working with alpha transparency in rgba() patterns."
+      ]
+    },
+    {
+      heading: "Use HSL when adjusting color behavior",
+      paragraphs: [
+        "HSL makes it easier to tweak hue, saturation, and lightness separately.",
+        "This is helpful when creating hover states or theme variants."
+      ]
+    },
+    {
+      heading: "Avoid format mixing without a rule",
+      paragraphs: ["Define a simple team convention so specs remain readable and consistent."],
+      bullets: ["Design documentation default format", "Development default format", "When conversion is required"]
+    },
+    {
+      heading: "Always verify the final rendered color",
+      paragraphs: [
+        "Even if the numbers match, context can change perception.",
+        "Check the color in actual UI before final approval."
+      ]
+    }
+  ]
+};
+
+const whenToUseHexRgbOrHslContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: whenToUseHexRgbOrHslEn,
+  ko: { ...whenToUseHexRgbOrHslEn, title: "실무 디자인에서 HEX, RGB, HSL을 언제 써야 할까", description: "작업 목적에 맞는 색상 포맷을 골라 디자인-개발 흐름을 더 빠르고 안정적으로 유지하세요.", intro: "HEX, RGB, HSL은 같은 색을 다른 방식으로 표현합니다. 정답 포맷이 아니라 상황에 맞는 선택이 중요합니다." },
+  ja: { ...whenToUseHexRgbOrHslEn, title: "実務デザインでHEX・RGB・HSLを使い分けるタイミング", description: "作業内容に合う形式を選び、デザインと実装の連携をスムーズにします。", intro: "HEX・RGB・HSLは同じ色の表現方法です。どれが優れているかより、用途に合うかで選びましょう。" },
+  es: { ...whenToUseHexRgbOrHslEn, title: "Cuándo Usar HEX, RGB o HSL en Trabajo Real de Diseño", description: "Elige el formato correcto según la tarea para evitar errores y acelerar el flujo entre diseño y desarrollo.", intro: "HEX, RGB y HSL representan el mismo color de formas distintas. La clave es elegir según el contexto." },
+  fr: { ...whenToUseHexRgbOrHslEn, title: "Quand Utiliser HEX, RGB ou HSL en Design Réel", description: "Choisissez le bon format selon la tâche pour fluidifier le workflow design-développement.", intro: "HEX, RGB et HSL décrivent la même couleur différemment. Le meilleur format dépend surtout de l'usage." },
+  de: { ...whenToUseHexRgbOrHslEn, title: "Wann HEX, RGB oder HSL in der Praxis sinnvoll ist", description: "Wähle das passende Farbformat je Aufgabe, damit Design- und Entwicklungsabläufe reibungslos bleiben.", intro: "HEX, RGB und HSL beschreiben dieselbe Farbe auf unterschiedliche Weise. Entscheidend ist der Einsatzzweck." }
+};
+
+const checkColorCombinationBeforeUsingEn: GuideLocalizedContent = {
+  title: "How to Check a Color Combination Before Using It in UI",
+  description: "Validate color combinations quickly before implementation so your UI stays readable, consistent, and easier to approve.",
+  intro: "A color pair that looks fine in isolation can fail once text, spacing, and component states are involved. A short pre-check prevents rework.",
+  categoryLabel: "Color workflow",
+  useCasesTitle: "When to run this check",
+  useCases: [
+    "Before shipping new button or alert styles.",
+    "Before adopting brand colors in body text or labels.",
+    "During final QA for a redesign."
+  ],
+  closingTitle: "Check combinations before they become expensive",
+  closingText: "A few minutes of color validation before implementation is faster than fixing inconsistent UI after release.",
+  relatedToolLabel: "Open HTML Color Picker",
+  sections: [
+    {
+      heading: "Test the exact foreground-background pair",
+      paragraphs: [
+        "Always evaluate colors as a pair, not as separate swatches.",
+        "The same text color can pass on one background and fail on another."
+      ]
+    },
+    {
+      heading: "Preview combinations in real components",
+      paragraphs: [
+        "Check buttons, badges, cards, and form hints using the real color pairing.",
+        "This shows whether hierarchy and readability still hold."
+      ]
+    },
+    {
+      heading: "Check multiple UI states early",
+      paragraphs: ["Do not validate only the default state."],
+      bullets: ["Default", "Hover/focus", "Disabled or subtle state"]
+    },
+    {
+      heading: "Compare with nearby colors in the same screen",
+      paragraphs: [
+        "A pair can be readable but still look disconnected from surrounding UI colors.",
+        "Quickly compare it against adjacent elements before finalizing."
+      ]
+    },
+    {
+      heading: "Save approved combinations as reusable tokens",
+      paragraphs: [
+        "Once approved, store the pair in your style guide or token set.",
+        "This prevents accidental drift when new screens are added."
+      ]
+    }
+  ]
+};
+
+const checkColorCombinationBeforeUsingContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: checkColorCombinationBeforeUsingEn,
+  ko: { ...checkColorCombinationBeforeUsingEn, title: "UI에 쓰기 전에 색상 조합을 점검하는 방법", description: "개발 전에 색상 조합을 빠르게 검증해 가독성과 일관성을 높이는 방법입니다.", intro: "단독으로 괜찮아 보이는 색도 실제 UI 조합에서는 문제를 만들 수 있습니다. 짧은 사전 점검이 재작업을 줄여줍니다." },
+  ja: { ...checkColorCombinationBeforeUsingEn, title: "UIに使う前に色の組み合わせを確認する方法", description: "実装前に配色ペアを手早く検証し、読みやすさと一貫性を保つための手順です。", intro: "単体では良く見える色でも、実際のUIでは読みにくくなることがあります。事前チェックで手戻りを減らせます。" },
+  es: { ...checkColorCombinationBeforeUsingEn, title: "Cómo Revisar una Combinación de Color Antes de Usarla en UI", description: "Valida combinaciones de color antes de implementar para mejorar legibilidad y consistencia visual.", intro: "Una pareja de colores puede verse bien aislada pero fallar en componentes reales. Un chequeo breve evita retrabajo." },
+  fr: { ...checkColorCombinationBeforeUsingEn, title: "Comment Vérifier une Combinaison de Couleurs Avant de l'Utiliser en UI", description: "Validez rapidement vos combinaisons avant l'implémentation pour garder une UI lisible et cohérente.", intro: "Une combinaison peut sembler correcte seule mais poser problème en contexte réel. Un contrôle rapide évite des retouches coûteuses." },
+  de: { ...checkColorCombinationBeforeUsingEn, title: "Farbkombination vor dem Einsatz in UI prüfen", description: "Prüfe Farbkombinationen vor der Umsetzung, damit deine UI lesbar und konsistent bleibt.", intro: "Eine Farbkombination kann isoliert gut wirken, im UI-Kontext aber scheitern. Ein kurzer Vorab-Check spart Nacharbeit." }
+};
+
 const guideDefinitions: Array<Omit<GuideItem, "content"> & { content: Record<LocaleCode, GuideLocalizedContent> }> = [
   {
     slug: "how-to-use-html-color-picker",
@@ -5466,6 +5649,33 @@ const guideDefinitions: Array<Omit<GuideItem, "content"> & { content: Record<Loc
     publishedAt: "2026-04-05",
     updatedAt: "2026-04-05",
     content: commonColorPickerMistakesContent
+  },
+  {
+    slug: "pick-website-colors-more-confidently",
+    category: "color-image",
+    relatedToolSlug: "html-color-picker",
+    relatedGuideSlugs: ["how-to-use-html-color-picker", "match-website-colors-consistently"],
+    publishedAt: "2026-04-10",
+    updatedAt: "2026-04-10",
+    content: pickWebsiteColorsMoreConfidentlyContent
+  },
+  {
+    slug: "when-to-use-hex-rgb-or-hsl",
+    category: "color-image",
+    relatedToolSlug: "html-color-picker",
+    relatedGuideSlugs: ["hex-vs-rgb-vs-hsl", "common-color-picker-mistakes"],
+    publishedAt: "2026-04-10",
+    updatedAt: "2026-04-10",
+    content: whenToUseHexRgbOrHslContent
+  },
+  {
+    slug: "check-color-combination-before-using",
+    category: "color-image",
+    relatedToolSlug: "html-color-picker",
+    relatedGuideSlugs: ["match-website-colors-consistently", "check-brand-colors-without-hurting-accessibility"],
+    publishedAt: "2026-04-10",
+    updatedAt: "2026-04-10",
+    content: checkColorCombinationBeforeUsingContent
   },
   {
     slug: "extract-brand-colors-from-image",
