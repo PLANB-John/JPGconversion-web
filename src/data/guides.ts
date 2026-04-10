@@ -83,6 +83,9 @@ export type GuideSlug =
   | "choose-supporting-colors-around-brand-color"
   | "website-palette-mistakes"
   | "build-consistent-color-palette"
+  | "use-css-variables-for-repeated-colors"
+  | "css-variables-vs-hardcoded-values"
+  | "organize-css-variables-for-small-website"
   | "choose-accent-colors-for-website"
   | "test-color-palette-before-using"
   | "copy-web-color-from-screen"
@@ -3575,6 +3578,90 @@ const buildConsistentColorPaletteContent: Record<LocaleCode, GuideLocalizedConte
   de: { ...buildConsistentColorPaletteEn, title: "So baust du eine konsistente Farbpalette auf", description: "Eine praktische Palettenstruktur für gleichbleibende Website-Gestaltung.", intro: "Konsistenz entsteht durch klare Rollen und wiederholbare Anwendung." }
 };
 
+const useCssVariablesForRepeatedColorsEn: GuideLocalizedContent = {
+  title: "How to Use CSS Variables for Repeated Colors",
+  description: "Replace repeated color values with CSS variables so updates become faster and cleaner.",
+  intro: "If the same HEX values appear across many selectors, CSS variables can turn scattered edits into one centralized update.",
+  categoryLabel: "CSS variable workflow",
+  useCasesTitle: "Best used for",
+  useCases: ["Small websites with repeated button and text colors.", "Landing pages with frequent visual updates.", "Teams that want cleaner handoff between design and code."],
+  closingTitle: "Start with repeats, then expand",
+  closingText: "Move your most repeated colors first, then gradually map the rest of your UI into reusable variables.",
+  relatedToolLabel: "Open CSS Variable Generator",
+  sections: [
+    { heading: "Find repeated values first", paragraphs: ["Scan your CSS for colors that show up again and again.", "Repeated values are the fastest wins for variable conversion."] },
+    { heading: "Name variables by role, not shade", paragraphs: ["Use names like --brand-primary or --text-muted.", "Role-based names stay useful even when the actual color changes later."] },
+    { heading: "Define variables in :root", paragraphs: ["Store global colors in one :root block so every page can reuse them.", "This keeps color updates centralized and predictable."], bullets: ["Keep a consistent prefix.", "Group text, background, and action colors.", "Avoid duplicate variable names with slightly different values."] },
+    { heading: "Replace hardcoded values in key components", paragraphs: ["Start with buttons, links, headings, and common surfaces.", "After replacements, test hover and active states to catch missed values."] },
+    { heading: "Document your starter token set", paragraphs: ["Add a short comment or style guide note for each variable role.", "Clear notes help future edits stay consistent across files."] }
+  ]
+};
+
+const useCssVariablesForRepeatedColorsContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: useCssVariablesForRepeatedColorsEn,
+  ko: { ...useCssVariablesForRepeatedColorsEn, title: "반복되는 색상에 CSS 변수를 사용하는 방법", description: "반복 색상 값을 CSS 변수로 바꿔 수정 속도와 유지보수성을 높이는 방법입니다.", intro: "같은 HEX 값이 여러 선택자에 반복된다면 CSS 변수로 한 번에 관리할 수 있습니다." },
+  ja: { ...useCssVariablesForRepeatedColorsEn, title: "繰り返し使う色にCSS変数を使う方法", description: "重複する色指定をCSS変数に置き換えて更新を簡単にする実践ガイドです。", intro: "同じHEXが複数箇所にあるなら、CSS変数で一元管理すると効率的です。" },
+  es: { ...useCssVariablesForRepeatedColorsEn, title: "Cómo usar variables CSS para colores repetidos", description: "Sustituye colores repetidos por variables CSS para mantener y actualizar más rápido.", intro: "Si el mismo HEX aparece muchas veces, las variables CSS te ayudan a centralizar cambios." },
+  fr: { ...useCssVariablesForRepeatedColorsEn, title: "Comment utiliser des variables CSS pour les couleurs répétées", description: "Remplacez les couleurs répétées par des variables CSS pour des mises à jour plus simples.", intro: "Quand la même valeur HEX revient partout, les variables CSS évitent les modifications dispersées." },
+  de: { ...useCssVariablesForRepeatedColorsEn, title: "So nutzt du CSS-Variablen für wiederkehrende Farben", description: "Ersetze wiederholte Farbwerte durch CSS-Variablen für schnellere und sauberere Updates.", intro: "Wenn dieselben HEX-Werte oft auftauchen, helfen CSS-Variablen bei zentralen Änderungen." }
+};
+
+const cssVariablesVsHardcodedValuesEn: GuideLocalizedContent = {
+  title: "CSS Variables vs Hardcoded Values: What’s Easier to Maintain?",
+  description: "Compare CSS variables and hardcoded values to choose the most maintainable approach for your site.",
+  intro: "Hardcoded values can feel quick at first, but they often create expensive cleanup later. CSS variables usually win when your UI keeps growing.",
+  categoryLabel: "CSS variable workflow",
+  useCasesTitle: "Helpful for",
+  useCases: ["Refactoring old stylesheets.", "Planning a small design system.", "Reducing repetitive color changes before launch."],
+  closingTitle: "Optimize for future edits",
+  closingText: "If a style may change again, variable-based naming is usually the safer long-term choice.",
+  relatedToolLabel: "Open CSS Variable Generator",
+  sections: [
+    { heading: "Hardcoded values are fast, but scattered", paragraphs: ["Direct HEX values are easy for one-off styling.", "As files grow, finding every occurrence becomes slower and riskier."] },
+    { heading: "Variables improve global updates", paragraphs: ["Changing one token can update many components at once.", "This is especially useful for rebranding and seasonal updates."] },
+    { heading: "Debugging often gets easier with roles", paragraphs: ["Names like --button-primary or --surface-muted reveal intent immediately.", "Intent-based names help teammates understand why a color exists."], bullets: ["Hardcoded: quick for experiments.", "Variables: better for repeated UI patterns.", "Hybrid: acceptable for prototypes, not final systems."] },
+    { heading: "Use a practical migration path", paragraphs: ["You do not need to rewrite everything in one pass.", "Start with repeated colors, then convert low-risk sections over time."] },
+    { heading: "Keep a short naming rule", paragraphs: ["A lightweight naming pattern prevents token chaos.", "Consistent naming is the key difference between a helpful system and a confusing one."] }
+  ]
+};
+
+const cssVariablesVsHardcodedValuesContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: cssVariablesVsHardcodedValuesEn,
+  ko: { ...cssVariablesVsHardcodedValuesEn, title: "CSS 변수 vs 하드코딩 값: 무엇이 더 유지보수하기 쉬울까?", description: "CSS 변수와 하드코딩 색상 값의 유지보수 차이를 실무 관점에서 비교합니다.", intro: "초기에는 하드코딩이 빨라 보여도, 화면이 늘어나면 정리 비용이 크게 증가합니다." },
+  ja: { ...cssVariablesVsHardcodedValuesEn, title: "CSS変数とハードコード値の比較：保守しやすいのは？", description: "CSS変数と固定値の違いを比較し、保守性を重視した選び方を解説します。", intro: "固定値は最初は速くても、規模が広がると修正コストが上がりやすくなります。" },
+  es: { ...cssVariablesVsHardcodedValuesEn, title: "Variables CSS vs valores hardcodeados: ¿qué es más fácil de mantener?", description: "Compara variables CSS y valores fijos para elegir un enfoque más mantenible.", intro: "Los valores hardcodeados parecen rápidos al inicio, pero suelen generar más retrabajo con el tiempo." },
+  fr: { ...cssVariablesVsHardcodedValuesEn, title: "Variables CSS vs valeurs en dur : qu'est-ce qui est plus facile à maintenir ?", description: "Comparez variables CSS et valeurs en dur pour choisir une approche plus maintenable.", intro: "Les valeurs en dur sont rapides au départ, mais elles compliquent souvent les mises à jour futures." },
+  de: { ...cssVariablesVsHardcodedValuesEn, title: "CSS-Variablen vs. harte Werte: Was ist leichter wartbar?", description: "Vergleiche CSS-Variablen mit hardcodierten Werten für bessere Wartbarkeit.", intro: "Hardcodierte Werte wirken anfangs schnell, erzeugen bei Wachstum aber oft mehr Nacharbeit." }
+};
+
+const organizeCssVariablesForSmallWebsiteEn: GuideLocalizedContent = {
+  title: "How to Organize CSS Variables for a Small Website",
+  description: "Set up a simple CSS variable structure for small websites without overengineering.",
+  intro: "Even a small site benefits from a basic variable structure. A few clear groups can prevent style drift and future cleanup.",
+  categoryLabel: "CSS variable workflow",
+  useCasesTitle: "Useful for",
+  useCases: ["New small business websites.", "Landing page bundles with shared components.", "Freelance projects with recurring style updates."],
+  closingTitle: "Keep structure small and clear",
+  closingText: "You do not need enterprise-scale tokens—just enough structure to keep changes predictable.",
+  relatedToolLabel: "Open CSS Variable Generator",
+  sections: [
+    { heading: "Create one root file for tokens", paragraphs: ["Store core variables in one place, usually in a global stylesheet.", "This becomes the source of truth for repeated design values."] },
+    { heading: "Group tokens by UI role", paragraphs: ["Use small groups like text, background, border, and action.", "Role groups are easier to scan than long unstructured lists."] },
+    { heading: "Use a consistent naming pattern", paragraphs: ["Pick one convention and keep it everywhere.", "For example, --site-text-primary and --site-bg-surface."], bullets: ["Prefix by project or theme.", "Add role first, state second.", "Avoid abbreviations teammates may misread."] },
+    { heading: "Separate core and optional tokens", paragraphs: ["Keep the main set short, then add optional tokens only when needed.", "This prevents token bloat on small projects."] },
+    { heading: "Review variables during each UI update", paragraphs: ["When adding new components, check if an existing token already fits.", "Only create a new variable when a real repeated role appears."] }
+  ]
+};
+
+const organizeCssVariablesForSmallWebsiteContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: organizeCssVariablesForSmallWebsiteEn,
+  ko: { ...organizeCssVariablesForSmallWebsiteEn, title: "작은 웹사이트를 위한 CSS 변수 정리 방법", description: "과하지 않게, 작은 사이트에 맞는 CSS 변수 구조를 만드는 실용 가이드입니다.", intro: "작은 사이트도 기본 변수 구조가 있으면 스타일 흔들림과 재작업을 줄일 수 있습니다." },
+  ja: { ...organizeCssVariablesForSmallWebsiteEn, title: "小規模サイト向けCSS変数の整理方法", description: "過剰設計を避けながら、使いやすいCSS変数構成を作る方法です。", intro: "小さなサイトでも基本構成があると配色のぶれや後修正を減らせます。" },
+  es: { ...organizeCssVariablesForSmallWebsiteEn, title: "Cómo organizar variables CSS para un sitio web pequeño", description: "Define una estructura simple de variables CSS para sitios pequeños sin complicarte de más.", intro: "Incluso un sitio pequeño mejora con una estructura básica de variables y roles claros." },
+  fr: { ...organizeCssVariablesForSmallWebsiteEn, title: "Comment organiser les variables CSS pour un petit site web", description: "Mettez en place une structure CSS simple pour petit site, sans sur-ingénierie.", intro: "Même un petit site gagne en clarté avec quelques groupes de variables bien définis." },
+  de: { ...organizeCssVariablesForSmallWebsiteEn, title: "CSS-Variablen für eine kleine Website sinnvoll organisieren", description: "Eine einfache, praxisnahe Struktur für CSS-Variablen auf kleinen Websites.", intro: "Auch kleine Websites profitieren von einer klaren Variablenstruktur ohne Overengineering." }
+};
+
 const chooseAccentColorsForWebsiteEn: GuideLocalizedContent = {
   title: "Best Ways to Choose Accent Colors for a Website",
   description: "Choose accent colors that add focus without making your interface noisy or confusing.",
@@ -5834,6 +5921,33 @@ const guideDefinitions: Array<Omit<GuideItem, "content"> & { content: Record<Loc
     publishedAt: "2026-04-10",
     updatedAt: "2026-04-10",
     content: buildConsistentColorPaletteContent
+  },
+  {
+    slug: "use-css-variables-for-repeated-colors",
+    category: "color-image",
+    relatedToolSlug: "css-variable-generator",
+    relatedGuideSlugs: ["create-basic-website-color-palette", "match-website-colors-consistently"],
+    publishedAt: "2026-04-10",
+    updatedAt: "2026-04-10",
+    content: useCssVariablesForRepeatedColorsContent
+  },
+  {
+    slug: "css-variables-vs-hardcoded-values",
+    category: "color-image",
+    relatedToolSlug: "css-variable-generator",
+    relatedGuideSlugs: ["when-to-use-hex-rgb-or-hsl", "build-consistent-color-palette"],
+    publishedAt: "2026-04-10",
+    updatedAt: "2026-04-10",
+    content: cssVariablesVsHardcodedValuesContent
+  },
+  {
+    slug: "organize-css-variables-for-small-website",
+    category: "color-image",
+    relatedToolSlug: "css-variable-generator",
+    relatedGuideSlugs: ["use-css-variables-for-repeated-colors", "css-variables-vs-hardcoded-values"],
+    publishedAt: "2026-04-10",
+    updatedAt: "2026-04-10",
+    content: organizeCssVariablesForSmallWebsiteContent
   },
   {
     slug: "choose-accent-colors-for-website",
