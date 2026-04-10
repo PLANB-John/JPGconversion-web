@@ -1,15 +1,19 @@
 "use client";
 
 import { useEffect, useId, useState } from "react";
+import { ToolHubSupportSection } from "@/components/tools/ToolHubSupportSection";
 import type { ImageResizerMessages } from "@/data/imageResizerMessages";
+import type { LocaleCode } from "@/data/locales";
 
 type Props = {
   messages: ImageResizerMessages;
+  locale: LocaleCode;
+  relatedGuides: Array<{ slug: string; title: string }>;
 };
 
 type OutputFormat = "image/png" | "image/jpeg";
 
-export function ImageResizerTool({ messages }: Props) {
+export function ImageResizerTool({ messages, locale, relatedGuides }: Props) {
   const [originalUrl, setOriginalUrl] = useState<string | null>(null);
   const [originalWidth, setOriginalWidth] = useState<number | null>(null);
   const [originalHeight, setOriginalHeight] = useState<number | null>(null);
@@ -271,6 +275,21 @@ export function ImageResizerTool({ messages }: Props) {
           )}
         </article>
       </section>
+
+      <ToolHubSupportSection
+        sectionTitle={messages.supportTitle}
+        sectionDescription={messages.supportDescription}
+        whenToUseTitle={messages.whenToUseTitle}
+        whenToUseItems={messages.whenToUseItems}
+        quickStepsTitle={messages.quickStepsTitle}
+        quickSteps={messages.quickSteps}
+        commonMistakesTitle={messages.commonMistakesTitle}
+        commonMistakes={messages.commonMistakes}
+        relatedGuidesTitle={messages.relatedGuidesTitle}
+        relatedGuidesDescription={messages.relatedGuidesDescription}
+        relatedGuides={relatedGuides}
+        locale={locale}
+      />
     </div>
   );
 }
