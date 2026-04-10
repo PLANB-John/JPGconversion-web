@@ -5,6 +5,16 @@ type TimestampConverterMessages = {
   metadataDescription: string;
   title: string;
   description: string;
+  supportSectionTitle: string;
+  supportSectionDescription: string;
+  whenToUseTitle: string;
+  whenToUseItems: string[];
+  quickStepsTitle: string;
+  quickSteps: string[];
+  commonMistakesTitle: string;
+  commonMistakes: string[];
+  relatedGuidesTitle: string;
+  relatedGuidesDescription: string;
   howToUseTitle: string;
   howToUseSteps: string[];
   timestampSectionTitle: string;
@@ -41,6 +51,28 @@ const timestampConverterMessages: Partial<Record<LocaleCode, TimestampConverterM
     metadataDescription: "Convert Unix timestamps and readable dates instantly in your browser.",
     title: "Timestamp Converter",
     description: "Convert Unix seconds, Unix milliseconds, and readable date/time text in both directions without leaving your browser.",
+    supportSectionTitle: "Timestamp conversion quick guide",
+    supportSectionDescription: "Use this lightweight section to choose the right timestamp workflow and jump into deeper troubleshooting guides.",
+    whenToUseTitle: "When to use this tool",
+    whenToUseItems: [
+      "You need to read raw API or log timestamps quickly.",
+      "You want to verify if a value is in seconds or milliseconds.",
+      "You need a fast UTC and local-time comparison before debugging further."
+    ],
+    quickStepsTitle: "Quick steps",
+    quickSteps: [
+      "Paste a timestamp or date/time value.",
+      "Run conversion and compare seconds, milliseconds, UTC, and local output.",
+      "Use related guides if unit or timezone issues still look unclear."
+    ],
+    commonMistakesTitle: "Common mistakes",
+    commonMistakes: [
+      "Assuming every numeric timestamp is milliseconds.",
+      "Comparing local output to UTC logs without converting both sides.",
+      "Trusting one field without checking source timezone assumptions."
+    ],
+    relatedGuidesTitle: "Related Timestamp Converter guides",
+    relatedGuidesDescription: "Read short practical guides for unit mismatches, API date differences, and timezone debugging.",
     howToUseTitle: "How to use",
     howToUseSteps: [
       "Enter a Unix timestamp and click Convert to Date to see local time, UTC, and ISO output.",
@@ -79,6 +111,28 @@ const timestampConverterMessages: Partial<Record<LocaleCode, TimestampConverterM
     metadataDescription: "브라우저에서 유닉스 타임스탬프와 읽기 쉬운 날짜를 바로 변환하세요.",
     title: "Timestamp Converter",
     description: "유닉스 초, 유닉스 밀리초, 읽기 쉬운 날짜/시간 텍스트를 브라우저 안에서 양방향으로 변환할 수 있습니다.",
+    supportSectionTitle: "타임스탬프 변환 빠른 가이드",
+    supportSectionDescription: "가벼운 안내로 단위/시간대 확인 흐름을 잡고, 필요한 심화 가이드로 바로 이동하세요.",
+    whenToUseTitle: "이 도구가 필요한 상황",
+    whenToUseItems: [
+      "API나 로그의 원시 타임스탬프를 빠르게 읽어야 할 때",
+      "값이 초 단위인지 밀리초 단위인지 확인할 때",
+      "본격 디버깅 전에 UTC와 로컬 시간을 빠르게 비교할 때"
+    ],
+    quickStepsTitle: "빠른 사용 순서",
+    quickSteps: [
+      "타임스탬프 또는 날짜/시간 값을 붙여넣으세요.",
+      "변환 후 seconds, milliseconds, UTC, local 결과를 비교하세요.",
+      "단위/시간대가 헷갈리면 관련 가이드로 이어서 확인하세요."
+    ],
+    commonMistakesTitle: "자주 하는 실수",
+    commonMistakes: [
+      "숫자 타임스탬프를 모두 밀리초로 가정하는 것",
+      "로컬 표시값과 UTC 로그를 변환 없이 직접 비교하는 것",
+      "소스 시간대 가정을 확인하지 않고 한 필드만 믿는 것"
+    ],
+    relatedGuidesTitle: "관련 Timestamp Converter 가이드",
+    relatedGuidesDescription: "단위 혼동, API 날짜 불일치, 시간대 디버깅을 다루는 짧은 가이드를 확인하세요.",
     howToUseTitle: "사용 방법",
     howToUseSteps: [
       "유닉스 타임스탬프를 입력하고 Convert to Date를 누르면 로컬 시간, UTC, ISO 결과를 확인할 수 있습니다.",
@@ -117,6 +171,28 @@ const timestampConverterMessages: Partial<Record<LocaleCode, TimestampConverterM
     metadataDescription: "ブラウザ上でUnixタイムスタンプと読みやすい日時をすぐに変換できます。",
     title: "Timestamp Converter",
     description: "Unix秒、Unixミリ秒、日時テキストをブラウザ内で双方向に変換できます。",
+    supportSectionTitle: "タイムスタンプ変換クイックガイド",
+    supportSectionDescription: "短い実務向けガイドで変換手順を確認し、必要なら関連トラブルシュート記事へ進めます。",
+    whenToUseTitle: "このツールを使う場面",
+    whenToUseItems: [
+      "APIやログの生タイムスタンプをすぐ読みたいとき",
+      "秒かミリ秒かを素早く切り分けたいとき",
+      "詳細調査前にUTCとローカル表示を比較したいとき"
+    ],
+    quickStepsTitle: "クイックステップ",
+    quickSteps: [
+      "タイムスタンプまたは日時を貼り付けます。",
+      "変換して seconds / milliseconds / UTC / local を見比べます。",
+      "単位やタイムゾーンが不明なら関連ガイドを開きます。"
+    ],
+    commonMistakesTitle: "よくあるミス",
+    commonMistakes: [
+      "数値タイムスタンプをすべてミリ秒と決めつけること",
+      "ローカル表示とUTCログを変換せず比較すること",
+      "ソースのタイムゾーン前提を確認しないこと"
+    ],
+    relatedGuidesTitle: "関連Timestamp Converterガイド",
+    relatedGuidesDescription: "単位不一致、API日付差分、タイムゾーン調査の実践ガイドを確認できます。",
     howToUseTitle: "使い方",
     howToUseSteps: [
       "Unixタイムスタンプを入力してConvert to Dateを押すと、ローカル時間、UTC、ISOが表示されます。",
@@ -155,6 +231,28 @@ const timestampConverterMessages: Partial<Record<LocaleCode, TimestampConverterM
     metadataDescription: "Convierte timestamps Unix y fechas legibles al instante en tu navegador.",
     title: "Timestamp Converter",
     description: "Convierte en ambos sentidos entre segundos Unix, milisegundos Unix y texto de fecha/hora sin salir del navegador.",
+    supportSectionTitle: "Guía rápida de conversión de timestamps",
+    supportSectionDescription: "Sección breve para elegir el flujo correcto y saltar a guías de depuración más específicas.",
+    whenToUseTitle: "Cuándo usar esta herramienta",
+    whenToUseItems: [
+      "Necesitas leer timestamps crudos de API o logs rápidamente.",
+      "Quieres confirmar si el valor está en segundos o milisegundos.",
+      "Debes comparar UTC y hora local antes de depurar más."
+    ],
+    quickStepsTitle: "Pasos rápidos",
+    quickSteps: [
+      "Pega un timestamp o una fecha/hora.",
+      "Convierte y compara segundos, milisegundos, UTC y hora local.",
+      "Si sigue la duda, abre las guías relacionadas de unidad y zona horaria."
+    ],
+    commonMistakesTitle: "Errores comunes",
+    commonMistakes: [
+      "Asumir que todo timestamp numérico está en milisegundos.",
+      "Comparar salida local con logs UTC sin convertir ambos lados.",
+      "Confiar en un campo sin validar la zona horaria de origen."
+    ],
+    relatedGuidesTitle: "Guías relacionadas de Timestamp Converter",
+    relatedGuidesDescription: "Consulta guías breves sobre desajustes de unidad, fechas API y confusión de zona horaria.",
     howToUseTitle: "Cómo usarlo",
     howToUseSteps: [
       "Ingresa un timestamp Unix y haz clic en Convert to Date para ver hora local, UTC e ISO.",
@@ -193,6 +291,28 @@ const timestampConverterMessages: Partial<Record<LocaleCode, TimestampConverterM
     metadataDescription: "Convertissez instantanément les timestamps Unix et les dates lisibles dans votre navigateur.",
     title: "Timestamp Converter",
     description: "Convertissez dans les deux sens entre secondes Unix, millisecondes Unix et texte date/heure directement dans le navigateur.",
+    supportSectionTitle: "Guide rapide de conversion des timestamps",
+    supportSectionDescription: "Petit guide pratique pour valider rapidement les valeurs et continuer vers des guides de diagnostic ciblés.",
+    whenToUseTitle: "Quand utiliser cet outil",
+    whenToUseItems: [
+      "Vous devez lire vite des timestamps bruts d'API ou de logs.",
+      "Vous voulez vérifier l'unité secondes vs millisecondes.",
+      "Vous devez comparer UTC et heure locale avant un debug complet."
+    ],
+    quickStepsTitle: "Étapes rapides",
+    quickSteps: [
+      "Collez un timestamp ou une date/heure.",
+      "Lancez la conversion puis comparez secondes, millisecondes, UTC et local.",
+      "Ouvrez les guides liés si l'écart d'unité ou de fuseau persiste."
+    ],
+    commonMistakesTitle: "Erreurs fréquentes",
+    commonMistakes: [
+      "Supposer que toute valeur numérique est en millisecondes.",
+      "Comparer affichage local et logs UTC sans conversion commune.",
+      "Faire confiance à un seul champ sans vérifier le fuseau source."
+    ],
+    relatedGuidesTitle: "Guides liés au Timestamp Converter",
+    relatedGuidesDescription: "Parcourez des guides courts sur les unités, les dates API et les erreurs de fuseau horaire.",
     howToUseTitle: "Mode d'emploi",
     howToUseSteps: [
       "Saisissez un timestamp Unix puis cliquez sur Convert to Date pour voir l'heure locale, UTC et ISO.",
@@ -231,6 +351,28 @@ const timestampConverterMessages: Partial<Record<LocaleCode, TimestampConverterM
     metadataDescription: "Konvertiere Unix-Timestamps und lesbare Datumswerte sofort im Browser.",
     title: "Timestamp Converter",
     description: "Wandle Unix-Sekunden, Unix-Millisekunden und lesbaren Datums-/Zeittext direkt im Browser in beide Richtungen um.",
+    supportSectionTitle: "Schnellhilfe zur Timestamp-Konvertierung",
+    supportSectionDescription: "Kurzer Praxisbereich für schnelle Einheiten- und Zeitzonenchecks mit direkten Links zu passenden Guides.",
+    whenToUseTitle: "Wann du dieses Tool nutzt",
+    whenToUseItems: [
+      "Du willst rohe API- oder Log-Timestamps schnell lesen.",
+      "Du musst Sekunden und Millisekunden eindeutig unterscheiden.",
+      "Du willst UTC- und Lokalzeit vergleichen, bevor du tiefer debuggst."
+    ],
+    quickStepsTitle: "Kurze Schritte",
+    quickSteps: [
+      "Timestamp oder Datum/Uhrzeit einfügen.",
+      "Konvertieren und Sekunden, Millisekunden, UTC und Lokalzeit vergleichen.",
+      "Bei Unklarheiten passende Guides zu Einheit und Zeitzone öffnen."
+    ],
+    commonMistakesTitle: "Häufige Fehler",
+    commonMistakes: [
+      "Jeden numerischen Timestamp als Millisekunden behandeln.",
+      "Lokale Ausgabe direkt mit UTC-Logs vergleichen.",
+      "Eine Zeitangabe übernehmen, ohne Quell-Zeitzone zu prüfen."
+    ],
+    relatedGuidesTitle: "Zugehörige Timestamp-Converter-Guides",
+    relatedGuidesDescription: "Lies kurze Guides zu Einheitenfehlern, API-Datumsabweichungen und Zeitzonenproblemen.",
     howToUseTitle: "So funktioniert's",
     howToUseSteps: [
       "Gib einen Unix-Timestamp ein und klicke auf Convert to Date, um lokale Zeit, UTC und ISO zu sehen.",
