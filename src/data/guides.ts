@@ -68,6 +68,9 @@ export type GuideSlug =
   | "when-to-encode-url-and-when-not-to"
   | "fix-broken-links-caused-by-url-encoding"
   | "spaces-symbols-and-query-strings-url-encoding"
+  | "what-does-xn-mean-in-domain"
+  | "unicode-domains-vs-punycode"
+  | "check-whether-domain-is-punycode"
   | "how-to-decode-base64-safely-for-debugging"
   | "common-base64-mistakes-in-web-workflows"
   | "when-plain-text-is-better-than-base64"
@@ -3579,6 +3582,91 @@ const howToDecodeBase64SafelyForDebuggingEn: GuideLocalizedContent = {
   ]
 };
 
+
+
+const whatDoesXnMeanInDomainEn: GuideLocalizedContent = {
+  title: "What Does xn-- Mean in a Domain Name?",
+  description: "Understand what the xn-- prefix means and how to safely read, check, and use Punycode domains in daily web work.",
+  intro: "If you see a domain label starting with xn--, you are looking at a Punycode form of a Unicode domain. It is normal behavior for international domain names, not automatically a security issue.",
+  categoryLabel: "Developer workflow",
+  useCasesTitle: "Helpful for",
+  useCases: ["Reviewing domain strings in logs.", "Checking redirect targets.", "Validating user-submitted domains.", "Explaining IDN behavior to non-technical teammates."],
+  closingTitle: "Treat xn-- as a format signal",
+  closingText: "The xn-- prefix usually means a Unicode label was encoded for DNS compatibility. Decode and verify before making decisions.",
+  relatedToolLabel: "Open Punycode Converter",
+  sections: [
+    { heading: "What xn-- actually indicates", paragraphs: ["xn-- is a prefix used in IDNA to mark an encoded label.", "It helps DNS handle non-ASCII characters while preserving the original domain meaning."] },
+    { heading: "Where you usually see it", paragraphs: ["You may find xn-- labels in browser bars, certificates, server logs, and API payloads.", "Tools often convert human-readable Unicode domains into this ASCII-safe form automatically."] },
+    { heading: "How to read an xn-- domain safely", paragraphs: ["Do not guess the original script by sight alone.", "Decode the label first, then review the Unicode result in context."], bullets: ["Check each label separately.", "Confirm expected language/script.", "Compare with the known official domain."] },
+    { heading: "Common confusion to avoid", paragraphs: ["xn-- does not mean the domain is fake by default.", "But visual lookalikes can exist, so verification is still important for security-sensitive workflows."] },
+    { heading: "Quick workflow", paragraphs: ["Paste the domain into a Punycode converter.", "Decode to Unicode, validate spelling and ownership, then use the normalized form in your process."] }
+  ]
+};
+
+const whatDoesXnMeanInDomainContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: whatDoesXnMeanInDomainEn,
+  ko: { ...whatDoesXnMeanInDomainEn, title: "도메인에서 xn-- 는 무슨 뜻일까?", description: "xn-- 접두사의 의미와 Punycode 도메인을 실무에서 안전하게 확인하는 방법을 설명합니다.", intro: "xn-- 로 시작하는 라벨은 보통 유니코드 도메인을 DNS용 ASCII 형태(Punycode)로 바꾼 값입니다. 그 자체로 이상 징후는 아닙니다." },
+  ja: { ...whatDoesXnMeanInDomainEn, title: "ドメイン名の xn-- は何を意味する？", description: "xn-- プレフィックスの意味と、Punycodeドメインを実務で確認する手順を解説します。", intro: "xn-- で始まるラベルは、UnicodeドメインをDNS互換のASCII形式にしたPunycodeです。単体で危険という意味ではありません。" },
+  es: { ...whatDoesXnMeanInDomainEn, title: "¿Qué significa xn-- en un nombre de dominio?", description: "Aprende qué indica el prefijo xn-- y cómo revisar dominios Punycode de forma práctica.", intro: "Si un dominio empieza con xn--, normalmente es la versión Punycode de un dominio Unicode. No significa automáticamente que sea malicioso." },
+  fr: { ...whatDoesXnMeanInDomainEn, title: "Que signifie xn-- dans un nom de domaine ?", description: "Comprenez le préfixe xn-- et comment vérifier des domaines Punycode dans un workflow réel.", intro: "Un label qui commence par xn-- est en général une forme Punycode d’un domaine Unicode. Ce n’est pas, à lui seul, un signal d’attaque." },
+  de: { ...whatDoesXnMeanInDomainEn, title: "Was bedeutet xn-- in einem Domainnamen?", description: "Verstehe die Bedeutung von xn-- und wie du Punycode-Domains im Alltag sicher prüfst.", intro: "Beginnt ein Domain-Label mit xn--, ist es meist die Punycode-Form einer Unicode-Domain. Das ist zunächst normales IDN-Verhalten." }
+};
+
+const unicodeDomainsVsPunycodeEn: GuideLocalizedContent = {
+  title: "Unicode Domains vs Punycode: What’s the Difference?",
+  description: "Learn the practical difference between human-readable Unicode domains and their ASCII Punycode representation.",
+  intro: "Unicode domains are for people to read, while Punycode is for ASCII-only DNS compatibility. They represent the same destination when encoded and decoded correctly.",
+  categoryLabel: "Developer workflow",
+  useCasesTitle: "Useful for",
+  useCases: ["Comparing domain formats in support tickets.", "Documenting international domain workflows.", "Building validation logic for domain inputs.", "Explaining IDN behavior to clients."],
+  closingTitle: "Think display form vs transport form",
+  closingText: "Unicode is the readable display form. Punycode is the transport-compatible ASCII form. Keep both in your workflow where appropriate.",
+  relatedToolLabel: "Open Punycode Converter",
+  sections: [
+    { heading: "Unicode domains are user-friendly", paragraphs: ["Unicode lets users read domains in their own language and script.", "This improves clarity for local audiences and multilingual brands."] },
+    { heading: "Punycode is DNS-compatible encoding", paragraphs: ["DNS labels are ASCII-oriented, so Unicode labels are encoded as Punycode.", "That is why a readable label can appear as xn--... in technical contexts."] },
+    { heading: "Both can point to the same site", paragraphs: ["Unicode and Punycode are two representations of one domain identity when mapped correctly.", "In workflows, conversion should be deterministic and reversible."], bullets: ["Display to users: Unicode.", "Store/transmit in strict systems: often ASCII/Punycode.", "Always verify round-trip conversion."] },
+    { heading: "Where mistakes usually happen", paragraphs: ["Teams sometimes compare Unicode and Punycode strings as if they were unrelated values.", "Another mistake is partial conversion of only some labels in a multi-label domain."] },
+    { heading: "Practical handling rule", paragraphs: ["Choose one canonical storage format and document conversion boundaries.", "This prevents mismatches across product, analytics, and security checks."] }
+  ]
+};
+
+const unicodeDomainsVsPunycodeContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: unicodeDomainsVsPunycodeEn,
+  ko: { ...unicodeDomainsVsPunycodeEn, title: "유니코드 도메인 vs Punycode: 무엇이 다를까?", description: "사람이 읽는 유니코드 도메인과 ASCII Punycode 표현의 차이를 실무 중심으로 정리합니다.", intro: "유니코드는 가독성을 위한 표현이고, Punycode는 DNS 호환을 위한 ASCII 표현입니다. 올바르게 변환하면 같은 도메인을 가리킵니다." },
+  ja: { ...unicodeDomainsVsPunycodeEn, title: "UnicodeドメインとPunycodeの違いとは？", description: "人が読むUnicodeドメインとASCIIのPunycode表現の違いを実務向けに解説します。", intro: "Unicodeは表示向け、PunycodeはDNS互換向けです。正しく変換されれば同じドメインを指します。" },
+  es: { ...unicodeDomainsVsPunycodeEn, title: "Dominios Unicode vs Punycode: ¿cuál es la diferencia?", description: "Diferencia práctica entre dominios Unicode legibles y su representación ASCII Punycode.", intro: "Unicode es para lectura humana; Punycode, para compatibilidad ASCII/DNS. Bien convertidos, representan el mismo dominio." },
+  fr: { ...unicodeDomainsVsPunycodeEn, title: "Domaines Unicode vs Punycode : quelle différence ?", description: "Différence pratique entre un domaine Unicode lisible et sa forme ASCII Punycode.", intro: "Unicode sert à l’affichage humain, Punycode à la compatibilité DNS en ASCII. Correctement convertis, ils représentent le même domaine." },
+  de: { ...unicodeDomainsVsPunycodeEn, title: "Unicode-Domains vs Punycode: Was ist der Unterschied?", description: "Praktischer Unterschied zwischen lesbaren Unicode-Domains und ihrer ASCII-Punycode-Darstellung.", intro: "Unicode ist für Lesbarkeit, Punycode für DNS-Kompatibilität in ASCII. Korrekt umgewandelt zeigen beide auf dieselbe Domain." }
+};
+
+const checkWhetherDomainIsPunycodeEn: GuideLocalizedContent = {
+  title: "How to Check Whether a Strange-Looking Domain Is Punycode",
+  description: "A quick workflow to verify whether an unusual domain string is valid Punycode or something else.",
+  intro: "Not every odd-looking domain is Punycode. A few simple checks help you classify it correctly before blocking, trusting, or reporting it.",
+  categoryLabel: "Developer workflow",
+  useCasesTitle: "Helpful for",
+  useCases: ["Security triage of suspicious links.", "Support tickets about unreadable domains.", "QA checks on redirect destinations.", "Reviewing logs with mixed domain formats."],
+  closingTitle: "Verify format before action",
+  closingText: "Check structure first, decode second, then validate ownership and intent. This avoids overreacting to harmless IDN encoding.",
+  relatedToolLabel: "Open Punycode Converter",
+  sections: [
+    { heading: "Start with the xn-- prefix check", paragraphs: ["Punycode labels usually start with xn--.", "If no label has this prefix, the domain may still be ASCII, Unicode, or another token format."] },
+    { heading: "Validate label structure", paragraphs: ["Each label should follow normal domain constraints such as no empty segments and no leading/trailing hyphens.", "Invalid structure often means the string is malformed, not valid Punycode."] },
+    { heading: "Decode in a trusted tool", paragraphs: ["Decode the candidate label and inspect the Unicode output.", "If decoding fails cleanly, it is likely not valid Punycode."], bullets: ["Normalize full-width dots first.", "Test the full domain, not one fragment.", "Keep the original raw value for audit trail."] },
+    { heading: "Compare against expected destination", paragraphs: ["After decoding, compare the result with known legitimate domains.", "For sensitive actions, confirm certificate info or official registrar records."] },
+    { heading: "Document the outcome clearly", paragraphs: ["Record whether the domain was valid Punycode, malformed input, or unrelated encoding.", "Clear notes reduce repeated investigation across teams."] }
+  ]
+};
+
+const checkWhetherDomainIsPunycodeContent: Record<LocaleCode, GuideLocalizedContent> = {
+  en: checkWhetherDomainIsPunycodeEn,
+  ko: { ...checkWhetherDomainIsPunycodeEn, title: "이상하게 보이는 도메인이 Punycode인지 확인하는 방법", description: "낯선 도메인 문자열이 실제 Punycode인지 빠르게 판별하는 실무 절차입니다.", intro: "이상해 보인다고 모두 Punycode는 아닙니다. 차단·신뢰·신고 전에 형식을 먼저 확인하면 오판을 줄일 수 있습니다." },
+  ja: { ...checkWhetherDomainIsPunycodeEn, title: "見慣れないドメインがPunycodeか確認する方法", description: "不自然なドメイン文字列が有効なPunycodeかを素早く見分ける手順です。", intro: "見た目が怪しい文字列でも、必ずしもPunycodeとは限りません。判断前に基本チェックを行いましょう。" },
+  es: { ...checkWhetherDomainIsPunycodeEn, title: "Cómo comprobar si un dominio extraño es Punycode", description: "Flujo rápido para verificar si un dominio raro es Punycode válido o no.", intro: "No todo dominio extraño es Punycode. Con comprobaciones simples puedes clasificarlo antes de bloquear o confiar." },
+  fr: { ...checkWhetherDomainIsPunycodeEn, title: "Comment vérifier si un domaine étrange est du Punycode", description: "Méthode rapide pour confirmer si une chaîne de domaine inhabituelle est un Punycode valide.", intro: "Un domaine qui paraît suspect n’est pas forcément du Punycode. Vérifiez d’abord le format avant d’agir." },
+  de: { ...checkWhetherDomainIsPunycodeEn, title: "So prüfst du, ob eine auffällige Domain Punycode ist", description: "Schneller Workflow, um ungewöhnliche Domain-Strings als gültiges Punycode einzuordnen.", intro: "Nicht jede seltsam wirkende Domain ist Punycode. Mit kurzen Checks triffst du bessere Entscheidungen vor Block/Trust." }
+};
 const howToDecodeBase64SafelyForDebuggingContent: Record<LocaleCode, GuideLocalizedContent> = {
   en: howToDecodeBase64SafelyForDebuggingEn,
   ko: { ...howToDecodeBase64SafelyForDebuggingEn, title: "디버깅을 위한 안전한 Base64 디코딩 방법", description: "민감 정보 노출 없이 Base64를 확인하는 안전한 디버깅 절차입니다.", intro: "디코딩 결과에는 토큰이나 개인 정보가 포함될 수 있습니다. 안전한 환경에서 최소한만 확인하세요." },
@@ -6256,6 +6344,33 @@ const guideDefinitions: Array<Omit<GuideItem, "content"> & { content: Record<Loc
     publishedAt: "2026-04-10",
     updatedAt: "2026-04-10",
     content: spacesSymbolsAndQueryStringsUrlEncodingContent
+  },
+  {
+    slug: "what-does-xn-mean-in-domain",
+    category: "developer",
+    relatedToolSlug: "punycode-converter",
+    relatedGuideSlugs: ["when-to-encode-url-and-when-not-to", "spaces-symbols-and-query-strings-url-encoding"],
+    publishedAt: "2026-04-10",
+    updatedAt: "2026-04-10",
+    content: whatDoesXnMeanInDomainContent
+  },
+  {
+    slug: "unicode-domains-vs-punycode",
+    category: "developer",
+    relatedToolSlug: "punycode-converter",
+    relatedGuideSlugs: ["what-does-xn-mean-in-domain", "tell-whether-string-is-base64"],
+    publishedAt: "2026-04-10",
+    updatedAt: "2026-04-10",
+    content: unicodeDomainsVsPunycodeContent
+  },
+  {
+    slug: "check-whether-domain-is-punycode",
+    category: "developer",
+    relatedToolSlug: "punycode-converter",
+    relatedGuideSlugs: ["unicode-domains-vs-punycode", "fix-broken-links-caused-by-url-encoding"],
+    publishedAt: "2026-04-10",
+    updatedAt: "2026-04-10",
+    content: checkWhetherDomainIsPunycodeContent
   },
   {
     slug: "how-to-decode-base64-safely-for-debugging",
