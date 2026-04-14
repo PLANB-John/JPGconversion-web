@@ -1,11 +1,15 @@
 "use client";
 
 import { useState } from "react";
+import { ToolHubSupportSection } from "@/components/tools/ToolHubSupportSection";
+import type { GuideSlug } from "@/data/guides";
 import type { PunycodeConverterMessages } from "@/data/punycodeConverterMessages";
 import { toASCII, toUnicode } from "@/lib/punycode";
 
 type Props = {
   messages: PunycodeConverterMessages;
+  locale: string;
+  relatedGuides: Array<{ slug: GuideSlug; title: string }>;
 };
 
 const sampleUnicodeDomain = "bücher.example";
@@ -39,7 +43,7 @@ function isAsciiDomain(domain: string) {
   return isStructurallyValidDomain(domain) && domain.split(".").every((label) => asciiLabelPattern.test(label));
 }
 
-export function PunycodeConverterTool({ messages }: Props) {
+export function PunycodeConverterTool({ messages, locale, relatedGuides }: Props) {
   const [unicodeValue, setUnicodeValue] = useState("");
   const [punycodeValue, setPunycodeValue] = useState("");
   const [statusMessage, setStatusMessage] = useState("");
@@ -267,6 +271,21 @@ export function PunycodeConverterTool({ messages }: Props) {
           {!statusMessage && !errorMessage && <p className="text-slate-500">{messages.helperText}</p>}
         </div>
       </section>
+
+      <ToolHubSupportSection
+        sectionTitle={messages.supportSectionTitle}
+        sectionDescription={messages.supportSectionDescription}
+        whenToUseTitle={messages.whenToUseTitle}
+        whenToUseItems={messages.whenToUseItems}
+        quickStepsTitle={messages.quickStepsTitle}
+        quickSteps={messages.quickSteps}
+        commonMistakesTitle={messages.commonMistakesTitle}
+        commonMistakes={messages.commonMistakes}
+        relatedGuidesTitle={messages.relatedGuidesTitle}
+        relatedGuidesDescription={messages.relatedGuidesDescription}
+        relatedGuides={relatedGuides}
+        locale={locale}
+      />
     </div>
   );
 }
